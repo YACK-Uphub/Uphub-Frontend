@@ -7,9 +7,7 @@ export const metadata: Metadata = {
   description: "This is the InternHub App used externally for school, candidates and enterprises",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+export default function RootLayout({children}: Readonly<{
   children: ReactNode;
 }>) {
   return (
