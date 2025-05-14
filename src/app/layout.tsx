@@ -4,7 +4,7 @@ import {ReactNode} from "react";
 
 export const metadata: Metadata = {
   title: "$s | Page",
-  description: "This is the InternHub App used externally for school, students and enterprises",
+  description: "This is the InternHub App used externally for school, candidates and enterprises",
 };
 
 export default function RootLayout({
