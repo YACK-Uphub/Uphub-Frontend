@@ -2,6 +2,7 @@ import type {Metadata} from "next";
 import "./globals.css";
 import {ReactNode} from "react";
 import {Reem_Kufi} from 'next/font/google'
+import StoreProvider from "@/app/StoreProvider";
 
 // === Configuration =============================
 
@@ -26,7 +27,9 @@ export default function RootLayout({children}: Readonly<{
   return (
     <html lang="en" className={fontReemKufi.className}>
       <body className={"min-h-screen text-custom-black leading-relaxed"}>
-        {children}
+        <StoreProvider>
+          {children}
+        </StoreProvider>
       </body>
     </html>
   );
