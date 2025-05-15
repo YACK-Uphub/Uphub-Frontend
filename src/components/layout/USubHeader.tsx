@@ -33,12 +33,7 @@ const USubHeader = ({navItems}: USubHeaderProps) => {
 
 						return (
 							<li key={index}>
-								<Link
-									href={item.path}
-									className={isActivePath && "text-custom-yellow-3"}
-								>
-									{item.name}
-								</Link>
+								<Link href={item.path} className={isActivePath ? "text-custom-yellow-3" : ""}>{item.name}</Link>
 							</li>)
 					}
 				)}

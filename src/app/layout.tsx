@@ -47,7 +47,7 @@ export default function RootLayout({children}: Readonly<{
           <USubHeader navItems={navItems}/>
 
           {/* Main */}
-          <main className={"flex-1"}>
+          <main className={"flex-1 px-12 mt-6"}>
             {children}
           </main>
 

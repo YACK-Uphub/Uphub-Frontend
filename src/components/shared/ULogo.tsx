@@ -9,7 +9,8 @@ const ULogo = () => {
 			<Link href={"/"}>
 				<Image src={logo}
 							 alt={"Uphub Logo"}
-							 quality={100}
+							 quality={80}
+							 loading={"lazy"}
 				/>
 			</Link>
 		</div>

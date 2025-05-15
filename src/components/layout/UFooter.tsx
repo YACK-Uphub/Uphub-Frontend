@@ -26,12 +26,12 @@ const Footer = () => {
 
 	return (
 		<footer className="text-custom-black">
-			<div className="grid grid-cols-1 gap-8 border-t
+			<div className="grid grid-cols-1 gap-y-8 gap-x-2 border-t
 									 text-sm
-									 px-12 py-6 border-custom-yellow-1 md:grid-cols-3">
+									 px-12 py-6 border-custom-yellow-1 md:grid-cols-5">
 
 				{/* Support Section */}
-				<section>
+				<section className="md:col-span-1">
 					<h4 className="mb-4 text-lg font-semibold">Hỗ trợ</h4>
 					<ul className="space-y-3">
 						<li><Link href="#" className="hover:text-custom-yellow-3">FAQ</Link></li>
@@ -41,7 +41,7 @@ const Footer = () => {
 				</section>
 
 				{/* About Us Section */}
-				<section>
+				<section className="md:col-span-1">
 					<h4 className="mb-4 text-lg font-semibold">Về chúng tôi</h4>
 					<ul className="space-y-3">
 						<li><Link href="#" className="hover:text-custom-yellow-3">Về UpHub</Link></li>
@@ -50,7 +50,7 @@ const Footer = () => {
 				</section>
 
 				{/* App Links */}
-				<section className="flex flex-col items-center justify-end-safe space-y-4">
+				<section className="md:col-span-3 flex flex-col items-end justify-end-safe space-y-4">
 					<UButton
 						onClick={handleGooglePlayClick}
 						label={"Google Play"}
