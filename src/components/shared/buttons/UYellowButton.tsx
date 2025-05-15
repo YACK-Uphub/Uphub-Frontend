@@ -10,7 +10,7 @@ interface YYellowButtonProps {
 	iconPosition?: 'left' | 'right'; // optional
 }
 
-const YYellowButton = ({
+const UYellowButton = ({
 	onClick,
 	label,
 	width = 'w-auto',
@@ -29,4 +29,4 @@ const YYellowButton = ({
 	);
 };
 
-export default YYellowButton;
+export default UYellowButton;

@@ -10,7 +10,7 @@ interface YBlueButtonProps {
 	iconPosition?: 'left' | 'right'; // optional
 }
 
-const YBlueButton = ({
+const UBlueButton = ({
 	onClick,
 	label,
 	width = 'w-auto',
@@ -29,4 +29,4 @@ const YBlueButton = ({
 	);
 };
 
-export default YBlueButton;
+export default UBlueButton;
