@@ -1,5 +1,6 @@
 import React from 'react';
 import type {Metadata} from 'next';
+import UHeader from "@/components/layout/header/UHeader";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
 const HomePage = () => {
   return (
     <div>
+
       <p className={"text-base"}>Hello World</p>
       <div>tôi là người Việt Nam</div>
       <div>A ab ad, aliquam animi aut cumque deserunt dolorum earum est impedit iure labore laborum magnam minima modi

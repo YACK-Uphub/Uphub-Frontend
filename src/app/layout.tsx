@@ -1,8 +1,9 @@
 import type {Metadata} from "next";
 import "./globals.css";
-import {ReactNode} from "react";
+import React, {ReactNode} from "react";
 import {Reem_Kufi} from 'next/font/google'
 import StoreProvider from "@/app/StoreProvider";
+import UHeader from "@/components/layout/header/UHeader";
 
 // === Configuration =============================
 
@@ -28,6 +29,9 @@ export default function RootLayout({children}: Readonly<{
     <html lang="en" className={fontReemKufi.className}>
       <body className={"min-h-screen text-custom-black leading-relaxed"}>
         <StoreProvider>
+          <UHeader></UHeader>
+
+
           {children}
         </StoreProvider>
       </body>

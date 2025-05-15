@@ -1,15 +1,15 @@
 import React from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import logo from "/logo.png";
+import logo from "../../../public/images/logo.png";
 
 const ULogo = () => {
 	return (
 		<div>
 			<Link href={"/"}>
 				<Image src={logo}
-							 alt={"Uphub ULogo"}
-							 quality={50}
+							 alt={"Uphub Logo"}
+							 quality={100}
 				/>
 			</Link>
 		</div>
