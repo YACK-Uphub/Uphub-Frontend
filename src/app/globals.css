@@ -3,13 +3,13 @@
 /* Custom Tailwind below */
 
 @theme {
-  --color-custom-blue-1: #2454b6;
-  --color-custom-blue-2: #082c80;
-  --color-custom-blue-3: #c2ddcff;
+  --color-custom-blue-1: #c2dcff;
+  --color-custom-blue-2: #2454b6;
+  --color-custom-blue-3: #082c80;
 
-  --color-custom-yellow-1: #ffd147;
+  --color-custom-yellow-1: #efedee;
   --color-custom-yellow-2: #fff2d7;
-  --color-custom-yellow-3: #efedee;
+  --color-custom-yellow-3: #ffd147;
 
   --color-custom-red-text: #FF4F4F;
   --color-custom-red-bg: #FFEDED;
