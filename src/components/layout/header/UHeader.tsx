@@ -3,7 +3,7 @@ import UHeaderNavigation from "@/components/layout/header/UHeaderNavigation";
 
 const UHeader = () => {
 	return (
-		<header className={"flex justify-between items-center py-6 px-12"}>
+		<header className={"flex justify-between items-center"}>
 			<ULogo></ULogo>
 			<UHeaderNavigation></UHeaderNavigation>
 		</header>

@@ -5,6 +5,7 @@ import {Reem_Kufi} from 'next/font/google'
 import StoreProvider from "@/app/StoreProvider";
 import UHeader from "@/components/layout/header/UHeader";
 import USubHeader from "@/components/layout/USubHeader";
+import UFooter from "@/components/layout/UFooter";
 
 // === Configuration =============================
 
@@ -34,28 +35,26 @@ export default function RootLayout({children}: Readonly<{
 }>) {
   return (
     <html lang="en" className={fontReemKufi.className}>
-      <body className={"min-h-screen text-custom-black leading-relaxed"}>
+      <body className={"min-h-screen text-custom-black leading-relaxed flex flex-col"}>
         <StoreProvider>
 
           {/* Header */}
-          <div>
+          <section className={"py-6 px-12"}>
             <UHeader/>
-          </div>
+          </section>
 
           {/* Sub Headers*/}
-          <div>
-            <USubHeader navItems={navItems}/>
-          </div>
+          <USubHeader navItems={navItems}/>
 
           {/* Main */}
-          <div>
-            <main>{children}</main>
-          </div>
+          <main className={"flex-1"}>
+            {children}
+          </main>
 
           {/* Footer*/}
-          <div>
-
-          </div>
+          <section className={"mt-6"}>
+            <UFooter/>
+          </section>
 
         </StoreProvider>
       </body>

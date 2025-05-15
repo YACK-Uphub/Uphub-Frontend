@@ -30,13 +30,13 @@ const UButton = ({
 	return (
 		<button
 			onClick={onClick}
-			className={`flex items-center justify-center 
-									gap-2 px-6 py-2 font-medium 
-									shadow-2xl 
+			className={`flex flex-row items-center justify-center 
+									gap-2 px-5 py-2 font-medium 
+									shadow-1xl 
 									active:translate-y-[2px] active:shadow-sm
 									hover:translate-y-[2px] 
 									transition-transform duration-200
-        ${width} ${height} ${backgroundColor} ${textColor} ${border} ${borderRadius}`}
+									${width} ${height} ${backgroundColor} ${textColor} ${border} ${borderRadius}`}
 		>
 			{icon && iconPosition === 'left' && icon}
 			<span>{label}</span>
