@@ -2,7 +2,7 @@
 
 import {ArrowRightEndOnRectangleIcon} from "@heroicons/react/24/outline";
 
-interface ULoginButtonProps {
+export interface ULoginButtonProps {
 	onClick?: () => void;
 	label: string;
 	width?: string,

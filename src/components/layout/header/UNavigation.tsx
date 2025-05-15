@@ -11,8 +11,7 @@ const UNavigation = () => {
 	// === Variables
 	// ==================
 
-	const BUTTON_LOGIN_LABEL: string = "Đăng Nhập";
-	const TEXT_STUDENT_LABEL: string = "Sinh viên";
+	const BUTTON_LOGIN_LABEL: string = "Đăng Nhập"
 
 	// ==================
 	// === Events
@@ -38,12 +37,6 @@ const UNavigation = () => {
 				<li><BellIcon className="h-6 w-6 text-gray-500 cursor-pointer" onClick={handleBellClick}/></li>
 				<li><UserCircleIcon className="h-6 w-6 text-custom-blue-3 cursor-pointer" onClick={handleUserClick}/></li>
 			</ul>
-
-			{/*	Divider */}
-			<div className="inline-block h-6 w-[1px] bg-custom-gray opacity-50"></div>
-
-			{/* Text */}
-			<span className="text-custom-gray font-medium">{TEXT_STUDENT_LABEL}</span>
 
 			{/*	Divider */}
 			<div className="inline-block h-6 w-[1px] bg-custom-gray opacity-50"></div>

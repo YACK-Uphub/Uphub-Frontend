@@ -2,7 +2,7 @@
 
 import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/react/24/solid";
 
-interface YBlueButtonProps {
+export interface YBlueButtonProps {
 	onClick?: () => void;
 	label: string;
 	width?: string,

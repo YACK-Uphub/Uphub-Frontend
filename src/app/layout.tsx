@@ -4,6 +4,7 @@ import React, {ReactNode} from "react";
 import {Reem_Kufi} from 'next/font/google'
 import StoreProvider from "@/app/StoreProvider";
 import UHeader from "@/components/layout/header/UHeader";
+import USubHeader from "@/components/layout/subHeader/USubHeader";
 
 // === Configuration =============================
 
@@ -20,6 +21,12 @@ export const metadata: Metadata = {
   description: "This is the InternHub App used externally for school, candidates and enterprises",
 };
 
+const navItems = [
+  {name: 'Trang chủ', path: '/'},
+  {name: 'Về chúng tôi', path: '/about-us'},
+  {name: 'Liên hệ', path: '/contact-us'},
+];
+
 // === Components =============================
 
 export default function RootLayout({children}: Readonly<{
@@ -29,10 +36,27 @@ export default function RootLayout({children}: Readonly<{
     <html lang="en" className={fontReemKufi.className}>
       <body className={"min-h-screen text-custom-black leading-relaxed"}>
         <StoreProvider>
-          <UHeader></UHeader>
 
+          {/* Header */}
+          <div>
+            <UHeader/>
+          </div>
 
-          {children}
+          {/* Sub Headers*/}
+          <div>
+            <USubHeader navItems={navItems}/>
+          </div>
+
+          {/* Main */}
+          <div>
+            <main>{children}</main>
+          </div>
+
+          {/* Footer*/}
+          <div>
+
+          </div>
+
         </StoreProvider>
       </body>
     </html>
