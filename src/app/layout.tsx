@@ -4,7 +4,7 @@ import React, {ReactNode} from "react";
 import {Reem_Kufi} from 'next/font/google'
 import StoreProvider from "@/app/StoreProvider";
 import UHeader from "@/components/layout/header/UHeader";
-import USubHeader from "@/components/layout/subHeader/USubHeader";
+import USubHeader from "@/components/layout/USubHeader";
 
 // === Configuration =============================
 

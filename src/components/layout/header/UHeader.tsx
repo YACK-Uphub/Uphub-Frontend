@@ -1,11 +1,11 @@
 import ULogo from "@/components/shared/ULogo";
-import UNavigation from "@/components/layout/header/UNavigation";
+import UHeaderNavigation from "@/components/layout/header/UHeaderNavigation";
 
 const UHeader = () => {
 	return (
 		<header className={"flex justify-between items-center py-6 px-12"}>
 			<ULogo></ULogo>
-			<UNavigation></UNavigation>
+			<UHeaderNavigation></UHeaderNavigation>
 		</header>
 	);
 };
