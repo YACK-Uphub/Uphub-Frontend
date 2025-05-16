@@ -2,7 +2,7 @@
 
 import {usePathname} from 'next/navigation'
 import {ReactNode, useEffect, useState} from 'react'
-import {UPageSpinner} from "@/components/shared/Spinner/UPageSpinner";
+import {UPageSpinner} from "@/components/shared/spinner/UPageSpinner";
 
 export default function UPageSpinnerWrapper({children}: { children: ReactNode }) {
 	const pathname = usePathname()

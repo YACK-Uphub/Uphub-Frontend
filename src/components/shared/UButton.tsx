@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import {ReactNode} from 'react';
+import {debounce} from "@/utils/helpers";
 
 export interface UButtonProps {
 	onClick: () => void;
@@ -29,7 +30,7 @@ const UButton = ({
 }: UButtonProps) => {
 	return (
 		<button
-			onClick={onClick}
+			onClick={debounce(onClick, 400)}
 			className={`flex flex-row items-center justify-center 
 									gap-2 px-5 py-2 font-medium 
 									shadow-1xl 

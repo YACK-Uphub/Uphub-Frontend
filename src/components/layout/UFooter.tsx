@@ -10,19 +10,11 @@ import {FaXTwitter} from "react-icons/fa6";
 
 const Footer = () => {
 
-	// ==================
-	// === Events
-	// ==================
-
 	const handleGooglePlayClick = () => alert("Google Play clicked!");
 	const handleAppStoreClick = () => alert("App Store clicked!");
 	const handleXClick = () => alert("X clicked!");
 	const handleFacebookClick = () => alert("Facebook clicked!");
 	const handleInstaClick = () => alert("Insta clicked!");
-
-	// ==================
-	// === Renders
-	// ==================
 
 	return (
 		<footer className="text-custom-black">

@@ -10,15 +10,7 @@ export interface USubHeaderProps {
 
 const USubHeader = ({navItems}: USubHeaderProps) => {
 
-	// ==================
-	// === Variables
-	// ==================
-
 	const pathname = usePathname();
-
-	// ==================
-	// === Renders
-	// ==================
 
 	return (
 		<nav>

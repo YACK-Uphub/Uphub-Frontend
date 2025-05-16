@@ -1,7 +1,7 @@
 ﻿import {ArrowPathRoundedSquareIcon} from "@heroicons/react/24/outline"; // spinner-like icon
 import React from "react";
 
-type UPageSpinnerProps = {
+export interface UPageSpinnerProps {
 	size?: number;
 	className?: string;
 };
