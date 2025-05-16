@@ -2,10 +2,10 @@ import type {Metadata} from "next";
 import "./globals.css";
 import React, {ReactNode} from "react";
 import {Reem_Kufi} from 'next/font/google'
-import StoreProvider from "@/app/StoreProvider";
 import UHeader from "@/components/layout/header/UHeader";
 import USubHeader from "@/components/layout/USubHeader";
 import UFooter from "@/components/layout/UFooter";
+import UPageSpinnerWrapper from "@/components/shared/Spinner/UPageSpinnerWrapper";
 
 // === Configuration =============================
 
@@ -36,7 +36,7 @@ export default function RootLayout({children}: Readonly<{
   return (
     <html lang="en" className={fontReemKufi.className}>
       <body className={"min-h-screen text-custom-black leading-relaxed flex flex-col"}>
-        <StoreProvider>
+        {/*<StoreProvider>*/}
 
           {/* Header */}
           <section className={"py-6 px-12"}>
@@ -48,15 +48,18 @@ export default function RootLayout({children}: Readonly<{
 
           {/* Main */}
           <main className={"flex-1 px-12 mt-6"}>
-            {children}
+            <UPageSpinnerWrapper>
+              {children}
+            </UPageSpinnerWrapper>
           </main>
+
 
           {/* Footer*/}
           <section className={"mt-6"}>
             <UFooter/>
           </section>
 
-        </StoreProvider>
+        {/*</StoreProvider>*/}
       </body>
     </html>
   );

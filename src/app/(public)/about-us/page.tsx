@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description: "Learn more about UpHub and our mission",
 };
 
-const AboutUsPage = () => {
-  return (
-    <div>
+const AboutUsPage = async () => {
+
+  return (<div>
       <h1>About Us</h1>
       <p>Learn more about UpHub, our mission, and our team.</p>
     </div>
-  );
+  )
 };
 
 export default AboutUsPage;
