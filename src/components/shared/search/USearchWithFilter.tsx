@@ -71,7 +71,7 @@ export default function USearchWithFilter({onSearchSubmit, dropdownData}: USearc
 	}
 
 	return (
-		<div className="bg-custom-white shadow-2xl rounded-full p-2 px-4 flex items-center gap-4 w-full max-w-5xl mx-auto">
+		<div className="bg-custom-white shadow-xl rounded-full p-2 px-4 flex items-center gap-4 w-full max-w-5xl mx-auto">
 
 			{/* Job Search Input */}
 			<div className="flex items-center gap-2 flex-1">
