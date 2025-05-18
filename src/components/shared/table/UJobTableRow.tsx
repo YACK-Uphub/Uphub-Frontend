@@ -3,13 +3,15 @@ import { MapPin, Bookmark, Users } from 'lucide-react';
 import { Job } from '@/utils';
 import { formatDate } from '@/utils/helpers';
 import UButton from '../UButton';
+import Image from 'next/image';
+import { lazy } from 'react';
 
 interface JobTableRowProps {
   variant?: string;
   ownerView?: boolean;
   isApplied?: boolean;
-  job: Job;
-  onClick: () => void;
+  job?: Job;
+  onClick?: () => void;
 }
 
 export default function UJobTableRow({
@@ -19,13 +21,28 @@ export default function UJobTableRow({
   job,
   onClick,
 }: JobTableRowProps) {
-  const statusColorMap = {
-    Open: 'green',
-    Closed: 'red',
-    Paused: 'yellow',
-    Archieved: 'gray',
+  const statusStyleMap = {
+    Open: {
+      text: 'text-green-600',
+      bg: 'bg-green-600',
+    },
+    Closed: {
+      text: 'text-red-600',
+      bg: 'bg-red-600',
+    },
+    Paused: {
+      text: 'text-yellow-600',
+      bg: 'bg-yellow-600',
+    },
+    Archieved: {
+      text: 'text-gray-600',
+      bg: 'bg-gray-600',
+    },
   };
-  const color = statusColorMap[job.jobStatus] || 'gray';
+  const styles = statusStyleMap[job.jobStatus] || {
+    text: 'text-gray-600',
+    bg: 'bg-gray-600',
+  };
 
   // Get background based on variant
   const getBackgroundColor = () => {
@@ -33,13 +50,6 @@ export default function UJobTableRow({
     if (variant === 'selected') return 'border border-custom-blue-2';
     return 'bg-white border-2';
   };
-
-  // Component Logo
-  const CompanyLogo = ({ imageUrl }) => (
-    <div className='w-20 h-20 flex items-center justify-center rounded border'>
-      <img src={imageUrl} alt='Company logo' />
-    </div>
-  );
 
   // Job Information
   const JobInfo = () => (
@@ -50,8 +60,8 @@ export default function UJobTableRow({
           {job.jobType}
         </span>
 
-        <span className={`flex items-center gap-1 text-sm text-${color}-600`}>
-          <span className={`w-2 h-2 rounded-full bg-${color}-500`}></span>
+        <span className={`flex items-center gap-1 text-sm ${styles.text}`}>
+          <span className={`w-2 h-2 rounded-full ${styles.bg}`}></span>
           <span>{job.jobStatus}</span>
         </span>
       </div>
@@ -66,7 +76,7 @@ export default function UJobTableRow({
 
         {job.salaryRange && (
           <div className='flex items-center gap-1'>
-            <span>{job.salaryRange} VND</span>
+            <span>{job.salaryRange}</span>
           </div>
         )}
       </div>
@@ -108,7 +118,15 @@ export default function UJobTableRow({
     <div
       className={`px-8 py-4 rounded-lg ${getBackgroundColor()} flex items-center gap-3 transition-all duration-200`}
     >
-      <CompanyLogo imageUrl={job.companyImageUrl} />
+      <Image
+        src={job.companyImageUrl}
+        alt='logo company'
+        quality={50}
+        loading='lazy'
+        width={80}
+        height={80}
+        className='object-contain rounded-md'
+      />
 
       <div className='flex-grow'>
         <div className='flex justify-between items-center'>
