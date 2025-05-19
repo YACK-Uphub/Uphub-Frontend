@@ -4,7 +4,7 @@ import type {Metadata} from 'next';
 import USearchWithFilterWrapper from "@/components/shared/search/USearchWithFilterWrapper";
 import {UDropdownItem} from "@/components/shared/search/USearchWithFilter";
 import UCardTopCompany from "@/components/shared/card/UCardTopCompany";
-import {CardVariant} from "@/components/shared/card/CardVariant";
+import {CardVariant} from "@/components/shared/card/UCardVariant";
 import UCardApplication from "@/components/shared/card/UCardApplication";
 import {UCardJob} from "@/components/shared/card/UCardJob";
 

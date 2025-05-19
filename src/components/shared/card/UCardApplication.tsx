@@ -3,7 +3,7 @@
 import Image from "next/image";
 import {DownloadIcon} from "lucide-react";
 import UButton from "@/components/shared/UButton";
-import {CardVariant, getVariantClass} from "@/components/shared/card/CardVariant";
+import {CardVariant, getVariantClass} from "@/components/shared/card/UCardVariant";
 
 export interface UCardApplicationProps {
 	name: string;

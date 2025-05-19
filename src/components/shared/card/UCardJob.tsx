@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import {CardVariant, getVariantClass} from "@/components/shared/card/CardVariant";
+import {CardVariant, getVariantClass} from "@/components/shared/card/UCardVariant";
 import Image from "next/image";
 
 export interface JobCardProps {

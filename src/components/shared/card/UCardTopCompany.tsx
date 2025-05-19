@@ -1,6 +1,6 @@
 ﻿import StarIcon from "@heroicons/react/24/solid/StarIcon";
 import Image from "next/image";
-import {CardVariant, getVariantClass} from "@/components/shared/card/CardVariant";
+import {CardVariant, getVariantClass} from "@/components/shared/card/UCardVariant";
 
 export interface CompanyCardProps {
 	logoUrl?: string;

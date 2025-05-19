@@ -1,10 +1,9 @@
 'use client';
-import { MapPin, Bookmark, Users } from 'lucide-react';
-import { Job } from '@/utils';
-import { formatDate } from '@/utils/helpers';
+import {Bookmark, MapPin, Users} from 'lucide-react';
+import {Job} from '@/utils';
+import {formatDate} from '@/utils/helpers';
 import UButton from '../UButton';
 import Image from 'next/image';
-import { lazy } from 'react';
 
 interface JobTableRowProps {
   variant?: string;
