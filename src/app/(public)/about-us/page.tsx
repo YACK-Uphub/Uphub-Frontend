@@ -6,6 +6,7 @@ import {UDropdownItem} from "@/components/shared/search/USearchWithFilter";
 import UCardTopCompany from "@/components/shared/card/UCardTopCompany";
 import {CardVariant} from "@/components/shared/card/CardVariant";
 import UCardApplication from "@/components/shared/card/UCardApplication";
+import {UCardJob} from "@/components/shared/card/UCardJob";
 
 const locations: UDropdownItem[] = [
   {id: 1, name: 'Hà Nội'},
@@ -46,6 +47,16 @@ const AboutUsPage = async () => {
         avatarUrl={"https://placehold.co/600x400/png"}
         cvUrl={"https://placehold.co/600x400/png"}
         variant={CardVariant.Border}
+      />
+
+      <UCardJob
+        companyLogo="/path/to/logo.png" // or leave empty for placeholder
+        companyName="Freepik"
+        isFeatured={true}
+        location="China"
+        jobTitle="TTS Visual Designer"
+        jobType="Full Time"
+        salaryRange="$10K-$15K"
       />
     </div>
   )

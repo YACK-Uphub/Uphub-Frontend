@@ -24,7 +24,7 @@ export default function UCardApplication({
 	submittedDate,
 	avatarUrl,
 	cvUrl,
-	variant,
+	variant = CardVariant.Normal
 }: UCardApplicationProps) {
 
 	const onDownloadCv = async () => {
