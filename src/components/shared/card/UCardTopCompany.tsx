@@ -1,5 +1,7 @@
 ﻿import StarIcon from "@heroicons/react/24/solid/StarIcon";
 import Image from "next/image";
+import {CardVariant, getVariantClass} from "@/components/shared/card/CardVariant";
+
 
 export interface CompanyCardProps {
 	logoUrl?: string;
@@ -10,6 +12,7 @@ export interface CompanyCardProps {
 	recommendationRate: string;
 	isHiring?: boolean;
 	hasHighBenefits?: boolean;
+	variant: CardVariant;
 }
 
 export default function UCardTopCompany({
@@ -21,9 +24,11 @@ export default function UCardTopCompany({
 	recommendationRate,
 	isHiring = false,
 	hasHighBenefits = false,
+	variant = CardVariant.Normal,
 }: CompanyCardProps) {
+
 	return (
-		<div className="w-80 p-4 bg-custom-white rounded-2xl shadow-md border">
+		<div className={`w-80 p-4 ${getVariantClass(variant)} rounded-2xl shadow-md border`}>
 			<div className="flex flex-col items-center">
 				<div className="w-16 h-16 relative mb-2">
 					<Image

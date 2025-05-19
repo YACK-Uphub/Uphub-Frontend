@@ -4,6 +4,7 @@ import type {Metadata} from 'next';
 import USearchWithFilterWrapper from "@/components/shared/search/USearchWithFilterWrapper";
 import {UDropdownItem} from "@/components/shared/search/USearchWithFilter";
 import UCardTopCompany from "@/components/shared/card/UCardTopCompany";
+import {CardVariant} from "@/components/shared/card/CardVariant";
 
 const locations: UDropdownItem[] = [
   {id: 1, name: 'Hà Nội'},
@@ -30,7 +31,12 @@ const AboutUsPage = async () => {
                        followers={6968877}
                        recommendationRate="74%"
                        isHiring={true}
-                       hasHighBenefits={true}/>
+                       hasHighBenefits={true}
+                       variant={CardVariant.Border}
+
+      />
+
+
     </div>
   )
 };
