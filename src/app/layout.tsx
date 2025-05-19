@@ -52,8 +52,7 @@ export default function RootLayout({children}: Readonly<{
               {children}
             </UPageSpinnerWrapper>
           </main>
-
-
+        
           {/* Footer*/}
           <section className={"mt-6"}>
             <UFooter/>

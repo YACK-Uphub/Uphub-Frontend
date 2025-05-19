@@ -45,6 +45,7 @@ const AboutUsPage = async () => {
         submittedDate="01-03-2025"
         avatarUrl={"https://placehold.co/600x400/png"}
         cvUrl={"https://placehold.co/600x400/png"}
+        variant={CardVariant.Border}
       />
     </div>
   )

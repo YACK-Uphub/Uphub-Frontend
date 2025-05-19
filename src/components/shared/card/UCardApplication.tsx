@@ -3,6 +3,7 @@
 import Image from "next/image";
 import {DownloadIcon} from "lucide-react";
 import UButton from "@/components/shared/UButton";
+import {CardVariant, getVariantClass} from "@/components/shared/card/CardVariant";
 
 export interface UCardApplicationProps {
 	name: string;
@@ -12,6 +13,7 @@ export interface UCardApplicationProps {
 	submittedDate: string;
 	avatarUrl?: string;
 	cvUrl?: string;
+	variant: CardVariant;
 }
 
 export default function UCardApplication({
@@ -22,6 +24,7 @@ export default function UCardApplication({
 	submittedDate,
 	avatarUrl,
 	cvUrl,
+	variant,
 }: UCardApplicationProps) {
 
 	const onDownloadCv = async () => {
@@ -30,7 +33,7 @@ export default function UCardApplication({
 	}
 
 	return (
-		<div className="w-64 border rounded-xl shadow-sm bg-custom-white p-4 space-y-3 text-sm">
+		<div className={`w-64 border rounded-xl shadow-sm ${getVariantClass(variant)} p-4 space-y-3 text-sm`}>
 
 			{/* Header */}
 			<div className="flex items-center gap-3">
