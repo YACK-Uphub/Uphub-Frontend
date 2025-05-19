@@ -24,6 +24,9 @@
   --color-custom-white: #FFFFFF;
   --color-custom-gray: #5E6670;
   --color-custom-black: #202224;
+
+  --color-custom-purple-text: #6E25B4;
+  --color-custom-purple-bg: #F3E8FF;
 }
 
 @theme inline {

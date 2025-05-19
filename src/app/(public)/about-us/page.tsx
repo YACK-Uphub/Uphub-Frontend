@@ -46,18 +46,18 @@ const AboutUsPage = async () => {
         submittedDate="01-03-2025"
         avatarUrl={"https://placehold.co/600x400/png"}
         cvUrl={"https://placehold.co/600x400/png"}
-        variant={CardVariant.Border}
+        variant={CardVariant.Normal}
       />
 
       <UCardJob
-        companyLogo="/path/to/logo.png" // or leave empty for placeholder
+        companyLogoUrl="https://placehold.co/600x400/png"
         companyName="Freepik"
         isFeatured={true}
         location="China"
         jobTitle="TTS Visual Designer"
         jobType="Full Time"
         salaryRange="$10K-$15K"
-      />
+        variant={CardVariant.LightBlue}/>
     </div>
   )
 };

@@ -33,12 +33,12 @@ export default function UCardApplication({
 	}
 
 	return (
-		<div className={`w-64 border rounded-xl shadow-sm ${getVariantClass(variant)} p-4 space-y-3 text-sm`}>
+		<div className={`w-64 border rounded-xl shadow-md ${getVariantClass(variant)} p-4 space-y-3 text-sm`}>
 
 			{/* Header */}
 			<div className="flex items-center gap-3">
 				<div className="w-16 h-16 mb-2 relative bg-custom-gray rounded-full overflow-hidden">
-					{avatarUrl ? (<Image
+					<Image
 						src={avatarUrl}
 						alt={`${name} Logo`}
 						fill={true}
@@ -47,7 +47,9 @@ export default function UCardApplication({
 						quality={50}
 						priority={false}
 						loading={"lazy"}
-					/>) : null}
+						placeholder={"blur"}
+						blurDataURL={"/images/placeholderImage.png"}
+					/>
 				</div>
 
 				<div>
