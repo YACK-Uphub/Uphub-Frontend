@@ -5,6 +5,7 @@ import USearchWithFilterWrapper from "@/components/shared/search/USearchWithFilt
 import {UDropdownItem} from "@/components/shared/search/USearchWithFilter";
 import UCardTopCompany from "@/components/shared/card/UCardTopCompany";
 import {CardVariant} from "@/components/shared/card/CardVariant";
+import UCardApplication from "@/components/shared/card/UCardApplication";
 
 const locations: UDropdownItem[] = [
   {id: 1, name: 'Hà Nội'},
@@ -24,7 +25,7 @@ const AboutUsPage = async () => {
       <p>Learn more about UpHub, our mission, and our team.</p>
       <USearchWithFilterWrapper dropdownData={locations}></USearchWithFilterWrapper>
 
-      <UCardTopCompany logoUrl="/company-logo.png"
+      <UCardTopCompany logoUrl="https://placehold.co/600x400/png"
                        name="NAVA Company"
                        rating={4.7}
                        employeeRange="10.000 - 100.000"
@@ -36,7 +37,15 @@ const AboutUsPage = async () => {
 
       />
 
-
+      <UCardApplication
+        name="Lê Quang Khánh"
+        role="Fullstack Developer"
+        experience="7 năm"
+        education="Đại học"
+        submittedDate="01-03-2025"
+        avatarUrl={"https://placehold.co/600x400/png"}
+        cvUrl={"https://placehold.co/600x400/png"}
+      />
     </div>
   )
 };

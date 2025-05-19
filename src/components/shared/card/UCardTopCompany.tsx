@@ -2,7 +2,6 @@
 import Image from "next/image";
 import {CardVariant, getVariantClass} from "@/components/shared/card/CardVariant";
 
-
 export interface CompanyCardProps {
 	logoUrl?: string;
 	name: string;
@@ -30,8 +29,9 @@ export default function UCardTopCompany({
 	return (
 		<div className={`w-80 p-4 ${getVariantClass(variant)} rounded-2xl shadow-md border`}>
 			<div className="flex flex-col items-center">
-				<div className="w-16 h-16 relative mb-2">
-					<Image
+
+				<div className="w-16 h-16 mb-2 relative bg-custom-gray rounded-full overflow-hidden">
+					{logoUrl ? (<Image
 						src={logoUrl}
 						alt={`${name} Logo`}
 						fill={true}
@@ -40,7 +40,7 @@ export default function UCardTopCompany({
 						quality={50}
 						priority={false}
 						loading={"lazy"}
-					/>
+					/>) : null}
 				</div>
 
 				{/* Company Name + Star */}
