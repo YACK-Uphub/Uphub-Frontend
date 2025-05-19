@@ -3,7 +3,7 @@
 import Image from "next/image";
 import {DownloadIcon} from "lucide-react";
 import UButton from "@/components/shared/UButton";
-import {CardVariant, getVariantClass} from "@/components/shared/card/UCardVariant";
+import {getStyleCardVariant, UCardVariant} from "@/components/shared/card/UCardVariant";
 
 export interface UCardApplicationProps {
 	name: string;
@@ -13,7 +13,7 @@ export interface UCardApplicationProps {
 	submittedDate: string;
 	avatarUrl?: string;
 	cvUrl?: string;
-	variant: CardVariant;
+	variant: UCardVariant;
 }
 
 export default function UCardApplication({
@@ -24,7 +24,7 @@ export default function UCardApplication({
 	submittedDate,
 	avatarUrl,
 	cvUrl,
-	variant = CardVariant.Normal
+	variant = UCardVariant.Normal
 }: UCardApplicationProps) {
 
 	const onDownloadCv = async () => {
@@ -33,7 +33,7 @@ export default function UCardApplication({
 	}
 
 	return (
-		<div className={`w-64 border rounded-xl shadow-md ${getVariantClass(variant)} p-4 space-y-3 text-sm`}>
+		<div className={`w-64 border rounded-xl shadow-md ${getStyleCardVariant(variant)} p-4 space-y-3 text-sm`}>
 
 			{/* Header */}
 			<div className="flex items-center gap-3">
@@ -43,7 +43,6 @@ export default function UCardApplication({
 						alt={`${name} Logo`}
 						fill={true}
 						objectFit={"cover"}
-						className="rounded-full"
 						quality={50}
 						priority={false}
 						loading={"lazy"}

@@ -1,10 +1,10 @@
 "use client"
 
 import React from 'react';
-import {CardVariant, getVariantClass} from "@/components/shared/card/UCardVariant";
+import {getStyleCardVariant, UCardVariant} from "@/components/shared/card/UCardVariant";
 import Image from "next/image";
 
-export interface JobCardProps {
+export interface UJobCardProps {
 	companyLogoUrl: string;
 	companyName: string;
 	isFeatured?: boolean;
@@ -12,7 +12,7 @@ export interface JobCardProps {
 	jobTitle: string;
 	jobType: string;
 	salaryRange: string;
-	variant: CardVariant;
+	variant: UCardVariant;
 }
 
 export const UCardJob = ({
@@ -23,15 +23,15 @@ export const UCardJob = ({
 	jobTitle,
 	jobType,
 	salaryRange,
-	variant = CardVariant.Normal,
-}: JobCardProps) => {
+	variant = UCardVariant.Normal,
+}: UJobCardProps) => {
 
 	const handleApplyNow = () => {
 		alert("Apply Now");
 	}
 
 	return (
-		<div className={`max-w-xs rounded-lg overflow-hidden shadow-md ${getVariantClass(variant)} border`}>
+		<div className={`max-w-xs rounded-lg overflow-hidden shadow-md ${getStyleCardVariant(variant)} border`}>
 
 			{/* Header with logo and featured badge */}
 			<div className="relative p-4">
@@ -42,7 +42,6 @@ export const UCardJob = ({
 							alt={`${companyName} Logo`}
 							fill={true}
 							objectFit={"cover"}
-							className="rounded-full"
 							quality={50}
 							priority={false}
 							loading={"lazy"}
