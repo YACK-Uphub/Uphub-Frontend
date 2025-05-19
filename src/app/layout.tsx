@@ -5,7 +5,7 @@ import {Reem_Kufi} from 'next/font/google'
 import UHeader from "@/components/layout/header/UHeader";
 import USubHeader from "@/components/layout/USubHeader";
 import UFooter from "@/components/layout/UFooter";
-import UPageSpinnerWrapper from "@/components/shared/Spinner/UPageSpinnerWrapper";
+import UPageSpinnerWrapper from "@/components/shared/spinner/UPageSpinnerWrapper";
 
 // === Configuration =============================
 
