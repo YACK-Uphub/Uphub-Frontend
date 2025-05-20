@@ -33,7 +33,7 @@ const statCardsData = [
 
 const UHeroSection = () => {
 	return (
-		<div className={"pt-15 pb-10 px-10 max-w-full"}>
+		<div className={"pt-12 pb-12 px-12 max-w-full"}>
 			<div className="mx-auto flex max-w-6xl flex-col items-center gap-8 xl:flex-row">
 
 				{/* Text Content - Left Side */}
@@ -52,7 +52,7 @@ const UHeroSection = () => {
 
 					<p className="text-custom-gray">
 						<span className="font-medium text-custom-gray/50">Gợi ý:</span> Designer, Lập trình viên,
-						<span className="font-medium"> Digital Marketing</span>, Editor, ...
+						<span className="font-medium text-custom-blue-2"> Digital Marketing</span>, Editor, ...
 					</p>
 				</div>
 
@@ -71,25 +71,17 @@ const UHeroSection = () => {
 			{/* Stats Container */}
 			<div className={"m-auto mt-8 w-full"}>
 				<h2 className="text-2xl mb-4 font-semibold text-center text-custom-black">Cơ hội việc làm độc quyền</h2>
-				<div className={"flex gap-10 justify-center"}>
+				<div className={"flex gap-4 justify-center flex-wrap"}>
 					{statCardsData.map((card, index) =>
-						index === 1 ? (
+						(
 							<UJobStatCard
 								key={index}
-								isCompany={false}
+								isCompany={index !== 1}
 								icon={card.icon}
 								stat={card.value}
 								jobLabel={card.label}
 							/>
-						) : (
-							<UJobStatCard
-								key={index}
-								isCompany={true}
-								icon={card.icon}
-								stat={card.value}
-								jobLabel={card.label}
-							/>
-						)
+						) 
 					)}
 				</div>
 			</div>

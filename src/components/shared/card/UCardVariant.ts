@@ -10,7 +10,7 @@ export const getStyleCardVariant = (variant: UCardVariant): string => {
 		case UCardVariant.Border:
 			return "bg-custom-white border border-custom-blue-2";
 		case UCardVariant.LightBlue:
-			return "bg-custom-blue-1";
+			return "bg-custom-blue-1/30";
 		case UCardVariant.Normal:
 			return "bg-custom-white";
 		case UCardVariant.Yellow:

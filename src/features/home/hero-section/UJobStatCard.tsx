@@ -9,7 +9,8 @@ interface UJobStatCardProps {
 
 export default function UJobStatCard({icon, stat, jobLabel, isCompany = false}: UJobStatCardProps) {
 	return (
-		<div className="flex items-center gap-4 p-4 bg-custom-white rounded-xl shadow-sm min-w-1/6 border">
+		<div className="flex items-center gap-4 p-4 bg-custom-white
+		 								rounded-xl shadow-sm flex-1 border">
 
 			{/* Icon Box */}
 			<div className={`${isCompany ? "bg-custom-gray/10" : "bg-custom-blue-2"} p-3 rounded-md`}>

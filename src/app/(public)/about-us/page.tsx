@@ -10,6 +10,7 @@ import {UCardJob} from "@/components/shared/card/UCardJob";
 import UJobRow from "@/components/shared/table/UJobRow";
 import {Job, JobStatus} from "@/models/job";
 import {URowVariant} from "@/components/shared/table/URowVariant";
+import UCardJobForU from "@/components/shared/card/UCardJobForU";
 
 const locations: UDropdownItem[] = [
   {id: 1, name: 'Hà Nội'},
@@ -93,6 +94,16 @@ const AboutUsPage = async () => {
         isApplied={true}
         job={job}
       ></UJobRow>
+
+      <UCardJobForU
+        companyLogo="https://placehold.co/600x400/png"
+        companyName="ASMA Company"
+        jobTitle="TTS Content Creator"
+        location="Quận 2, TP Hồ Chí Minh"
+        type="Full Time"
+        tag="Ứng Tuyển Dễ Dàng"
+        postedTime="1d"
+      />
 
     </div>
   )
