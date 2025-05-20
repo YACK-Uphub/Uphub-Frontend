@@ -17,10 +17,10 @@ const Footer = () => {
 	const handleInstaClick = () => alert("Insta clicked!");
 
 	return (
-		<footer className="text-custom-black">
+		<>
 			<div className="grid grid-cols-1 gap-y-8 gap-x-2 border-t
-									 text-sm
-									 px-12 py-6 border-custom-yellow-1 md:grid-cols-5">
+									 text-sm text-custom-black px-12 py-6
+									  md:grid-cols-5">
 
 				{/* Support Section */}
 				<section className="md:col-span-1">
@@ -85,7 +85,7 @@ const Footer = () => {
 				<span
 					className={"text-custom-gray text-[12px] justify-self-center-safe align-middle"}>UpHub Copyright &copy; 2025</span>
 			</div>
-		</footer>
+		</>
 	);
 };
 

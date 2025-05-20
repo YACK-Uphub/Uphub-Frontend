@@ -1,7 +1,7 @@
 'use client';
 
 import {Bookmark, MapPin, Users} from 'lucide-react';
-import {Job} from '../../.././models';
+import {Job} from '../../../models/job';
 import {formatDate} from '@/utils/helpers';
 import UButton from '../UButton';
 import Image from 'next/image';

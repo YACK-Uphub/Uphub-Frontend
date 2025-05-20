@@ -1,29 +1,45 @@
-import React from 'react';
 import type {Metadata} from 'next';
+import UHeroSection from "@/features/home/hero-section/UHeroSection";
+import UJobForUSection from "@/features/home/job-for-u-section/UJobForUSection";
+import UTopCompaniesSection from "@/features/home/top-companies-section/UTopCompaniesSection";
+import UJobPilotSection from "@/features/home/jobpilot-section/UJobPilotSection";
+import UUserExperienceSection from "@/features/home/user-experience-section/UUserExperienceSection";
+import UBecomeMemberSection from "@/features/home/become-member-section/UBecomeMemberSection";
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: "HomePage",
   description: "Welcome to the UpHub home page",
 };
 
 const HomePage = () => {
   return (
-    <div>
-      <p className={"text-base"}>Hello World</p>
-      <div>tôi là người Việt Nam</div>
-      <div>A ab ad, aliquam animi aut cumque deserunt dolorum earum est impedit iure labore laborum magnam minima modi
-        nostrum odit placeat provident quia quibusdam, quisquam quod sint, suscipit veniam veritatis?
-      </div>
-      <div>Accusamus ad beatae cumque, doloribus dolorum incidunt, inventore ipsa ipsum iusto natus officia pariatur,
-        tenetur. Ad amet assumenda dicta dignissimos earum harum magni omnis, pariatur quibusdam! Aut minima obcaecati
-        porro?
-      </div>
-      <div>Adipisci alias animi culpa cum delectus dignissimos doloremque eligendi est exercitationem fugiat impedit,
-        laboriosam laudantium mollitia natus nihil numquam odio pariatur provident quam quasi quibusdam, rem
-        reprehenderit tempora voluptates voluptatibus!
-      </div>
+    <div className={"flex flex-col"}>
+
+      <section className={"bg-custom-yellow-3 max-w-full min-h-100 "}>
+        <UHeroSection></UHeroSection>
+      </section>
+
+      <section className={"min-h-100"}>
+        <UJobForUSection></UJobForUSection>
+      </section>
+
+      <section className={"min-h-100"}>
+        <UTopCompaniesSection></UTopCompaniesSection>
+      </section>
+
+      <section className={"min-h-100 bg-custom-gray/10"}>
+        <UJobPilotSection></UJobPilotSection>
+      </section>
+
+      <section className={"min-h-100 bg-custom-gray/10"}>
+        <UUserExperienceSection></UUserExperienceSection>
+      </section>
+
+      <section className={"min-h-100"}>
+        <UBecomeMemberSection></UBecomeMemberSection>
+      </section>
     </div>
-  );
+  )
 };
 
 export default HomePage;

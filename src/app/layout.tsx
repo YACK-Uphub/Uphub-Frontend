@@ -38,25 +38,25 @@ export default function RootLayout({children}: Readonly<{
       <body className={"min-h-screen text-custom-black leading-relaxed flex flex-col"}>
         {/*<StoreProvider>*/}
 
-          {/* Header */}
-          <section className={"py-6 px-12"}>
+        {/* Header */}
+        <header className={"py-6 px-12 sticky top-0 z-50 bg-custom-white border-b-2"}>
             <UHeader/>
-          </section>
+        </header>
 
-          {/* Sub Headers*/}
-          <USubHeader navItems={navItems}/>
+        {/* Sub Headers*/}
+        <USubHeader navItems={navItems}/>
 
-          {/* Main */}
-          <main className={"flex-1 px-12 mt-6"}>
-            <UPageSpinnerWrapper>
+        {/* Main */}
+        <main className={"flex-1 bg-custom-white"}>
+          <UPageSpinnerWrapper>
               {children}
-            </UPageSpinnerWrapper>
-          </main>
-        
-          {/* Footer*/}
-          <section className={"mt-6"}>
-            <UFooter/>
-          </section>
+          </UPageSpinnerWrapper>
+        </main>
+
+        {/* Footer*/}
+        <footer className={"border-custom-yellow-1"}>
+          <UFooter/>
+        </footer>
 
         {/*</StoreProvider>*/}
       </body>

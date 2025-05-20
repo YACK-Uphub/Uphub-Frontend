@@ -8,7 +8,7 @@ import {UCardVariant} from "@/components/shared/card/UCardVariant";
 import UCardApplication from "@/components/shared/card/UCardApplication";
 import {UCardJob} from "@/components/shared/card/UCardJob";
 import UJobRow from "@/components/shared/table/UJobRow";
-import {Job, JobStatus} from "@/models";
+import {Job, JobStatus} from "@/models/job";
 import {URowVariant} from "@/components/shared/table/URowVariant";
 
 const locations: UDropdownItem[] = [
