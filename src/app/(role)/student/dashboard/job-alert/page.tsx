@@ -1,9 +1,9 @@
 ﻿import React from 'react';
-import type { Metadata } from 'next';
+import type {Metadata} from 'next';
 
 export const metadata: Metadata = {
   title: "Job Alerts",
-  description: "Manage your job alert preferences on UpHub",
+	description: "Manage your models alert preferences on UpHub",
 };
 
 const JobAlertsPage = () => {

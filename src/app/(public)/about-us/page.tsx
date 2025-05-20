@@ -4,19 +4,47 @@ import type {Metadata} from 'next';
 import USearchWithFilterWrapper from "@/components/shared/search/USearchWithFilterWrapper";
 import {UDropdownItem} from "@/components/shared/search/USearchWithFilter";
 import UCardTopCompany from "@/components/shared/card/UCardTopCompany";
-import {CardVariant} from "@/components/shared/card/CardVariant";
+import {UCardVariant} from "@/components/shared/card/UCardVariant";
 import UCardApplication from "@/components/shared/card/UCardApplication";
 import {UCardJob} from "@/components/shared/card/UCardJob";
+import UJobRow from "@/components/shared/table/UJobRow";
+import {Job, JobStatus} from "@/models";
+import {URowVariant} from "@/components/shared/table/URowVariant";
 
 const locations: UDropdownItem[] = [
   {id: 1, name: 'Hà Nội'},
   {id: 2, name: 'Hồ Chí Minh'},
 ]
 
+const job: Job = {
+  id: 1,
+  title: "Frontend Developer",
+  companyImageUrl: "https://placehold.co/600x400/png",
+  city: "Hanoi",
+  description: "We are looking for a skilled frontend developer to join our growing tech team.",
+  requirements: "- 2+ years experience\n- Proficient in React.js\n- Familiar with TypeScript",
+  closingDate: new Date("2025-06-30"),
+  salaryRange: "$1,500 - $2,000",
+  count: 5,
+  isFeatured: true,
+  isHighlighted: false,
+  contactEmail: "hr@company.com",
+  contactPhone: "+84 123 456 789",
+  jobStatus: JobStatus.Open,
+  companyId: 101,
+  jobType: "Full-time",
+  industry: "Software Development",
+  createdAt: new Date("2025-05-10"),
+  updatedAt: new Date("2025-05-18"),
+  skills: ["React", "TypeScript", "CSS", "REST API"],
+  applicationCount: 32,
+};
+
 export const metadata: Metadata = {
   title: "About Us",
   description: "Learn more about UpHub and our mission",
 };
+
 
 const AboutUsPage = async () => {
 
@@ -34,7 +62,7 @@ const AboutUsPage = async () => {
                        recommendationRate="74%"
                        isHiring={true}
                        hasHighBenefits={true}
-                       variant={CardVariant.Border}
+                       variant={UCardVariant.Border}
 
       />
 
@@ -46,18 +74,26 @@ const AboutUsPage = async () => {
         submittedDate="01-03-2025"
         avatarUrl={"https://placehold.co/600x400/png"}
         cvUrl={"https://placehold.co/600x400/png"}
-        variant={CardVariant.Border}
+        variant={UCardVariant.Normal}
       />
 
       <UCardJob
-        companyLogo="/path/to/logo.png" // or leave empty for placeholder
+        companyLogoUrl="https://placehold.co/600x400/png"
         companyName="Freepik"
         isFeatured={true}
         location="China"
         jobTitle="TTS Visual Designer"
         jobType="Full Time"
         salaryRange="$10K-$15K"
-      />
+        variant={UCardVariant.LightBlue}/>
+
+      <UJobRow
+        variant={URowVariant.Selected}
+        ownerView={false}
+        isApplied={true}
+        job={job}
+      ></UJobRow>
+
     </div>
   )
 };

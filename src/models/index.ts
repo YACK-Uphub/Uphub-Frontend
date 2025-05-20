@@ -1,4 +1,4 @@
-export type Job = {
+﻿export type Job = {
   id: number;
   title: string;
   companyImageUrl?: string;
@@ -12,7 +12,7 @@ export type Job = {
   isHighlighted: boolean;
   contactEmail?: string;
   contactPhone?: string;
-  jobStatus: string;
+  jobStatus: JobStatus;
   companyId: number;
   jobType: string;
   industry?: string;
@@ -21,3 +21,12 @@ export type Job = {
   skills?: string[];
   applicationCount?: number;
 };
+
+export enum JobStatus {
+  Open = "Open",
+  Closed = "Closed",
+  Paused = "Paused",
+  Archived = "Archived",
+}
+
+

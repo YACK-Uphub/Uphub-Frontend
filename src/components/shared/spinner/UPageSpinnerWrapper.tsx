@@ -21,7 +21,7 @@ export default function UPageSpinnerWrapper({children}: { children: ReactNode })
 	return (
 		<>
 			{loading && (
-				<div className="fixed inset-0 z-50 flex items-center justify-center bg-custom-gray/85 backdrop-blur-xl">
+				<div className="fixed inset-0 z-50 flex items-center justify-center bg-custom-white/60 backdrop-blur-xl">
 					<UPageSpinner size={56}/>
 					<p className="ml-3 mt-2 text-lg text-custom-gray">Đang tải trang nè...</p>
 				</div>

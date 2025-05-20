@@ -1,55 +1,32 @@
 'use client';
-import { MapPin, Bookmark, Users } from 'lucide-react';
-import { Job } from '@/utils';
-import { formatDate } from '@/utils/helpers';
+
+import {Bookmark, MapPin, Users} from 'lucide-react';
+import {Job} from '../../.././models';
+import {formatDate} from '@/utils/helpers';
 import UButton from '../UButton';
 import Image from 'next/image';
-import { lazy } from 'react';
+import {getStyleJobStatus, getStyleRowVariant, URowVariant} from "@/components/shared/table/URowVariant";
+import React from "react";
 
-interface JobTableRowProps {
-  variant?: string;
+interface UJobRowProps {
+  variant?: URowVariant;
   ownerView?: boolean;
   isApplied?: boolean;
+  isSelected?: boolean;
   job?: Job;
   onClick?: () => void;
 }
 
-export default function UJobTableRow({
-  variant = 'default', // 'default', 'hover', 'selected'
+export default function UJobRow({
+  variant = URowVariant.Default,
   ownerView = false,
   isApplied = false,
   job,
   onClick,
-}: JobTableRowProps) {
-  const statusStyleMap = {
-    Open: {
-      text: 'text-green-600',
-      bg: 'bg-green-600',
-    },
-    Closed: {
-      text: 'text-red-600',
-      bg: 'bg-red-600',
-    },
-    Paused: {
-      text: 'text-yellow-600',
-      bg: 'bg-yellow-600',
-    },
-    Archieved: {
-      text: 'text-gray-600',
-      bg: 'bg-gray-600',
-    },
-  };
-  const styles = statusStyleMap[job.jobStatus] || {
-    text: 'text-gray-600',
-    bg: 'bg-gray-600',
-  };
+}: UJobRowProps) {
 
-  // Get background based on variant
-  const getBackgroundColor = () => {
-    if (variant === 'hover') return 'bg-gray-100';
-    if (variant === 'selected') return 'border border-custom-blue-2';
-    return 'bg-white border-2';
-  };
+  const styleJobStatus = getStyleJobStatus(job.jobStatus);
+  const styleCardVariant = getStyleRowVariant(variant);
 
   // Job Information
   const JobInfo = () => (
@@ -60,8 +37,8 @@ export default function UJobTableRow({
           {job.jobType}
         </span>
 
-        <span className={`flex items-center gap-1 text-sm ${styles.text}`}>
-          <span className={`w-2 h-2 rounded-full ${styles.bg}`}></span>
+        <span className={`flex items-center gap-1 text-sm ${styleJobStatus.text}`}>
+          <span className={`w-2 h-2 rounded-full ${styleJobStatus.bg}`}></span>
           <span>{job.jobStatus}</span>
         </span>
       </div>
@@ -107,7 +84,7 @@ export default function UJobTableRow({
             ? 'Chi Tiết'
             : 'Ứng Tuyển Ngay'
         }
-        backgroundColor='bg-gray-200'
+        backgroundColor='bg-custom-gray/10'
         textColor='text-custom-blue-2'
         onClick={onClick}
       />
@@ -116,17 +93,20 @@ export default function UJobTableRow({
 
   return (
     <div
-      className={`px-8 py-4 rounded-lg ${getBackgroundColor()} flex items-center gap-3 transition-all duration-200`}
-    >
-      <Image
-        src={job.companyImageUrl}
-        alt='logo company'
-        quality={50}
-        loading='lazy'
-        width={80}
-        height={80}
-        className='object-contain rounded-md'
-      />
+      className={`px-8 py-4 rounded-lg ${styleCardVariant} hover:bg-gray-100 flex items-center gap-3 border shadow-md transition-all duration-200`}>
+      <div className="w-16 h-16 mb-2 relative rounded-md overflow-hidden">
+        <Image
+          src={job.companyImageUrl}
+          alt={`${job.contactEmail} company`}
+          fill={true}
+          quality={50}
+          loading='lazy'
+          objectFit={"cover"}
+          priority={false}
+          placeholder={"blur"}
+          blurDataURL={"/images/placeholderImage.png"}
+        />
+      </div>
 
       <div className='flex-grow'>
         <div className='flex justify-between items-center'>

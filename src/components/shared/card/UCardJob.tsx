@@ -1,47 +1,63 @@
-// components/JobCard.tsx
-import React from 'react';
+"use client"
 
-interface JobCardProps {
-	companyLogo: string;
+import React from 'react';
+import {getStyleCardVariant, UCardVariant} from "@/components/shared/card/UCardVariant";
+import Image from "next/image";
+
+export interface UJobCardProps {
+	companyLogoUrl: string;
 	companyName: string;
 	isFeatured?: boolean;
 	location: string;
 	jobTitle: string;
 	jobType: string;
 	salaryRange: string;
+	variant: UCardVariant;
 }
 
 export const UCardJob = ({
-	companyLogo,
+	companyLogoUrl,
 	companyName,
 	isFeatured = false,
 	location,
 	jobTitle,
 	jobType,
 	salaryRange,
-}: JobCardProps) => {
+	variant = UCardVariant.Normal,
+}: UJobCardProps) => {
+
+	const handleApplyNow = () => {
+		alert("Apply Now");
+	}
+
 	return (
-		<div
-			className="max-w-xs rounded-lg overflow-hidden shadow-md bg-white border border-gray-100 hover:shadow-lg transition-shadow duration-300">
+		<div className={`max-w-xs rounded-lg overflow-hidden shadow-md ${getStyleCardVariant(variant)} border`}>
+
 			{/* Header with logo and featured badge */}
 			<div className="relative p-4">
 				<div className="flex items-center gap-3">
-					<div className="w-12 h-12 rounded-md bg-gray-100 flex items-center justify-center">
-						{companyLogo ? (
-							<img src={companyLogo} alt={companyName} className="w-10 h-10 object-contain"/>
-						) : (
-							<span className="text-xl font-bold text-gray-400">{companyName.charAt(0)}</span>
-						)}
+					<div className="w-12 h-12 bg-custom-gray relative rounded-full overflow-hidden">
+						<Image
+							src={companyLogoUrl}
+							alt={`${companyName} Logo`}
+							fill={true}
+							objectFit={"cover"}
+							quality={50}
+							priority={false}
+							loading={"lazy"}
+							placeholder={"blur"}
+							blurDataURL={"/images/placeholderImage.png"}
+						/>
 					</div>
 
 					<div className="flex-1">
-						<h3 className="font-medium text-gray-900">{companyName}</h3>
-						<p className="text-sm text-gray-500">{location}</p>
+						<h3 className="font-medium text-custom-black">{companyName}</h3>
+						<p className="text-sm text-custom-gray">{location}</p>
 					</div>
 
 					{isFeatured && (
 						<span
-							className="absolute top-4 right-4 bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded">
+							className="absolute top-4 right-4 bg-custom-green-bg text-custom-green-text text-xs font-medium px-2 py-0.5 rounded">
               Featured
             </span>
 					)}
@@ -50,19 +66,19 @@ export const UCardJob = ({
 
 			{/* Job details */}
 			<div className="px-4 pb-4">
-				<h2 className="text-lg font-semibold text-gray-800 mb-1">{jobTitle}</h2>
+				<h2 className="text-lg font-semibold text-custom-black mb-1">{jobTitle}</h2>
 
 				<div className="flex flex-wrap gap-2 mt-3">
-          <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
+          <span className="bg-custom-blue-1 text-custom-blue-3 text-xs font-medium px-2.5 py-0.5 rounded">
             {jobType}
           </span>
-					<span className="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">
+					<span className="bg-custom-purple-bg text-custom-purple-text text-xs font-medium px-2.5 py-0.5 rounded">
             {salaryRange}
           </span>
 				</div>
 
-				<button
-					className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
+				<button onClick={handleApplyNow}
+								className="mt-4 w-full bg-custom-blue-2 hover:bg-custom-blue-3 text-custom-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
 					Apply Now
 				</button>
 			</div>

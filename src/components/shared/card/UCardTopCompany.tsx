@@ -1,6 +1,6 @@
 ﻿import StarIcon from "@heroicons/react/24/solid/StarIcon";
 import Image from "next/image";
-import {CardVariant, getVariantClass} from "@/components/shared/card/CardVariant";
+import {getStyleCardVariant, UCardVariant} from "@/components/shared/card/UCardVariant";
 
 export interface CompanyCardProps {
 	logoUrl?: string;
@@ -11,7 +11,7 @@ export interface CompanyCardProps {
 	recommendationRate: string;
 	isHiring?: boolean;
 	hasHighBenefits?: boolean;
-	variant: CardVariant;
+	variant: UCardVariant;
 }
 
 export default function UCardTopCompany({
@@ -23,24 +23,24 @@ export default function UCardTopCompany({
 	recommendationRate,
 	isHiring = false,
 	hasHighBenefits = false,
-	variant = CardVariant.Normal,
+	variant = UCardVariant.Normal,
 }: CompanyCardProps) {
 
 	return (
-		<div className={`w-80 p-4 ${getVariantClass(variant)} rounded-2xl shadow-md border`}>
+		<div className={`w-80 p-4 ${getStyleCardVariant(variant)} rounded-2xl shadow-md border`}>
 			<div className="flex flex-col items-center">
-
-				<div className="w-16 h-16 mb-2 relative bg-custom-gray rounded-full overflow-hidden">
-					{logoUrl ? (<Image
+				<div className="w-16 h-16 mb-2 relative rounded-full overflow-hidden">
+					<Image
 						src={logoUrl}
 						alt={`${name} Logo`}
 						fill={true}
 						objectFit={"cover"}
-						className="rounded-full"
 						quality={50}
 						priority={false}
 						loading={"lazy"}
-					/>) : null}
+						placeholder={"blur"}
+						blurDataURL={"/images/placeholderImage.png"}
+					/>
 				</div>
 
 				{/* Company Name + Star */}
@@ -49,7 +49,7 @@ export default function UCardTopCompany({
 
 					<div className="flex items-center gap-1 mt-1">
 						<StarIcon className="w-4 h-4 text-custom-yellow-3"/>
-						<span className="text-lg font-medium text-gray-700">{rating}</span>
+						<span className="text-lg font-medium text-custom-gray">{rating}</span>
 					</div>
 				</div>
 
