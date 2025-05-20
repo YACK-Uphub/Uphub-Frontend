@@ -13,29 +13,30 @@ export const metadata: Metadata = {
 
 const HomePage = () => {
   return (
-    <div className={"flex flex-col"}>
-
-      <section className={"bg-custom-yellow-3 max-w-full min-h-100 "}>
-        <UHeroSection></UHeroSection>
+    <div>
+      <section className={"bg-custom-yellow-3 min-h-100 pt-12 pb-12 px-12"}>
+        <div className={"max-w-7xl mx-auto"}>
+          <UHeroSection></UHeroSection>
+        </div>
       </section>
 
-      <section className={"min-h-100"}>
+      <section className={"min-h-100 mx-auto max-w-7xl mt-8"}>
         <UJobForUSection></UJobForUSection>
       </section>
 
-      <section className={"min-h-100"}>
+      <section className={"min-h-100 max-w-full mt-8"}>
         <UTopCompaniesSection></UTopCompaniesSection>
       </section>
 
-      <section className={"min-h-100 bg-custom-gray/10"}>
+      <section className={"min-h-100 max-w-full mt-8 bg-custom-gray/10"}>
         <UJobPilotSection></UJobPilotSection>
       </section>
 
-      <section className={"min-h-100 bg-custom-gray/10"}>
+      <section className={"min-h-100 max-w-full mt-8 bg-custom-gray/10"}>
         <UUserExperienceSection></UUserExperienceSection>
       </section>
 
-      <section className={"min-h-100"}>
+      <section className={"min-h-100 max-w-full mt-8"}>
         <UBecomeMemberSection></UBecomeMemberSection>
       </section>
     </div>
