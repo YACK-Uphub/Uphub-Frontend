@@ -71,44 +71,45 @@ export default function USearchWithFilter({onSearchSubmit, dropdownData}: USearc
 	}
 
 	return (
-		<div className="bg-custom-white shadow-xl rounded-full p-2 px-4 flex items-center gap-4 w-full max-w-5xl mx-auto">
+		<div
+			className="flex max-w-5xl items-center gap-4 rounded-full px-2 py-1 shadow-xl bg-custom-white md:px-4 md:py-2 flex-wrap md:flex-nowrap">
 
-			{/* Job Search Input */}
-			<div className="flex items-center gap-2 flex-1">
-				<MagnifyingGlassIcon className="text-custom-blue-3 w-5 h-5"/>
+			{/* Job Search Input - Shrinks */}
+			<div className="flex items-center gap-2 flex-2 min-w-0">
+				<MagnifyingGlassIcon className="h-5 w-5 text-custom-blue-3"/>
 				<input
 					value={keyword}
 					onChange={(e) => setKeyword(e.target.value)}
 					type="text"
 					placeholder="Công việc, kỹ năng, công ty..."
-					className="w-full focus:outline-none text-sm bg-transparent"
+					className="flex-1 min-w-0 bg-transparent text-sm focus:outline-none"
 				/>
 			</div>
 
 			{/* Divider */}
-			<div className="h-6 w-px bg-custom-gray"/>
+			<div className="h-6 w-px bg-custom-gray hidden md:block"/>
 
-			{/* Location Input */}
-			<div className={"flex flex-col relative"}>
+			{/* Location Input - Shrinks */}
+			<div className="flex flex-col relative flex-1 min-w-0">
 				<div className="flex items-center gap-2">
-					<MapPinIcon className="text-custom-blue-3 w-5 h-5"/>
+					<MapPinIcon className="h-5 w-5 text-custom-blue-3"/>
 					<input
 						type="text"
 						placeholder="Khu vực"
 						value={inputTextForSuggestion}
 						onChange={(e) => handleInputTextForSuggestion(e.target.value)}
-						className="focus:outline-none text-sm bg-transparent w-28"
+						className="flex-1 min-w-0 bg-transparent text-sm focus:outline-none"
 					/>
 				</div>
 
-				{/* Suggestion on Location Input */}
+				{/* Suggestions Dropdown */}
 				{showSuggestions && filteredSuggestions.length > 0 && (
 					<ul
-						className="absolute top-12 left-5 z-10 bg-custom-white shadow-xl rounded-md w-64 max-h-64 overflow-y-auto border border-custom-yellow-1">
+						className="absolute top-12 left-5 z-10 max-h-64 w-64 overflow-y-auto rounded-md border shadow-xl bg-custom-white border-custom-yellow-1">
 						{filteredSuggestions.map(item => (
 							<li
 								key={item.id}
-								className="px-4 py-2 text-sm hover:bg-custom-blue-1 cursor-pointer"
+								className="cursor-pointer px-4 py-2 text-sm hover:bg-custom-blue-1"
 								onClick={() => handleSelectedDropdownItemId(item)}
 							>
 								{item.name}
@@ -119,10 +120,10 @@ export default function USearchWithFilter({onSearchSubmit, dropdownData}: USearc
 			</div>
 
 			{/* Divider */}
-			<div className="h-6 w-px bg-custom-gray"/>
+			<div className="h-6 w-px bg-custom-gray hidden md:block"/>
 
-			{/* Extra Id Selection */}
-			<select className="text-sm bg-transparent outline-none text-custom-gray cursor-pointer">
+			{/* Extra Select */}
+			<select className="cursor-pointer bg-transparent text-sm outline-none text-custom-gray">
 				<option>Bộ lọc nâng cao</option>
 				<option>Lương cao</option>
 				<option>Part-time</option>
@@ -132,11 +133,12 @@ export default function USearchWithFilter({onSearchSubmit, dropdownData}: USearc
 			{/* Search Button */}
 			<UButton
 				onClick={handleSubmission}
-				label={"Tìm Kiếm"}
-				textColor={"text-custom-white"}
-				backgroundColor={"bg-custom-blue-2"}
-				borderRadius={"rounded-full"}>
-			</UButton>
+				label="Tìm Kiếm"
+				textColor="text-custom-white"
+				backgroundColor="bg-custom-blue-2"
+				borderRadius="rounded-full"
+			/>
 		</div>
+
 	)
 }

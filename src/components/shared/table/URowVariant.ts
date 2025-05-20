@@ -1,4 +1,4 @@
-﻿import {JobStatus} from "@/models";
+﻿import {JobStatus} from "@/models/job";
 
 export enum URowVariant {
 	Default,
