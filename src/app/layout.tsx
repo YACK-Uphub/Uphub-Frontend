@@ -39,12 +39,14 @@ export default function RootLayout({children}: Readonly<{
         {/*<StoreProvider>*/}
 
         {/* Header */}
-        <header className={"py-6 px-12 sticky top-0 z-50 bg-custom-white border-b-2"}>
+        <header className={"sticky top-0 z-50"}>
+          <div className={"py-3 px-12 bg-custom-white"}>
             <UHeader/>
-        </header>
+          </div>
 
-        {/* Sub Headers*/}
-        <USubHeader navItems={navItems}/>
+          {/* Sub Headers*/}
+          <USubHeader navItems={navItems}/>
+        </header>
 
         {/* Main */}
         <main className={"flex-1 bg-custom-white"}>

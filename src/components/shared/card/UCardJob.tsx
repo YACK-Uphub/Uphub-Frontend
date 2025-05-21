@@ -26,10 +26,6 @@ export const UCardJob = ({
 	variant = UCardVariant.Normal,
 }: UJobCardProps) => {
 
-	const handleApplyNow = () => {
-		alert("Apply Now");
-	}
-
 	return (
 		<div className={`max-w-xs rounded-lg overflow-hidden shadow-md ${getStyleCardVariant(variant)} border`}>
 
@@ -76,11 +72,6 @@ export const UCardJob = ({
             {salaryRange}
           </span>
 				</div>
-
-				<button onClick={handleApplyNow}
-								className="mt-4 w-full bg-custom-blue-2 hover:bg-custom-blue-3 text-custom-white font-medium py-2 px-4 rounded-md transition-colors duration-200">
-					Apply Now
-				</button>
 			</div>
 		</div>
 	);

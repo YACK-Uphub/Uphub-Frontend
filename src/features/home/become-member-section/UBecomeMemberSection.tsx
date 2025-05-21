@@ -4,7 +4,6 @@ const UBecomeMemberSection = () => {
 	return (
 		<div>
 
-
 		</div>
 	);
 };
