@@ -1,5 +1,5 @@
 ﻿import Image from "next/image"
-import processImage from "@/../public/images/jobpilot.png"
+import processImage from "../../../../public/images/jobpilot.png"
 
 const UJobpilotSection = () => {
 

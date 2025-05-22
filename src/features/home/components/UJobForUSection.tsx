@@ -89,7 +89,7 @@ const UJobForUSection = () => {
 				{jobs.map((job, index) => (
 					<UCardJobForU key={index} {...job}/>
 				))}
-		</div>
+			</div>
 		</>
 	);
 };

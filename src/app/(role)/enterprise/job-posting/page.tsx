@@ -2,17 +2,17 @@
 import type {Metadata} from 'next';
 
 export const metadata: Metadata = {
-  title: "Job Postings",
+	title: "Job Postings",
 	description: "Create and manage internship models postings on UpHub",
 };
 
 const JobPostingsPage = () => {
-  return (
-    <div>
-      <h1>Job Postings</h1>
-      <p>Create, edit, and manage your company's internship job postings.</p>
-    </div>
-  );
+	return (
+		<div>
+			<h1>Job Postings</h1>
+			<p>Create, edit, and manage your company's internship job postings.</p>
+		</div>
+	);
 };
 
 export default JobPostingsPage;

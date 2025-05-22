@@ -81,7 +81,7 @@ const UHeroSection = () => {
 								stat={card.value}
 								jobLabel={card.label}
 							/>
-						) 
+						)
 					)}
 				</div>
 			</div>

@@ -2,17 +2,17 @@
 import type {Metadata} from 'next';
 
 export const metadata: Metadata = {
-  title: "Student Dashboard",
-  description: "View your internship applications and opportunities on UpHub",
+	title: "Student Dashboard",
+	description: "View your internship applications and opportunities on UpHub",
 };
 
 const Page = () => {
-  return (
-    <div>
-      <h1>Student Dashboard</h1>
-      <p>View your internship applications, favorite jobs, and personalized recommendations.</p>
-    </div>
-  );
+	return (
+		<div>
+			<h1>Student Dashboard</h1>
+			<p>View your internship applications, favorite jobs, and personalized recommendations.</p>
+		</div>
+	);
 };
 
 export default Page;
