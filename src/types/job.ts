@@ -1,5 +1,6 @@
-﻿export type Job = {
-	id: number;
+﻿import {Entity} from "./baseModel";
+
+export type Job = Entity<{
 	title: string;
 	companyImageUrl?: string;
 	city: string;
@@ -16,11 +17,9 @@
 	companyId: number;
 	jobType: string;
 	industry?: string;
-	createdAt?: Date;
-	updatedAt?: Date;
 	skills?: string[];
 	applicationCount?: number;
-};
+}>;
 
 export enum JobStatus {
 	Open = "Open",
