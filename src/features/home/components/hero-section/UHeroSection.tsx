@@ -3,10 +3,10 @@
 import React from 'react';
 import USearchWithFilter from "@/components/shared/search/USearchWithFilter";
 import {BriefcaseIcon, BuildingOffice2Icon, UserPlusIcon, UsersIcon} from "@heroicons/react/24/outline";
-import UJobStatCard from "@/features/home/hero-section/UJobStatCard";
 import Image from "next/image";
 
 import illustrationImg from "@/../public/images/illustration.png";
+import UJobStatCard from "@/features/home/components/hero-section/UJobStatCard";
 
 const statCardsData = [
 	{
@@ -81,7 +81,7 @@ const UHeroSection = () => {
 								stat={card.value}
 								jobLabel={card.label}
 							/>
-						) 
+						)
 					)}
 				</div>
 			</div>

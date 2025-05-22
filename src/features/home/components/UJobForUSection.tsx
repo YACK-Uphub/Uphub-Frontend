@@ -41,42 +41,56 @@ const jobs = [
 	{
 		companyLogo: "https://placehold.co/600x400/png",
 		companyName: "Hội kế",
-		jobTitle: "TTS Planner",
+		jobTitle: "TTS Truyền Thông",
 		location: "Đường điện Phạm",
-		type: "Chủ",
+		type: "Công trực chủ",
 		tag: "Mbps",
-		postedTime: "2 ngày trước"
+		postedTime: "1 ngày trước"
 	},
 	{
 		companyLogo: "https://placehold.co/600x400/png",
 		companyName: "Hội kế",
-		jobTitle: "TTS Active Adenia",
-		location: "Chủ điện, Hướng dẫn",
-		type: "linked",
-		tag: "Hot",
-		postedTime: "3 ngày trước"
+		jobTitle: "TTS Truyền Thông",
+		location: "Đường điện Phạm",
+		type: "Công trực chủ",
+		tag: "Mbps",
+		postedTime: "1 ngày trước"
 	},
+	{
+		companyLogo: "https://placehold.co/600x400/png",
+		companyName: "Hội kế",
+		jobTitle: "TTS Truyền Thông",
+		location: "Đường điện Phạm",
+		type: "Công trực chủ",
+		tag: "Mbps",
+		postedTime: "1 ngày trước"
+	},
+	{
+		companyLogo: "https://placehold.co/600x400/png",
+		companyName: "Hội kế",
+		jobTitle: "TTS Truyền Thông",
+		location: "Đường điện Phạm",
+		type: "Công trực chủ",
+		tag: "Mbps",
+		postedTime: "1 ngày trước"
+	},
+
 ];
 
 const UJobForUSection = () => {
 	return (
-		<div className={"w-full"}>
-			<h2 className="text-2xl mb-8 font-semibold text-center text-custom-black uppercase">Công việc Dành Cho bạn</h2>
-			<div className="grid grid-cols-2 gap-12 px-12 xl:px-0">
+		<>
+			<h2 className="mb-8 text-center
+										 sm:text-2xl sm:p-4 sm:mb-16 font-bold
+										 text-custom-blue-3">Công việc Dành Cho Bạn</h2>
+			<div className="grid grid-cols-1 gap-10
+											sm:grid-cols-2 sm:gap-12
+			 								xl:grid-cols-4 xl:gap-12">
 				{jobs.map((job, index) => (
-					<UCardJobForU
-						key={index}
-						companyLogo={job.companyLogo}
-						companyName={job.companyName}
-						jobTitle={job.jobTitle}
-						location={job.location}
-						type={job.type}
-						tag={job.tag}
-						postedTime={job.postedTime}
-					/>
+					<UCardJobForU key={index} {...job}/>
 				))}
-		</div>
-		</div>
+			</div>
+		</>
 	);
 };
 

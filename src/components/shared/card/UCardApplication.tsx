@@ -37,7 +37,7 @@ export default function UCardApplication({
 
 			{/* Header */}
 			<div className="flex items-center gap-3">
-				<div className="w-16 h-16 mb-2 relative bg-custom-gray rounded-full overflow-hidden">
+				<div className="relative mb-2 h-16 w-16 overflow-hidden rounded-full bg-custom-gray">
 					<Image
 						src={avatarUrl}
 						alt={`${name} Logo`}
@@ -52,13 +52,13 @@ export default function UCardApplication({
 				</div>
 
 				<div>
-					<p className="font-medium text-sm text-custom-black">{name}</p>
+					<p className="text-sm font-medium text-custom-black">{name}</p>
 					<p className="text-xs text-custom-gray opacity-55">{role}</p>
 				</div>
 			</div>
 
 			{/* Info List */}
-			<ul className="text-gray-700 space-y-1 list-disc list-inside text-sm">
+			<ul className="list-inside list-disc text-sm text-gray-700 space-y-1">
 				<li>{experience} kinh nghiệm</li>
 				<li>Trình độ: {education}</li>
 				<li>Ngày nộp đơn: {submittedDate}</li>
@@ -71,7 +71,7 @@ export default function UCardApplication({
 				textColor={"text-custom-white"}
 				backgroundColor={"bg-custom-blue-2"}
 				borderRadius={"rounded-full"}
-				icon={<DownloadIcon className="w-4 h-4"/>}
+				icon={<DownloadIcon className="h-4 w-4"/>}
 				iconPosition={"left"}>
 			</UButton>
 		</div>);

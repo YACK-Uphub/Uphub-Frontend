@@ -23,7 +23,8 @@ const UCardJobForU = ({
 }: UCardJobForUProps) => {
 	return (
 		<div
-			className="relative flex h-full w-full flex-col gap-3 rounded-xl border p-4 shadow-sm bg-custom-white border-custom-gray/20">
+			className="flex h-full w-full flex-col gap-3
+			 					 rounded-xl border p-4 shadow-sm bg-custom-white border-custom-gray/20">
 
 			{/* Header */}
 			<div className="flex items-start justify-between">
@@ -37,14 +38,14 @@ const UCardJobForU = ({
 							className="rounded-full"
 						/>
 					</div>
-					<span className="text-md font-medium text-custom-gray/80">{companyName}</span>
+					<span className="font-medium text-md text-custom-gray/80">{companyName}</span>
 				</div>
 				<BookmarkIcon className="h-5 w-5 text-custom-gray"/>
 			</div>
 
 			{/* Job Info */}
-			<div>
-				<h3 className="text-md font-semibold text-custom-gray">{jobTitle}</h3>
+			<div className={"flex-1"}>
+				<h3 className="font-semibold text-md text-custom-gray">{jobTitle}</h3>
 				<p className="text-xs text-custom-gray/70">
 					{location} <span className="text-custom-blue-2">({type})</span>
 				</p>
