@@ -56,7 +56,7 @@ export default function RootLayout({children}: Readonly<{
 				</main>
 
 				{/* Footer*/}
-				<footer className={"border-custom-yellow-1"}>
+				<footer className={"border-custom-white"}>
 					<UFooter/>
 				</footer>
 

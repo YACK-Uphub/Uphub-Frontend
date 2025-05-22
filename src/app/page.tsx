@@ -32,8 +32,8 @@ const HomePage = () => {
 				</div>
 			</section>
 
-			<section className={"h-full mt-8 py-8 sm:py-16 sm:mt-16 mx-auto max-w-7xl bg-custom-gray/10"}>
-				<div className={"px-12 xl:px-0"}>
+			<section className={"h-full mt-8 py-8 sm:py-16 sm:mt-16 bg-custom-gray/10"}>
+				<div className={"px-12 xl:px-0 mx-auto max-w-7xl"}>
 					<UJobPilotSection></UJobPilotSection>
 				</div>
 			</section>
@@ -44,8 +44,8 @@ const HomePage = () => {
 				</div>
 			</section>
 
-			<section className={"mt-8 py-8 sm:py-16 sm:mt-16 mx-auto max-w-7xl bg-custom-gray/10"}>
-				<div className={"px-12 xl:px-0"}>
+			<section className={"mt-8 py-8 sm:py-16 sm:mt-16 bg-custom-gray/10"}>
+				<div className={"px-12 xl:px-0 mx-auto max-w-7xl"}>
 					<UBecomeMemberSection></UBecomeMemberSection>
 				</div>
 			</section>
