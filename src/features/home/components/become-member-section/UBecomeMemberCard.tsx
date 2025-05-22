@@ -17,7 +17,7 @@ export default function UBecomeMemberCard({onClickSignup, isMemberSignup = true}
 			} text-custom-black p-6 rounded-xl w-full h-full flex flex-col gap-6 shadow`}
 		>
 			{/* Header */}
-			<h2 className="text-2xl font-semibold h-1/4">
+			<h2 className="h-1/4 text-2xl font-semibold">
 				{isMemberSignup
 					? "Trở Thành Ứng viên"
 					: "Trở Thành Nhà Tuyển Dụng"}

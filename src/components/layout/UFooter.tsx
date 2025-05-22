@@ -19,7 +19,7 @@ const Footer = () => {
 	return (
 		<>
 			<div className="grid grid-cols-1 gap-y-8 gap-x-2 border-t
-									 text-sm text-custom-black px-12 py-6
+									  text-sm text-custom-black px-12 py-6
 									  md:grid-cols-5">
 
 				{/* Support Section */}
