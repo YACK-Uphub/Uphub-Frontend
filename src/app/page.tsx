@@ -1,10 +1,10 @@
 import type {Metadata} from 'next';
 import UUserExperienceSection from "@/features/home/components/user-experience-section/UUserExperienceSection";
-import UBecomeMemberSection from "@/features/home/components/UBecomeMemberSection";
 import UTopCompaniesSection from "@/features/home/components/UTopCompaniesSection";
 import UHeroSection from "@/features/home/components/hero-section/UHeroSection";
 import UJobForUSection from "@/features/home/components/UJobForUSection";
 import UJobPilotSection from "@/features/home/components/UJobPilotSection";
+import UBecomeMemberSection from "@/features/home/components/become-member-section/UBecomeMemberSection";
 
 export const metadata: Metadata = {
 	title: "HomePage",
@@ -38,14 +38,16 @@ const HomePage = () => {
 				</div>
 			</section>
 
-			<section className={"min-h-100 py-8 sm:py-16 mx-auto max-w-7xlbg-custom-gray/10"}>
-				<div className={"px-12 xl:px-0"}>
+			<section className={"min-h-100 py-8 sm:py-16 mx-auto max-w-7xl"}>
+				<div className={"px-24 xl:px-0"}>
 					<UUserExperienceSection></UUserExperienceSection>
 				</div>
 			</section>
 
-			<section className={"min-h-100 max-w-full max-w-7xl mt-8"}>
-				<UBecomeMemberSection></UBecomeMemberSection>
+			<section className={"mt-8 py-8 sm:py-16 sm:mt-16 mx-auto max-w-7xl bg-custom-gray/10"}>
+				<div className={"px-12 xl:px-0"}>
+					<UBecomeMemberSection></UBecomeMemberSection>
+				</div>
 			</section>
 		</div>
 	)

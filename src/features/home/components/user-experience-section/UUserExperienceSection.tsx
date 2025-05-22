@@ -46,7 +46,7 @@ const UUserExperienceSection = () => {
 			{/* Header */}
 				<h2 className="mb-8 text-center
 										 sm:text-2xl sm:p-4 sm:mb-16 font-bold
-										 text-custom-blue-3">Phản ánh từ học sinh</h2>
+										 text-custom-blue-3">Trải Nghiệm Người Dùng</h2>
 
 				{/* Carousel */}
 				<Carousel
@@ -56,10 +56,10 @@ const UUserExperienceSection = () => {
 						axis: 'x',
 					}} className="w-full">
 
-					<CarouselContent className={"-ml-30"}>
+					<CarouselContent className={"-ml-15"}>
 						{testimonials.map((testimonial, index) => (
 							<CarouselItem key={index} className="sm:basis-1/2 lg:basis-1/3">
-								<div className="p-1 h-full">
+								<div className="h-full p-1">
 									<UUserFeedbackCard
 										quote={testimonial.quote}
 										userName={testimonial.userName}
