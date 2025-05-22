@@ -32,7 +32,7 @@ export const UCardJob = ({
 			{/* Header with logo and featured badge */}
 			<div className="relative p-4">
 				<div className="flex items-center gap-3">
-					<div className="w-12 h-12 bg-custom-gray relative rounded-full overflow-hidden">
+					<div className="relative h-12 w-12 overflow-hidden rounded-full bg-custom-gray">
 						<Image
 							src={companyLogoUrl}
 							alt={`${companyName} Logo`}
@@ -53,7 +53,7 @@ export const UCardJob = ({
 
 					{isFeatured && (
 						<span
-							className="absolute top-4 right-4 bg-custom-green-bg text-custom-green-text text-xs font-medium px-2 py-0.5 rounded">
+							className="absolute top-4 right-4 rounded px-2 text-xs font-medium bg-custom-green-bg text-custom-green-text py-0.5">
               Featured
             </span>
 					)}
@@ -62,13 +62,13 @@ export const UCardJob = ({
 
 			{/* Job details */}
 			<div className="px-4 pb-4">
-				<h2 className="text-lg font-semibold text-custom-black mb-1">{jobTitle}</h2>
+				<h2 className="mb-1 text-lg font-semibold text-custom-black">{jobTitle}</h2>
 
-				<div className="flex flex-wrap gap-2 mt-3">
-          <span className="bg-custom-blue-1 text-custom-blue-3 text-xs font-medium px-2.5 py-0.5 rounded">
+				<div className="mt-3 flex flex-wrap gap-2">
+          <span className="rounded text-xs font-medium bg-custom-blue-1 text-custom-blue-3 px-2.5 py-0.5">
             {jobType}
           </span>
-					<span className="bg-custom-purple-bg text-custom-purple-text text-xs font-medium px-2.5 py-0.5 rounded">
+					<span className="rounded text-xs font-medium bg-custom-purple-bg text-custom-purple-text px-2.5 py-0.5">
             {salaryRange}
           </span>
 				</div>

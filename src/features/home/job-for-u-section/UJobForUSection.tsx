@@ -60,9 +60,11 @@ const jobs = [
 
 const UJobForUSection = () => {
 	return (
-		<div className={"w-full"}>
-			<h2 className="text-2xl mb-8 font-semibold text-center text-custom-black uppercase">Công việc Dành Cho bạn</h2>
-			<div className="grid grid-cols-2 gap-12 px-12 xl:px-0">
+		<>
+			<h2 className="mb-8 text-center text-2xl font-semibold uppercase text-custom-black">Công việc Dành Cho bạn</h2>
+			<div className="grid grid-cols-1 gap-10 px-12
+											sm:grid-cols-2 sm:gap-12
+			 								xl:grid-cols-4 xl:gap-12 xl:px-0">
 				{jobs.map((job, index) => (
 					<UCardJobForU
 						key={index}
@@ -76,7 +78,7 @@ const UJobForUSection = () => {
 					/>
 				))}
 		</div>
-		</div>
+		</>
 	);
 };
 

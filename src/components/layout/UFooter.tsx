@@ -42,7 +42,7 @@ const Footer = () => {
 				</section>
 
 				{/* App Links */}
-				<section className="md:col-span-3 flex flex-col items-end justify-end-safe space-y-4">
+				<section className="flex flex-col items-end justify-end-safe space-y-4 md:col-span-3">
 					<UButton
 						onClick={handleGooglePlayClick}
 						label={"Google Play"}

@@ -14,7 +14,7 @@ const USubHeader = ({navItems}: USubHeaderProps) => {
 
 	return (
 		<nav>
-			<ul className={"flex items-center justify-center gap-10 text-custom-white font-extralight bg-custom-blue-2 py-2"}>
+			<ul className={"flex items-center justify-center text-xs sm:text-base gap-10 text-custom-white font-extralight bg-custom-blue-2 py-2"}>
 				{navItems.map((item, index) => {
 
 						// avoid / in starting at all route

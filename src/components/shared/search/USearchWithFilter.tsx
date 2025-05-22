@@ -72,25 +72,25 @@ export default function USearchWithFilter({onSearchSubmit, dropdownData}: USearc
 
 	return (
 		<div
-			className="flex max-w-5xl items-center gap-4 rounded-full px-2 py-1 shadow-xl bg-custom-white md:px-4 md:py-2 flex-wrap md:flex-nowrap">
+			className="flex max-w-5xl flex-wrap items-center gap-4 rounded-full px-2 py-1 shadow-xl bg-custom-white md:flex-nowrap md:px-4 md:py-2">
 
 			{/* Job Search Input - Shrinks */}
-			<div className="flex items-center gap-2 flex-2 min-w-0">
+			<div className="flex min-w-0 items-center gap-2 flex-2">
 				<MagnifyingGlassIcon className="h-5 w-5 text-custom-blue-3"/>
 				<input
 					value={keyword}
 					onChange={(e) => setKeyword(e.target.value)}
 					type="text"
 					placeholder="Công việc, kỹ năng, công ty..."
-					className="flex-1 min-w-0 bg-transparent text-sm focus:outline-none"
+					className="min-w-0 flex-1 bg-transparent text-sm focus:outline-none"
 				/>
 			</div>
 
 			{/* Divider */}
-			<div className="h-6 w-px bg-custom-gray hidden md:block"/>
+			<div className="hidden h-6 w-px bg-custom-gray md:block"/>
 
 			{/* Location Input - Shrinks */}
-			<div className="flex flex-col relative flex-1 min-w-0">
+			<div className="relative flex min-w-0 flex-1 flex-col">
 				<div className="flex items-center gap-2">
 					<MapPinIcon className="h-5 w-5 text-custom-blue-3"/>
 					<input
@@ -98,7 +98,7 @@ export default function USearchWithFilter({onSearchSubmit, dropdownData}: USearc
 						placeholder="Khu vực"
 						value={inputTextForSuggestion}
 						onChange={(e) => handleInputTextForSuggestion(e.target.value)}
-						className="flex-1 min-w-0 bg-transparent text-sm focus:outline-none"
+						className="min-w-0 flex-1 bg-transparent text-sm focus:outline-none"
 					/>
 				</div>
 
@@ -120,7 +120,7 @@ export default function USearchWithFilter({onSearchSubmit, dropdownData}: USearc
 			</div>
 
 			{/* Divider */}
-			<div className="h-6 w-px bg-custom-gray hidden md:block"/>
+			<div className="hidden h-6 w-px bg-custom-gray md:block"/>
 
 			{/* Extra Select */}
 			<select className="cursor-pointer bg-transparent text-sm outline-none text-custom-gray">

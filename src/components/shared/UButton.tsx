@@ -34,7 +34,8 @@ const UButton = ({
 			className={`flex flex-row items-center justify-center 
 									gap-2 px-5 py-2 font-medium 
 									shadow-1xl
-									text-base 
+									text-xs text-nowrap
+									sm:text-base
 									active:translate-y-[2px] active:shadow-sm
 									hover:translate-y-[2px] 
 									transition-transform duration-200

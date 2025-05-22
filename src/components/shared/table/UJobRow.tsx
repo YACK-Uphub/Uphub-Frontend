@@ -33,7 +33,7 @@ export default function UJobRow({
     <div className='mx-5 flex-grow'>
       <div className='flex items-center gap-4'>
         <span className='text-lg font-bold'>{job.title}</span>
-        <span className='px-3 py-1 bg-custom-blue-1 text-custom-blue-2 text-sm rounded-full'>
+        <span className='rounded-full px-3 py-1 text-sm bg-custom-blue-1 text-custom-blue-2'>
           {job.jobType}
         </span>
 
@@ -42,10 +42,10 @@ export default function UJobRow({
           <span>{job.jobStatus}</span>
         </span>
       </div>
-      <div className='flex items-center text-sm text-custom-gray gap-2 my-3'>
+      <div className='my-3 flex items-center gap-2 text-sm text-custom-gray'>
         <span>Hạn nộp đơn: {formatDate(job.closingDate)}</span>
       </div>
-      <div className='flex items-center text-xs text-custom-gray gap-4 mt-2'>
+      <div className='mt-2 flex items-center gap-4 text-xs text-custom-gray'>
         <div className='flex items-center gap-1'>
           <MapPin size={14} />
           <span>{job.city}</span>
@@ -94,7 +94,7 @@ export default function UJobRow({
   return (
     <div
       className={`px-8 py-4 rounded-lg ${styleCardVariant} hover:bg-gray-100 flex items-center gap-3 border shadow-md transition-all duration-200`}>
-      <div className="w-16 h-16 mb-2 relative rounded-md overflow-hidden">
+      <div className="relative mb-2 h-16 w-16 overflow-hidden rounded-md">
         <Image
           src={job.companyImageUrl}
           alt={`${job.contactEmail} company`}
@@ -109,7 +109,7 @@ export default function UJobRow({
       </div>
 
       <div className='flex-grow'>
-        <div className='flex justify-between items-center'>
+        <div className='flex items-center justify-between'>
           <JobInfo />
           <ActionArea />
         </div>
