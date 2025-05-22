@@ -1,6 +1,7 @@
-﻿import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+﻿import {createApi} from "@reduxjs/toolkit/query/react";
 import {Application} from "@/types/application";
 import {PaginatedResponse} from "@/types/baseModel";
+import {customFetchBaseQueryWithErrorHandling} from "@/services/baseApi";
 
 export interface GetApplicationParams {
 	jobId?: string | number;
@@ -12,7 +13,7 @@ export interface GetApplicationParams {
 export const applicationApi = createApi({
 	reducerPath: 'applicationApi',
 
-	baseQuery: fetchBaseQuery({baseUrl: "http://localhost:6001/"}),
+	baseQuery: customFetchBaseQueryWithErrorHandling,
 
 	// GET: /applications?jobId=1&userId=1&pageIndex=3&pageSize=10
 	endpoints: (builder) => ({
@@ -23,7 +24,7 @@ export const applicationApi = createApi({
 				params: {
 					...params,
 					pageIndex: params.pageIndex ?? 1,
-					pageSize: params.pageSize ?? 10,
+					pageSize: params.pageSize ?? 5,
 				},
 			}),
 		}),

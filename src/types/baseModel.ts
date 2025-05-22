@@ -4,7 +4,7 @@
 // with the backend instead of manually writing them out
 
 type BaseEntity = {
-	id: string;
+	id: string | number;
 	createdAt?: Date;
 	updatedAt?: Date;
 }

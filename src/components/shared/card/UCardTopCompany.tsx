@@ -26,6 +26,8 @@ export default function UCardTopCompany({
 	variant = UCardVariant.Normal,
 }: CompanyCardProps) {
 
+
+
 	return (
 		<div className={`w-80 p-4 ${getStyleCardVariant(variant)} 
 										 rounded-2xl shadow-sm border w-full
