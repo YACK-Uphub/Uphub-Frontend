@@ -1,10 +1,10 @@
 import type {Metadata} from 'next';
-import UHeroSection from "@/features/home/hero-section/UHeroSection";
-import UJobForUSection from "@/features/home/job-for-u-section/UJobForUSection";
-import UJobPilotSection from "@/features/home/jobpilot-section/UJobPilotSection";
-import UUserExperienceSection from "@/features/home/user-experience-section/UUserExperienceSection";
-import UBecomeMemberSection from "@/features/home/become-member-section/UBecomeMemberSection";
-import UTopCompaniesSection from "@/features/home/top-companies-section/UTopCompaniesSection";
+import UUserExperienceSection from "@/features/home/components/UUserExperienceSection";
+import UBecomeMemberSection from "@/features/home/components/UBecomeMemberSection";
+import UTopCompaniesSection from "@/features/home/components/UTopCompaniesSection";
+import UHeroSection from "@/features/home/components/hero-section/UHeroSection";
+import UJobForUSection from "@/features/home/components/UJobForUSection";
+import UJobPilotSection from "@/features/home/components/jobpilot-section/UJobPilotSection";
 
 export const metadata: Metadata = {
   title: "HomePage",
@@ -20,16 +20,22 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className={"min-h-100 mx-auto max-w-7xl mt-8"}>
-        <UJobForUSection></UJobForUSection>
+      <section className={"min-h-100 pt-8 sm:pt-16 mx-auto max-w-7xl"}>
+        <div className={"px-12 xl:px-0"}>
+          <UJobForUSection></UJobForUSection>
+        </div>
       </section>
 
-      <section className={"min-h-100 mx-auto max-w-7xl mt-8"}>
-        <UTopCompaniesSection></UTopCompaniesSection>
+      <section className={"min-h-100 pt-8 sm:pt-16 mx-auto max-w-7xl"}>
+        <div className={"px-12 xl:px-0"}>
+          <UTopCompaniesSection></UTopCompaniesSection>
+        </div>
       </section>
 
-      <section className={"min-h-100 max-w-full max-w-7xl mt-8 bg-custom-gray/10"}>
-        <UJobPilotSection></UJobPilotSection>
+      <section className={"h-full mt-8 py-8 sm:py-16 sm:mt-16 mx-auto max-w-7xl bg-custom-gray/10"}>
+        <div className={"px-12 xl:px-0"}>
+          <UJobPilotSection></UJobPilotSection>
+        </div>
       </section>
 
       <section className={"min-h-100 max-w-full max-w-7xl mt-8 bg-custom-gray/10"}>

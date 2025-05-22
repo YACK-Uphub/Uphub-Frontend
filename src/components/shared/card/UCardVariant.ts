@@ -3,10 +3,13 @@
 	LightBlue,
 	Border,
 	Yellow,
+	Transparent,
 }
 
 export const getStyleCardVariant = (variant: UCardVariant): string => {
 	switch (variant) {
+		case UCardVariant.Transparent:
+			return "bg-transparent";
 		case UCardVariant.Border:
 			return "bg-custom-white border border-custom-blue-2";
 		case UCardVariant.LightBlue:

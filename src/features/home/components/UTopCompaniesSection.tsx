@@ -52,14 +52,17 @@ const companies = [] = [
 const UTopCompaniesSection = () => {
 	return (
 		<>
-			<h2 className="mb-8 text-center text-2xl font-semibold uppercase text-custom-black">Công việc Dành Cho bạn</h2>
-			<div className="grid grid-cols-1 gap-10 px-12
+			<h2 className="font-bold mb-8 p-2
+										 sm:text-2xl sm:p-4 sm:mb-16
+									 text-custom-blue-3 text-center
+									   border rounded-2xl
+									 bg-custom-yellow-3">Top Công Ty Ứng Tuyển</h2>
+			<div className="grid grid-cols-1 gap-10
 											sm:grid-cols-2 sm:gap-12
-			 								xl:grid-cols-4 xl:gap-12 xl:px-0">
+			 								xl:grid-cols-4 xl:gap-12">
 				{companies.map((company, index) => (
 					<UCardTopCompany key={index}
 													 {...company}/>
-
 				))}
 			</div>
 		</>
