@@ -19,7 +19,7 @@ export const companyApi = createApi({
 		}),
 
 		// GET: /search/companies?sort=nameAsc&pageNumber=1&pageSize=3&searchTerm=Công ty TNHH
-		searchCompanies: builder.query<SearchPaginatedResponse<Company>, SearchPaginatedRequestParams>({
+		getSearchCompanies: builder.query<SearchPaginatedResponse<Company>, SearchPaginatedRequestParams>({
 			query: (params) => ({
 				url: "search/companies",
 				method: "GET",
@@ -36,6 +36,6 @@ export const companyApi = createApi({
 export const {
 	useLazyGetCompanyByIdQuery,
 	useGetCompanyByIdQuery,
-	useLazySearchCompaniesQuery,
-	useSearchCompaniesQuery,
+	useLazyGetSearchCompaniesQuery,
+	useGetSearchCompaniesQuery,
 } = companyApi
