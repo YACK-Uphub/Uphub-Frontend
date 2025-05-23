@@ -1,30 +1,41 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import { customFetchBaseQueryWithErrorHandling } from './baseApi';
-import { PaginatedResponse } from '@/types/baseModel';
-import { Job } from '@/types/job';
-export interface JobParams {
-  userId?: string | number;
-  pageIndex?: number;
-  pageSize?: number;
-}
-export const jobApi = createApi({
-  reducerPath: 'jobApi',
-  baseQuery: customFetchBaseQueryWithErrorHandling,
-  tagTypes: ['Jobs'],
-  endpoints: (builder) => ({
-    getJobs: builder.query<PaginatedResponse<Job>, JobParams>({
-      query: (jobParams) => ({
-        url: `/search/jobs`,
-        method: 'GET',
-        params: {
-          ...jobParams,
-          pageIndex: jobParams.pageIndex,
-          pageSize: jobParams.pageSize,
-        },
-      }),
-      providesTags: ['Jobs'],
-    }),
-  }),
-});
+import {createApi} from "@reduxjs/toolkit/query/react";
+import {SearchPaginatedRequestParams, SearchPaginatedResponse} from "@/types/baseModel";
+import {customFetchBaseQueryWithErrorHandling} from "@/services/baseApi";
+import {Job} from "@/types/job";
 
-export const { useGetJobsQuery } = jobApi;
+export const jobApi = createApi({
+	reducerPath: 'jobApi',
+
+	baseQuery: customFetchBaseQueryWithErrorHandling,
+
+	endpoints: (builder) => ({
+
+		// GET: /jobs/23
+		getJobsById: builder.query<Job, number | string>({
+			query: (id) => ({
+				url: `jobs/${id}`,
+				method: 'GET',
+			})
+		}),
+
+		// GET: /search/jobs?sort=closingSoon&searchTerm=Frontend&pageNumber=1&companyId=7&pageSize=3
+		getSearchJobs: builder.query<SearchPaginatedResponse<Job>, SearchPaginatedRequestParams>({
+			query: (params) => ({
+				url: "search/jobs",
+				method: "GET",
+				params: {
+					...params,
+					pageNumber: params.pageNumber ?? 1,
+					pageSize: params.pageSize ?? 5,
+				}
+			})
+		}),
+	})
+})
+
+export const {
+	useGetJobsByIdQuery,
+	useGetSearchJobsQuery,
+	useLazyGetJobsByIdQuery,
+	useLazyGetSearchJobsQuery
+} = jobApi

@@ -12,7 +12,7 @@ import {URowVariant} from "@/components/shared/table/URowVariant";
 import UCardJobForU from "@/components/shared/card/UCardJobForU";
 import React from "react";
 import {toast} from "react-toastify";
-import {useGetApplicationsQuery} from "@/services/applicationsApi";
+import {useGetSearchJobsQuery} from "@/services/jobsApi";
 
 const locations: UDropdownItem[] = [
 	{id: 1, name: 'Hà Nội'},
@@ -46,7 +46,10 @@ const job: Job = {
 const TestPage = () => {
 
 	// ==== Test query =============
-	const {data, isLoading, isError} = useGetApplicationsQuery({});
+	// const {data, isLoading, isError} = useGetApplicationsQuery({});
+	// const {data, isLoading, isError} = useGetSearchCompaniesQuery({});
+
+	const {data, isLoading, isError} = useGetSearchJobsQuery({});
 	console.log(data);
 
 	return (
@@ -64,7 +67,6 @@ const TestPage = () => {
 											 isHiring={true}
 											 hasHighBenefits={true}
 											 variant={UCardVariant.Border}
-
 			/>
 
 			<UCardApplication
