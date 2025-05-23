@@ -2,12 +2,12 @@
 import { UCardJob } from '@/components/shared/card/UCardJob';
 import { UPageSpinner } from '@/components/shared/spinner/UPageSpinner';
 import { useAppDispatch, useAppSelector } from '@/libs/rtk/hooks';
-import { useGetJobsQuery } from '@/services/jobsApi';
+import { useGetSearchJobsQuery } from '@/services/jobsApi';
 import React from 'react';
 
 export default function UJobList() {
   const jobParams = useAppSelector((state) => state.job);
-  const { data, isLoading } = useGetJobsQuery(jobParams);
+  const { data, isLoading } = useGetSearchJobsQuery(jobParams);
   //const dispatch = useAppDispatch();
 
   if (isLoading) return <UPageSpinner />;

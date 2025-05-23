@@ -11,5 +11,5 @@ export default function StudentLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  return <div className=' w-max mx-auto'>{children}</div>;
+  return <div className='w-fit mx-auto'>{children}</div>;
 }
