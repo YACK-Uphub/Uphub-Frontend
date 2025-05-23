@@ -38,4 +38,5 @@ export const {
 	useGetCompanyByIdQuery,
 	useLazyGetSearchCompaniesQuery,
 	useGetSearchCompaniesQuery,
+	endpoints: {getCompanyById}
 } = companyApi

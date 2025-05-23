@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'Browse internship opportunities on UpHub',
 };
 
-const Page = () => {
+const JobListing = () => {
   return (
     <div>
       <h1>Jobs</h1>
@@ -16,4 +16,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default JobListing;

@@ -1,8 +1,10 @@
-﻿import {Entity} from "./baseModel";
+﻿import { Entity } from "./baseModel";
 
 export type Job = Entity<{
+	id: number;
 	title: string;
 	companyImageUrl?: string;
+	companyName: string;
 	city: string;
 	description?: string;
 	requirements?: string;
@@ -27,5 +29,3 @@ export enum JobStatus {
 	Paused = "Paused",
 	Archived = "Archived",
 }
-
-

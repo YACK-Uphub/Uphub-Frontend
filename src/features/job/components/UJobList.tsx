@@ -1,39 +1,44 @@
-'use client';
-import { UCardJob } from '@/components/shared/card/UCardJob';
-import { UPageSpinner } from '@/components/shared/spinner/UPageSpinner';
-import { useAppDispatch, useAppSelector } from '@/libs/rtk/hooks';
-import { useGetSearchJobsQuery } from '@/services/jobsApi';
-import React from 'react';
+"use client";
+import { UCardJob } from "@/components/shared/card/UCardJob";
+import { UCardVariant } from "@/components/shared/card/UCardVariant";
+import { UPageSpinner } from "@/components/shared/spinner/UPageSpinner";
+import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
+import { useGetSearchJobsQuery } from "@/services/jobsApi";
+import { Job } from "@/types/job";
+import Link from "next/link";
+import React from "react";
 
 export default function UJobList() {
-  const jobParams = useAppSelector((state) => state.job);
-  const { data, isLoading } = useGetSearchJobsQuery(jobParams);
-  //const dispatch = useAppDispatch();
+    const jobParams = useAppSelector((state) => state.job);
+    const { data, isLoading } = useGetSearchJobsQuery(jobParams);
+    //const dispatch = useAppDispatch();
 
-  if (isLoading) return <UPageSpinner />;
+    if (isLoading) return;
 
-  return (
-    <>
-      {!data ? (
-        <div>empty list</div>
-      ) : (
+    return (
         <>
-          <div className='grid grid-cols-3 gap-10'>
-            {data.results.map((job: any) => (
-              <UCardJob
-                companyLogoUrl={job.companyLogoUrl}
-                companyName={job.companyName}
-                jobTitle={job.title}
-                jobType={job.jobType}
-                location={job.location}
-                salaryRange={job.salaryRange}
-                variant={job.variant}
-                isFeatured={job.isFeatured}
-              />
-            ))}
-          </div>
+            {!data ? (
+                <div>empty list</div>
+            ) : (
+                <>
+                    <div className="grid grid-cols-3 gap-6">
+                        {data.results.map((job: Job) => (
+                            <Link href={`jobs/${job.id}`}>
+                                <UCardJob
+                                    companyLogoUrl={job.companyImageUrl}
+                                    companyName={job.companyName}
+                                    jobTitle={job.title}
+                                    jobType={job.jobType}
+                                    location={job.city}
+                                    salaryRange={job.salaryRange}
+                                    isFeatured={job.isFeatured}
+                                    variant={job.isHighlighted ? UCardVariant.Yellow : UCardVariant.Normal}
+                                />
+                            </Link>
+                        ))}
+                    </div>
+                </>
+            )}
         </>
-      )}
-    </>
-  );
+    );
 }
