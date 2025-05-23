@@ -12,8 +12,9 @@ export const metadata: Metadata = {
 };
 
 const HomePage = () => {
+
 	return (
-		<div>
+		<>
 			<section className={"bg-custom-yellow-3 min-h-100 pt-12 pb-12 px-12"}>
 				<div className={"max-w-7xl mx-auto"}>
 					<UHeroSection></UHeroSection>
@@ -49,7 +50,7 @@ const HomePage = () => {
 					<UBecomeMemberSection></UBecomeMemberSection>
 				</div>
 			</section>
-		</div>
+		</>
 	)
 };
 

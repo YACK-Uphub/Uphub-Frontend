@@ -1,5 +1,5 @@
 ﻿import {configureStore} from "@reduxjs/toolkit";
-import {applicationApi} from "@/services/application/applicationsApi";
+import {applicationApi} from "@/services/applicationsApi";
 
 // Create store instance per request for strong type safety
 export function makeStore() {

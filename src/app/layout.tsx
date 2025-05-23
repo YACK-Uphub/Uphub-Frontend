@@ -28,6 +28,7 @@ const navItems = [
 	{name: 'Trang chủ', path: '/'},
 	{name: 'Về chúng tôi', path: '/about-us'},
 	{name: 'Liên hệ', path: '/contact-us'},
+	{name: 'TESTING', path: '/test'},
 ];
 
 // === Components =============================
@@ -36,8 +37,8 @@ export default function RootLayout({children}: Readonly<{
 	children: ReactNode;
 }>) {
 	return (
-		<html lang="en" className={fontReemKufi.className}>
-			<body className={"min-h-screen text-custom-black leading-relaxed flex flex-col"}>
+		<html lang="en" className={`${fontReemKufi.className} h-full`}>
+			<body className={"h-full text-custom-black leading-relaxed flex flex-col"}>
 				<StoreProvider>
 
 					{/* Toaster */}

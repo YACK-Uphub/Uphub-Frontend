@@ -1,4 +1,5 @@
 ﻿import {BaseQueryApi, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/query";
+import {notFound} from "next/navigation";
 
 const customFetchBaseQuery = fetchBaseQuery({
 	baseUrl: 'http://localhost:6001',
@@ -15,8 +16,8 @@ export const customFetchBaseQueryWithErrorHandling = async (
 	// Print error if happens
 	if (result.error) {
 		console.error(result.error)
+		notFound();
 	}
-
 
 	return result;
 }
