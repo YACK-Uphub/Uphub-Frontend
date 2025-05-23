@@ -1,12 +1,12 @@
 'use client';
 
 import {Bookmark, MapPin, Users} from 'lucide-react';
-import {Job} from '../../../models/job';
 import {formatDate} from '@/utils/helpers';
 import UButton from '../UButton';
 import Image from 'next/image';
 import {getStyleJobStatus, getStyleRowVariant, URowVariant} from "@/components/shared/table/URowVariant";
 import React from "react";
+import {Job} from "@/types/job";
 
 interface UJobRowProps {
 	variant?: URowVariant;
