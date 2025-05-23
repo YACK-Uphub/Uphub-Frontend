@@ -48,8 +48,9 @@ export const metadata: Metadata = {
 
 
 const AboutUsPage = () => {
+
 	return (
-		<div>
+		<>
 			<h1>About Us</h1>
 			<p>Learn more about UpHub, our mission, and our team.</p>
 			<USearchWithFilterWrapper dropdownData={locations}></USearchWithFilterWrapper>
@@ -104,7 +105,7 @@ const AboutUsPage = () => {
 				postedTime="1d"
 			/>
 
-		</div>
+		</>
 	)
 };
 
