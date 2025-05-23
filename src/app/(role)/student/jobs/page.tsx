@@ -1,18 +1,19 @@
 ﻿import React from 'react';
-import type {Metadata} from 'next';
+import type { Metadata } from 'next';
+import UJobList from '@/features/job/components/UJobList';
 
 export const metadata: Metadata = {
-	title: "Jobs",
-	description: "Browse internship opportunities on UpHub",
+  title: 'Jobs',
+  description: 'Browse internship opportunities on UpHub',
 };
 
 const Page = () => {
-	return (
-		<div>
-			<h1>Jobs</h1>
-			<p>Explore internship opportunities available on UpHub.</p>
-		</div>
-	);
+  return (
+    <div>
+      <h1>Jobs</h1>
+      <UJobList />
+    </div>
+  );
 };
 
 export default Page;

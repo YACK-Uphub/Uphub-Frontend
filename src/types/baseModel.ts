@@ -14,7 +14,7 @@ export type Entity<T> = {
 } & BaseEntity;
 
 export type PaginatedResponse<T> = {
-	data: T[];
+	results: T[];
 	meta: {
 		pageIndex: number;
 		pageSize: number;
