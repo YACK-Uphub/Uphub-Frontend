@@ -15,9 +15,13 @@ export type Entity<T> = {
 
 export type PaginatedResponse<T> = {
 	data: T[];
-	meta: {
-		pageIndex: number;
-		pageSize: number;
-		count: number;
-	}
+	pageIndex: number;
+	pageSize: number;
+	count: number;
+}
+
+export type SearchPaginatedResponse<T> = {
+	"results": T[],
+	"pageCount": number,
+	"totalCount": number
 }

@@ -13,10 +13,18 @@ export const customFetchBaseQueryWithErrorHandling = async (
 
 	const result = await customFetchBaseQuery(args, api, extraOptions);
 
-	// Print error if happens
 	if (result.error) {
-		console.error(result.error)
-		notFound();
+		console.error(result.error);
+
+		const status = result.error.status;
+
+		if (status === 404) {
+			notFound(); // show 404 page only if resource is not found
+		}
+
+		if (status === 502) {
+			throw new Error("Bad Gateway: Backend service is unavailable");
+		}
 	}
 
 	return result;
