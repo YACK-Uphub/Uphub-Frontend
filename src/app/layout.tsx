@@ -28,6 +28,7 @@ const navItems = [
 	{name: 'Trang chủ', path: '/'},
 	{name: 'Về chúng tôi', path: '/about-us'},
 	{name: 'Liên hệ', path: '/contact-us'},
+	{name: 'TESTING', path: '/test'},
 ];
 
 // === Components =============================
