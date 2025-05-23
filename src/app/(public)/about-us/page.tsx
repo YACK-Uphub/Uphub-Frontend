@@ -8,9 +8,9 @@ import {UCardVariant} from "@/components/shared/card/UCardVariant";
 import UCardApplication from "@/components/shared/card/UCardApplication";
 import {UCardJob} from "@/components/shared/card/UCardJob";
 import UJobRow from "@/components/shared/table/UJobRow";
-import {Job, JobStatus} from "@/models/job";
 import {URowVariant} from "@/components/shared/table/URowVariant";
 import UCardJobForU from "@/components/shared/card/UCardJobForU";
+import {Job, JobStatus} from "@/types/job";
 
 const locations: UDropdownItem[] = [
 	{id: 1, name: 'Hà Nội'},
@@ -47,8 +47,7 @@ export const metadata: Metadata = {
 };
 
 
-const AboutUsPage = async () => {
-
+const AboutUsPage = () => {
 	return (
 		<div>
 			<h1>About Us</h1>

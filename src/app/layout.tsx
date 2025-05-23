@@ -6,6 +6,8 @@ import UHeader from "@/components/layout/header/UHeader";
 import USubHeader from "@/components/layout/USubHeader";
 import UFooter from "@/components/layout/UFooter";
 import UPageSpinnerWrapper from "@/components/shared/spinner/UPageSpinnerWrapper";
+import StoreProvider from "@/app/StoreProvider";
+import {Slide, ToastContainer} from "react-toastify";
 
 // === Configuration =============================
 
@@ -36,31 +38,45 @@ export default function RootLayout({children}: Readonly<{
 	return (
 		<html lang="en" className={fontReemKufi.className}>
 			<body className={"min-h-screen text-custom-black leading-relaxed flex flex-col"}>
-				{/*<StoreProvider>*/}
+				<StoreProvider>
 
-				{/* Header */}
-				<header className={"sticky top-0 z-50"}>
-					<div className={"py-3 px-12 bg-custom-white"}>
-						<UHeader/>
-					</div>
+					{/* Toaster */}
+					<ToastContainer
+						position="top-right"
+						autoClose={2000}
+						hideProgressBar={false}
+						newestOnTop
+						closeOnClick
+						rtl={false}
+						pauseOnFocusLoss
+						draggable
+						pauseOnHover
+						theme="light"
+						transition={Slide}
+					/>
 
-					{/* Sub Headers*/}
-					<USubHeader navItems={navItems}/>
-				</header>
+					{/* Header */}
+					<header className={"sticky top-0 z-50"}>
+						<div className={"py-3 px-12 bg-custom-white"}>
+							<UHeader/>
+						</div>
 
-				{/* Main */}
-				<main className={"flex-1 bg-custom-white"}>
-					<UPageSpinnerWrapper>
-						{children}
-					</UPageSpinnerWrapper>
-				</main>
+						<USubHeader navItems={navItems}/>
+					</header>
 
-				{/* Footer*/}
-				<footer className={"border-custom-white"}>
-					<UFooter/>
-				</footer>
+					{/* Main */}
+					<main className={"flex-1 bg-custom-white"}>
+						<UPageSpinnerWrapper>
+							{children}
+						</UPageSpinnerWrapper>
+					</main>
 
-				{/*</StoreProvider>*/}
+					{/* Footer*/}
+					<footer className={"border-custom-white"}>
+						<UFooter/>
+					</footer>
+
+				</StoreProvider>
 			</body>
 		</html>
 	);
