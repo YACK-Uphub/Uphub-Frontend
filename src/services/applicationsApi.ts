@@ -1,9 +1,9 @@
 ﻿import {createApi} from "@reduxjs/toolkit/query/react";
 import {Application, ApplicationSearch} from "@/types/application";
-import {PaginatedResponse, SearchPaginatedResponse} from "@/types/baseModel";
+import {PaginatedResponse, SearchPaginatedRequestParams, SearchPaginatedResponse} from "@/types/baseModel";
 import {customFetchBaseQueryWithErrorHandling} from "@/services/baseApi";
 
-export type SearchApplicationSortType = "nameAsc" | "nameDesc";
+// =====================================================================
 
 export interface GetApplicationParams {
 	jobId?: string | number;
@@ -12,12 +12,7 @@ export interface GetApplicationParams {
 	pageSize?: number;
 }
 
-export interface SearchApplicationParams {
-	sort?: SearchApplicationSortType;
-	pageNumber?: number;
-	pageSize?: number;
-	searchTerm?: string;
-}
+// =====================================================================
 
 export const applicationApi = createApi({
 	reducerPath: 'applicationApi',
@@ -48,7 +43,7 @@ export const applicationApi = createApi({
 		}),
 
 		// GET: /search/applications?sort=nameAsc&pageNumber=1&pageSize=3&searchTerm=zalo
-		searchApplication: builder.query<SearchPaginatedResponse<ApplicationSearch>, SearchApplicationParams>({
+		getSearchApplications: builder.query<SearchPaginatedResponse<ApplicationSearch>, SearchPaginatedRequestParams>({
 			query: (params) => ({
 				url: "search/applications",
 				method: "GET",
@@ -58,12 +53,13 @@ export const applicationApi = createApi({
 					pageSize: params.pageSize ?? 5,
 				}
 			})
-		})
+		}),
 	})
 })
 
 export const {
 	useGetApplicationsQuery,
 	useLazyGetApplicationByIdQuery,
-	useSearchApplicationQuery,
+	useGetSearchApplicationsQuery,
+	useLazyGetSearchApplicationsQuery,
 } = applicationApi
