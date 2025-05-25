@@ -12,6 +12,7 @@ export interface GetApplicationParams {
 	pageSize?: number;
 }
 
+
 // =====================================================================
 
 export const applicationApi = createApi({
