@@ -1,4 +1,4 @@
-﻿import {Api, BaseQueryApi, BaseQueryFn, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/query";
+﻿import {BaseQueryApi, BaseQueryFn, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/query";
 import {notFound} from "next/navigation";
 import {BaseEntity, PaginatedResponse, SearchPaginatedRequestParams, SearchPaginatedResponse} from "@/types/baseModel";
 import {createApi} from "@reduxjs/toolkit/query/react";
