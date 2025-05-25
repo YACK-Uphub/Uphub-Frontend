@@ -9,7 +9,6 @@ import React from "react";
 export default function UCompanyList() {
     const companyParams = useAppSelector((state) => state.company);
     const { data, isLoading } = useGetSearchCompaniesQuery(companyParams);
-
     if (isLoading) return;
 
     return (
@@ -20,13 +19,12 @@ export default function UCompanyList() {
                 <>
                     <div className="w-[70vw] flex flex-col gap-y-4">
                         {data.results.map((company: Company) => (
-                            <Link href={`companies/${company.id}`}>
+                            <Link href={`/student/companies/${company.id}`}>
                                 <UCompanyRow
                                     businessType={company.businessType}
                                     companyName={company.companyName}
                                     city={company.city}
                                     imageUrl={company.imageUrl}
-                                    onClick={() => {}}
                                 />
                             </Link>
                         ))}

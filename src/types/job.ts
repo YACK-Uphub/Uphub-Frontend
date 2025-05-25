@@ -1,4 +1,4 @@
-﻿import { Entity } from "./baseModel";
+﻿import { Entity, SearchPaginatedRequestParams } from "./baseModel";
 
 export type Job = Entity<{
 	id: number;
@@ -29,3 +29,7 @@ export enum JobStatus {
 	Paused = "Paused",
 	Archived = "Archived",
 }
+
+export type SearchJobParams = SearchPaginatedRequestParams & {
+	companyId?: number;
+};

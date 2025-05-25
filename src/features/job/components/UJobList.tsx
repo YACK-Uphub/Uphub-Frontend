@@ -23,7 +23,7 @@ export default function UJobList() {
                 <>
                     <div className="grid grid-cols-3 gap-6">
                         {data.results.map((job: Job) => (
-                            <Link href={`jobs/${job.id}`}>
+                            <Link href={`/student/jobs/${job.id}`}>
                                 <UCardJob
                                     companyLogoUrl={job.companyImageUrl}
                                     companyName={job.companyName}
