@@ -3,6 +3,7 @@ import {applicationApi} from "@/services/applicationsApi";
 import {companyApi} from "@/services/companiesApi";
 import {jobApi} from "@/services/jobsApi";
 import { jobSlice } from '@/features/job/slices/jobSlice';
+import { companySlice } from '@/features/company/slices/companySlice';
 
 // Create store instance per request for strong type safety
 export function makeStore() {
@@ -12,7 +13,8 @@ export function makeStore() {
 				[companyApi.reducerPath]: companyApi.reducer,
 				[jobApi.reducerPath]: jobApi.reducer,
 
-				job: jobSlice.reducer
+				job: jobSlice.reducer,
+				company: companySlice.reducer
 			},
 			middleware: (getDefaultMiddleware) =>
 				getDefaultMiddleware()
