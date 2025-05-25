@@ -12,7 +12,9 @@ import {URowVariant} from "@/components/shared/table/URowVariant";
 import UCardJobForU from "@/components/shared/card/UCardJobForU";
 import React from "react";
 import {toast} from "react-toastify";
-import {useLazySearchCompaniesQuery, useSearchCompaniesQuery} from "@/services/companiesApi";
+import {useSearchCompaniesQuery} from "@/services/companiesApi";
+import {useSearchJobsQuery} from "@/services/jobsApi";
+import {useSearchApplicationsQuery} from "@/services/applicationsApi";
 
 const locations: UDropdownItem[] = [
 	{id: 1, name: 'Hà Nội'},
@@ -49,8 +51,13 @@ const TestPage = () => {
 	// const {data, isLoading, isError} = useGetApplicationsQuery({});
 	// const {data, isLoading, isError} = useGetSearchCompaniesQuery({});
 
-	const {data, isLoading, isError} = useSearchCompaniesQuery({});
-	console.log(data);
+	const {data: data1} = useSearchCompaniesQuery({});
+	const {data: data2} = useSearchJobsQuery({});
+	const {data: data3} = useSearchApplicationsQuery({});
+
+	console.log(data1);
+	console.log(data2);
+	console.log(data3);
 
 	return (
 		<>

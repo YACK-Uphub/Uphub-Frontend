@@ -1,14 +1,21 @@
-﻿import {configureStore} from "@reduxjs/toolkit";
-import {companyApi} from "@/services/companiesApi";
+﻿import { applicationsApi } from "@/services/applicationsApi";
+import { companiesApi } from "@/services/companiesApi";
+import { jobsApi } from "@/services/jobsApi";
+import {configureStore} from "@reduxjs/toolkit";
 
 // Create store instance per request for strong type safety
 export function makeStore() {
 	return configureStore({
 			reducer: {
-				[companyApi.reducerPath]: companyApi.reducer,
+				[companiesApi.reducerPath]: companiesApi.reducer,
+				[applicationsApi.reducerPath]: applicationsApi.reducer,
+				[jobsApi.reducerPath]: jobsApi.reducer,
 			},
 			middleware: (getDefaultMiddleware) =>
-				getDefaultMiddleware().concat(companyApi.middleware)
+				getDefaultMiddleware()
+				.concat(companiesApi.middleware)
+				.concat(applicationsApi.middleware)
+				.concat(jobsApi.middleware)
 		}
 	)
 }
