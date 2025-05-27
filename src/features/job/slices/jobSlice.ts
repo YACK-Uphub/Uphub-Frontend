@@ -7,6 +7,7 @@ const initialState: SearchJobParams = {
 	pageSize: 9,
 	searchTerm: "",
 	companyId: undefined,
+	userJobStatus: undefined
 };
 
 export const jobSlice = createSlice({
@@ -27,11 +28,15 @@ export const jobSlice = createSlice({
 			state.companyId = action.payload;
 			state.pageNumber = 1;
 		},
+		setUserJobStatus(state, action) {
+			state.userJobStatus = action.payload;
+			state.pageNumber = 1;
+		},
 		resetParams() {
 			return initialState;
 		},
 	},
 });
 
-export const { resetParams, setPageIndex, setPageSize, setSearchTerm, setCompanyId } = jobSlice.actions;
+export const { resetParams, setPageIndex, setPageSize, setSearchTerm, setCompanyId, setUserJobStatus } = jobSlice.actions;
 export default jobSlice.reducer;

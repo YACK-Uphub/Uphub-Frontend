@@ -32,4 +32,5 @@ export enum JobStatus {
 
 export type SearchJobParams = SearchPaginatedRequestParams & {
 	companyId?: number;
+	userJobStatus?: string;
 };

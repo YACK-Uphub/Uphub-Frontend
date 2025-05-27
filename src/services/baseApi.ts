@@ -1,7 +1,12 @@
-﻿import {BaseQueryApi, BaseQueryFn, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/query";
-import {notFound} from "next/navigation";
-import {BaseEntity, PaginatedResponse, SearchPaginatedRequestParams, SearchPaginatedResponse} from "@/types/baseModel";
-import {createApi} from "@reduxjs/toolkit/query/react";
+﻿import { BaseQueryApi, BaseQueryFn, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { notFound } from "next/navigation";
+import {
+	BaseEntity,
+	PaginatedResponse,
+	SearchPaginatedRequestParams,
+	SearchPaginatedResponse,
+} from "@/types/baseModel";
+import { createApi } from "@reduxjs/toolkit/query/react";
 
 // =============================
 // === Custom Base Query
@@ -9,14 +14,14 @@ import {createApi} from "@reduxjs/toolkit/query/react";
 
 const customFetchBaseQuery = fetchBaseQuery({
 	baseUrl: process.env.NEXT_PUBLIC_BASE_API_URL,
-	credentials: 'include',
+	credentials: "include",
 });
 
 export const customFetchBaseQueryWithErrorHandling = async (
 	args: string | FetchArgs,
 	api: BaseQueryApi,
-	extraOptions: object) => {
-
+	extraOptions: object
+) => {
 	const result = await customFetchBaseQuery(args, api, extraOptions);
 
 	if (result.error) {
@@ -34,18 +39,18 @@ export const customFetchBaseQueryWithErrorHandling = async (
 	}
 
 	return result;
-}
+};
 
 // =============================
 // === Endpoints Template
 // =============================
 
 export type CrudApiOptions = {
-	reducerPath: string;         // Unique name for RTK Query slice
-	tagType: string;             // Used for cache tags (e.g., 'Company')
-	baseUrl: string;             // Main API endpoint (e.g., 'companies')
-	searchUrl?: string;          // Optional endpoint for paginated search
-	baseQuery?: BaseQueryFn;     // Optional: your custom fetch logic, override the existing custom api
+	reducerPath: string; // Unique name for RTK Query slice
+	tagType: string; // Used for cache tags (e.g., 'Company')
+	baseUrl: string; // Main API endpoint (e.g., 'companies')
+	searchUrl?: string; // Optional endpoint for paginated search
+	baseQuery?: BaseQueryFn; // Optional: your custom fetch logic, override the existing custom api
 };
 
 export function createCrudApi<T extends BaseEntity, P extends SearchPaginatedRequestParams>({
@@ -55,7 +60,6 @@ export function createCrudApi<T extends BaseEntity, P extends SearchPaginatedReq
 	searchUrl,
 	baseQuery = customFetchBaseQueryWithErrorHandling,
 }: CrudApiOptions) {
-
 	return createApi({
 		reducerPath,
 
@@ -64,7 +68,6 @@ export function createCrudApi<T extends BaseEntity, P extends SearchPaginatedReq
 		tagTypes: [tagType],
 
 		endpoints: (builder) => ({
-
 			// GET: companies/1
 			getById: builder.query<T, number | string>({
 				query: (id) => ({
@@ -75,10 +78,15 @@ export function createCrudApi<T extends BaseEntity, P extends SearchPaginatedReq
 			}),
 
 			// GET: companies
-			getAll: builder.query<PaginatedResponse<T>, void>({
-				query: () => ({
+			getAll: builder.query<PaginatedResponse<T>, P>({
+				query: (params) => ({
 					url: baseUrl,
 					method: "GET",
+					params: {
+						pageNumber: params.pageNumber ?? 1,
+						pageSize: params.pageSize ?? 10,
+						...params,
+					},
 				}),
 				providesTags: [tagType],
 			}),
@@ -86,17 +94,17 @@ export function createCrudApi<T extends BaseEntity, P extends SearchPaginatedReq
 			// GET: search/companies?sort=nameAsc&pageNumber=1&pageSize=3&searchTerm=Công ty TNHH
 			search: searchUrl
 				? builder.query<SearchPaginatedResponse<T>, P>({
-					query: (params) => ({
-						url: searchUrl,
-						method: "GET",
-						params: {
-							pageNumber: params.pageNumber ?? 1,
-							pageSize: params.pageSize ?? 10,
-							...params,
-						},
-					}),
-					providesTags: [tagType],
-				})
+						query: (params) => ({
+							url: searchUrl,
+							method: "GET",
+							params: {
+								pageNumber: params.pageNumber ?? 1,
+								pageSize: params.pageSize ?? 10,
+								...params,
+							},
+						}),
+						providesTags: [tagType],
+				  })
 				: undefined,
 
 			// CREATE: application/2
@@ -116,10 +124,7 @@ export function createCrudApi<T extends BaseEntity, P extends SearchPaginatedReq
 					method: "PUT",
 					body,
 				}),
-				invalidatesTags: (result, error, { id }) => [
-					{ type: tagType, id },
-					tagType,
-				],
+				invalidatesTags: (result, error, { id }) => [{ type: tagType, id }, tagType],
 			}),
 
 			// DELETE: application/2

@@ -1,6 +1,5 @@
 ﻿import { ReactNode } from "react";
 import type { Metadata } from "next";
-import USearchWithFilterWrapper from "@/components/shared/search/USearchWithFilterWrapper";
 
 export const metadata: Metadata = {
     title: "Create Next App",
