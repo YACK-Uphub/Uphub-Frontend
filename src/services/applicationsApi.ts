@@ -1,21 +1,7 @@
-﻿import {SearchPaginatedRequestParams} from "@/types/baseModel";
-import {createCrudApi} from "@/services/baseApi";
-import {Application} from "@/types/application";
+﻿import {createCrudApi} from "@/services/baseApi";
+import {Application, ApplicationSearchParams} from "@/types/application";
 
-// ==================================================
-
-enum ApplicationNameType {
-	NameAsc= "nameAsc",
-	NameDesc= "nameDesc"
-}
-
-export type ApplicationSearchPaginatedRequestParams = {
-	sort?: ApplicationNameType;
-} & SearchPaginatedRequestParams;
-
-// ==================================================
-
-export const applicationsApi = createCrudApi<Application, ApplicationSearchPaginatedRequestParams>({
+export const applicationsApi = createCrudApi<Application, ApplicationSearchParams>({
 	reducerPath: "applicationsApi",
 	tagType: "applications",
 	baseUrl: "applications",

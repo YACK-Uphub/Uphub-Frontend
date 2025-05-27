@@ -1,20 +1,6 @@
-﻿import {Entity} from "@/types/baseModel";
+﻿import {Entity, SearchPaginatedRequestParams} from "@/types/baseModel";
 
 export type Application = Entity<{
-	cvUrl: string
-	linkedInUrl: string
-	coverLetter: string
-	introduction: string
-	fullname: string
-	email: string
-	phone: string
-	imageUrl: string
-	status: string
-	userId: number
-	jobId: number
-}>;
-
-export type ApplicationSearch = Entity<{
 	cvUrl: string
 	linkedInUrl: string
 	coverLetter: string
@@ -32,3 +18,12 @@ export type ApplicationSearch = Entity<{
 	jobId: number
 	userId: number
 }>
+
+export enum ApplicationNameType {
+	NameAsc = "nameAsc",
+	NameDesc = "nameDesc"
+}
+
+export type ApplicationSearchParams = {
+	sort?: ApplicationNameType;
+} & SearchPaginatedRequestParams;
