@@ -1,9 +1,10 @@
+import { CompanySearchPaginatedRequestParams } from "@/services/companiesApi";
 import { SearchPaginatedRequestParams } from "@/types/baseModel";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: SearchPaginatedRequestParams = {
+const initialState: CompanySearchPaginatedRequestParams = {
     pageNumber: 1,
-    pageSize: 9,
+    pageSize: 10,
     searchTerm: "",
 };
 
@@ -28,3 +29,4 @@ export const companySlice = createSlice({
 });
 
 export const { resetParams, setPageIndex, setPageSize, setSearchTerm } = companySlice.actions;
+export default companySlice.reducer;

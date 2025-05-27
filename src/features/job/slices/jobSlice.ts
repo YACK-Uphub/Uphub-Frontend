@@ -34,3 +34,4 @@ export const jobSlice = createSlice({
 });
 
 export const { resetParams, setPageIndex, setPageSize, setSearchTerm, setCompanyId } = jobSlice.actions;
+export default jobSlice.reducer;

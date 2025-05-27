@@ -1,29 +1,35 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar, Clock, Users, Briefcase, Mail, Phone, Facebook, Twitter } from "lucide-react";
 import { Button, buttonVariants } from "@/components/shadcn/button";
-import { useGetJobsByIdQuery } from "@/services/jobsApi";
 import { formatDate, formatNewLine } from "@/utils/helpers";
 import Image from "next/image";
 import UCompanyInfoCard from "./UCompanyInfoCard";
 import UJobList from "./UJobList";
 import { setPageSize } from "../slices/jobSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
-import { companyApi } from "@/services/companiesApi";
+import { useGetJobByIdQuery, useSearchJobsQuery } from "@/services/jobsApi";
+import { useGetCompanyByIdQuery } from "@/services/companiesApi";
+import { skipToken } from "@reduxjs/toolkit/query";
 
 const UJobDetails = ({ id }: { id: number }) => {
-    const { data: job, isLoading } = useGetJobsByIdQuery(id);
+    const { data: job, isLoading } = useGetJobByIdQuery(id);
+    const { data: company } = useGetCompanyByIdQuery(job?.companyId ?? skipToken);
+    const [imageUrl, setImageUrl] = useState<string | undefined>("https://placehold.co/600x400/png");
+
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(setPageSize(6));
-    }, [dispatch]);
+        if (!isLoading && job?.companyId) {
+            dispatch(setPageSize(6));
+        }
+    }, [dispatch, job]);
 
-    // get company image url
-    const imageUrl = useAppSelector((state) => {
-        if (!job) return null;
-        return companyApi.endpoints.getCompanyById.select(job.companyId)(state)?.data?.imageUrl;
-    });
+    useEffect(() => {
+        if (company?.imageUrl) {
+            setImageUrl(company.imageUrl);
+        }
+    }, [company]);
 
     if (isLoading) return;
 

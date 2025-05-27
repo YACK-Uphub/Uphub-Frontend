@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { Calendar, Clock, Users, Briefcase, Mail, Phone, Facebook, Twitter, Globe } from "lucide-react";
-import { Button, buttonVariants } from "@/components/shadcn/button";
-import { useGetJobsByIdQuery } from "@/services/jobsApi";
+import { Calendar, Clock, Users, Mail, Phone, Facebook, Twitter, Globe } from "lucide-react";
 import { formatDate, formatNewLine } from "@/utils/helpers";
 import Image from "next/image";
 import { useAppDispatch } from "@/libs/rtk/hooks";
