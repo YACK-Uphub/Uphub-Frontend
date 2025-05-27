@@ -8,6 +8,7 @@ import UFooter from "@/components/layout/UFooter";
 import UPageSpinnerWrapper from "@/components/shared/spinner/UPageSpinnerWrapper";
 import StoreProvider from "@/app/StoreProvider";
 import {Slide, ToastContainer} from "react-toastify";
+import {UserRole} from "@/types/user";
 
 // === Configuration =============================
 
@@ -24,18 +25,18 @@ export const metadata: Metadata = {
 	description: "This is the InternHub App used externally for school, candidates and enterprises",
 };
 
-const navItems = [
-	{name: 'Trang chủ', path: '/'},
-	{name: 'Về chúng tôi', path: '/about-us'},
-	{name: 'Liên hệ', path: '/contact-us'},
-	{name: 'TESTING', path: '/test'},
-];
+
 
 // === Components =============================
 
 export default function RootLayout({children}: Readonly<{
 	children: ReactNode;
 }>) {
+
+	//! FOR TESTING PURPOSE on Auth
+	// const session = .....
+	const role: UserRole = UserRole.Company;
+
 	return (
 		<html lang="en" className={`${fontReemKufi.className} h-full`}>
 			<body className={"h-full text-custom-black leading-relaxed flex flex-col"}>
@@ -62,7 +63,7 @@ export default function RootLayout({children}: Readonly<{
 							<UHeader/>
 						</div>
 
-						<USubHeader navItems={navItems}/>
+						<USubHeader role={role}/>
 					</header>
 
 					{/* Main */}

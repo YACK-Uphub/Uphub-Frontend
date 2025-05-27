@@ -42,9 +42,11 @@ export default function UJobRow({
           <span>{job.jobStatus}</span>
         </span>
 			</div>
+
 			<div className='my-3 flex items-center gap-2 text-sm text-custom-gray'>
 				<span>Hạn nộp đơn: {formatDate(job.closingDate)}</span>
 			</div>
+
 			<div className='mt-2 flex items-center gap-4 text-xs text-custom-gray'>
 				<div className='flex items-center gap-1'>
 					<MapPin size={14}/>
