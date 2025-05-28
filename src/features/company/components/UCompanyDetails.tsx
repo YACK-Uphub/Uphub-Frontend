@@ -194,7 +194,7 @@ const UCompanyDetails = ({ id }: { id: number }) => {
             </div>
             <div className="py-10">
                 <h1 className="text-2xl font-semibold pb-10">Các công việc liên quan:</h1>
-                <UJobList />
+                <UJobList showPagination={false} />
             </div>
         </div>
     );

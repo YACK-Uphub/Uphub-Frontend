@@ -1,20 +1,5 @@
-import {SearchPaginatedRequestParams} from "@/types/baseModel";
-import {createCrudApi} from "@/services/baseApi";
-import {Company} from "@/types/company";
-
-// ==================================================
-
-enum CompanyNameType {
-	NameAsc= "nameAsc",
-	NameDesc= "nameDesc"
-}
-
-export type CompanySearchPaginatedRequestParams = {
-	sort?: CompanyNameType;
-	companyId?: number;
-} & SearchPaginatedRequestParams;
-
-// ==================================================
+import { createCrudApi } from "@/services/baseApi";
+import { Company, CompanySearchPaginatedRequestParams } from "@/types/company";
 
 export const companiesApi = createCrudApi<Company, CompanySearchPaginatedRequestParams>({
 	reducerPath: "companiesApi",
@@ -34,5 +19,4 @@ export const {
 	// Lazy queries
 	useLazyGetByIdQuery: useLazyGetCompanyByIdQuery,
 	useLazySearchQuery: useLazySearchCompaniesQuery,
-
 } = companiesApi;

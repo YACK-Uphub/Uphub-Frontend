@@ -13,8 +13,9 @@ import { UPagination } from "@/components/shadcn/pagination";
 type UJobListProps = {
     viewType?: "card" | "row";
     userJobStatus?: "applied" | "favorite" | "alert" | undefined;
+    showPagination?: boolean;
 };
-export default function UJobList({ viewType = "card", userJobStatus }: UJobListProps) {
+export default function UJobList({ viewType = "card", userJobStatus, showPagination = true }: UJobListProps) {
     const jobParams = useAppSelector((state) => state.jobParams);
     const { data, isLoading } = useSearchJobsQuery(jobParams);
     const dispatch = useAppDispatch();
@@ -61,17 +62,16 @@ export default function UJobList({ viewType = "card", userJobStatus }: UJobListP
                             </div>
                         </>
                     )}
-                    <UPagination
-                        currentPage={Number(jobParams.pageNumber)}
-                        totalPages={data.pageCount}
-                        onPageChanged={handlePageChange}
-                    />
 
-                    {/* Pagination Info */}
-                    <div className="mt-4 text-center text-sm text-muted-foreground">
-                        Page {Number(jobParams.pageNumber)} of {data.pageCount.toFixed()}
-                        {data.totalCount > 0 && <span> • {data.totalCount} total items</span>}
-                    </div>
+                    {/* Pagination */}
+                    {showPagination && (
+                        <UPagination
+                            currentPage={Number(jobParams.pageNumber)}
+                            totalPages={data.pageCount}
+                            onPageChanged={handlePageChange}
+                            className="mt-5"
+                        />
+                    )}
                 </>
             )}
         </>

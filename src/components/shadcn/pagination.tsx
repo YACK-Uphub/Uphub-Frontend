@@ -114,12 +114,13 @@ type UPaginationProps = {
     currentPage: number;
     totalPages: number;
     onPageChanged: (page: number) => void;
+    className?: string;
 };
 
-function UPagination({ currentPage, totalPages, onPageChanged }: UPaginationProps) {
+function UPagination({ currentPage, totalPages, onPageChanged, className }: UPaginationProps) {
     const pageNumbers = getVisiblePageNumbers(currentPage, totalPages);
     return (
-        <Pagination>
+        <Pagination className={className}>
             <PaginationContent>
                 <PaginationItem>
                     <PaginationPrevious
