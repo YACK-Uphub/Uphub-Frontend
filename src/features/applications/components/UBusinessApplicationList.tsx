@@ -17,7 +17,7 @@ import {
 import {setPageIndex} from "@/features/applications/slices/applicationSlice";
 import {UPageSpinner} from "@/components/shared/spinner/UPageSpinner";
 
-export const UApplicationList = () => {
+export const UBusinessApplicationList = () => {
 
 	const searchParams = useAppSelector(state => state.applications);
 	const {data, isLoading, isFetching} = useSearchApplicationsQuery({...searchParams});

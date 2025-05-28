@@ -2,7 +2,7 @@
 import type {Metadata} from 'next';
 import UButton from "@/components/shared/UButton";
 import BriefcaseIcon from '@heroicons/react/24/outline/BriefcaseIcon';
-import {UApplicationList} from "@/features/applications/components/UApplicationList";
+import {UBusinessApplicationList} from "@/features/applications/components/UBusinessApplicationList";
 
 export const metadata: Metadata = {
 	title: "Applications",
@@ -62,7 +62,7 @@ const ApplicationsPage = () => {
 			{/* Application List */}
 			<section className={"mx-auto max-w-7xl"}>
 				<div className={"p-10 bg-custom-gray/15"}>
-					<UApplicationList></UApplicationList>
+					<UBusinessApplicationList></UBusinessApplicationList>
 				</div>
 			</section>
 
