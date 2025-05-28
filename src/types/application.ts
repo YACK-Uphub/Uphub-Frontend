@@ -22,25 +22,6 @@ export type Application = Entity<{
 	jobType: string;
 }>;
 
-export type ApplicationSearch = Entity<{
-	cvUrl: string;
-	linkedInUrl: string;
-	coverLetter: string;
-	introduction: string;
-	fullName: string;
-	email: string;
-	phone: string;
-	imageUrl: string;
-	status: string;
-	jobTitle: string;
-	jobIsFeatured: boolean;
-	jobIsHighlighted: boolean;
-	jobCount: number;
-	jobStatus: ApplicationStatus;
-	jobId: number;
-	userId: number;
-}>;
-
 export enum ApplicationNameType {
 	NameAsc = "nameAsc",
 	NameDesc = "nameDesc",
