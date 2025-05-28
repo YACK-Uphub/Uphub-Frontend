@@ -33,7 +33,7 @@ export default function UCardApplication({
 	}
 
 	return (
-		<div className={`w-64 border rounded-xl shadow-md ${getStyleCardVariant(variant)} p-4 space-y-3 text-sm`}>
+		<div className={`w-full border rounded-xl shadow-md ${getStyleCardVariant(variant)} p-4 space-y-3 text-sm`}>
 
 			{/* Header */}
 			<div className="flex items-center gap-3">

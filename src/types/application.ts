@@ -24,6 +24,6 @@ export enum ApplicationNameType {
 	NameDesc = "nameDesc"
 }
 
-export type ApplicationSearchParams = {
+export type ApplicationSearchPaginatedREquestParams = {
 	sort?: ApplicationNameType;
 } & SearchPaginatedRequestParams;

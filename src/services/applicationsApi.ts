@@ -1,7 +1,7 @@
 ﻿import {createCrudApi} from "@/services/baseApi";
-import {Application, ApplicationSearchParams} from "@/types/application";
+import {Application, ApplicationSearchPaginatedREquestParams} from "@/types/application";
 
-export const applicationsApi = createCrudApi<Application, ApplicationSearchParams>({
+export const applicationsApi = createCrudApi<Application, ApplicationSearchPaginatedREquestParams>({
 	reducerPath: "applicationsApi",
 	tagType: "applications",
 	baseUrl: "applications",

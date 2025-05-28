@@ -1,11 +1,11 @@
 ﻿import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ApplicationNameType, ApplicationSearchParams} from "@/types/application";
+import {ApplicationNameType, ApplicationSearchPaginatedREquestParams} from "@/types/application";
 
-const initialState: ApplicationSearchParams = {
+const initialState: ApplicationSearchPaginatedREquestParams = {
 	pageNumber: 1,
 	pageSize: 6,
 	searchTerm: "",
-	sort: null
+	sort: ApplicationNameType.NameAsc,
 };
 
 export const applicationSlice = createSlice({
