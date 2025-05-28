@@ -56,7 +56,15 @@ export default function UJobList({ viewType = "card", userJobStatus, showPaginat
                             <div className="w-[70vw] flex flex-col">
                                 {data.results.map((job: Job) => (
                                     <Link href={`/student/jobs/${job.id}`} key={job.id}>
-                                        <UJobRow job={job} />
+                                        <UJobRow
+                                            jobTitle={job.title}
+                                            jobStatus={job.jobStatus}
+                                            imageUrl={job.companyImageUrl}
+                                            city={job.city}
+                                            jobType={job.jobType}
+                                            salaryRange={job.salaryRange}
+                                            closingDate={new Date(job.closingDate)}
+                                        />
                                     </Link>
                                 ))}
                             </div>

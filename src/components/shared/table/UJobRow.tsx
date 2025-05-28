@@ -4,16 +4,31 @@ import { Bookmark, MapPin, Users } from "lucide-react";
 import { formatDate } from "@/utils/helpers";
 import UButton from "../UButton";
 import Image from "next/image";
-import { getStyleJobStatus, getStyleRowVariant, URowVariant } from "@/components/shared/table/URowVariant";
+import {
+    getStyleApplicationStatus,
+    getStyleJobStatus,
+    getStyleRowVariant,
+    URowVariant,
+} from "@/components/shared/table/URowVariant";
 import React from "react";
-import { Job } from "@/types/job";
+import { Job, JobStatus } from "@/types/job";
+import { ApplicationStatus } from "@/types/application";
 
 interface UJobRowProps {
     variant?: URowVariant;
     ownerView?: boolean;
     isApplied?: boolean;
     isSelected?: boolean;
-    job?: Job;
+    jobTitle: string;
+    jobType: string;
+    jobStatus?: JobStatus;
+    applicationStatus?: ApplicationStatus;
+    closingDate?: Date;
+    applicatedDate?: Date;
+    salaryRange: string;
+    city: string;
+    applicationCount?: number;
+    imageUrl: string;
     onClick?: () => void;
 }
 
@@ -21,38 +36,60 @@ export default function UJobRow({
     variant = URowVariant.Default,
     ownerView = false,
     isApplied = false,
-    job,
+    jobTitle,
+    jobType,
+    salaryRange,
+    applicatedDate,
+    closingDate,
+    jobStatus,
+    applicationStatus,
+    applicationCount = 10,
+    imageUrl,
+    city,
     onClick,
 }: UJobRowProps) {
-    const styleJobStatus = getStyleJobStatus(job.jobStatus);
+    const styleJobStatus = getStyleJobStatus(jobStatus);
     const styleCardVariant = getStyleRowVariant(variant);
+    const styleApplicationStatus = getStyleApplicationStatus(applicationStatus);
 
     // Job Information
     const JobInfo = () => (
         <div className="mx-5 flex-grow">
             <div className="flex items-center gap-4">
-                <span className="text-lg font-bold">{job.title}</span>
-                <span className="rounded-full px-3 py-1 text-sm bg-custom-blue-1 text-custom-blue-2">
-                    {job.jobType}
-                </span>
+                <span className="text-lg font-bold">{jobTitle}</span>
+                {isApplied ? (
+                    <span
+                        className={`rounded-full px-3 py-1 text-sm ${styleApplicationStatus.bg} ${styleApplicationStatus.text}`}
+                    >
+                        {applicationStatus}
+                    </span>
+                ) : (
+                    <span className="rounded-full px-3 py-1 text-sm bg-custom-blue-1 text-custom-blue-2">
+                        {jobType}
+                    </span>
+                )}
 
                 <span className={`flex items-center gap-1 text-sm ${styleJobStatus.text}`}>
                     <span className={`w-2 h-2 rounded-full ${styleJobStatus.bg}`}></span>
-                    <span>{job.jobStatus}</span>
+                    <span>{jobStatus}</span>
                 </span>
             </div>
             <div className="my-3 flex items-center gap-2 text-sm text-custom-gray">
-                <span>Hạn nộp đơn: {formatDate(job.closingDate)}</span>
+                <span>
+                    {isApplied
+                        ? `Ngày nộp đơn: ${formatDate(applicatedDate)}`
+                        : `Hạn nộp đơn: ${formatDate(closingDate)}`}
+                </span>
             </div>
             <div className="mt-2 flex items-center gap-4 text-xs text-custom-gray">
                 <div className="flex items-center gap-1">
                     <MapPin size={14} />
-                    <span>{job.city}</span>
+                    <span>{city}</span>
                 </div>
 
-                {job.salaryRange && (
+                {salaryRange && (
                     <div className="flex items-center gap-1">
-                        <span>{job.salaryRange}</span>
+                        <span>{salaryRange}</span>
                     </div>
                 )}
             </div>
@@ -66,7 +103,7 @@ export default function UJobRow({
                 <>
                     <div className="flex items-center gap-1 text-sm text-custom-gray">
                         <Users size={14} className="text-custom-gray" />
-                        <span>{job.applicationCount}</span>
+                        <span>{applicationCount}</span>
                         <span>Đơn ứng tuyển</span>
                     </div>
                 </>
@@ -90,8 +127,8 @@ export default function UJobRow({
         >
             <div className="relative mb-2 h-16 w-16 overflow-hidden rounded-md">
                 <Image
-                    src={job.companyImageUrl}
-                    alt={`${job.contactEmail} company`}
+                    src={imageUrl}
+                    alt="company image"
                     fill={true}
                     quality={50}
                     loading="lazy"
@@ -103,7 +140,7 @@ export default function UJobRow({
             </div>
 
             <div className="flex-grow">
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-center">
                     <JobInfo />
                     <ActionArea />
                 </div>

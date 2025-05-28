@@ -30,7 +30,7 @@ export default function DashboardLayout({
             <USidebar groups={menuGroups} />
             <main>
                 <SidebarTrigger />
-                <div className="py-10">{children}</div>
+                <div>{children}</div>
             </main>
         </SidebarProvider>
     );
