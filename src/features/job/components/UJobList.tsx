@@ -20,10 +20,6 @@ export default function UJobList({ viewType = "card", userJobStatus }: UJobListP
     const dispatch = useAppDispatch();
 
     const handlePageChange = (newPage: number) => {
-        // if (newPage >= 1 && newPage <= data.pageCount) {
-        //     dispatch(setPageIndex(newPage));
-        //     console.log("Change to page", newPage);
-        // }
         dispatch(setPageIndex(newPage));
     };
 

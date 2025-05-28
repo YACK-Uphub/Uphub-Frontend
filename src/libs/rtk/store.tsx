@@ -18,7 +18,7 @@ export function makeStore() {
 			},
 			middleware: (getDefaultMiddleware) =>
 				getDefaultMiddleware()
-				.concat(companiesApi.middleware as Middleware)	
+				.concat(companiesApi.middleware as Middleware)
 				.concat(applicationsApi.middleware as Middleware)
 				.concat(jobsApi.middleware as Middleware)
 		}
