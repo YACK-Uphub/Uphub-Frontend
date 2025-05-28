@@ -1,18 +1,18 @@
-﻿import React from 'react';
-import type {Metadata} from 'next';
+﻿import React from "react";
+import type { Metadata } from "next";
+import UCompanyList from "@/features/company/components/UCompanyList";
 
 export const metadata: Metadata = {
-	title: "Companies",
-	description: "Browse companies on UpHub",
+    title: "Companies",
+    description: "Browse companies on UpHub",
 };
 
-const Page = () => {
-	return (
-		<div>
-			<h1>Jobs</h1>
-			<p>Explore companies opportunities available on UpHub.</p>
-		</div>
-	);
+const CompanyPage = () => {
+    return (
+        <div>
+            <UCompanyList />
+        </div>
+    );
 };
 
-export default Page;
+export default CompanyPage;
