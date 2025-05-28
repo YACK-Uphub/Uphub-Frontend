@@ -1,21 +1,5 @@
-import {SearchPaginatedRequestParams} from "@/types/baseModel";
-import {createCrudApi} from "@/services/baseApi";
-import {Job} from "@/types/job";
-
-// ==================================================
-
-enum JobDateType {
-	DateAsc= "dateAsc",
-	DateDesc = "dateDesc",
-	ClosingSoon = "closingSoon"
-}
-
-export type JobSearchPaginatedRequestParams = {
-	sort?: JobDateType;
-	companyId?: number;
-} & SearchPaginatedRequestParams;
-
-// ==================================================
+import { createCrudApi } from "@/services/baseApi";
+import { Job, JobSearchPaginatedRequestParams } from "@/types/job";
 
 export const jobsApi = createCrudApi<Job, JobSearchPaginatedRequestParams>({
 	reducerPath: "jobsApi",

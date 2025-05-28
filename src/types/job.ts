@@ -29,8 +29,13 @@ export enum JobStatus {
 	Paused = "Paused",
 	Archived = "Archived",
 }
-
-export type SearchJobParams = SearchPaginatedRequestParams & {
+export enum JobDateType {
+	DateAsc = "dateAsc",
+	DateDesc = "dateDesc",
+	ClosingSoon = "closingSoon",
+}
+export type JobSearchPaginatedRequestParams = SearchPaginatedRequestParams & {
 	companyId?: number;
 	userJobStatus?: string;
+	sort?: JobDateType;
 };
