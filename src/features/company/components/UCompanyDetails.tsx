@@ -1,16 +1,20 @@
 "use client";
 import React, { useEffect } from "react";
-import { Calendar, Clock, Users, Mail, Phone, Facebook, Twitter, Globe } from "lucide-react";
+import { Calendar, Clock, Users, Mail, Phone, Facebook, Twitter, Globe, ArrowLeft } from "lucide-react";
 import { formatDate, formatNewLine } from "@/utils/helpers";
 import Image from "next/image";
 import { useAppDispatch } from "@/libs/rtk/hooks";
 import { useGetCompanyByIdQuery } from "@/services/companiesApi";
 import { setCompanyId, setPageSize } from "@/features/job/slices/jobSlice";
 import UJobList from "@/features/job/components/UJobList";
+import UButton from "@/components/shared/UButton";
+import { resetParams } from "../slices/companySlice";
+import { useRouter } from "next/navigation";
 
 const UCompanyDetails = ({ id }: { id: number }) => {
     const { data: company, isLoading } = useGetCompanyByIdQuery(id);
     const dispatch = useAppDispatch();
+    const router = useRouter();
 
     useEffect(() => {
         if (!isLoading && company?.id) {
@@ -18,13 +22,24 @@ const UCompanyDetails = ({ id }: { id: number }) => {
             dispatch(setCompanyId(company.id));
         }
     }, [isLoading, company, dispatch]);
-
+    const handleOnBack = () => {
+        dispatch(resetParams());
+        router.back();
+    };
     if (isLoading) return;
 
     return (
         <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
+            <UButton
+                label=""
+                icon={<ArrowLeft />}
+                iconPosition="left"
+                onClick={handleOnBack}
+                backgroundColor="bg-custom-blue-1"
+                textColor="text-custom-blue-2"
+            />
             {/* Header */}
-            <div className="bg-white rounded-lg shadow-sm p-10 mb-6">
+            <div className="bg-white rounded-lg shadow-sm p-10 my-5">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                         <div className="relative w-16 h-16 rounded-full flex items-center justify-center">

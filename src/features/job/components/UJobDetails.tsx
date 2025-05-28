@@ -1,21 +1,24 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Calendar, Clock, Users, Briefcase, Mail, Phone, Facebook, Twitter } from "lucide-react";
+import { Calendar, Clock, Users, Briefcase, Mail, Phone, Facebook, Twitter, ArrowLeft } from "lucide-react";
 import { Button, buttonVariants } from "@/components/shadcn/button";
 import { formatDate, formatNewLine } from "@/utils/helpers";
 import Image from "next/image";
 import UCompanyInfoCard from "./UCompanyInfoCard";
 import UJobList from "./UJobList";
-import { setPageSize } from "../slices/jobSlice";
+import { resetParams, setPageSize } from "../slices/jobSlice";
 import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
 import { useGetJobByIdQuery, useSearchJobsQuery } from "@/services/jobsApi";
 import { useGetCompanyByIdQuery } from "@/services/companiesApi";
 import { skipToken } from "@reduxjs/toolkit/query";
+import UButton from "@/components/shared/UButton";
+import { useRouter } from "next/navigation";
 
 const UJobDetails = ({ id }: { id: number }) => {
     const { data: job, isLoading } = useGetJobByIdQuery(id);
     const { data: company } = useGetCompanyByIdQuery(job?.companyId ?? skipToken);
     const [imageUrl, setImageUrl] = useState<string | undefined>("https://placehold.co/600x400/png");
+    const router = useRouter();
 
     const dispatch = useAppDispatch();
 
@@ -31,12 +34,25 @@ const UJobDetails = ({ id }: { id: number }) => {
         }
     }, [company]);
 
+    const handleOnBack = () => {
+        dispatch(resetParams());
+        router.back();
+    };
+
     if (isLoading) return;
 
     return (
-        <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
+        <div className="max-w-6xl mx-auto p-5 bg-gray-50 min-h-screen">
+            <UButton
+                label=""
+                icon={<ArrowLeft />}
+                iconPosition="left"
+                onClick={handleOnBack}
+                backgroundColor="bg-custom-blue-1"
+                textColor="text-custom-blue-2"
+            />
             {/* Header */}
-            <div className="bg-white rounded-lg shadow-sm p-10 mb-6">
+            <div className="bg-white rounded-lg shadow-sm p-10 my-4">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                         <div className="relative w-16 h-16 rounded-full flex items-center justify-center">
