@@ -9,6 +9,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "../shadcn/sidebar";
+import Link from 'next/link';
 
 type MenuItem = {
     title: string;
@@ -38,10 +39,10 @@ export default function USidebar({ groups, footer }: USidebarProps) {
                                 {group.items.map((item) => (
                                     <SidebarMenuItem key={item.title}>
                                         <SidebarMenuButton asChild>
-                                            <a href={item.url}>
+                                            <Link href={item.url}>
                                                 {item.icon && <item.icon className="mr-2 w-4 h-4" />}
                                                 <span>{item.title}</span>
-                                            </a>
+                                            </Link>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
                                 ))}

@@ -34,7 +34,7 @@ export default function UJobList({ viewType = "card", userJobStatus, showPaginat
             ) : (
                 <>
                     {/* Order By */}
-                    <div className="pb-5">
+                    <div className="pb-2 flex justify-end">
                         <Select onValueChange={(value) => dispatch(setSort(value))}>
                             <SelectTrigger className="w-[180px]">
                                 <SelectValue placeholder="Sắp xếp theo" />
@@ -69,8 +69,6 @@ export default function UJobList({ viewType = "card", userJobStatus, showPaginat
                         </div>
                     ) : (
                         <>
-                            <h1 className="text-xl px-5">Công việc yêu thích ({data.totalCount})</h1>
-
                             <div className="w-[70vw] flex flex-col">
                                 {data.results.map((job: Job) => (
                                     <Link href={`/student/jobs/${job.id}`} key={job.id}>

@@ -1,20 +1,22 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
 import { useSearchApplicationsQuery } from "@/services/applicationsApi";
-import React from "react";
+import React, { useEffect } from "react";
 import { setPageIndex, setUserId } from "../slices/ApplicationSlice";
 import { UPagination } from "@/components/shadcn/pagination";
 import Link from "next/link";
 import { Application } from "@/types/application";
 import UJobRow from "@/components/shared/table/UJobRow";
 
-export default function UApplicationList() {
-    const dispatch = useAppDispatch();
-    // TODO: Get current user
-    dispatch(setUserId(1));
-
+export default function UStudentApplicationList() {
     const applicationParams = useAppSelector((state) => state.applicationParams);
     const { data, isLoading } = useSearchApplicationsQuery(applicationParams);
+    const dispatch = useAppDispatch();
+
+    // TODO: Get current user
+    useEffect(() => {
+        dispatch(setUserId(1));
+    }, [dispatch]);
 
     const handlePageChange = (newPage: number) => {
         dispatch(setPageIndex(newPage));
@@ -29,8 +31,6 @@ export default function UApplicationList() {
             ) : (
                 <>
                     <>
-                        <h1 className="text-xl px-5">Các đơn ứng tuyển ({data.totalCount})</h1>
-
                         <div className="w-[70vw] flex flex-col">
                             {data.results.map((application: Application) => (
                                 <Link href={`applications/${application.id}`} key={application.id}>
