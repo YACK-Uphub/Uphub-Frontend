@@ -1,6 +1,6 @@
 ﻿import React from "react";
 import type { Metadata } from "next";
-import UApplicationList from "@/features/application/components/UApplicationList";
+import UApplicationList from "@/features/application/components/UStudentApplicationList";
 
 export const metadata: Metadata = {
     title: "My Applications",
