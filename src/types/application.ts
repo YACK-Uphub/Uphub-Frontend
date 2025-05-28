@@ -16,6 +16,10 @@ export type Application = Entity<{
 
 	jobStatus: JobStatus;
 	jobTitle: string;
+	city: string;
+	companyImageUrl: string;
+	salaryRange: string;
+	jobType: string;
 }>;
 
 export type ApplicationSearch = Entity<{

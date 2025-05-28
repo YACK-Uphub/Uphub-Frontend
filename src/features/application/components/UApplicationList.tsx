@@ -2,16 +2,19 @@
 import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
 import { useSearchApplicationsQuery } from "@/services/applicationsApi";
 import React from "react";
-import { setPageIndex } from "../slices/ApplicationSlice";
+import { setPageIndex, setUserId } from "../slices/ApplicationSlice";
 import { UPagination } from "@/components/shadcn/pagination";
 import Link from "next/link";
 import { Application } from "@/types/application";
 import UJobRow from "@/components/shared/table/UJobRow";
 
 export default function UApplicationList() {
+    const dispatch = useAppDispatch();
+    // TODO: Get current user
+    dispatch(setUserId(1));
+
     const applicationParams = useAppSelector((state) => state.applicationParams);
     const { data, isLoading } = useSearchApplicationsQuery(applicationParams);
-    const dispatch = useAppDispatch();
 
     const handlePageChange = (newPage: number) => {
         dispatch(setPageIndex(newPage));
@@ -30,15 +33,15 @@ export default function UApplicationList() {
 
                         <div className="w-[70vw] flex flex-col">
                             {data.results.map((application: Application) => (
-                                <Link href={`/student/applications/${application.id}`} key={application.id}>
+                                <Link href={`applications/${application.id}`} key={application.id}>
                                     <UJobRow
                                         jobTitle={application.jobTitle}
                                         jobStatus={application.jobStatus}
-                                        imageUrl={application.imageUrl}
+                                        imageUrl={application.companyImageUrl}
                                         isApplied={true}
-                                        city="hcm"
-                                        jobType="Remote"
-                                        salaryRange="10-20 triệu"
+                                        city={application.city}
+                                        jobType={application.jobType}
+                                        salaryRange={application.salaryRange}
                                         applicatedDate={new Date(application.createdAt)}
                                         applicationStatus={application.status}
                                     />
