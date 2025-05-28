@@ -1,4 +1,4 @@
-import { CompanySearchPaginatedRequestParams } from '@/types/company';
+import { CompanySearchPaginatedRequestParams } from "@/types/company";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: CompanySearchPaginatedRequestParams = {
@@ -21,11 +21,15 @@ export const companySlice = createSlice({
             state.searchTerm = action.payload;
             state.pageNumber = 1;
         },
+        setIsLinked(state, action) {
+            state.isLinked = action.payload;
+            state.pageNumber = 1;
+        },
         resetParams() {
             return initialState;
         },
     },
 });
 
-export const { resetParams, setPageIndex, setPageSize, setSearchTerm } = companySlice.actions;
+export const { resetParams, setPageIndex, setPageSize, setSearchTerm, setIsLinked } = companySlice.actions;
 export default companySlice.reducer;

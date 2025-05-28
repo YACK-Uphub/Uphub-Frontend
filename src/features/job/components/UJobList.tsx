@@ -4,11 +4,12 @@ import { UCardVariant } from "@/components/shared/card/UCardVariant";
 import UJobRow from "@/components/shared/table/UJobRow";
 import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
 import { useSearchJobsQuery } from "@/services/jobsApi";
-import { Job } from "@/types/job";
+import { Job, JobDateType } from "@/types/job";
 import Link from "next/link";
 import React from "react";
-import { setPageIndex } from "../slices/jobSlice";
+import { setPageIndex, setSort } from "../slices/jobSlice";
 import { UPagination } from "@/components/shadcn/pagination";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
 
 type UJobListProps = {
     viewType?: "card" | "row";
@@ -32,6 +33,23 @@ export default function UJobList({ viewType = "card", userJobStatus, showPaginat
                 <div>empty list</div>
             ) : (
                 <>
+                    {/* Order By */}
+                    <div className="pb-5">
+                        <Select onValueChange={(value) => dispatch(setSort(value))}>
+                            <SelectTrigger className="w-[180px]">
+                                <SelectValue placeholder="Sắp xếp theo" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectItem value={JobDateType.DateAsc}>Mới nhất</SelectItem>
+                                    <SelectItem value={JobDateType.DateDesc}>Cũ nhất</SelectItem>
+                                    <SelectItem value={JobDateType.ClosingSoon}>Gần đóng</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    {/* Data */}
                     {viewType === "card" ? (
                         <div className="grid grid-cols-3 gap-6">
                             {data.results.map((job: Job) => (
@@ -70,7 +88,6 @@ export default function UJobList({ viewType = "card", userJobStatus, showPaginat
                             </div>
                         </>
                     )}
-
                     {/* Pagination */}
                     {showPagination && (
                         <UPagination

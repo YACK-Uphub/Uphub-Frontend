@@ -32,12 +32,16 @@ export const jobSlice = createSlice({
 			state.userJobStatus = action.payload;
 			state.pageNumber = 1;
 		},
+		setSort(state, action) {
+			state.sort = action.payload;
+			state.pageNumber = 1;
+		},
 		resetParams() {
 			return initialState;
 		},
 	},
 });
 
-export const { resetParams, setPageIndex, setPageSize, setSearchTerm, setCompanyId, setUserJobStatus } =
+export const { resetParams, setPageIndex, setPageSize, setSearchTerm, setCompanyId, setUserJobStatus, setSort } =
 	jobSlice.actions;
 export default jobSlice.reducer;

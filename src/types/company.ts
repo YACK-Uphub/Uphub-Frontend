@@ -25,4 +25,5 @@ enum CompanyNameType {
 export type CompanySearchPaginatedRequestParams = {
 	sort?: CompanyNameType;
 	companyId?: number;
+	isLinked?: boolean;
 } & SearchPaginatedRequestParams;

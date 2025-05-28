@@ -39,6 +39,7 @@ const UButton = ({
 									active:translate-y-[2px] active:shadow-sm
 									hover:translate-y-[2px] 
 									transition-transform duration-200
+                                    cursor-pointer
 									${width} ${height} ${backgroundColor} ${textColor} ${border} ${borderRadius}`}
         >
             {icon && iconPosition === "left" && icon}
