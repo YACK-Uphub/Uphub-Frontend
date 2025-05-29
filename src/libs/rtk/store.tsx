@@ -1,29 +1,32 @@
-﻿import {applicationsApi} from "@/services/applicationsApi";
+import {applicationSlice} from "@/features/application/slices/applicationSlice";
+import {companySlice} from "@/features/company/slices/companySlice";
+import {jobSlice} from "@/features/job/slices/jobSlice";
+import {applicationsApi} from "@/services/applicationsApi";
 import {companiesApi} from "@/services/companiesApi";
 import {jobsApi} from "@/services/jobsApi";
 import {configureStore, Middleware} from "@reduxjs/toolkit";
-import {applicationSlice} from "@/features/applications/slices/applicationSlice";
 
 // Create store instance per request for strong type safety
 export function makeStore() {
-	return configureStore({
-			reducer: {
-				applications: applicationSlice.reducer,
-				[applicationsApi.reducerPath]: applicationsApi.reducer,
+    return configureStore({
+        reducer: {
+            [companiesApi.reducerPath]: companiesApi.reducer,
+            [applicationsApi.reducerPath]: applicationsApi.reducer,
+            [jobsApi.reducerPath]: jobsApi.reducer,
 
-				[companiesApi.reducerPath]: companiesApi.reducer,
-				[jobsApi.reducerPath]: jobsApi.reducer,
-			},
-			middleware: (getDefaultMiddleware) =>
-				getDefaultMiddleware()
-				.concat(companiesApi.middleware as Middleware)
-				.concat(applicationsApi.middleware as Middleware)
-				.concat(jobsApi.middleware as Middleware)
-		}
-	)
+            jobParams: jobSlice.reducer,
+            companyParams: companySlice.reducer,
+            applicationParams: applicationSlice.reducer,
+        },
+        middleware: (getDefaultMiddleware) =>
+                getDefaultMiddleware()
+                .concat(companiesApi.middleware as Middleware)
+                .concat(applicationsApi.middleware as Middleware)
+                .concat(jobsApi.middleware as Middleware),
+    });
 }
 
 // Infer those type to get the state, store, dispatch per request
-export type AppStore = ReturnType<typeof makeStore>
-export type RootState = ReturnType<AppStore['getState']>
-export type AppDispatch = AppStore['dispatch']
+export type AppStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<AppStore["getState"]>;
+export type AppDispatch = AppStore["dispatch"];

@@ -1,30 +1,32 @@
-﻿import {Entity, SearchPaginatedRequestParams} from "@/types/baseModel";
+import {Entity, SearchPaginatedRequestParams} from "@/types/baseModel";
+import {JobStatus} from "./job";
 
 export type Application = Entity<{
-	cvUrl: string
-	linkedInUrl: string
-	coverLetter: string
-	introduction: string
-	fullName: string
-	email: string
-	phone: string
-	imageUrl: string
-	status: string
-	jobTitle: string
-	jobIsFeatured: boolean
-	jobIsHighlighted: boolean
-	jobCount: number
-	jobStatus: string
-	jobId: number
-	userId: number
-}>
+	cvUrl: string;
+	linkedInUrl: string;
+	coverLetter: string;
+	introduction: string;
+	fullname: string;
+	email: string;
+	phone: string;
+	imageUrl: string;
+	status: ApplicationStatus;
+	userId: number;
+	jobId: number;
+	jobStatus: JobStatus;
+	jobTitle: string;
+	city: string;
+	companyImageUrl: string;
+	salaryRange: string;
+	jobType: string;
+}>;
 
 export enum ApplicationNameType {
 	NameAsc = "nameAsc",
-	NameDesc = "nameDesc"
+	NameDesc = "nameDesc",
 }
 
-export type ApplicationSearchPaginatedREquestParams = {
+export type ApplicationSearchPaginatedRequestParams = {
 	sort?: ApplicationNameType;
 	userId?: number;
 	jobId?: number;

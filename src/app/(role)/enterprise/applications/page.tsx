@@ -2,7 +2,7 @@
 import type {Metadata} from 'next';
 import UButton from "@/components/shared/UButton";
 import BriefcaseIcon from '@heroicons/react/24/outline/BriefcaseIcon';
-import {UBusinessApplicationList} from "@/features/applications/components/UBusinessApplicationList";
+import {UBusinessApplicationList} from "@/features/application/components/UBusinessApplicationList";
 
 export const metadata: Metadata = {
 	title: "Applications",
