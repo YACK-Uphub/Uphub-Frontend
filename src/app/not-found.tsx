@@ -16,11 +16,11 @@ const NotFoundPage = () => {
 	const goBackToHomePage = () => router.push('/');
 
 	return (
-		<div className="h-full flex flex-col items-center justify-center bg-custom-white px-4">
-			<h1 className="text-4xl font-bold text-custom mb-4 text-custom-blue-3">
+      <div className="flex h-full flex-col items-center justify-center px-4 bg-custom-white">
+        <h1 className="mb-4 text-4xl font-bold text-custom text-custom-blue-3">
 				404 | Trang không tồn tại
 			</h1>
-			<p className="text-custom-black mb-6">
+        <p className="mb-6 text-custom-black">
 				Trang bạn tìm kiếm không tồn tại hoặc đã bị xóa.
 			</p>
 			<div className="flex gap-4">

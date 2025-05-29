@@ -40,7 +40,7 @@ export default function USidebar({groups, footer}: USidebarProps) {
                                                 <SidebarMenuItem key={item.title}>
                                                     <SidebarMenuButton asChild>
                                                         <Link href={item.url}>
-                                                            {item.icon && <item.icon className="mr-2 w-4 h-4"/>}
+                                                            {item.icon && <item.icon className="mr-2 h-4 w-4"/>}
                                                             <span>{item.title}</span>
                                                         </Link>
                                                     </SidebarMenuButton>

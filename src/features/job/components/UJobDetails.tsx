@@ -42,7 +42,7 @@ const UJobDetails = ({id}: { id: number }) => {
     if (isLoading) return;
 
     return (
-            <div className="max-w-6xl mx-auto p-5 bg-gray-50 min-h-screen">
+            <div className="mx-auto min-h-screen max-w-6xl bg-gray-50 p-5">
                 <UButton
                         label=""
                         icon={<ArrowLeft/>}
@@ -52,10 +52,10 @@ const UJobDetails = ({id}: { id: number }) => {
                         textColor="text-custom-blue-2"
                 />
                 {/* Header */}
-                <div className="bg-white rounded-lg shadow-sm p-10 my-4">
+                <div className="my-4 rounded-lg bg-white p-10 shadow-sm">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-4">
-                            <div className="relative w-16 h-16 rounded-full flex items-center justify-center">
+                            <div className="relative flex h-16 w-16 items-center justify-center rounded-full">
                                 <Image
                                         src={imageUrl}
                                         alt="company image"
@@ -68,13 +68,13 @@ const UJobDetails = ({id}: { id: number }) => {
                             </div>
                             <div>
                                 <h1 className="text-2xl font-bold text-custom-black">{job.title}</h1>
-                                <div className="flex items-center space-x-4 text-sm text-custom-gray mt-1">
+                                <div className="mt-1 flex items-center text-sm space-x-4 text-custom-gray">
                                 <span className="flex items-center">
-                                    <Phone className="w-4 h-4 mr-1"/>
+                                    <Phone className="mr-1 h-4 w-4"/>
                                     {job.contactPhone}
                                 </span>
                                     <span className="flex items-center">
-                                    <Mail className="w-4 h-4 mr-1"/>
+                                    <Mail className="mr-1 h-4 w-4"/>
                                         {job.contactEmail}
                                 </span>
                                 </div>
@@ -90,32 +90,32 @@ const UJobDetails = ({id}: { id: number }) => {
                             >
                                 Ứng tuyển ngay
                             </Button>
-                            <div className="text-sm text-custom-gray mt-2">Hết hạn vào {formatDate(
+                            <div className="mt-2 text-sm text-custom-gray">Hết hạn vào {formatDate(
                                     job.closingDate)}</div>
                         </div>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
                     {/* Main Content */}
                     <div className="lg:col-span-2 space-y-6">
                         {/* Job description */}
-                        <div className="bg-white rounded-lg shadow-sm p-6">
-                            <h2 className="text-xl font-semibold text-custom-black mb-4">Mô tả công việc</h2>
+                        <div className="rounded-lg bg-white p-6 shadow-sm">
+                            <h2 className="mb-4 text-xl font-semibold text-custom-black">Mô tả công việc</h2>
                             {formatNewLine(job.description).map((line, index) => (
-                                    <p className="text-gray-700 mb-4" key={index}>
+                                    <p className="mb-4 text-gray-700" key={index}>
                                         {line}
                                     </p>
                             ))}
                         </div>
 
                         {/* Requirements */}
-                        <div className="bg-white rounded-lg shadow-sm p-6">
-                            <h2 className="text-xl font-semibold text-gray-900 mb-4">Yêu cầu</h2>
-                            <ul className="space-y-2 text-gray-700">
+                        <div className="rounded-lg bg-white p-6 shadow-sm">
+                            <h2 className="mb-4 text-xl font-semibold text-gray-900">Yêu cầu</h2>
+                            <ul className="text-gray-700 space-y-2">
                                 {formatNewLine(job.requirements).map((line, index) => (
                                         <li className="flex items-start" key={index}>
-                                            <span className="w-2 h-2 bg-custom-yellow-3 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                            <span className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-custom-yellow-3"></span>
                                             {line}
                                         </li>
                                 ))}
@@ -126,13 +126,13 @@ const UJobDetails = ({id}: { id: number }) => {
                     {/* Sidebar */}
                     <div className="space-y-6">
                         {/* Tổng quan công việc */}
-                        <div className="bg-white rounded-lg shadow-sm p-6">
-                            <h3 className="font-semibold text-gray-900 mb-4">Tổng quan công việc</h3>
+                        <div className="rounded-lg bg-white p-6 shadow-sm">
+                            <h3 className="mb-4 font-semibold text-gray-900">Tổng quan công việc</h3>
                             <div className="space-y-4">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-3">
-                                        <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                                            <Calendar className="w-5 h-5 text-blue-600"/>
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
+                                            <Calendar className="h-5 w-5 text-blue-600"/>
                                         </div>
                                         <div>
                                             <div className="text-sm text-custom-gray">NGÀY ĐĂNG TUYỂN</div>
@@ -143,8 +143,8 @@ const UJobDetails = ({id}: { id: number }) => {
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-3">
-                                        <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                                            <Clock className="w-5 h-5 text-green-600"/>
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-100">
+                                            <Clock className="h-5 w-5 text-green-600"/>
                                         </div>
                                         <div>
                                             <div className="text-sm text-custom-gray">NGÀY KẾT THÚC</div>
@@ -155,8 +155,8 @@ const UJobDetails = ({id}: { id: number }) => {
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-3">
-                                        <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
-                                            <Users className="w-5 h-5 text-orange-600"/>
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100">
+                                            <Users className="h-5 w-5 text-orange-600"/>
                                         </div>
                                         <div>
                                             <div className="text-sm text-custom-gray">TUYỂN</div>
@@ -167,8 +167,8 @@ const UJobDetails = ({id}: { id: number }) => {
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-3">
-                                        <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                                            <Clock className="w-5 h-5 text-red-600"/>
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-100">
+                                            <Clock className="h-5 w-5 text-red-600"/>
                                         </div>
                                         <div>
                                             <div className="text-sm text-custom-gray">LOẠI CÔNG VIỆC</div>
@@ -179,8 +179,8 @@ const UJobDetails = ({id}: { id: number }) => {
 
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-3">
-                                        <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
-                                            <Briefcase className="w-5 h-5 text-teal-600"/>
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-100">
+                                            <Briefcase className="h-5 w-5 text-teal-600"/>
                                         </div>
                                         <div>
                                             <div className="text-sm text-custom-gray">LĨNH VỰC</div>
@@ -195,15 +195,15 @@ const UJobDetails = ({id}: { id: number }) => {
                         <UCompanyInfoCard id={job.companyId}/>
 
                         {/* Share */}
-                        <div className="bg-white rounded-lg shadow-sm p-6">
-                            <h3 className="font-semibold text-gray-900 mb-4">Chia sẻ công việc</h3>
+                        <div className="rounded-lg bg-white p-6 shadow-sm">
+                            <h3 className="mb-4 font-semibold text-gray-900">Chia sẻ công việc</h3>
                             <div className="flex flex-wrap gap-4">
-                                <button className="flex items-center space-x-2 px-4 py-2 bg-custom-blue-2 text-white rounded hover:bg-custom-blue-3 transition-colors">
-                                    <Facebook className="w-4 h-4"/>
+                                <button className="flex items-center rounded px-4 py-2 text-white transition-colors space-x-2 bg-custom-blue-2 hover:bg-custom-blue-3">
+                                    <Facebook className="h-4 w-4"/>
                                     <span>Facebook</span>
                                 </button>
-                                <button className="flex items-center space-x-2 px-4 py-2 bg-sky-500 text-white rounded hover:bg-sky-600 transition-colors">
-                                    <Twitter className="w-4 h-4"/>
+                                <button className="flex items-center rounded bg-sky-500 px-4 py-2 text-white transition-colors space-x-2 hover:bg-sky-600">
+                                    <Twitter className="h-4 w-4"/>
                                     <span>Twitter</span>
                                 </button>
                             </div>
@@ -211,7 +211,7 @@ const UJobDetails = ({id}: { id: number }) => {
                     </div>
                 </div>
                 <div className="py-10">
-                    <h1 className="text-2xl font-semibold pb-10">Các công việc liên quan:</h1>
+                    <h1 className="pb-10 text-2xl font-semibold">Các công việc liên quan:</h1>
                     <UJobList showPagination={false}/>
                 </div>
             </div>

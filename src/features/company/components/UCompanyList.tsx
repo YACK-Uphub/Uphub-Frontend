@@ -49,7 +49,7 @@ export default function UCompanyList() {
                                 />
                             </div>
 
-                            <div className="w-[70vw] flex flex-col gap-y-4">
+                            <div className="flex flex-col gap-y-4 w-[70vw]">
                                 {data.results.map((company: Company) => (
                                         <Link href={`/student/companies/${company.id}`} key={company.id}>
                                             <UCompanyRow

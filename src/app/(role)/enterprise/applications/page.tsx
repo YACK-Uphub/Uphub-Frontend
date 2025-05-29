@@ -60,7 +60,7 @@ const ApplicationsPage = () => {
 			</section>
 
 			{/* Application List */}
-			<section className={"mx-auto max-w-7xl"}>
+      <section className={"mx-auto max-w-7xl mb-14"}>
 				<div className={"p-10 bg-custom-gray/15"}>
 					<UBusinessApplicationList></UBusinessApplicationList>
 				</div>

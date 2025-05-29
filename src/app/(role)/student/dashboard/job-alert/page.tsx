@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const JobAlertsPage = () => {
     return (
             <div>
-                <h1 className="text-xl px-5">Thông báo việc làm</h1>
+                <h1 className="px-5 text-xl">Thông báo việc làm</h1>
                 <UJobList viewType="row"/>
             </div>
     );

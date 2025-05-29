@@ -52,8 +52,8 @@ export default function UCardApplication({
 				</div>
 
 				<div>
-					<p className="text-sm font-medium text-custom-black">{name}</p>
-					<p className="text-xs text-custom-gray opacity-55">{role}</p>
+					<p className="text-lg font-medium text-custom-black">{name}</p>
+					<p className="text-sm text-custom-gray opacity-55">{role}</p>
 				</div>
 			</div>
 

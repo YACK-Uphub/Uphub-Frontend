@@ -7,9 +7,9 @@ export default function UCompanyInfoCard({id}: { id: number }) {
     const {data: company, isLoading} = useGetCompanyByIdQuery(id);
     if (isLoading) return;
     return (
-            <div className="bg-white rounded-lg shadow-sm p-6">
-                <div className="flex items-center space-x-3 mb-4">
-                    <div className=" relative w-12 h-12 rounded-lg flex items-center justify-center">
+            <div className="rounded-lg bg-white p-6 shadow-sm">
+                <div className="mb-4 flex items-center space-x-3">
+                    <div className="relative flex h-12 w-12 items-center justify-center rounded-lg">
                         <Image
                                 src={company.imageUrl}
                                 alt="company logo"
@@ -26,7 +26,7 @@ export default function UCompanyInfoCard({id}: { id: number }) {
                     </div>
                 </div>
 
-                <div className="space-y-3 text-sm">
+                <div className="text-sm space-y-3">
                     <div className="flex justify-between">
                         <span className="text-custom-gray">Thành lập</span>
                         <span className="font-medium">{company.establishedDate}</span>

@@ -35,7 +35,7 @@ export default function UProfile() {
         // toast({
         //     content: "You submitted the following values:",
         //     description: (
-        //         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+        //         <pre className="mt-2 rounded-md p-4 w-[340px] bg-slate-950">
         //             <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         //         </pre>
         //     ),
@@ -45,8 +45,8 @@ export default function UProfile() {
     return (
             <div className="px-10">
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-2xl mx-auto">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto space-y-8 w-2xl">
+                        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                             {/* Họ */}
                             <FormField
                                     control={form.control}
@@ -105,7 +105,7 @@ export default function UProfile() {
                                     control={form.control}
                                     name="industry"
                                     render={({field}) => (
-                                            <FormItem className="w-full h-max">
+                                            <FormItem className="h-max w-full">
                                                 <FormControl>
                                                     <div className="grid w-full items-center gap-1.5">
                                                         <Label htmlFor="industry">Lĩnh vực</Label>

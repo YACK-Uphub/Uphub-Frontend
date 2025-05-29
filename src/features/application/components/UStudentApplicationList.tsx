@@ -31,7 +31,7 @@ export default function UStudentApplicationList() {
                 ) : (
                         <>
                             <>
-                                <div className="w-[70vw] flex flex-col">
+                              <div className="flex flex-col w-[70vw]">
                                     {data.results.map((application: Application) => (
                                             <Link href={`applications/${application.id}`} key={application.id}>
                                                 <UJobRow

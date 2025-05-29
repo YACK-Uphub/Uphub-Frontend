@@ -6,7 +6,7 @@ export type Application = Entity<{
 	linkedInUrl: string;
 	coverLetter: string;
 	introduction: string;
-	fullname: string;
+	fullName: string;
 	email: string;
 	phone: string;
 	imageUrl: string;
@@ -39,3 +39,4 @@ export enum ApplicationStatus {
 	Rejected = "Rejected",
 	Hired = "Hired",
 }
+

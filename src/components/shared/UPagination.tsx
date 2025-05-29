@@ -41,14 +41,12 @@ export function UPagination({currentPage, totalPages, onPageChanged, className}:
                 <PaginationContent>
                     <PaginationItem>
                         <PaginationPrevious
-                                href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     onPageChanged(currentPage - 1);
                                 }}
                                 aria-disabled={currentPage === 1}
-                                className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
-                        />
+                                className={currentPage === 1 ? "pointer-events-none opacity-50" : ""} href={""}/>
                     </PaginationItem>
                     {pageNumbers.map((page, index) => (
                             <PaginationItem key={index}>
@@ -70,14 +68,13 @@ export function UPagination({currentPage, totalPages, onPageChanged, className}:
                     ))}
                     <PaginationItem>
                         <PaginationNext
-                                href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     onPageChanged(currentPage + 1);
                                 }}
                                 aria-disabled={currentPage === totalPages}
                                 className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
-                        />
+                                href={""}/>
                     </PaginationItem>
                 </PaginationContent>
             </Pagination>
