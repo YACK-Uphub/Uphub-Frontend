@@ -8,14 +8,15 @@ import {Job, JobDateType} from "@/types/job";
 import Link from "next/link";
 import React from "react";
 import {setPageIndex, setSort} from "../slices/jobSlice";
-import {UPagination} from "@/components/shadcn/pagination";
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@/components/shadcn/select";
+import {UPagination} from "@/components/shared/UPagination";
 
 type UJobListProps = {
     viewType?: "card" | "row";
     userJobStatus?: "applied" | "favorite" | "alert" | undefined;
     showPagination?: boolean;
 };
+
 export default function UJobList({viewType = "card", userJobStatus, showPagination = true}: UJobListProps) {
     const jobParams = useAppSelector((state) => state.jobParams);
     const {data, isLoading} = useSearchJobsQuery(jobParams);
@@ -86,6 +87,7 @@ export default function UJobList({viewType = "card", userJobStatus, showPaginati
                                         </div>
                                     </>
                             )}
+
                             {/* Pagination */}
                             {showPagination && (
                                     <UPagination
