@@ -1,19 +1,18 @@
-﻿import { Entity, SearchPaginatedRequestParams } from "@/types/baseModel";
-import { JobStatus } from "./job";
+import {Entity, SearchPaginatedRequestParams} from "@/types/baseModel";
+import {JobStatus} from "./job";
 
 export type Application = Entity<{
 	cvUrl: string;
 	linkedInUrl: string;
 	coverLetter: string;
 	introduction: string;
-	fullname: string;
+	fullName: string;
 	email: string;
 	phone: string;
 	imageUrl: string;
 	status: ApplicationStatus;
 	userId: number;
 	jobId: number;
-
 	jobStatus: JobStatus;
 	jobTitle: string;
 	city: string;
@@ -40,3 +39,4 @@ export enum ApplicationStatus {
 	Rejected = "Rejected",
 	Hired = "Hired",
 }
+

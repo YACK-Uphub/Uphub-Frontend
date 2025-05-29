@@ -1,5 +1,5 @@
-﻿import { ReactNode } from "react";
-import type { Metadata } from "next";
+﻿import {ReactNode} from "react";
+import type {Metadata} from "next";
 import USearchWithFilterWrapper from "@/components/shared/search/USearchWithFilterWrapper";
 
 export const metadata: Metadata = {
@@ -13,15 +13,15 @@ export default function StudentLayout({
     children: ReactNode;
 }>) {
     return (
-        <div className="relative">
-            <div className="w-full mx-auto pb-10 relative">
-                <div className="flex justify-center sticky top-0 bottom-0 left-0 z-10 w-full py-5 bg-gray-100">
-                    <div className="w-full mx-auto max-w-5xl">
-                        <USearchWithFilterWrapper dropdownData={null} />
+            <div className="relative">
+                <div className="relative mx-auto w-full pb-10">
+                    <div className="sticky top-0 bottom-0 left-0 z-10 flex w-full justify-center bg-gray-100 py-5">
+                        <div className="mx-auto w-full max-w-5xl">
+                            <USearchWithFilterWrapper dropdownData={null}/>
+                        </div>
                     </div>
+                    <div className="mx-auto mt-8 w-fit">{children}</div>
                 </div>
-                <div className="mt-8 w-fit mx-auto">{children}</div>
             </div>
-        </div>
     );
 }

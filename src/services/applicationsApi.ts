@@ -1,4 +1,3 @@
-﻿import {SearchPaginatedRequestParams} from "@/types/baseModel";
 import {createCrudApi} from "@/services/baseApi";
 import {Application, ApplicationSearchPaginatedRequestParams} from "@/types/application";
 

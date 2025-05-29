@@ -11,9 +11,9 @@ const Error = ({error, reset}) => {
 	}
 
 	return (
-		<div className="h-full flex flex-col items-center justify-center bg-custom-white px-4">
-			<h1 className="text-4xl font-bold text-custom mb-4 text-custom-blue-3">Xảy ra lỗi. Vui lòng thử lại</h1>
-			<p className="text-custom-black mb-6">{error.message || 'An unexpected error occurred.'}</p>
+		<div className="flex h-full flex-col items-center justify-center px-4 bg-custom-white">
+			<h1 className="mb-4 text-4xl font-bold text-custom text-custom-blue-3">Xảy ra lỗi. Vui lòng thử lại</h1>
+			<p className="mb-6 text-custom-black">{error.message || 'An unexpected error occurred.'}</p>
 			<div className="flex gap-4">
 				<UButton
 					onClick={goBackToHomePage}

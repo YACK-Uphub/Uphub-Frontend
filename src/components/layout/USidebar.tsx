@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, {ReactNode} from "react";
 import {
     Sidebar,
     SidebarContent,
@@ -26,32 +26,32 @@ type USidebarProps = {
     groups: SidebarGroupData[];
     footer?: ReactNode;
 };
-export default function USidebar({ groups, footer }: USidebarProps) {
+export default function USidebar({groups, footer}: USidebarProps) {
     return (
-        <Sidebar collapsible="icon">
-            {/* <SidebarHeader /> */}
-            <SidebarContent>
-                {groups.map((group, groupIndex) => (
-                    <SidebarGroup key={groupIndex}>
-                        <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
-                        <SidebarGroupContent>
-                            <SidebarMenu>
-                                {group.items.map((item) => (
-                                    <SidebarMenuItem key={item.title}>
-                                        <SidebarMenuButton asChild>
-                                            <Link href={item.url}>
-                                                {item.icon && <item.icon className="mr-2 w-4 h-4" />}
-                                                <span>{item.title}</span>
-                                            </Link>
-                                        </SidebarMenuButton>
-                                    </SidebarMenuItem>
-                                ))}
-                            </SidebarMenu>
-                        </SidebarGroupContent>
-                    </SidebarGroup>
-                ))}
-            </SidebarContent>
-            {/* <SidebarFooter /> */}
-        </Sidebar>
+            <Sidebar collapsible="icon">
+                {/* <SidebarHeader /> */}
+                <SidebarContent>
+                    {groups.map((group, groupIndex) => (
+                            <SidebarGroup key={groupIndex}>
+                                <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
+                                <SidebarGroupContent>
+                                    <SidebarMenu>
+                                        {group.items.map((item) => (
+                                                <SidebarMenuItem key={item.title}>
+                                                    <SidebarMenuButton asChild>
+                                                        <Link href={item.url}>
+                                                            {item.icon && <item.icon className="mr-2 h-4 w-4"/>}
+                                                            <span>{item.title}</span>
+                                                        </Link>
+                                                    </SidebarMenuButton>
+                                                </SidebarMenuItem>
+                                        ))}
+                                    </SidebarMenu>
+                                </SidebarGroupContent>
+                            </SidebarGroup>
+                    ))}
+                </SidebarContent>
+                {/* <SidebarFooter /> */}
+            </Sidebar>
     );
 }

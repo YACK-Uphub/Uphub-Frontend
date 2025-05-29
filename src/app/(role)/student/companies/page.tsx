@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import UCompanyList from "@/features/company/components/UCompanyList";
 
 export const metadata: Metadata = {
@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 const CompanyPage = () => {
     return (
-        <div>
-            <UCompanyList />
-        </div>
+            <div>
+                <UCompanyList/>
+            </div>
     );
 };
 

@@ -1,5 +1,5 @@
-﻿import { ApplicationStatus } from "@/types/application";
-import { JobStatus } from "@/types/job";
+﻿import {ApplicationStatus} from "@/types/application";
+import {JobStatus} from "@/types/job";
 
 export enum URowVariant {
 	Default,

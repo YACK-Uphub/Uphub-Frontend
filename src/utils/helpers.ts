@@ -1,6 +1,4 @@
-﻿import { JSX } from "react";
-
-/**
+﻿/**
  * A function to convert number into VND currency
  * @param value
  */

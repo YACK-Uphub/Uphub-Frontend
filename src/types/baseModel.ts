@@ -18,11 +18,11 @@ export type PaginatedResponse<T extends BaseEntity> = {
 export type SearchPaginatedResponse<T extends BaseEntity> = {
 	results: T[],
 	pageCount: number,
-	totalCount: number
+	totalCount: number,
 }
 
 export type SearchPaginatedRequestParams ={
-	pageNumber?: number | string,
-	pageSize?: number | string,
+	pageNumber?: number,
+	pageSize?: number,
 	searchTerm?: string;
 }

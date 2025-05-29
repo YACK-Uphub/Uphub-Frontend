@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import UProfile from "@/features/profile/components/UProfile";
 
 export const metadata: Metadata = {
@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 const DashboardSettingsPage = () => {
     return (
-        <div>
-            <UProfile />
-        </div>
+            <div>
+                <UProfile/>
+            </div>
     );
 };
 

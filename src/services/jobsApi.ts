@@ -1,5 +1,5 @@
-import { createCrudApi } from "@/services/baseApi";
-import { Job, JobSearchPaginatedRequestParams } from "@/types/job";
+import {createCrudApi} from "@/services/baseApi";
+import {Job, JobSearchPaginatedRequestParams} from "@/types/job";
 
 export const jobsApi = createCrudApi<Job, JobSearchPaginatedRequestParams>({
 	reducerPath: "jobsApi",

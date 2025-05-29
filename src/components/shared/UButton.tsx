@@ -1,7 +1,7 @@
 ﻿"use client";
 
-import { ReactNode } from "react";
-import { debounce } from "@/utils/helpers";
+import {ReactNode} from "react";
+import {debounce} from "@/utils/helpers";
 
 export interface UButtonProps {
     onClick: () => void;
@@ -29,9 +29,9 @@ const UButton = ({
     iconPosition = "none",
 }: UButtonProps) => {
     return (
-        <button
-            onClick={debounce(onClick, 400)}
-            className={`flex flex-row items-center justify-center 
+            <button
+                    onClick={debounce(onClick, 400)}
+                    className={`flex flex-row items-center justify-center 
 									gap-2 px-5 py-2 font-medium 
 									shadow-1xl
 									text-xs text-nowrap
@@ -41,11 +41,11 @@ const UButton = ({
 									transition-transform duration-200
                                     cursor-pointer
 									${width} ${height} ${backgroundColor} ${textColor} ${border} ${borderRadius}`}
-        >
-            {icon && iconPosition === "left" && icon}
-            <span>{label}</span>
-            {icon && iconPosition === "right" && icon}
-        </button>
+            >
+                {icon && iconPosition === "left" && icon}
+                <span>{label}</span>
+                {icon && iconPosition === "right" && icon}
+            </button>
     );
 };
 
