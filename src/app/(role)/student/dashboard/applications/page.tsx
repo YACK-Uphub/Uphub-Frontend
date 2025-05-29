@@ -1,10 +1,9 @@
 ﻿import React from "react";
-import type {Metadata} from "next";
 import UStudentApplicationList from "@/features/application/components/UStudentApplicationList";
 
 export const metadata: Metadata = {
-    title: "My Applications",
-    description: "Track your internship applications on UpHub",
+  title: "My Applications",
+  description: "Track your internship applications on UpHub",
 };
 
 const MyApplicationsPage = () => {

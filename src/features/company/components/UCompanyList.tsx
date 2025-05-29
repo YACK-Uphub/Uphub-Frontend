@@ -1,5 +1,4 @@
 "use client";
-import {UPagination} from "@/components/shadcn/pagination";
 import UCompanyRow from "@/components/shared/table/UCompanyRow";
 import {useAppDispatch, useAppSelector} from "@/libs/rtk/hooks";
 import {useSearchCompaniesQuery} from "@/services/companiesApi";
@@ -9,6 +8,7 @@ import React from "react";
 import {resetParams, setIsLinked, setPageIndex} from "../slices/companySlice";
 import UButton from "@/components/shared/UButton";
 import {Briefcase} from "lucide-react";
+import {UPagination} from "@/components/shared/UPagination";
 
 export default function UCompanyList() {
     const companyParams = useAppSelector((state) => state.companyParams);

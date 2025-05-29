@@ -14,11 +14,12 @@ import {UPagination} from "@/components/shared/UPagination";
 import {Application} from "@/types/application";
 import {UModalWrapper} from "@/components/shared/UModalWrapper";
 import UModalApplication from "@/features/application/components/UModalApplication";
+import {skipToken} from "@reduxjs/toolkit/query";
 
 export const UBusinessApplicationList = () => {
 
   const applicationParams = useAppSelector(state => state.applicationParams);
-  const {data, isLoading, isFetching} = useSearchApplicationsQuery({...applicationParams});
+  const {data, isLoading, isFetching} = useSearchApplicationsQuery({...applicationParams} ?? skipToken);
   const dispatch = useAppDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedApplication, setSelectedApplication] = useState<Application>(null)

@@ -10,8 +10,6 @@ import StoreProvider from "@/app/StoreProvider";
 import {Slide, ToastContainer} from "react-toastify";
 import {UserRole} from "@/types/user";
 
-// === Configuration =============================
-
 const fontReemKufi = Reem_Kufi({
 	subsets: ['vietnamese'],
 	display: 'swap'
@@ -25,17 +23,13 @@ export const metadata: Metadata = {
 	description: "This is the InternHub App used externally for school, candidates and enterprises",
 };
 
-
-
-// === Components =============================
-
 export default function RootLayout({children}: Readonly<{
 	children: ReactNode;
 }>) {
 
 	//! FOR TESTING PURPOSE on Auth
 	// const session = .....
-	const role: UserRole = UserRole.Company;
+  const role: UserRole = UserRole.Student;
 
 	return (
 		<html lang="en" className={`${fontReemKufi.className} h-full`}>

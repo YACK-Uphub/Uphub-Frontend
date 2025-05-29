@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 const ProfilePage = () => {
     return (
-            <div>
-                <UProfile/>
-            </div>
+        <div>
+          <UProfile/>
+        </div>
     );
 };
 
