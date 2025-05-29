@@ -26,4 +26,14 @@ export enum ApplicationNameType {
 
 export type ApplicationSearchPaginatedREquestParams = {
 	sort?: ApplicationNameType;
+	userId?: number;
+	jobId?: number;
 } & SearchPaginatedRequestParams;
+
+export enum ApplicationStatus {
+	Applied = "Applied",
+	Scheduled = "Scheduled",
+	Interviewed = "Interviewed",
+	Rejected = "Rejected",
+	Hired = "Hired",
+}
