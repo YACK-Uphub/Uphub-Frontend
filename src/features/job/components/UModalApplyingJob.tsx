@@ -1,5 +1,5 @@
 ﻿import * as React from 'react';
-import {useForm} from 'react-hook-form';
+import {Controller, useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {z} from 'zod';
 import {Job} from '@/types/job';
@@ -7,6 +7,7 @@ import UButton from "@/components/shared/UButton";
 import {Label} from "@/components/shadcn/label";
 import UInput from "@/components/shared/UInput";
 import Image from "next/image";
+import {Company} from "@/types/company";
 
 // Define Zod schema for form validation
 const ApplicationFormSchema = z.object({
@@ -49,8 +50,8 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
     },
   });
 
-  const onSubmit = (job: ApplicationFormValues) => {
-    console.log('Submitting application:', job);
+  const onSubmit = (data: ApplicationFormValues) => {
+    console.log('Submitting application:', data);
     onCloseModal?.();
   };
 
@@ -62,7 +63,7 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
         <div className="border-b border-gray-200 pb-4 mb-6 flex items-center">
           <div className="relative flex h-16 w-16 items-center justify-center rounded-full">
             <Image
-                src={company.companyImageUrl!}
+                src={company.imageUrl}
                 alt="company image"
                 quality={50}
                 loading="lazy"
@@ -91,34 +92,54 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
 
           {/* Required Information */}
           <div className="space-y-4 mb-8">
-            <UInput
-                id="name"
-                label="Họ và tên"
-                field={control.register('name')}
-                error={errors.name?.message}
+            <Controller
+                name="name"
+                control={control}
+                render={({field}) => (
+                    <UInput
+                        id="name"
+                        label="Họ và tên"
+                        field={field}
+                    />
+                )}
             />
 
-            <UInput
-                id="email"
-                label="Email"
-                type="email"
-                field={control.register('email')}
-                error={errors.email?.message}
+            <Controller
+                name="email"
+                control={control}
+                render={({field}) => (
+                    <UInput
+                        id="email"
+                        label="Email"
+                        type="email"
+                        field={field}
+                    />
+                )}
             />
 
-            <UInput
-                id="phone"
-                label="Số điện thoại"
-                type="tel"
-                field={control.register('phone')}
-                error={errors.phone?.message}
+            <Controller
+                name="phone"
+                control={control}
+                render={({field}) => (
+                    <UInput
+                        id="phone"
+                        label="Số điện thoại"
+                        type="tel"
+                        field={field}
+                    />
+                )}
             />
 
-            <UInput
-                id="experience"
-                label="Kinh nghiệm"
-                field={control.register('experience')}
-                error={errors.experience?.message}
+            <Controller
+                name="experience"
+                control={control}
+                render={({field}) => (
+                    <UInput
+                        id="experience"
+                        label="Kinh nghiệm"
+                        field={field}
+                    />
+                )}
             />
           </div>
 
@@ -127,18 +148,28 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
             <h3 className="font-semibold mb-4">LINKS</h3>
 
             <div className="space-y-4">
-              <UInput
-                  id="linkedInUrl"
-                  label="LinkedIn URL (nếu có)"
-                  field={control.register('linkedInUrl')}
-                  error={errors.linkedInUrl?.message}
+              <Controller
+                  name="linkedInUrl"
+                  control={control}
+                  render={({field}) => (
+                      <UInput
+                          id="linkedInUrl"
+                          label="LinkedIn URL (nếu có)"
+                          field={field}
+                      />
+                  )}
               />
 
-              <UInput
-                  id="portfolioUrl"
-                  label="Portfolio URL"
-                  field={control.register('portfolioUrl')}
-                  error={errors.portfolioUrl?.message}
+              <Controller
+                  name="portfolioUrl"
+                  control={control}
+                  render={({field}) => (
+                      <UInput
+                          id="portfolioUrl"
+                          label="Portfolio URL"
+                          field={field}
+                      />
+                  )}
               />
             </div>
           </div>
@@ -150,11 +181,17 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
             <div className="space-y-4">
               <div>
                 <Label htmlFor="coverLetter">Cover letter hoặc câu hỏi khác</Label>
-                <textarea
-                    {...control.register('coverLetter')}
-                    id="coverLetter"
-                    className="w-full p-2 border border-gray-300 rounded"
-                    rows={4}
+                <Controller
+                    name="coverLetter"
+                    control={control}
+                    render={({field}) => (
+                        <textarea
+                            {...field}
+                            id="coverLetter"
+                            className="w-full p-2 border border-gray-300 rounded"
+                            rows={4}
+                        />
+                    )}
                 />
                 {errors.coverLetter && (
                     <p className="text-red-500 text-sm">{errors.coverLetter.message}</p>
@@ -163,33 +200,22 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
 
               <div>
                 <Label htmlFor="address">Địa chỉ (Tối đa 500 chữ)</Label>
-                <textarea
-                    {...control.register('address')}
-                    id="address"
-                    className="w-full p-2 border border-gray-300 rounded"
-                    rows={3}
-                    maxLength={500}
+                <Controller
+                    name="address"
+                    control={control}
+                    render={({field}) => (
+                        <textarea
+                            {...field}
+                            id="address"
+                            className="w-full p-2 border border-gray-300 rounded"
+                            rows={3}
+                            maxLength={500}
+                        />
+                    )}
                 />
                 {errors.address && (
                     <p className="text-red-500 text-sm">{errors.address.message}</p>
                 )}
-              </div>
-
-              <div>
-                <Label>Địa điểm tập</Label>
-                <div className="grid grid-cols-3 gap-2">
-                  {locations.map(location => (
-                      <label key={location} className="flex items-center">
-                        <input
-                            type="checkbox"
-                            {...control.register('preferredLocations')}
-                            value={location}
-                            className="mr-2"
-                        />
-                        {location}
-                      </label>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
@@ -202,7 +228,6 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
 
             <div className="flex justify-end gap-3">
               <UButton
-                  type="button"
                   onClick={onCloseModal}
                   label="Hủy"
                   backgroundColor="bg-gray-100"
@@ -210,7 +235,7 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
                   border="border border-gray-300"
               />
               <UButton
-                  type="submit"
+                  isSubmitFormButton={true} // true to make zod + react form enaable
                   label="Nộp Đơn"
                   backgroundColor="bg-blue-600"
                   textColor="text-white"

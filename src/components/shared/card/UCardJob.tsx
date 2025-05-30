@@ -32,7 +32,7 @@ export const UCardJob = ({
 			{/* Header with logo and featured badge */}
 			<div className="relative p-4">
 				<div className="flex items-center gap-3">
-					<div className="relative h-12 w-12 overflow-hidden rounded-full bg-custom-gray">
+					<div className="relative h-12 w-12 overflow-hidden rounded-full">
 						<Image
 							src={companyLogoUrl}
 							alt={`${companyName} Logo`}

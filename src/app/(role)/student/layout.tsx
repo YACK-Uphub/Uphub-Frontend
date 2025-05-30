@@ -1,6 +1,6 @@
 ﻿import {ReactNode} from "react";
 import type {Metadata} from "next";
-import USearchWithFilterWrapper from "@/components/shared/search/USearchWithFilterWrapper";
+import USearchWithFilter from "@/components/shared/search/USearchWithFilter";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +17,7 @@ export default function StudentLayout({
         <div className="relative mx-auto w-full pb-10">
           <div className="sticky top-0 bottom-0 left-0 z-10 flex w-full justify-center bg-gray-100 py-5">
             <div className="mx-auto w-full max-w-5xl">
-              <USearchWithFilterWrapper dropdownData={null}/>
+              <USearchWithFilter dropdownData={null} onSearchSubmit={null}/>
             </div>
           </div>
           <div className="mx-auto mt-8 w-fit">{children}</div>
