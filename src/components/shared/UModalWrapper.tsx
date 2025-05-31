@@ -9,7 +9,7 @@ export type UModalProps = {
 
 export const UModalWrapper = ({onCloseModal, children}: UModalProps) => {
 
-  // How to remove the scroll bar in website
+  // Remove the scroll bar in website
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {

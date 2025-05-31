@@ -3,16 +3,16 @@ import type {Metadata} from "next";
 import UJobList from "@/features/job/components/UJobList";
 
 export const metadata: Metadata = {
-    title: "Jobs",
-    description: "Browse internship opportunities on UpHub",
+  title: "Jobs",
+  description: "Browse internship opportunities on UpHub",
 };
 
-const JobListing = () => {
-    return (
-            <div>
-                <UJobList/>
-            </div>
-    );
+const JobListingPage = () => {
+  return (
+      <div>
+        <UJobList/>
+      </div>
+  );
 };
 
-export default JobListing;
+export default JobListingPage;

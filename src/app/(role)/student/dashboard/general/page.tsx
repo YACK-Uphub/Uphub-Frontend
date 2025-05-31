@@ -1,9 +1,8 @@
 ﻿import React from 'react';
-import type {Metadata} from 'next';
 
 export const metadata: Metadata = {
-	title: "General Dashboard",
-	description: "Overview of your internship journey on UpHub",
+  title: "General Dashboard",
+  description: "Overview of your internship journey on UpHub",
 };
 
 const GeneralDashboardPage = () => {
