@@ -8,8 +8,9 @@ import {Label} from "@/components/shadcn/label";
 import UInput from "@/components/shared/UInput";
 import Image from "next/image";
 import {Company} from "@/types/company";
+import UFileInput from "@/components/shared/UFileInput";
 
-// Define Zod schema for form validation
+// Zod schema (excluding file)
 const ApplicationFormSchema = z.object({
   name: z.string().min(1, 'Họ và tên là bắt buộc'),
   email: z.string().email('Email không hợp lệ'),
@@ -19,10 +20,12 @@ const ApplicationFormSchema = z.object({
   portfolioUrl: z.string().url('URL không hợp lệ').optional().or(z.literal('')),
   coverLetter: z.string().optional(),
   address: z.string().max(500, 'Địa chỉ tối đa 500 ký tự').optional(),
-  preferredLocations: z.array(z.string()).optional(),
 });
 
 type ApplicationFormValues = z.infer<typeof ApplicationFormSchema>;
+type ExtendedApplicationFormValues = ApplicationFormValues & {
+  cvFile?: File | null;
+};
 
 export type UModalApplyingJobProps = {
   job: Job;
@@ -34,8 +37,10 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
   const {
     control,
     handleSubmit,
+    setValue,
+    watch,
     formState: {errors},
-  } = useForm<ApplicationFormValues>({
+  } = useForm<ExtendedApplicationFormValues>({
     resolver: zodResolver(ApplicationFormSchema),
     defaultValues: {
       name: '',
@@ -46,36 +51,39 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
       portfolioUrl: '',
       coverLetter: '',
       address: '',
-      preferredLocations: [],
+      cvFile: null,
     },
   });
 
-  const onSubmit = (data: ApplicationFormValues) => {
-    console.log('Submitting application:', data);
+  const onSubmit = (data: ExtendedApplicationFormValues) => {
+    if (!data.cvFile) {
+      alert('Vui lòng tải lên CV của bạn.');
+      return;
+    }
+
+    console.log('Submitting application with file:', data);
     onCloseModal?.();
   };
-
-  const locations = ['Location 1', 'Location 2', 'Location 3'];
 
   return (
       <div className="max-w-2xl mx-auto p-6">
         {/* Job Header */}
-        <div className="border-b border-gray-200 pb-4 mb-6 flex items-center">
-          <div className="relative flex h-16 w-16 items-center justify-center rounded-full">
+        <div className="border-b border-custom-gray/20 pb-4 mb-6 flex items-center gap-4">
+          <div className="relative flex h-24 w-24 items-center justify-center rounded-full overflow-hidden">
             <Image
                 src={company.imageUrl}
                 alt="company image"
                 quality={50}
                 loading="lazy"
                 fill
-                objectFit={"cover"}
+                objectFit="cover"
                 priority={false}
             />
           </div>
 
           <div>
             <h1 className="text-2xl font-bold">{job.title}</h1>
-            <div className="flex items-center gap-2 text-gray-600 mt-2">
+            <div className="flex items-center gap-2 text-custom-gray/80 mt-2">
               <span>{company.city}</span>
               <span>•</span>
               <span>{job.jobType}</span>
@@ -96,49 +104,28 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
                 name="name"
                 control={control}
                 render={({field}) => (
-                    <UInput
-                        id="name"
-                        label="Họ và tên"
-                        field={field}
-                    />
+                    <UInput id="name" label="Họ và tên" field={field}/>
                 )}
             />
-
             <Controller
                 name="email"
                 control={control}
                 render={({field}) => (
-                    <UInput
-                        id="email"
-                        label="Email"
-                        type="email"
-                        field={field}
-                    />
+                    <UInput id="email" label="Email" type="email" field={field}/>
                 )}
             />
-
             <Controller
                 name="phone"
                 control={control}
                 render={({field}) => (
-                    <UInput
-                        id="phone"
-                        label="Số điện thoại"
-                        type="tel"
-                        field={field}
-                    />
+                    <UInput id="phone" label="Số điện thoại" type="tel" field={field}/>
                 )}
             />
-
             <Controller
                 name="experience"
                 control={control}
                 render={({field}) => (
-                    <UInput
-                        id="experience"
-                        label="Kinh nghiệm"
-                        field={field}
-                    />
+                    <UInput id="experience" label="Kinh nghiệm" field={field}/>
                 )}
             />
           </div>
@@ -146,30 +133,31 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
           {/* Links Section */}
           <div className="mb-8">
             <h3 className="font-semibold mb-4">LINKS</h3>
-
             <div className="space-y-4">
               <Controller
                   name="linkedInUrl"
                   control={control}
                   render={({field}) => (
-                      <UInput
-                          id="linkedInUrl"
-                          label="LinkedIn URL (nếu có)"
-                          field={field}
-                      />
+                      <UInput id="linkedInUrl" label="LinkedIn URL (nếu có)" field={field}/>
                   )}
               />
-
               <Controller
                   name="portfolioUrl"
                   control={control}
                   render={({field}) => (
-                      <UInput
-                          id="portfolioUrl"
-                          label="Portfolio URL"
-                          field={field}
-                      />
+                      <UInput id="portfolioUrl" label="Portfolio URL" field={field}/>
                   )}
+              />
+            </div>
+          </div>
+
+          {/* File Upload */}
+          <div className="mb-8">
+            <h3 className="font-semibold mb-4">Đính kèm CV (PDF, DOCX, v.v.)</h3>
+            <div className={"border w-max p-2 rounded-xl shadow-sm"}>
+              <UFileInput
+                  label="Tải lên CV"
+                  onChange={(file) => setValue('cvFile', file)}
               />
             </div>
           </div>
@@ -177,10 +165,9 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
           {/* Additional Information */}
           <div className="mb-8">
             <h3 className="font-semibold mb-4">Thông tin khác</h3>
-
             <div className="space-y-4">
               <div>
-                <Label htmlFor="coverLetter">Cover letter hoặc câu hỏi khác</Label>
+                <Label htmlFor="coverLetter" className={"mb-4"}>Cover letter hoặc câu hỏi khác</Label>
                 <Controller
                     name="coverLetter"
                     control={control}
@@ -199,7 +186,7 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
               </div>
 
               <div>
-                <Label htmlFor="address">Địa chỉ (Tối đa 500 chữ)</Label>
+                <Label htmlFor="address" className={"mb-4"}>Địa chỉ (Tối đa 500 chữ)</Label>
                 <Controller
                     name="address"
                     control={control}
@@ -221,8 +208,8 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
           </div>
 
           {/* Terms and Submit */}
-          <div className="border-t border-gray-200 pt-4">
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="border-t border-custom-gray/30 pt-4">
+            <p className="text-sm text-custom-gray mb-4">
               Bằng việc nộp đơn, bạn đã đồng ý với Chính sách bảo mật và Điều khoản sử dụng của chúng tôi.
             </p>
 
@@ -230,15 +217,15 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
               <UButton
                   onClick={onCloseModal}
                   label="Hủy"
-                  backgroundColor="bg-gray-100"
-                  textColor="text-gray-800"
-                  border="border border-gray-300"
+                  backgroundColor="bg-custom-red-bg"
+                  textColor="text-custom-red-text"
+                  border="border border-custom-gray"
               />
               <UButton
-                  isSubmitFormButton={true} // true to make zod + react form enaable
+                  isSubmitFormButton
                   label="Nộp Đơn"
-                  backgroundColor="bg-blue-600"
-                  textColor="text-white"
+                  backgroundColor="bg-custom-blue-3"
+                  textColor="text-custom-white"
               />
             </div>
           </div>
