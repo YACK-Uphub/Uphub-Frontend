@@ -1,7 +1,12 @@
-﻿import {BaseQueryApi, BaseQueryFn, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/query";
-import {notFound} from "next/navigation";
-import {BaseEntity, PaginatedResponse, SearchPaginatedRequestParams, SearchPaginatedResponse,} from "@/types/baseModel";
-import {createApi} from "@reduxjs/toolkit/query/react";
+﻿import { BaseQueryApi, BaseQueryFn, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { notFound } from "next/navigation";
+import {
+	BaseEntity,
+	PaginatedResponse,
+	SearchPaginatedRequestParams,
+	SearchPaginatedResponse,
+} from "@/types/baseModel";
+import { createApi } from "@reduxjs/toolkit/query/react";
 
 // =============================
 // === Custom Base Query
@@ -78,8 +83,8 @@ export function createCrudApi<T extends BaseEntity, P extends SearchPaginatedReq
 					url: baseUrl,
 					method: "GET",
 					params: {
-						pageNumber: params.pageNumber ?? 1,
-						pageSize: params.pageSize ?? 10,
+						pageNumber: params?.pageNumber ?? 1,
+						pageSize: params?.pageSize ?? 10,
 						...params,
 					},
 				}),
@@ -89,17 +94,17 @@ export function createCrudApi<T extends BaseEntity, P extends SearchPaginatedReq
 			// GET: search/companies?sort=nameAsc&pageNumber=1&pageSize=3&searchTerm=Công ty TNHH
 			search: searchUrl
 				? builder.query<SearchPaginatedResponse<T>, P>({
-					query: (params) => ({
-						url: searchUrl,
-						method: "GET",
-						params: {
-							pageNumber: params.pageNumber ?? 1,
-							pageSize: params.pageSize ?? 10,
-							...params,
-						},
-					}),
-					providesTags: [tagType],
-				})
+						query: (params) => ({
+							url: searchUrl,
+							method: "GET",
+							params: {
+								pageNumber: params.pageNumber ?? 1,
+								pageSize: params.pageSize ?? 10,
+								...params,
+							},
+						}),
+						providesTags: [tagType],
+				  })
 				: undefined,
 
 			// CREATE: application/2
@@ -119,7 +124,7 @@ export function createCrudApi<T extends BaseEntity, P extends SearchPaginatedReq
 					method: "PUT",
 					body,
 				}),
-				invalidatesTags: (result, error, {id}) => [{type: tagType, id}, tagType],
+				invalidatesTags: (result, error, { id }) => [{ type: tagType, id }, tagType],
 			}),
 
 			// DELETE: application/2
