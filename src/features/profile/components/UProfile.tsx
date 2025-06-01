@@ -13,6 +13,8 @@ import { Student } from "@/types/user";
 import Image from "next/image";
 import Link from "next/link";
 import { Link2 } from "lucide-react";
+import UButton from "@/components/shared/UButton";
+import { DocumentTextIcon } from "@heroicons/react/24/outline";
 
 const FormSchema = z.object({
   firstname: z.string().nonempty("Vui lòng nhập tên của bạn"),
@@ -38,6 +40,7 @@ export default function UProfile() {
       "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/teamo%2Fimages%2Fplaceholders%2Ffemale-user.jpg?alt=media",
     industry: "Software engineering",
     school: "FPT University",
+    cvUrls: ["http://my-cv", ""],
   };
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -246,6 +249,24 @@ export default function UProfile() {
                 <p className="text-gray-500 italic">No links added yet</p>
               )}
             </div>
+          </div>
+
+          {/* CV Download Button */}
+          <p className="font-semibold">Danh sách CV của bạn</p>
+          <div className="flex flex-wrap gap-2">
+            {student.cvUrls?.map((cvUrl, index) => (
+              <UButton
+                key={index}
+                onClick={() => window.open(cvUrl, "_blank")}
+                label={`Tải CV ${index + 1}`}
+                backgroundColor="bg-green-600/10"
+                textColor="text-green-600"
+                border="border border-transparent"
+                icon={<DocumentTextIcon className="h-4 w-4" />}
+                iconPosition="left"
+                width="w-auto"
+              />
+            ))}
           </div>
 
           <div>

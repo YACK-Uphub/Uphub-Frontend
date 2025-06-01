@@ -10,7 +10,7 @@ export type User = {
 	email: string;
 	phone: string;
 	imageUrl?: string;
-	socialLink: SocialLink[];
+	socialLink?: SocialLink[];
 };
 
 export type Student = User & {
@@ -21,6 +21,7 @@ export type Student = User & {
 	gender?: string;
 	school: string;
 	industry: string;
+	cvUrls?: string[];
 };
 
 export type SocialLink = {
