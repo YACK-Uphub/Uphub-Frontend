@@ -1,11 +1,12 @@
-import {JobDateType, JobSearchPaginatedRequestParams} from "@/types/job";
-import {createSlice} from "@reduxjs/toolkit";
+import { JobDateType, JobSearchPaginatedRequestParams } from "@/types/job";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: JobSearchPaginatedRequestParams = {
 	pageNumber: 1,
 	pageSize: 9,
 	searchTerm: "",
 	companyId: undefined,
+	cityId: "",
 	userJobStatus: undefined,
 	sort: JobDateType.DateDesc,
 };
@@ -36,12 +37,24 @@ export const jobSlice = createSlice({
 			state.sort = action.payload;
 			state.pageNumber = 1;
 		},
+		setCityId(state, action) {
+			state.cityId = action.payload;
+			state.pageNumber = 1;
+		},
 		resetParams() {
 			return initialState;
 		},
 	},
 });
 
-export const {resetParams, setPageIndex, setPageSize, setSearchTerm, setCompanyId, setUserJobStatus, setSort} =
-	jobSlice.actions;
+export const {
+	resetParams,
+	setPageIndex,
+	setPageSize,
+	setSearchTerm,
+	setCompanyId,
+	setUserJobStatus,
+	setSort,
+	setCityId,
+} = jobSlice.actions;
 export default jobSlice.reducer;

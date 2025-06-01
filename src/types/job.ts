@@ -1,4 +1,4 @@
-﻿import {Entity, SearchPaginatedRequestParams} from "./baseModel";
+﻿import { Entity, SearchPaginatedRequestParams } from "./baseModel";
 
 export type Job = Entity<{
 	id: number;
@@ -40,4 +40,5 @@ export type JobSearchPaginatedRequestParams = SearchPaginatedRequestParams & {
 	companyId?: number;
 	userJobStatus?: string;
 	sort?: JobDateType;
+	cityId?: number | string;
 };
