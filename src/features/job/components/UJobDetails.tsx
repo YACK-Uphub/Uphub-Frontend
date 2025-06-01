@@ -47,7 +47,7 @@ const UJobDetails = ({ id }: { id: number }) => {
 
   return (
     <>
-      {/*  Open or Close the modal*/}
+      {/*  Open or Close the application form modal*/}
       {isModalOpen && job && (
         <UModalWrapper
           onCloseModal={() => {
