@@ -2,6 +2,7 @@ import {applicationSlice} from "@/features/application/slices/applicationSlice";
 import {companySlice} from "@/features/company/slices/companySlice";
 import {jobSlice} from "@/features/job/slices/jobSlice";
 import {applicationsApi} from "@/services/applicationsApi";
+import { citiesApi } from '@/services/citiesApi';
 import {companiesApi} from "@/services/companiesApi";
 import {jobsApi} from "@/services/jobsApi";
 import {configureStore, Middleware} from "@reduxjs/toolkit";
@@ -13,6 +14,7 @@ export function makeStore() {
             [companiesApi.reducerPath]: companiesApi.reducer,
             [applicationsApi.reducerPath]: applicationsApi.reducer,
             [jobsApi.reducerPath]: jobsApi.reducer,
+            [citiesApi.reducerPath]: citiesApi.reducer,
 
             jobParams: jobSlice.reducer,
             companyParams: companySlice.reducer,
@@ -22,7 +24,8 @@ export function makeStore() {
                 getDefaultMiddleware()
                 .concat(companiesApi.middleware as Middleware)
                 .concat(applicationsApi.middleware as Middleware)
-                .concat(jobsApi.middleware as Middleware),
+                .concat(jobsApi.middleware as Middleware)
+                .concat(citiesApi.middleware as Middleware),
     });
 }
 
