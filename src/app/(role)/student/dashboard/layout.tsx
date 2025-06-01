@@ -7,11 +7,11 @@ const menuGroups = [
   {
     label: "Dashboard",
     items: [
-      { title: "Tổng quan", url: "general", icon: Home },
-      { title: "Công việc đã ứng tuyển", url: "applications", icon: Briefcase },
-      { title: "Công việc yêu thích", url: "favorite-jobs", icon: Star },
-      { title: "Thông báo việc làm", url: "job-alert", icon: Bell },
-      { title: "Cài đặt", url: "settings", icon: Settings },
+      { title: "Tổng quan", url: "/student/dashboard/general", icon: Home },
+      { title: "Công việc đã ứng tuyển", url: "/student/dashboard/applications", icon: Briefcase },
+      { title: "Công việc yêu thích", url: "/student/dashboard/favorite-jobs", icon: Star },
+      { title: "Thông báo việc làm", url: "/student/dashboard/job-alert", icon: Bell },
+      { title: "Cài đặt", url: "/student/dashboard/settings", icon: Settings },
     ],
   },
 ];
