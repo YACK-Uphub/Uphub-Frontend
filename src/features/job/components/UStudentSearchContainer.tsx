@@ -3,7 +3,7 @@ import USearchWithFilter, { USearchWithFilterParams } from "@/components/shared/
 import { useAppDispatch } from "@/libs/rtk/hooks";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { setSearchTerm } from "../slices/jobSlice";
+import { setCityId, setSearchTerm } from "../slices/jobSlice";
 import { useGetAllCitiesQuery } from "@/services/citiesApi";
 
 export default function UStudentSearchContainer() {
@@ -17,6 +17,7 @@ export default function UStudentSearchContainer() {
   const handleSearchButton = ({ searchKeyword, dropdownItemId, extraSelectionIds }: USearchWithFilterParams) => {
     if (pathname !== "/student/jobs/") router.push("/student/jobs/");
     dispatch(setSearchTerm(searchKeyword));
+    dispatch(setCityId(dropdownItemId ?? ""));
   };
   return (
     <div className="sticky top-0 bottom-0 left-0 z-10 flex w-full justify-center bg-gray-100 py-5">
