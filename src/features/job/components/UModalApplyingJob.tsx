@@ -8,10 +8,14 @@ import {Label} from "@/components/shadcn/label";
 import UInput from "@/components/shared/UInput";
 import Image from "next/image";
 import {Company} from "@/types/company";
-import UFileInput from "@/components/shared/UFileInput";
+import UFileInput, {UFileInputType} from "@/components/shared/UFileInput";
 import {useCreateApplicationMutation} from "@/services/applicationsApi";
 import {toast} from "react-toastify";
 import {UPageSpinner} from "@/components/shared/spinner/UPageSpinner";
+
+// FILE UPLOAD RESTRICTION
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const ACCEPTED_MIME_TYPES = [UFileInputType.PDF.toString()];
 
 // Zod schema (excluding file)
 const ApplicationFormSchema = z.object({
@@ -23,12 +27,17 @@ const ApplicationFormSchema = z.object({
   portfolioUrl: z.string().url("URL không hợp lệ").optional().or(z.literal("")),
   coverLetter: z.string().max(500, "Cover letter tối đa 1000 ký tự").optional(),
   introduction: z.string().max(500, "Giới thiệu tối đa 1000 ký tự").optional(),
+  cvFile: z
+      .any()
+      .refine((file) => file instanceof File, "Vui lòng tải lên CV")
+      .refine((file) => !file || file.size <= MAX_FILE_SIZE, {
+        message: "Kích thước file không được vượt quá 5MB",
+      })
+      .refine((file) => !file || ACCEPTED_MIME_TYPES.includes(file.type), {
+        message: "Chỉ chấp nhận file PDF",
+      }),
 });
 
-type ApplicationFormValues = z.infer<typeof ApplicationFormSchema>;
-type ExtendedApplicationFormValues = ApplicationFormValues & {
-  cvFile?: File | null;
-};
 
 export type UModalApplyingJobProps = {
   job: Job;
@@ -36,14 +45,15 @@ export type UModalApplyingJobProps = {
   onCloseModal?: () => void;
 };
 
+type ApplicationFormValues = z.infer<typeof ApplicationFormSchema>;
+
 export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJobProps) => {
   const {
     control,
     handleSubmit,
     setValue,
-    watch,
     formState: {errors},
-  } = useForm<ExtendedApplicationFormValues>({
+  } = useForm<ApplicationFormValues>({
     resolver: zodResolver(ApplicationFormSchema),
     defaultValues: {
       fullname: "",
@@ -60,7 +70,7 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
 
   const [createApplication, {isLoading}] = useCreateApplicationMutation();
 
-  const onSubmit = async (data: ExtendedApplicationFormValues) => {
+  const onSubmit = async (data: ApplicationFormValues) => {
 
     // Submit application (will update useid later)
     try {
@@ -190,7 +200,16 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
           <div className="mb-8">
             <h3 className="font-semibold mb-4">Đính kèm CV (PDF, DOCX, v.v.)</h3>
             <div className={"border w-max p-2 rounded-xl shadow-sm"}>
-              <UFileInput label="Tải lên CV" onChange={(file) => setValue("cvFile", file)}/>
+              <Controller
+                  name="cvFile"
+                  control={control}
+                  render={({field}) => (
+                      <UFileInput
+                          label="Tải lên CV"
+                          fileTypes={[UFileInputType.PDF]}
+                          onChange={(file) => setValue("cvFile", file)}
+                          error={errors.cvFile?.message?.toString()}
+                      />)}></Controller>
             </div>
           </div>
 
@@ -254,7 +273,7 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
                   border="border border-custom-gray"
               />
               <UButton
-                  isSubmitFormButton
+                  isSubmitFormButton={true}
                   label="Nộp Đơn"
                   backgroundColor="bg-custom-blue-3"
                   textColor="text-custom-white"
