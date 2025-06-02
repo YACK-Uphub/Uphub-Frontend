@@ -1,4 +1,4 @@
-﻿import { Entity, SearchPaginatedRequestParams } from "./baseModel";
+﻿import {Entity, SearchPaginatedRequestParams} from "./baseModel";
 
 export type Job = Entity<{
 	id: number;
@@ -35,6 +35,7 @@ export enum JobDateType {
 	DateDesc = "dateDesc",
 	ClosingSoon = "closingSoon",
 }
+
 
 export type JobSearchPaginatedRequestParams = SearchPaginatedRequestParams & {
 	companyId?: number;
