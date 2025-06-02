@@ -30,10 +30,14 @@ const UButton = ({
                    iconPosition = "none",
                    isSubmitFormButton = false,
                  }: UButtonProps) => {
+
+  const debouncedClick = onClick ? debounce(onClick, 400) : undefined;
+
   return (
       <button
           type={isSubmitFormButton ? "submit" : "button"}
-          onClick={debounce(onClick, 400)}
+          {...(!isSubmitFormButton && {onClick: debouncedClick})}
+
           className={`flex flex-row items-center justify-center
 									gap-2 px-5 py-2 font-medium
 									shadow-1xl
