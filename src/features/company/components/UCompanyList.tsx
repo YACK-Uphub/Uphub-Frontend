@@ -56,7 +56,7 @@ export default function UCompanyList({ viewType = "row", showPagination = true }
           {viewType === "card" ? (
             <div className="grid grid-cols-3 gap-6">
               {data.results.map((company: Company) => (
-                <Link href={`/student/jobs/${company.id}`} key={company.id}>
+                <Link href={`/student/companies/${company.id}`} key={company.id}>
                   <UCardCompany company={company} />
                 </Link>
               ))}
