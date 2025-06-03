@@ -54,7 +54,7 @@ const UCompanyDetails = ({ id }: { id: number }) => {
               />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-custom-black">{company.companyName}</h1>
+              <h1 className="text-2xl font-bold text-custom-blue-2">{company.companyName}</h1>
               <div className="mt-1 flex items-center text-sm space-x-4 text-custom-gray">
                 <span className="flex items-center">
                   <Phone className="mr-1 h-4 w-4" />
