@@ -5,7 +5,7 @@ import { Job, JobSearchPaginatedRequestParams } from "@/types/job";
 export const internshipProgramsApi = createCrudApi<InternshipProgram, InternshipProgramPaginatedRequestParams>({
 	reducerPath: "internshipProgramsApi",
 	tagType: "internshipPrograms",
-	baseUrl: "internship-programs",
+	baseUrl: "intern-programs",
 	searchUrl: "search/intern-programs",
 });
 

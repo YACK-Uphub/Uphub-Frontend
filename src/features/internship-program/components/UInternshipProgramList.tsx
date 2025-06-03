@@ -6,8 +6,7 @@ import { useSearchInternshipProgramsQuery } from "@/services/internshipsApi";
 import Link from "next/link";
 import React from "react";
 import { setPageIndex, setSort } from "../slices/internshipProgramSlices";
-import { InternshipProgram, InternshipProgramSortType } from "@/types/internshipProgram";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
+import { InternshipProgram } from "@/types/internshipProgram";
 
 export default function UInternshipProgramList() {
   const internshipParams = useAppSelector((state) => state.internshipProgramParams);
