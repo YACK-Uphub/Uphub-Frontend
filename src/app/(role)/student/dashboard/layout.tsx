@@ -7,7 +7,6 @@ const menuGroups = [
   {
     label: "Dashboard",
     items: [
-      { title: "Tổng quan", url: "/student/dashboard/general", icon: Home },
       { title: "Công việc đã ứng tuyển", url: "/student/dashboard/applications", icon: Briefcase },
       { title: "Công việc yêu thích", url: "/student/dashboard/favorite-jobs", icon: Star },
       { title: "Thông báo việc làm", url: "/student/dashboard/job-alert", icon: Bell },

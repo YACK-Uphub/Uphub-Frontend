@@ -1,18 +1,20 @@
-﻿import React from 'react';
-import type {Metadata} from 'next';
-
-export const metadata: Metadata = {
-	title: "Partner Companies",
-	description: "Manage and view partner companies for your school on UpHub",
-};
+﻿"use client";
+import React from "react";
+import type { Metadata } from "next";
+import UCompanyList from "@/features/company/components/UCompanyList";
+import { useAppDispatch } from "@/libs/rtk/hooks";
+import { setPageSize } from "@/features/company/slices/companySlice";
 
 const PartnerCompaniesPage = () => {
-	return (
-		<div>
-			<h1>Partner Companies</h1>
-			<p>View and manage companies that partner with your school for internship opportunities.</p>
-		</div>
-	);
+  const dispatch = useAppDispatch();
+  dispatch(setPageSize(9));
+  return (
+    <div>
+      <h1 className="text-custom-blue-2 text-3xl font-bold mb-5 text-center">Các doanh nghiệp đã liên kết</h1>
+      <hr className="w-1/2 border-t-4 border-custom-yellow-3 mx-auto mb-8" />
+      <UCompanyList viewType="card" />
+    </div>
+  );
 };
 
 export default PartnerCompaniesPage;

@@ -1,4 +1,4 @@
-﻿import {Entity, SearchPaginatedRequestParams} from "@/types/baseModel";
+﻿import { Entity, SearchPaginatedRequestParams } from "@/types/baseModel";
 
 export type Company = Entity<{
 	imageUrl: string;
@@ -26,4 +26,5 @@ export type CompanySearchPaginatedRequestParams = {
 	sort?: CompanyNameType;
 	companyId?: number;
 	isLinked?: boolean;
+	internshipProgramId?: number;
 } & SearchPaginatedRequestParams;

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,6 +15,7 @@ import Link from "next/link";
 import { Link2 } from "lucide-react";
 import UButton from "@/components/shared/UButton";
 import { DocumentTextIcon } from "@heroicons/react/24/outline";
+import { useGetStudentByIdQuery } from "@/services/studentsApi";
 
 const FormSchema = z.object({
   firstname: z.string().nonempty("Vui lòng nhập tên của bạn"),
@@ -27,33 +28,36 @@ const FormSchema = z.object({
 });
 
 export default function UProfile() {
-  // TODO: get current student id => get student by id
-  const student: Student = {
-    code: "SE180542",
-    email: "myltse180542@fpt.edu.vn",
-    firstname: "My",
-    lastname: "Lâm",
-    phone: "0123456789",
-    socialLink: [{ name: "Github", linkUrl: "http://my-github.com", id: 1 }],
-    username: "mylt91",
-    imageUrl:
-      "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/teamo%2Fimages%2Fplaceholders%2Ffemale-user.jpg?alt=media",
-    industry: "Software engineering",
-    school: "FPT University",
-    cvUrls: ["http://my-cv", ""],
-  };
+  const { data: student, isLoading } = useGetStudentByIdQuery(1);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      firstname: student.firstname,
-      lastname: student.lastname,
-      biography: student.biography,
-      school: student.school,
-      industry: student.industry,
-      email: student.email,
-      phone: student.phone,
+      firstname: "",
+      lastname: "",
+      biography: "",
+      school: "",
+      industry: "",
+      email: "",
+      phone: "",
     },
   });
+
+  useEffect(() => {
+    if (student) {
+      form.reset({
+        firstname: student.firstName,
+        lastname: student.lastName,
+        biography: student.biography,
+        school: student.school,
+        industry: student.industry,
+        email: student.email,
+        phone: student.phoneNumber,
+      });
+    }
+  }, [student, form]);
+
+  if (isLoading || !student) return <div>Đang tải...</div>;
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     // toast({
@@ -88,7 +92,7 @@ export default function UProfile() {
             </div>
             <div className="flex flex-col items-center">
               <h2 className="text-2xl font-semibold">
-                {student.lastname} {student.firstname}
+                {student.lastName} {student.firstName}
               </h2>
               <p className="text-gray-600">{student.code}</p>
             </div>
@@ -229,19 +233,19 @@ export default function UProfile() {
           {/* Links Section */}
           <div className="mt-3 w-full">
             <div className="flex items-center gap-3 align-middle">
-              <p className="font-semibold">Social Links</p>
+              <p className="font-semibold">Liên kết mạng xã hội</p>
             </div>
             <div className="flex flex-col gap-3 mt-2 w-2/3">
-              {student?.socialLink?.length > 0 ? (
-                student.socialLink.map((link, index) => (
+              {student?.socialLinks?.length > 0 ? (
+                student.socialLinks.map((link, index) => (
                   <Link
                     key={index}
                     href={link.linkUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-[#131516] hover:underline"
+                    className="flex items-center gap-2 text-custom-blue-2 hover:underline"
                   >
-                    <Link2 className="text-gray-500" />
+                    <Link2 className="text-custom-blue-2" />
                     {link.name || link.linkUrl}
                   </Link>
                 ))
@@ -254,10 +258,10 @@ export default function UProfile() {
           {/* CV Download Button */}
           <p className="font-semibold">Danh sách CV của bạn</p>
           <div className="flex flex-wrap gap-2">
-            {student.cvUrls?.map((cvUrl, index) => (
+            {student.curriculumVitaes?.map((curriculumVitae, index) => (
               <UButton
                 key={index}
-                onClick={() => window.open(cvUrl, "_blank")}
+                onClick={() => window.open(curriculumVitae.documentUrl, "_blank")}
                 label={`Tải CV ${index + 1}`}
                 backgroundColor="bg-green-600/10"
                 textColor="text-green-600"
@@ -270,9 +274,7 @@ export default function UProfile() {
           </div>
 
           <div>
-            <Button type="submit" className="w-full md:w-auto bg-custom-blue-2">
-              Lưu thay đổi
-            </Button>
+            <UButton label="Lưu thay đổi" backgroundColor="bg-custom-blue-2" />
           </div>
         </form>
       </Form>

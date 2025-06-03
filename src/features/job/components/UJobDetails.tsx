@@ -1,20 +1,20 @@
 "use client";
-import React, {useEffect, useState} from "react";
-import {ArrowLeft, Briefcase, Calendar, Clock, Facebook, Mail, Phone, Twitter, Users} from "lucide-react";
-import {Button, buttonVariants} from "@/components/shadcn/button";
-import {formatDate, formatNewLine} from "@/utils/helpers";
+import React, { useEffect, useState } from "react";
+import { ArrowLeft, Briefcase, Calendar, Clock, Facebook, Mail, Phone, Twitter, Users } from "lucide-react";
+import { Button, buttonVariants } from "@/components/shadcn/button";
+import { formatDate, formatNewLine } from "@/utils/helpers";
 import Image from "next/image";
 import UCompanyInfoCard from "./UCompanyInfoCard";
 import UJobList from "./UJobList";
-import {resetParams, setPageSize} from "../slices/jobSlice";
-import {useAppDispatch} from "@/libs/rtk/hooks";
-import {useGetJobByIdQuery} from "@/services/jobsApi";
-import {useGetCompanyByIdQuery} from "@/services/companiesApi";
-import {skipToken} from "@reduxjs/toolkit/query";
+import { resetParams, setPageSize } from "../slices/jobSlice";
+import { useAppDispatch } from "@/libs/rtk/hooks";
+import { useGetJobByIdQuery } from "@/services/jobsApi";
+import { useGetCompanyByIdQuery } from "@/services/companiesApi";
+import { skipToken } from "@reduxjs/toolkit/query";
 import UButton from "@/components/shared/UButton";
-import {useRouter} from "next/navigation";
-import {UModalWrapper} from "@/components/shared/UModalWrapper";
-import {UModalApplyingJob} from "@/features/job/components/UModalApplyingJob";
+import { useRouter } from "next/navigation";
+import { UModalWrapper } from "@/components/shared/UModalWrapper";
+import { UModalApplyingJob } from "@/features/job/components/UModalApplyingJob";
 
 const UJobDetails = ({ id }: { id: number }) => {
   const { data: job, isLoading } = useGetJobByIdQuery(id);
@@ -49,9 +49,7 @@ const UJobDetails = ({ id }: { id: number }) => {
     <>
       {/*  Open or Close the application form modal*/}
       {isModalOpen && job && (
-        <UModalWrapper
-            onCloseModal={() => setIsModalOpen(false)}
-        >
+        <UModalWrapper onCloseModal={() => setIsModalOpen(false)}>
           <UModalApplyingJob job={job} company={company} onCloseModal={() => setIsModalOpen(false)}></UModalApplyingJob>
         </UModalWrapper>
       )}
@@ -82,7 +80,7 @@ const UJobDetails = ({ id }: { id: number }) => {
                 />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-custom-black">{job.title}</h1>
+                <h1 className="text-2xl font-bold text-custom-blue-2">{job.title}</h1>
                 <div className="mt-1 flex items-center text-sm space-x-4 text-custom-gray">
                   <span className="flex items-center">
                     <Phone className="mr-1 h-4 w-4" />
@@ -96,17 +94,13 @@ const UJobDetails = ({ id }: { id: number }) => {
               </div>
             </div>
             <div className="text-right">
-              <Button
-                className={buttonVariants({
-                  variant: "default",
-                  size: "default",
-                  className: "bg-custom-blue-2",
-                })}
+              <UButton
+                label="Ứng tuyển ngay"
+                backgroundColor="bg-custom-yellow-3"
+                textColor="text-custom-blue-2"
                 onClick={() => setIsModalOpen(true)}
-              >
-                Ứng tuyển ngay
-              </Button>
-              <div className="mt-2 text-sm text-custom-gray">Hết hạn vào {formatDate(job.closingDate)}</div>
+              ></UButton>
+              <div className="mt-2 text-sm text-custom-red-bg">Hết hạn vào {formatDate(job.closingDate)}</div>
             </div>
           </div>
         </div>
@@ -226,7 +220,7 @@ const UJobDetails = ({ id }: { id: number }) => {
           </div>
         </div>
         <div className="py-10">
-          <h1 className="pb-10 text-2xl font-semibold">Các công việc liên quan:</h1>
+          <h1 className="text-2xl font-semibold">Các công việc liên quan:</h1>
           <UJobList showPagination={false} />
         </div>
       </div>
