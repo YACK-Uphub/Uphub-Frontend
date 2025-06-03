@@ -9,7 +9,7 @@ import UInput from "@/components/shared/UInput";
 import Image from "next/image";
 import { Company } from "@/types/company";
 import UFileInput, { UFileInputType } from "@/components/shared/UFileInput";
-import { useCreateApplicationMutation } from "@/services/applicationsApi";
+import { useCreateApplicationMutation, useCreateApplicationWithFormDataMutation } from "@/services/applicationsApi";
 import { toast } from "react-toastify";
 import { UPageSpinner } from "@/components/shared/spinner/UPageSpinner";
 
@@ -63,12 +63,25 @@ export const UModalApplyingJob = ({ job, company, onCloseModal }: UModalApplying
     },
   });
 
-  const [createApplication, { isLoading }] = useCreateApplicationMutation();
+  const [createApplication, { isLoading }] = useCreateApplicationWithFormDataMutation();
 
   const onSubmit = async (data: ApplicationFormValues) => {
-    // Submit application (will update useid later)
     try {
-      const response = await createApplication({ ...data, jobId: job.id, userId: 1 }).unwrap();
+      // convert data fields to form data
+      const formData = new FormData();
+      formData.append("fullname", data.fullname);
+      formData.append("email", data.email);
+      formData.append("phone", data.phone);
+      formData.append("linkedInUrl", data.linkedInUrl || "");
+      formData.append("coverLetter", data.coverLetter || "");
+      formData.append("introduction", data.introduction || "");
+      formData.append("jobId", job.id.toString());
+      formData.append("userId", "1");
+      if (data.CVDocument instanceof File) {
+        formData.append("CVDocument", data.CVDocument);
+      }
+
+      const response = await createApplication(formData).unwrap();
       console.log(response);
       toast.success("Bạn đã nộp đơn thành công");
       onCloseModal();

@@ -1,11 +1,24 @@
-import {createCrudApi} from "@/services/baseApi";
-import {Application, ApplicationSearchPaginatedRequestParams} from "@/types/application";
+import { createCrudApi } from "@/services/baseApi";
+import { Application, ApplicationSearchPaginatedRequestParams } from "@/types/application";
 
 export const applicationsApi = createCrudApi<Application, ApplicationSearchPaginatedRequestParams>({
 	reducerPath: "applicationsApi",
 	tagType: "applications",
 	baseUrl: "applications",
 	searchUrl: "search/applications",
+});
+
+export const applicationsApiExtended = applicationsApi.injectEndpoints({
+	endpoints: (builder) => ({
+		createApplicationWithFormData: builder.mutation<any, FormData>({
+			query: (formData) => ({
+				url: "applications",
+				method: "POST",
+				body: formData,
+			}),
+			invalidatesTags: ["applications"],
+		}),
+	}),
 });
 
 export const {
@@ -20,3 +33,5 @@ export const {
 	useLazyGetByIdQuery: useLazyGetApplicationByIdQuery,
 	useLazySearchQuery: useLazySearchApplicationsQuery,
 } = applicationsApi;
+
+export const { useCreateApplicationWithFormDataMutation } = applicationsApiExtended;
