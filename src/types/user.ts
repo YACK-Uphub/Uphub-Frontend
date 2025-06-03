@@ -6,22 +6,28 @@
 	Guest = "guest",
 }
 export type User = {
+	id: number;
 	username: string;
 	email: string;
-	phone: string;
+	phoneNumber: string;
 	imageUrl?: string;
-	socialLink?: SocialLink[];
+	socialLinks?: SocialLink[];
 };
 
 export type Student = User & {
-	firstname: string;
-	lastname: string;
+	firstName: string;
+	lastName: string;
 	code: string;
 	biography?: string;
 	gender?: string;
 	school: string;
 	industry: string;
-	cvUrls?: string[];
+	curriculumVitaes?: CurriculumVitae[];
+};
+
+export type CurriculumVitae = {
+	id: number;
+	documentUrl: string;
 };
 
 export type SocialLink = {

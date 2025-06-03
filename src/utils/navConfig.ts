@@ -11,7 +11,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 	[UserRole.Student]: [
 		{name: 'Công việc', path: '/student/jobs'},
 		{name: 'Nhà tuyển dụng', path: '/student/companies'},
-		{name: 'Thống kê', path: '/student/dashboard'},
+		{name: 'Thống kê', path: '/student/dashboard/applications'},
 	],
 	[UserRole.Admin]: [
 		{name: 'Danh sách tài khoản', path: '/admin/accounts'},

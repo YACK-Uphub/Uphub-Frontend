@@ -12,7 +12,6 @@ export default function UStudentSearchContainer() {
   const dispatch = useAppDispatch();
 
   const { data: cities } = useGetAllCitiesQuery(null);
-  console.log("city: " + cities);
 
   const handleSearchButton = ({ searchKeyword, dropdownItemId, extraSelectionIds }: USearchWithFilterParams) => {
     if (pathname !== "/student/jobs/") router.push("/student/jobs/");

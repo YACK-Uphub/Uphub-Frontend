@@ -94,16 +94,12 @@ const UJobDetails = ({ id }: { id: number }) => {
               </div>
             </div>
             <div className="text-right">
-              <Button
-                className={buttonVariants({
-                  variant: "default",
-                  size: "default",
-                  className: "bg-custom-yellow-3 text-custom-blue-2",
-                })}
+              <UButton
+                label="Ứng tuyển ngay"
+                backgroundColor="bg-custom-yellow-3"
+                textColor="text-custom-blue-2"
                 onClick={() => setIsModalOpen(true)}
-              >
-                Ứng tuyển ngay
-              </Button>
+              ></UButton>
               <div className="mt-2 text-sm text-custom-red-bg">Hết hạn vào {formatDate(job.closingDate)}</div>
             </div>
           </div>

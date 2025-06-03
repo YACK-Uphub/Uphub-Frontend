@@ -7,6 +7,7 @@ import { citiesApi } from '@/services/citiesApi';
 import {companiesApi} from "@/services/companiesApi";
 import { internshipProgramsApi } from '@/services/internshipsApi';
 import {jobsApi} from "@/services/jobsApi";
+import { studentsApi } from '@/services/studentsApi';
 import {configureStore, Middleware} from "@reduxjs/toolkit";
 
 // Create store instance per request for strong type safety
@@ -18,6 +19,7 @@ export function makeStore() {
             [jobsApi.reducerPath]: jobsApi.reducer,
             [citiesApi.reducerPath]: citiesApi.reducer,
             [internshipProgramsApi.reducerPath]: internshipProgramsApi.reducer,
+            [studentsApi.reducerPath]: studentsApi.reducer,
 
             jobParams: jobSlice.reducer,
             companyParams: companySlice.reducer,
@@ -30,7 +32,8 @@ export function makeStore() {
                 .concat(applicationsApi.middleware as Middleware)
                 .concat(jobsApi.middleware as Middleware)
                 .concat(citiesApi.middleware as Middleware)
-                .concat(internshipProgramsApi.middleware as Middleware),
+                .concat(internshipProgramsApi.middleware as Middleware)
+                .concat(studentsApi.middleware as Middleware),
     });
 }
 
