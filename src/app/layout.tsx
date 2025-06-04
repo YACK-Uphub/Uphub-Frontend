@@ -15,13 +15,13 @@ const fontReemKufi = Reem_Kufi({
 	display: 'swap'
 })
 
-export const metadata: Metadata = {
-	title: {
-		template: "%s | UpHub",
-		default: "Welcome to UpHub"
-	},
-	description: "This is the InternHub App used externally for school, candidates and enterprises",
-};
+// export const metadata: Metadata = {
+// 	title: {
+// 		template: "%s | UpHub",
+// 		default: "Welcome to UpHub"
+// 	},
+// 	description: "This is the InternHub App used externally for school, candidates and enterprises",
+// };
 
 export default function RootLayout({children}: Readonly<{
 	children: ReactNode;

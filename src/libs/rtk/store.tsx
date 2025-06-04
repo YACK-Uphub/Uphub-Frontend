@@ -1,4 +1,5 @@
 import {applicationSlice} from "@/features/application/slices/applicationSlice";
+import { authSlice } from '@/features/auth/authSlice';
 import {companySlice} from "@/features/company/slices/companySlice";
 import { internshipProgramSlice } from '@/features/internship-program/slices/internshipProgramSlices';
 import {jobSlice} from "@/features/job/slices/jobSlice";
@@ -20,11 +21,13 @@ export function makeStore() {
             [citiesApi.reducerPath]: citiesApi.reducer,
             [internshipProgramsApi.reducerPath]: internshipProgramsApi.reducer,
             [studentsApi.reducerPath]: studentsApi.reducer,
-
+            
+            auth: authSlice.reducer,
             jobParams: jobSlice.reducer,
             companyParams: companySlice.reducer,
             applicationParams: applicationSlice.reducer,
-            internshipProgramParams: internshipProgramSlice.reducer
+            internshipProgramParams: internshipProgramSlice.reducer,
+            
         },
         middleware: (getDefaultMiddleware) =>
                 getDefaultMiddleware()
