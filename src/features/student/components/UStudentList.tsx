@@ -9,6 +9,8 @@ import {Student} from "@/types/user";
 import {useAppDispatch, useAppSelector} from "@/libs/rtk/hooks";
 import UCardStudent from "@/features/student/components/UCardStudent";
 import {setPageIndex} from "@/features/student/slices/studentSlice";
+import {UModalWrapper} from "@/components/shared/UModalWrapper";
+import UModalStudentDetail from "@/features/student/components/UModalStudentDetail";
 
 export const UStudentList: React.FC = () => {
       // Local state for pagination parameters
@@ -52,7 +54,7 @@ export const UStudentList: React.FC = () => {
             </h1>
 
             {/* Grid of student cards */}
-            <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
+            <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {data.data.map((student: Student) => (
                   <div
                       key={student.id}
@@ -74,12 +76,12 @@ export const UStudentList: React.FC = () => {
                 />
             )}
 
-            {/* Modal for showing student details */}
-            {/*{isModalOpen && selectedStudent && (*/}
-            {/*    <UModalWrapper onCloseModal={closeModal}>*/}
-            {/*      /!*<UModalStudent data={selectedStudent}/>*!/*/}
-            {/*    </UModalWrapper>*/}
-            {/*)}*/}
+            {/*Modal for showing student details*/}
+            {isModalOpen && selectedStudent && (
+                <UModalWrapper onCloseModal={closeModal}>
+                  <UModalStudentDetail student={selectedStudent}/>
+                </UModalWrapper>
+            )}
           </>
       );
     }

@@ -24,9 +24,10 @@ export type Student = User & {
 	biography?: string;
 	gender?: string;
 	school: string;
-	industry: string;
+	industry?: string;
 	industryId?: number;
-	curriculumVitaes?: CurriculumVitae[]
+	curriculumVitaes?: CurriculumVitae[];
+	skills?: Skill[]
 };
 
 export type CurriculumVitae = {
@@ -39,5 +40,10 @@ export type SocialLink = {
 	name: string;
 	linkUrl: string;
 };
+
+export type Skill = {
+	id: number;
+	name: string;
+}
 
 export type StudentSearchPaginatedRequestParams = {} & GetAllPaginatedRequestParams;

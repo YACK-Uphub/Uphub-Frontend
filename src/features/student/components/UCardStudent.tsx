@@ -94,7 +94,7 @@ const UCardStudent: React.FC<UStudentCardProps> = ({student}) => {
                 {student.gender.toLowerCase() === "female" && (
                     <span
                         className="
-                  inline-block
+                  inline-block+
                   text-xs font-semibold
                   px-2 py-0.5
                   rounded-full
