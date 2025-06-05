@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import type {Metadata} from 'next';
+import UCreateJobForm from "@/features/job/components/UCreateJobForm";
 
 export const metadata: Metadata = {
 	title: "Job Postings",
@@ -8,10 +9,7 @@ export const metadata: Metadata = {
 
 const JobPostingsPage = () => {
 	return (
-		<div>
-			<h1>Job Postings</h1>
-			<p>Create, edit, and manage your company's internship job postings.</p>
-		</div>
+      <UCreateJobForm></UCreateJobForm>
 	);
 };
 
