@@ -1,19 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "next-auth";
 
 interface AuthState {
 	token: string | null;
+	user: User;
 }
 
 const initialState: AuthState = {
 	token: null,
+	user: null,
 };
 
 export const authSlice = createSlice({
 	name: "auth",
 	initialState,
 	reducers: {
-		setToken: (state, action: PayloadAction<string>) => {
+		setToken: (state, action) => {
 			state.token = action.payload;
+		},
+		setUser(state, action) {
+			state.user = action.payload;
 		},
 		clearToken: (state) => {
 			state.token = null;
@@ -21,4 +27,4 @@ export const authSlice = createSlice({
 	},
 });
 
-export const { setToken, clearToken } = authSlice.actions;
+export const { setToken, clearToken, setUser } = authSlice.actions;
