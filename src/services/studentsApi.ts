@@ -1,8 +1,7 @@
 import { createCrudApi } from "@/services/baseApi";
-import { SearchPaginatedRequestParams } from "@/types/baseModel";
-import { Student } from "@/types/user";
+import {Student, StudentSearchPaginatedRequestParams} from "@/types/user";
 
-export const studentsApi = createCrudApi<Student, SearchPaginatedRequestParams>({
+export const studentsApi = createCrudApi<Student, StudentSearchPaginatedRequestParams>({
 	reducerPath: "studentsApi",
 	tagType: "students",
 	baseUrl: "students",

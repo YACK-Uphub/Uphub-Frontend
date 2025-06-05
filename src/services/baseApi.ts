@@ -1,12 +1,13 @@
-﻿import { BaseQueryApi, BaseQueryFn, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query";
-import { notFound } from "next/navigation";
+﻿import {BaseQueryApi, BaseQueryFn, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/query";
+import {notFound} from "next/navigation";
 import {
 	BaseEntity,
+	GetAllPaginatedRequestParams,
 	PaginatedResponse,
 	SearchPaginatedRequestParams,
 	SearchPaginatedResponse,
 } from "@/types/baseModel";
-import { createApi } from "@reduxjs/toolkit/query/react";
+import {createApi} from "@reduxjs/toolkit/query/react";
 
 // =============================
 // === Custom Base Query
@@ -53,7 +54,9 @@ export type CrudApiOptions = {
 	baseQuery?: BaseQueryFn; // Optional: your custom fetch logic, override the existing custom api
 };
 
-export function createCrudApi<T extends BaseEntity, P extends SearchPaginatedRequestParams>({
+export function createCrudApi<
+	T extends BaseEntity,
+	P extends SearchPaginatedRequestParams & GetAllPaginatedRequestParams>({
 	reducerPath,
 	tagType,
 	baseUrl,

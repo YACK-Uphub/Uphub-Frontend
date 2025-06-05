@@ -29,7 +29,7 @@ export default function RootLayout({children}: Readonly<{
 
 	//! FOR TESTING PURPOSE on Auth
 	// const session = .....
-  const role: UserRole = UserRole.Student;
+  const role: UserRole = UserRole.Company;
 
 	return (
 		<html lang="en" className={`${fontReemKufi.className} h-full`}>

@@ -12,6 +12,8 @@ import {toast} from "react-toastify";
 import {useSearchCompaniesQuery} from "@/services/companiesApi";
 import {useSearchJobsQuery} from "@/services/jobsApi";
 import {useSearchApplicationsQuery} from "@/services/applicationsApi";
+import {Student} from "@/types/user";
+import UCardStudent from "@/features/student/components/UCardStudent";
 
 const locations: UDropdownItem[] = [
   {id: 1, name: 'Hà Nội'},
@@ -39,6 +41,28 @@ const job: Job = {
   skills: ["React", "TypeScript", "CSS", "Git"],
   applicationCount: 42,
 }
+
+const student: Student = {
+  id: 1,
+  imageUrl: "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/teamo%2Fimages%2Fplaceholders%2Ffemale-user.jpg?alt=media",
+  firstName: "Tiểu My",
+  lastName: "Lâm",
+  userName: "my@test.com",
+  phoneNumber: "0034988493",
+  email: "my@test.com",
+  biography: `Tôi có kinh nghiệm phát triển ứng dụng ASP.NET.
+Tôi đã tham gia vào các dự án sử dụng .NET Core và Entity Framework.
+Tôi yêu thích việc xây dựng hệ thống backend hiệu quả và có khả năng mở rộng.`,
+  dateOfBirth: "2000-02-01",
+  gender: "Female",
+  code: "SE181549",
+  industryId: 1,
+  industry: "Dai Hoc FPT",
+  school: "Đại học FPT",
+  curriculumVitaes: [],
+  socialLinks: []
+};
+
 
 const TestPage = () => {
 
@@ -101,6 +125,8 @@ const TestPage = () => {
             tag="Ứng Tuyển Dễ Dàng"
             postedTime="1d"
         />
+
+        <UCardStudent student={student}></UCardStudent>
       </>
   )
 }

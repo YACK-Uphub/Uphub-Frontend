@@ -26,3 +26,8 @@ export type SearchPaginatedRequestParams ={
 	pageSize?: number,
 	searchTerm?: string;
 }
+
+export type GetAllPaginatedRequestParams = {
+	pageIndex?: number;
+	pageSize?: number;
+}
