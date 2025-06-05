@@ -16,6 +16,7 @@ import { Link2 } from "lucide-react";
 import UButton from "@/components/shared/UButton";
 import { DocumentTextIcon } from "@heroicons/react/24/outline";
 import { useGetStudentByIdQuery } from "@/services/studentsApi";
+import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
 
 const FormSchema = z.object({
   firstname: z.string().nonempty("Vui lòng nhập tên của bạn"),
@@ -28,7 +29,12 @@ const FormSchema = z.object({
 });
 
 export default function UProfile() {
-  const { data: student, isLoading } = useGetStudentByIdQuery(1);
+  const auth = useAppSelector((state) => state.auth);
+
+  const { data: student, isLoading } = useGetStudentByIdQuery(auth.user?.userId, {
+    skip: !auth.user?.userId,
+  });
+  //console.log(auth.user.userId);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),

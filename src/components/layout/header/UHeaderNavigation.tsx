@@ -2,6 +2,7 @@
 
 import React from "react";
 import {
+  ArrowLeftEndOnRectangleIcon,
   ArrowRightEndOnRectangleIcon,
   BellIcon,
   EnvelopeIcon,
@@ -9,9 +10,11 @@ import {
 } from "@heroicons/react/24/outline";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import UButton from "@/components/shared/UButton";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const UHeaderNavigation = () => {
+  const { data: session, status } = useSession();
+  const isLoggedIn = status === "authenticated";
   // ==================
   // === Events
   // ==================
@@ -23,6 +26,9 @@ const UHeaderNavigation = () => {
   const handleLoginClick = () => {
     signIn("id-server", { callbackUrl: "/" }, { prompt: "login" });
     //alert("Login clicked!");
+  };
+  const handleLogoutClick = () => {
+    signOut({ callbackUrl: "/" }); // Optional: về trang chính sau logout
   };
 
   // ==================
@@ -51,15 +57,32 @@ const UHeaderNavigation = () => {
       <div className="inline-block h-6 opacity-50 w-[1px] bg-custom-gray"></div>
 
       {/* Login Button */}
-      <UButton
-        label={"Đăng Nhập"}
-        iconPosition={"left"}
-        icon={<ArrowRightEndOnRectangleIcon className="h-5 w-5 cursor-pointer text-custom-white" />}
-        backgroundColor={"bg-custom-black"}
-        textColor={"text-custom-white"}
-        borderRadius={"rounded-full"}
-        onClick={handleLoginClick}
-      />
+      {isLoggedIn ? (
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-medium text-custom-blue-2">
+            Xin chào, {session.user?.name || session.user?.username}
+          </span>
+          <UButton
+            label="Đăng Xuất"
+            iconPosition="left"
+            icon={<ArrowLeftEndOnRectangleIcon className="h-5 w-5 cursor-pointer text-custom-white" />}
+            backgroundColor="bg-custom-black"
+            textColor="text-custom-white"
+            borderRadius="rounded-full"
+            onClick={handleLogoutClick}
+          />
+        </div>
+      ) : (
+        <UButton
+          label="Đăng Nhập"
+          iconPosition="left"
+          icon={<ArrowRightEndOnRectangleIcon className="h-5 w-5 cursor-pointer text-custom-white" />}
+          backgroundColor="bg-custom-black"
+          textColor="text-custom-white"
+          borderRadius="rounded-full"
+          onClick={handleLoginClick}
+        />
+      )}
     </nav>
   );
 };
