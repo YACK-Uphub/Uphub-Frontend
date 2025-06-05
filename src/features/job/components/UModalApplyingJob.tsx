@@ -1,17 +1,17 @@
 ﻿import * as React from "react";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Job } from "@/types/job";
+import {Controller, useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {z} from "zod";
+import {Job} from "@/types/job";
 import UButton from "@/components/shared/UButton";
-import { Label } from "@/components/shadcn/label";
+import {Label} from "@/components/shadcn/label";
 import UInput from "@/components/shared/UInput";
 import Image from "next/image";
-import { Company } from "@/types/company";
-import UFileInput, { UFileInputType } from "@/components/shared/UFileInput";
-import { useCreateApplicationMutation, useCreateApplicationWithFormDataMutation } from "@/services/applicationsApi";
-import { toast } from "react-toastify";
-import { UPageSpinner } from "@/components/shared/spinner/UPageSpinner";
+import {Company} from "@/types/company";
+import UFileInput, {UFileInputType} from "@/components/shared/UFileInput";
+import {useCreateApplicationWithFormDataMutation} from "@/services/applicationsApi";
+import {toast} from "react-toastify";
+import {UPageSpinner} from "@/components/shared/spinner/UPageSpinner";
 
 // FILE UPLOAD RESTRICTION
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB

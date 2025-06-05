@@ -1,20 +1,19 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { ArrowLeft, Briefcase, Calendar, Clock, Facebook, Mail, Phone, Twitter, Users } from "lucide-react";
-import { Button, buttonVariants } from "@/components/shadcn/button";
-import { formatDate, formatNewLine } from "@/utils/helpers";
+import React, {useEffect, useState} from "react";
+import {ArrowLeft, Briefcase, Calendar, Clock, Facebook, Mail, Phone, Twitter, Users} from "lucide-react";
+import {formatDate, formatNewLine} from "@/utils/helpers";
 import Image from "next/image";
 import UCompanyInfoCard from "./UCompanyInfoCard";
 import UJobList from "./UJobList";
-import { resetParams, setPageSize } from "../slices/jobSlice";
-import { useAppDispatch } from "@/libs/rtk/hooks";
-import { useGetJobByIdQuery } from "@/services/jobsApi";
-import { useGetCompanyByIdQuery } from "@/services/companiesApi";
-import { skipToken } from "@reduxjs/toolkit/query";
+import {resetParams, setPageSize} from "../slices/jobSlice";
+import {useAppDispatch} from "@/libs/rtk/hooks";
+import {useGetJobByIdQuery} from "@/services/jobsApi";
+import {useGetCompanyByIdQuery} from "@/services/companiesApi";
+import {skipToken} from "@reduxjs/toolkit/query";
 import UButton from "@/components/shared/UButton";
-import { useRouter } from "next/navigation";
-import { UModalWrapper } from "@/components/shared/UModalWrapper";
-import { UModalApplyingJob } from "@/features/job/components/UModalApplyingJob";
+import {useRouter} from "next/navigation";
+import {UModalWrapper} from "@/components/shared/UModalWrapper";
+import {UModalApplyingJob} from "@/features/job/components/UModalApplyingJob";
 
 const UJobDetails = ({ id }: { id: number }) => {
   const { data: job, isLoading } = useGetJobByIdQuery(id);

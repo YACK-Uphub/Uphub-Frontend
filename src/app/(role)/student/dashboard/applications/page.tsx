@@ -1,5 +1,6 @@
 ﻿import React from "react";
 import UStudentApplicationList from "@/features/application/components/UStudentApplicationList";
+import {Metadata} from "next";
 
 export const metadata: Metadata = {
   title: "My Applications",

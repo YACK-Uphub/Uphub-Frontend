@@ -1,22 +1,20 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/shadcn/form";
+import React, {useEffect} from "react";
+import {useForm} from "react-hook-form";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {Form, FormControl, FormField, FormItem, FormMessage} from "@/components/shadcn/form";
 import UInput from "@/components/shared/UInput";
-import { Button } from "@/components/shadcn/button";
-import { Label } from "@/components/shadcn/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
-import { Student } from "@/types/user";
+import {Label} from "@/components/shadcn/label";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/shadcn/select";
 import Image from "next/image";
 import Link from "next/link";
-import { Link2 } from "lucide-react";
+import {Link2} from "lucide-react";
 import UButton from "@/components/shared/UButton";
-import { DocumentTextIcon } from "@heroicons/react/24/outline";
-import { useGetStudentByIdQuery } from "@/services/studentsApi";
-import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
+import {DocumentTextIcon} from "@heroicons/react/24/outline";
+import {useGetStudentByIdQuery} from "@/services/studentsApi";
+import {useAppSelector} from "@/libs/rtk/hooks";
 
 const FormSchema = z.object({
   firstname: z.string().nonempty("Vui lòng nhập tên của bạn"),
@@ -31,7 +29,7 @@ const FormSchema = z.object({
 export default function UProfile() {
   const auth = useAppSelector((state) => state.auth);
 
-  const { data: student, isLoading } = useGetStudentByIdQuery(auth.user?.userId, {
+  const {data: student, isLoading} = useGetStudentByIdQuery(auth.user?.userId, {
     skip: !auth.user?.userId,
   });
   //console.log(auth.user.userId);

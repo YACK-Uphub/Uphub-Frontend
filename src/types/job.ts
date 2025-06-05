@@ -1,14 +1,13 @@
 ﻿import {Entity, SearchPaginatedRequestParams} from "./baseModel";
 
 export type Job = Entity<{
-	id: number;
 	title: string;
 	companyImageUrl?: string;
 	companyName: string;
 	city: string;
 	description?: string;
 	requirements?: string;
-	closingDate: Date;
+	closingDate: string;
 	salaryRange: string;
 	count?: number;
 	isFeatured: boolean;
@@ -16,7 +15,10 @@ export type Job = Entity<{
 	contactEmail?: string;
 	contactPhone?: string;
 	jobStatus: JobStatus;
-	companyId: number;
+	companyId?: number;
+	jobTypeId?: number
+	industryId?: number
+	skillIds?: number[]
 	jobType: string;
 	industry?: string;
 	skills?: string[];
@@ -35,7 +37,6 @@ export enum JobDateType {
 	DateDesc = "dateDesc",
 	ClosingSoon = "closingSoon",
 }
-
 
 export type JobSearchPaginatedRequestParams = SearchPaginatedRequestParams & {
 	companyId?: number;

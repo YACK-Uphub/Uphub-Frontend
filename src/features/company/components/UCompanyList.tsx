@@ -5,9 +5,7 @@ import { useSearchCompaniesQuery } from "@/services/companiesApi";
 import { Company } from "@/types/company";
 import Link from "next/link";
 import React from "react";
-import { resetParams, setIsLinked, setPageIndex } from "../slices/companySlice";
-import UButton from "@/components/shared/UButton";
-import { Briefcase } from "lucide-react";
+import { setPageIndex } from "../slices/companySlice";
 import { UPagination } from "@/components/shared/UPagination";
 import UCardCompany from "@/components/shared/card/UCardCompany";
 

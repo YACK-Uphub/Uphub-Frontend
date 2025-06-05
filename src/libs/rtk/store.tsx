@@ -1,43 +1,42 @@
 import {applicationSlice} from "@/features/application/slices/applicationSlice";
-import { authSlice } from '@/features/auth/authSlice';
 import {companySlice} from "@/features/company/slices/companySlice";
-import { internshipProgramSlice } from '@/features/internship-program/slices/internshipProgramSlices';
+import {internshipProgramSlice} from '@/features/internship-program/slices/internshipProgramSlices';
 import {jobSlice} from "@/features/job/slices/jobSlice";
 import {applicationsApi} from "@/services/applicationsApi";
-import { citiesApi } from '@/services/citiesApi';
+import {citiesApi} from '@/services/citiesApi';
 import {companiesApi} from "@/services/companiesApi";
-import { internshipProgramsApi } from '@/services/internshipsApi';
+import {internshipProgramsApi} from '@/services/internshipsApi';
 import {jobsApi} from "@/services/jobsApi";
-import { studentsApi } from '@/services/studentsApi';
+import {studentsApi} from '@/services/studentsApi';
 import {configureStore, Middleware} from "@reduxjs/toolkit";
+import {authSlice} from "@/features/auth/authSlice";
 
 // Create store instance per request for strong type safety
 export function makeStore() {
-    return configureStore({
-        reducer: {
-            [companiesApi.reducerPath]: companiesApi.reducer,
-            [applicationsApi.reducerPath]: applicationsApi.reducer,
-            [jobsApi.reducerPath]: jobsApi.reducer,
-            [citiesApi.reducerPath]: citiesApi.reducer,
-            [internshipProgramsApi.reducerPath]: internshipProgramsApi.reducer,
-            [studentsApi.reducerPath]: studentsApi.reducer,
-            
-            auth: authSlice.reducer,
-            jobParams: jobSlice.reducer,
-            companyParams: companySlice.reducer,
-            applicationParams: applicationSlice.reducer,
-            internshipProgramParams: internshipProgramSlice.reducer,
-            
-        },
-        middleware: (getDefaultMiddleware) =>
-                getDefaultMiddleware()
-                .concat(companiesApi.middleware as Middleware)
-                .concat(applicationsApi.middleware as Middleware)
-                .concat(jobsApi.middleware as Middleware)
-                .concat(citiesApi.middleware as Middleware)
-                .concat(internshipProgramsApi.middleware as Middleware)
-                .concat(studentsApi.middleware as Middleware),
-    });
+  return configureStore({
+    reducer: {
+      [companiesApi.reducerPath]: companiesApi.reducer,
+      [applicationsApi.reducerPath]: applicationsApi.reducer,
+      [jobsApi.reducerPath]: jobsApi.reducer,
+      [citiesApi.reducerPath]: citiesApi.reducer,
+      [internshipProgramsApi.reducerPath]: internshipProgramsApi.reducer,
+      [studentsApi.reducerPath]: studentsApi.reducer,
+
+      auth: authSlice.reducer,
+      jobParams: jobSlice.reducer,
+      companyParams: companySlice.reducer,
+      applicationParams: applicationSlice.reducer,
+      internshipProgramParams: internshipProgramSlice.reducer
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware()
+            .concat(companiesApi.middleware as Middleware)
+            .concat(applicationsApi.middleware as Middleware)
+            .concat(jobsApi.middleware as Middleware)
+            .concat(citiesApi.middleware as Middleware)
+            .concat(internshipProgramsApi.middleware as Middleware)
+            .concat(studentsApi.middleware as Middleware),
+  });
 }
 
 // Infer those type to get the state, store, dispatch per request
