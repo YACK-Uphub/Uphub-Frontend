@@ -3,12 +3,12 @@ import { Button } from "@/components/shadcn/button";
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/shadcn/table";
 import { UPagination } from "@/components/shared/UPagination";
 import { useAppDispatch } from "@/libs/rtk/hooks";
-import { useGetAllStudentsQuery } from "@/services/studentsApi";
+import { useSearchCompaniesQuery } from "@/services/companiesApi";
 import { SearchPaginatedRequestParams } from "@/types/baseModel";
 
-export function UStudentAccountTable() {
+export function UcompanyAccountTable() {
   const params: SearchPaginatedRequestParams = { pageNumber: 1, pageSize: 10 };
-  const { data: students, isLoading } = useGetAllStudentsQuery(params);
+  const { data: companies, isLoading } = useSearchCompaniesQuery(params);
   const dispatch = useAppDispatch();
 
   const handlePageChange = (newPage: number) => {
@@ -17,33 +17,31 @@ export function UStudentAccountTable() {
 
   if (isLoading) return;
 
-  if (!students?.data) return <div>There is no student accounts</div>;
+  if (!companies?.results) return <div>There is no company accounts</div>;
 
   return (
     <div>
       <Table>
-        <TableCaption>Danh sách tài khoản sinh viên</TableCaption>
+        <TableCaption>Danh sách tài khoản doanh nghiệp</TableCaption>
         <TableHeader>
           <TableRow className="bg-custom-yellow-3">
-            <TableHead className="w-[100px] ">ID</TableHead>
-            <TableHead className="w-[180px] ">Họ và Tên</TableHead>
+            <TableHead className="w-[50px]">ID</TableHead>
+            <TableHead className="w-[180px] ">Tên công ty</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Số điện thoại</TableHead>
-            <TableHead>Trường</TableHead>
+            <TableHead>Loại hình doanh nghiệp</TableHead>
             <TableHead>Trạng thái</TableHead>
             <TableHead></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {students.data.map((student) => (
-            <TableRow key={student.id}>
-              <TableCell className="font-medium">{student.code}</TableCell>
-              <TableCell>
-                {student.firstName} {student.lastName}
-              </TableCell>
-              <TableCell>{student.email}</TableCell>
-              <TableCell>{student.phoneNumber}</TableCell>
-              <TableCell>{student.school}</TableCell>
+          {companies.results.map((company) => (
+            <TableRow key={company.id}>
+              <TableCell className="font-medium">{company.id}</TableCell>
+              <TableCell>{company.companyName}</TableCell>
+              <TableCell>{company.email}</TableCell>
+              <TableCell>{company.phoneNumber}</TableCell>
+              <TableCell>{company.businessType}</TableCell>
               <TableCell>
                 <span className="rounded-full px-2 py-1 text-sm bg-green-100 text-green-600">Active</span>
               </TableCell>
@@ -60,7 +58,7 @@ export function UStudentAccountTable() {
       {/* Pagination */}
       <UPagination
         currentPage={Number(params.pageNumber)}
-        totalPages={Math.ceil(students.count / students.pageSize)}
+        totalPages={companies.pageCount}
         onPageChanged={handlePageChange}
         className="mt-5"
       />
