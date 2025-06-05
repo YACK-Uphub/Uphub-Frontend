@@ -1,4 +1,4 @@
-import { createCrudApi } from "@/services/baseApi";
+import {createCrudApi} from "@/services/baseApi";
 import {Student, StudentSearchPaginatedRequestParams} from "@/types/user";
 
 export const studentsApi = createCrudApi<Student, StudentSearchPaginatedRequestParams>({

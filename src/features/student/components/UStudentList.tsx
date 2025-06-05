@@ -22,16 +22,16 @@ export const UStudentList: React.FC = () => {
 
       // Local state for the detail modal
       const [isModalOpen, setIsModalOpen] = useState(false);
-      const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+      const [selectedStudentId, setselectedStudentId] = useState<number | null>(null);
 
-      const openModal = (student: Student) => {
+      const openModal = (studentId: number) => {
         setIsModalOpen(true);
-        setSelectedStudent(student);
+        setselectedStudentId(studentId);
       };
 
       const closeModal = () => {
         setIsModalOpen(false);
-        setSelectedStudent(null);
+        setselectedStudentId(null);
       };
 
       // Show spinner while loading or refetching
@@ -58,7 +58,7 @@ export const UStudentList: React.FC = () => {
               {data.data.map((student: Student) => (
                   <div
                       key={student.id}
-                      onClick={() => openModal(student)}
+                      onClick={() => openModal(student.id)}
                       className="cursor-pointer"
                   >
                     <UCardStudent student={student}/>
@@ -77,9 +77,9 @@ export const UStudentList: React.FC = () => {
             )}
 
             {/*Modal for showing student details*/}
-            {isModalOpen && selectedStudent && (
+            {isModalOpen && selectedStudentId && (
                 <UModalWrapper onCloseModal={closeModal}>
-                  <UModalStudentDetail student={selectedStudent}/>
+                  <UModalStudentDetail studentId={selectedStudentId}/>
                 </UModalWrapper>
             )}
           </>
