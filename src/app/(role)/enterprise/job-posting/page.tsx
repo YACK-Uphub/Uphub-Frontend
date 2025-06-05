@@ -9,7 +9,11 @@ export const metadata: Metadata = {
 
 const JobPostingsPage = () => {
 	return (
-      <UCreateJobForm></UCreateJobForm>
+      <section className={"py-12 sm:pt-16 mx-auto"}>
+        <div className={"px-12 xl:px-0"}>
+          <UCreateJobForm></UCreateJobForm>
+        </div>
+      </section>
 	);
 };
 
