@@ -1,10 +1,10 @@
 ﻿"use client";
 import React from "react";
 import UInternshipProgramList from "@/features/internship-program/components/UInternshipProgramList";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
-import { InternshipProgramSortType } from "@/types/internshipProgram";
-import { useAppDispatch } from "@/libs/rtk/hooks";
-import { setSort } from "@/features/internship-program/slices/internshipProgramSlices";
+import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@/components/shadcn/select";
+import {InternshipProgramSortType} from "@/types/internshipProgram";
+import {useAppDispatch} from "@/libs/rtk/hooks";
+import {setSort} from "@/features/internship-program/slices/internshipProgramSlices";
 
 const InternshipProgramsPage = () => {
   const dispatch = useAppDispatch();
