@@ -9,10 +9,7 @@ import {internshipProgramsApi} from '@/services/internshipsApi';
 import {jobsApi} from "@/services/jobsApi";
 import {studentsApi} from '@/services/studentsApi';
 import {configureStore, Middleware} from "@reduxjs/toolkit";
-import {studentSlice} from "@/features/student/slices/studentSlice";
-import {industriesApi} from "@/services/industriesApi";
-import {jobTypesApi} from "@/services/jobTypesApi";
-import {skillsApi} from "@/services/skillsApi";
+import {authSlice} from "@/features/auth/authSlice";
 
 // Create store instance per request for strong type safety
 export function makeStore() {
@@ -24,15 +21,12 @@ export function makeStore() {
       [citiesApi.reducerPath]: citiesApi.reducer,
       [internshipProgramsApi.reducerPath]: internshipProgramsApi.reducer,
       [studentsApi.reducerPath]: studentsApi.reducer,
-      [industriesApi.reducerPath]: industriesApi.reducer,
-      [jobTypesApi.reducerPath]: jobTypesApi.reducer,
-      [skillsApi.reducerPath]: skillsApi.reducer,
 
+      auth: authSlice.reducer,
       jobParams: jobSlice.reducer,
       companyParams: companySlice.reducer,
       applicationParams: applicationSlice.reducer,
-      internshipProgramParams: internshipProgramSlice.reducer,
-      studentParams: studentSlice.reducer,
+      internshipProgramParams: internshipProgramSlice.reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
@@ -41,10 +35,7 @@ export function makeStore() {
             .concat(jobsApi.middleware as Middleware)
             .concat(citiesApi.middleware as Middleware)
             .concat(internshipProgramsApi.middleware as Middleware)
-            .concat(studentsApi.middleware as Middleware)
-            .concat(industriesApi.middleware as Middleware)
-            .concat(jobTypesApi.middleware as Middleware)
-            .concat(skillsApi.middleware as Middleware)
+            .concat(studentsApi.middleware as Middleware),
   });
 }
 

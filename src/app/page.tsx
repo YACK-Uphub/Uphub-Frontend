@@ -8,10 +8,10 @@ import UJobPilotSection from "@/features/home/components/UJobPilotSection";
 import UBecomeMemberSection
   from "@/features/home/components/become-member-section/UBecomeMemberSection";
 
-export const metadata: Metadata = {
-	title: "HomePage",
-	description: "Welcome to the UpHub home page",
-};
+// export const metadata: Metadata = {
+// 	title: "HomePage",
+// 	description: "Welcome to the UpHub home page",
+// };
 
 const HomePage = () => {
 

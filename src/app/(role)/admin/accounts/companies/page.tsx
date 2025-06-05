@@ -1,18 +1,18 @@
-﻿import React from 'react';
-import type {Metadata} from 'next';
+﻿import React from "react";
+import type { Metadata } from "next";
+import { UcompanyAccountTable } from "@/features/dashboard/components/UCompanyAccountTable";
 
 export const metadata: Metadata = {
-	title: "Company Accounts",
-	description: "Manage company accounts on UpHub",
+  title: "Company Accounts",
+  description: "Manage company accounts on UpHub",
 };
 
 const CompanyAccountsPage = () => {
-	return (
-		<div>
-			<h1>Company Accounts</h1>
-			<p>Manage company accounts and their access to UpHub.</p>
-		</div>
-	);
+  return (
+    <div>
+      <UcompanyAccountTable />
+    </div>
+  );
 };
 
 export default CompanyAccountsPage;

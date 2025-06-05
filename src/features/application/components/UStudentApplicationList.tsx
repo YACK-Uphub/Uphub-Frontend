@@ -12,6 +12,9 @@ import UModalApplication from "./UModalApplication";
 
 export default function UStudentApplicationList() {
   const applicationParams = useAppSelector((state) => state.applicationParams);
+  const auth = useAppSelector((state) => state.auth);
+  const storedUserId = useAppSelector((state) => state.applicationParams.userId);
+
   const { data, isLoading } = useSearchApplicationsQuery(applicationParams);
   const dispatch = useAppDispatch();
 
@@ -30,8 +33,9 @@ export default function UStudentApplicationList() {
 
   // TODO: Get current user
   useEffect(() => {
-    dispatch(setUserId(1));
-  }, [dispatch]);
+    const userIdFromToken = auth?.user?.userId;
+    if (userIdFromToken && !storedUserId) dispatch(setUserId(auth.user.userId));
+  }, [auth?.user?.userId, storedUserId, dispatch]);
 
   const handlePageChange = (newPage: number) => {
     dispatch(setPageIndex(newPage));
