@@ -2,7 +2,7 @@
 import {UserRole} from "@/types/user";
 
 export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
-	[UserRole.School]: [
+	[UserRole.UniversityManager]: [
 		{name: 'Quản lý học sinh', path: '/school/students'},
 		{name: 'Quản lý công ty', path: '/school/companies'},
 		{name: 'Quản lý chương trình', path: '/school/internship-programs'},
@@ -14,7 +14,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 		{name: 'Thống kê', path: '/student/dashboard/applications'},
 	],
 	[UserRole.Admin]: [
-		{name: 'Danh sách tài khoản', path: '/admin/accounts'},
+		{name: 'Danh sách tài khoản', path: '/admin/accounts/students'},
 		{name: 'Quản lý gói sản phẩm', path: '/admin/plans'},
 		{name: 'Quản lý giao dịch', path: '/admin/transactions'},
 		{name: 'Thống kê', path: '/admin/statistics'},

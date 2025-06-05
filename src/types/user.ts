@@ -2,7 +2,7 @@
 	Student = "student",
 	Admin = "admin",
 	Company = "company",
-	School = "school",
+	UniversityManager = "UniversityManager",
 	Guest = "guest",
 }
 export type User = {
