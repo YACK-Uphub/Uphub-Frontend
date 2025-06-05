@@ -2,7 +2,7 @@
 import {UserRole} from "@/types/user";
 
 export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
-	[UserRole.School]: [
+	[UserRole.UniversityManager]: [
 		{name: 'Quản lý học sinh', path: '/school/students'},
 		{name: 'Quản lý công ty', path: '/school/companies'},
 		{name: 'Quản lý chương trình', path: '/school/internship-programs'},
