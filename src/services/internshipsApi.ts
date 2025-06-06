@@ -14,7 +14,7 @@ export const internshipsApi = createCrudApi<Internship, InternshipPaginatedReque
 });
 
 export const {
-	useSearchQuery: useSearchInternshipProgramsQuery,
+	useSearchQuery: useSearchInternshipsQuery,
 } = internshipsApi;
 
 // ===========================
