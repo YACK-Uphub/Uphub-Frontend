@@ -5,7 +5,7 @@ import {jobSlice} from "@/features/job/slices/jobSlice";
 import {applicationsApi} from "@/services/applicationsApi";
 import {citiesApi} from '@/services/citiesApi';
 import {companiesApi} from "@/services/companiesApi";
-import {internshipProgramsApi} from '@/services/internshipsApi';
+import {internshipProgramsApi} from '@/services/internshipProgramsApi';
 import {jobsApi} from "@/services/jobsApi";
 import {studentsApi} from '@/services/studentsApi';
 import {configureStore, Middleware} from "@reduxjs/toolkit";

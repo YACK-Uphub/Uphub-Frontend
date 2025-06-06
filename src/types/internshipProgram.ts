@@ -1,7 +1,6 @@
-import { SearchPaginatedRequestParams } from "./baseModel";
+import {Entity, SearchPaginatedRequestParams} from "./baseModel";
 
-export type InternshipProgram = {
-	id: number;
+export type InternshipProgram = Entity<{
 	internshipTerm: string;
 	startDate: Date;
 	endDate: Date;
@@ -11,12 +10,13 @@ export type InternshipProgram = {
 	agreements: string;
 	partnerships: string;
 	status: string;
-};
+}>;
 
 export enum InternshipProgramSortType {
 	endingSoon = "endingSoon",
 	upcoming = "upcoming",
 }
+
 export type InternshipProgramPaginatedRequestParams = SearchPaginatedRequestParams & {
 	sort?: InternshipProgramSortType;
 	cityId?: number | string;

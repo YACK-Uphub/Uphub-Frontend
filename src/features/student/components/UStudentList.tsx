@@ -25,7 +25,6 @@ export const UStudentList: React.FC<UStudentListProps> = ({isAssigningMode = fal
       const {data, isLoading, isFetching} = useGetAllStudentsQuery(studentParams);
       const dispatch = useAppDispatch();
 
-
       // Local state for the detail modal
       const [isModalOpen, setIsModalOpen] = useState(false);
       const [selectedStudentId, setselectedStudentId] = useState<number | null>(null);

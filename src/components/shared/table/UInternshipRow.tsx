@@ -1,13 +1,12 @@
 "use client";
 
-import { Bookmark, MapPin, Users } from "lucide-react";
-import { formatDate } from "@/utils/helpers";
+import {formatDate} from "@/utils/helpers";
 import UButton from "../UButton";
 import Image from "next/image";
 
 import React from "react";
 
-import { InternshipProgram } from "@/types/internshipProgram";
+import {InternshipProgram} from "@/types/internshipProgram";
 
 interface UIntershipProgramRowProps {
   intershipProgram: InternshipProgram;

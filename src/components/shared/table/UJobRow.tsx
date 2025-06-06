@@ -29,7 +29,7 @@ interface UJobRowProps {
   city: string;
   applicationCount?: number;
   imageUrl: string;
-  onClick?: () => void;
+  onClickAction?: () => void;
 }
 
 export default function UJobRow({
@@ -46,7 +46,7 @@ export default function UJobRow({
                                   applicationCount = 10,
                                   imageUrl,
                                   city,
-                                  onClick,
+                                  onClickAction,
                                 }: UJobRowProps) {
 
   const styleJobStatus = getStyleJobStatus(jobStatus);
@@ -117,7 +117,7 @@ export default function UJobRow({
             label={ownerView ? "Xem Tất Cả Đơn" : isApplied ? "Chi Tiết" : "Ứng Tuyển Ngay"}
             backgroundColor="bg-custom-gray/10"
             textColor="text-custom-blue-2"
-            onClick={onClick}
+            onClick={onClickAction}
         />
       </div>
   );

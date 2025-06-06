@@ -2,7 +2,7 @@
 import UInternshipProgramRow from "@/components/shared/table/UInternshipRow";
 import { UPagination } from "@/components/shared/UPagination";
 import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
-import { useSearchInternshipProgramsQuery } from "@/services/internshipsApi";
+import { useSearchInternshipProgramsQuery } from "@/services/internshipProgramsApi";
 import Link from "next/link";
 import React from "react";
 import { setPageIndex, setSort } from "../slices/internshipProgramSlices";
