@@ -13,7 +13,6 @@ import {useSearchCompaniesQuery} from "@/services/companiesApi";
 import {useSearchJobsQuery} from "@/services/jobsApi";
 import {useSearchApplicationsQuery} from "@/services/applicationsApi";
 import {Student} from "@/types/user";
-import UCardStudent from "@/features/student/components/UCardStudent";
 
 const locations: UDropdownItem[] = [
   {id: 1, name: 'Hà Nội'},
@@ -28,7 +27,7 @@ const job: Job = {
   city: "San Francisco",
   description: "Join our fast-paced team building modern web applications.",
   requirements: "3+ years in React, TypeScript. Experience with TailwindCSS is a plus.",
-  closingDate: new Date("2025-07-01"),
+  closingDate: "2025-07-01",
   salaryRange: "$90,000 - $120,000",
   isFeatured: true,
   isHighlighted: true,
@@ -82,7 +81,7 @@ const TestPage = () => {
       <>
         <button onClick={() => toast("This is a test page")}>Click me</button>
 
-        <USearchWithFilter dropdownData={locations} onSearchSubmit={null}></USearchWithFilter>
+        <USearchWithFilter dropdownData={locations} onSearchSubmitAction={null}></USearchWithFilter>
 
         <UCardTopCompany logoUrl="https://placehold.co/600x400/png"
                          name="NAVA Company"
@@ -125,8 +124,6 @@ const TestPage = () => {
             tag="Ứng Tuyển Dễ Dàng"
             postedTime="1d"
         />
-
-        <UCardStudent student={student}></UCardStudent>
       </>
   )
 }

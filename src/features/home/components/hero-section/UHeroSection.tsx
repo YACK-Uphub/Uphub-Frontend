@@ -46,7 +46,7 @@ const UHeroSection = () => {
 
 					<USearchWithFilter
 						dropdownData={null}
-						onSearchSubmit={null}
+						onSearchSubmitAction={null}
 					/>
 
 					<p className="text-custom-gray">

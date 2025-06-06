@@ -1,17 +1,17 @@
 "use client";
 import React from "react";
-import { ArrowTrendingUpIcon, ArrowTrendingDownIcon } from "@heroicons/react/24/outline";
+import {ArrowTrendingDownIcon, ArrowTrendingUpIcon} from "@heroicons/react/24/outline";
 import {
-  Chart as ChartJS,
   CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
+  Chart as ChartJS,
   Filler,
-  Tooltip,
   Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Tooltip,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import {Line} from "react-chartjs-2";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
 
@@ -74,14 +74,14 @@ const lineChartData = {
 
 const UAdminDashboard = () => {
   return (
-    <div className="p-8 space-y-10 bg-gray-50 min-h-screen">
+    <div className="min-h-screen bg-gray-50 p-8 space-y-10">
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {summaryCards.map((card) => (
-          <div key={card.title} className="p-5 bg-white shadow-md rounded-xl">
+          <div key={card.title} className="rounded-xl bg-white p-5 shadow-md">
             <div className="text-lg font-bold text-custom-blue-2">{card.title}</div>
             <div className="text-2xl font-bold text-custom-yellow-3">{card.value}</div>
-            <div className="flex items-center gap-2 mt-1 text-sm">
+            <div className="mt-1 flex items-center gap-2 text-sm">
               {card.trend === "up" ? (
                 <ArrowTrendingUpIcon className="h-4 w-4 text-green-500" />
               ) : (
@@ -91,14 +91,14 @@ const UAdminDashboard = () => {
                 {card.note}
               </span>
             </div>
-            <div className="text-xs text-gray-400 mt-1">{card.description}</div>
+            <div className="mt-1 text-xs text-gray-400">{card.description}</div>
           </div>
         ))}
       </div>
 
       {/* Line Chart Section */}
-      <div className="bg-white rounded-xl shadow-md p-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
+      <div className="rounded-xl bg-white p-6 shadow-md">
+        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <h2 className="text-lg font-bold text-custom-blue-2">Tỷ lệ đăng ký tài khoản</h2>
           <div className="flex gap-2">
             {["Last 3 months", "Last 30 days", "Last 7 days"].map((label, idx) => (

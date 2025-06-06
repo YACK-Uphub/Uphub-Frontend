@@ -21,7 +21,7 @@ export default function UStudentSearchContainer() {
   return (
     <div className="sticky top-0 bottom-0 left-0 z-10 flex w-full justify-center bg-gray-100 py-5">
       <div className="mx-auto w-full max-w-5xl">
-        <USearchWithFilter dropdownData={cities} onSearchSubmit={handleSearchButton} />
+        <USearchWithFilter dropdownData={cities} onSearchSubmitAction={handleSearchButton} />
       </div>
     </div>
   );

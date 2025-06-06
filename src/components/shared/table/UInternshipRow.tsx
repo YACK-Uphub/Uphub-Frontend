@@ -1,20 +1,19 @@
 "use client";
 
-import { Bookmark, MapPin, Users } from "lucide-react";
-import { formatDate } from "@/utils/helpers";
+import {formatDate} from "@/utils/helpers";
 import UButton from "../UButton";
 import Image from "next/image";
 
 import React from "react";
 
-import { InternshipProgram } from "@/types/internshipProgram";
+import {InternshipProgram} from "@/types/internshipProgram";
 
 interface UIntershipProgramRowProps {
   intershipProgram: InternshipProgram;
-  onClick?: () => void;
+  onClickAction?: () => void;
 }
 
-export default function UInternshipProgramRow({ intershipProgram, onClick }: UIntershipProgramRowProps) {
+export default function UInternshipProgramRow({intershipProgram, onClickAction}: UIntershipProgramRowProps) {
   return (
     <div
       className={`px-8 py-4 border-b-2 hover:bg-blue-50 grid grid-cols-7 items-center gap-4 transition-all duration-200`}
@@ -61,7 +60,7 @@ export default function UInternshipProgramRow({ intershipProgram, onClick }: UIn
           label="Chi tiết"
           backgroundColor="bg-custom-gray/10"
           textColor="text-custom-blue-2"
-          onClick={onClick}
+          onClick={onClickAction}
         />
       </div>
     </div>

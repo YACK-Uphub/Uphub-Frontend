@@ -16,10 +16,10 @@ export interface UDropdownItem {
 
 export interface USearchWithFilterProps {
 	dropdownData: UDropdownItem[]
-	onSearchSubmit: (params: USearchWithFilterParams) => void
+	onSearchSubmitAction: (params: USearchWithFilterParams) => void
 }
 
-export default function USearchWithFilter({onSearchSubmit, dropdownData}: USearchWithFilterProps) {
+export default function USearchWithFilter({onSearchSubmitAction, dropdownData}: USearchWithFilterProps) {
 
 	const [keyword, setKeyword] = useState<string>("");
 	const [inputTextForSuggestion, setinputTextForSuggestion] = useState<string>("")
@@ -63,7 +63,7 @@ export default function USearchWithFilter({onSearchSubmit, dropdownData}: USearc
 	 * Handle submission on search and filter
 	 */
 	const handleSubmission = (): void => {
-		onSearchSubmit({
+		onSearchSubmitAction({
 			searchKeyword: keyword,
 			dropdownItemId: selectedDropdownItemId,
 			extraSelectionIds: [],

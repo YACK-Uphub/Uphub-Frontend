@@ -14,7 +14,7 @@ const UAccountNavTab = () => {
 
   return (
     <div className="py-2">
-      <div className="flex space-x-8 border-b border-gray-200">
+      <div className="flex border-b border-gray-200 space-x-8">
         {tabs.map((tab) => {
           const isActive = pathname === tab.href;
 

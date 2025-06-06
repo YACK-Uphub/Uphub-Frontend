@@ -13,7 +13,7 @@ const CandidatesPage = () => {
 		<div>
       <section className={"min-h-100 pt-8 sm:pt-16 mx-auto max-w-7xl"}>
         <div className={"px-12 xl:px-0"}>
-          <UStudentList></UStudentList>
+          <UStudentList isAssigningMode={false}></UStudentList>
         </div>
       </section>
 

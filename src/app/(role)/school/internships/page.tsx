@@ -1,18 +1,19 @@
 ﻿import React from 'react';
 import type {Metadata} from 'next';
-import UStudentList from "@/features/student/components/UStudentList";
 import UUserExperienceSection from "@/features/home/components/user-experience-section/UUserExperienceSection";
+import {UInternshipList} from "@/features/internship/components/UInternshipList";
 
 export const metadata: Metadata = {
-	title: "Students Management",
-	description: "Manage students from your school on UpHub",
+  title: "Students Management",
+  description: "Manage students from your school on UpHub",
 };
-const StudentsManagementPage = () => {
-	return (
+
+const InternshipsManagementPage = () => {
+  return (
       <div>
         <section className={"pt-8 sm:pt-16 max-w-7xl"}>
           <div className={"px-12 xl:px-0"}>
-            <UStudentList isAssigningMode={true}></UStudentList>
+            <UInternshipList></UInternshipList>
           </div>
         </section>
 
@@ -22,7 +23,7 @@ const StudentsManagementPage = () => {
           </div>
         </section>
       </div>
-	);
+  );
 };
 
-export default StudentsManagementPage;
+export default InternshipsManagementPage;

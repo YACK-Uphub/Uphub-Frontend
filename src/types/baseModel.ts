@@ -10,9 +10,9 @@ export type Entity<T> = {
 
 export type PaginatedResponse<T extends BaseEntity> = {
 	data: T[];
-	pageIndex: number;
-	pageSize: number;
-	count: number;
+	pageIndex?: number;
+	pageSize?: number;
+	count?: number;
 }
 
 export type SearchPaginatedResponse<T extends BaseEntity> = {

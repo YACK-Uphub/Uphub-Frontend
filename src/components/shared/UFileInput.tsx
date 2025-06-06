@@ -36,7 +36,7 @@ const UFileInput: React.FC<UFileInputProps> = ({
         <div className="flex items-center gap-3">
           <label
               htmlFor="file-upload"
-              className="flex items-center gap-2 cursor-pointer border border-dashed border-blue-300 bg-blue-50 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-100 transition"
+              className="flex cursor-pointer items-center gap-2 rounded-lg border border-dashed border-blue-300 bg-blue-50 px-4 py-2 text-blue-600 transition hover:bg-blue-100"
           >
             <Paperclip size={16}/>
             <span>Tải lên</span>
@@ -50,7 +50,7 @@ const UFileInput: React.FC<UFileInputProps> = ({
           </label>
 
           {fileName && (
-              <span className="text-sm text-gray-600 truncate max-w-xs">{fileName}</span>
+              <span className="max-w-xs truncate text-sm text-gray-600">{fileName}</span>
           )}
         </div>
 

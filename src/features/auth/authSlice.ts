@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "next-auth";
+import {createSlice} from "@reduxjs/toolkit";
+import {User} from "next-auth";
 
 interface AuthState {
 	token: string | null;

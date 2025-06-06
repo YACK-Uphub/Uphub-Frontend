@@ -13,7 +13,7 @@ export default function USearchWithFilterWrapper({dropdownData}: { dropdownData:
 
 	return (
 		<USearchWithFilter
-			onSearchSubmit={onSearchSubmit}
+			onSearchSubmitAction={onSearchSubmit}
 			dropdownData={dropdownData}
 		/>
 	)

@@ -1,5 +1,6 @@
 ﻿import React from "react";
 import UJobList from "@/features/job/components/UJobList";
+import {Metadata} from "next";
 
 export const metadata: Metadata = {
   title: "Favorite Jobs",

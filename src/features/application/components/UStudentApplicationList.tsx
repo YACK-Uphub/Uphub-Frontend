@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
 import { useSearchApplicationsQuery } from "@/services/applicationsApi";
 import React, { useEffect, useState } from "react";
 import { setPageIndex, setUserId } from "../slices/applicationSlice";
-import Link from "next/link";
 import { Application } from "@/types/application";
 import UJobRow from "@/components/shared/table/UJobRow";
 import { UPagination } from "@/components/shared/UPagination";

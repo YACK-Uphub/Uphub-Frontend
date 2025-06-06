@@ -6,9 +6,9 @@ import Image from "next/image";
 import { useAppDispatch } from "@/libs/rtk/hooks";
 import UButton from "@/components/shared/UButton";
 import { useRouter } from "next/navigation";
-import { useGetInternshipProgramByIdQuery } from "@/services/internshipsApi";
+import { useGetInternshipProgramByIdQuery } from "@/services/internshipProgramsApi";
 import { setInternshipProgramId, setPageSize } from "@/features/company/slices/companySlice";
-import { resetParams } from "../slices/internshipProgramSlices";
+import { resetParams } from "../slices/internshipProgramSlice";
 
 const UInternshipProgramDetails = ({ id }: { id: number }) => {
   const { data: program, isLoading } = useGetInternshipProgramByIdQuery(id);
@@ -67,7 +67,7 @@ const UInternshipProgramDetails = ({ id }: { id: number }) => {
           <div className="rounded-2xl bg-white p-6 shadow-sm">
             <h2 className="mb-4 text-xl font-semibold text-custom-blue-2">Mô tả</h2>
             {formatNewLine(program.description).map((line, index) => (
-              <p className="mb-4 text-gray-700 leading-relaxed" key={index}>
+              <p className="mb-4 leading-relaxed text-gray-700" key={index}>
                 {line}
               </p>
             ))}
@@ -158,7 +158,7 @@ const UInternshipProgramDetails = ({ id }: { id: number }) => {
                 {item.icon}
                 <div>
                   <p className="text-xs text-gray-400">{item.label}</p>
-                  <p className="font-semibold text-gray-800 text-sm">{item.value}</p>
+                  <p className="text-sm font-semibold text-gray-800">{item.value}</p>
                 </div>
               </div>
             ))}

@@ -24,6 +24,11 @@ export type Student = User & {
 	biography?: string;
 	gender?: string;
 	school: string;
+	schoolId?: number;
+	internshipId?: number,
+	internshipStatus?: string,
+	"jobId"?: number
+	"jobTitle"?: string,
 	industry?: string;
 	industryId?: number;
 	curriculumVitaes?: CurriculumVitae[];

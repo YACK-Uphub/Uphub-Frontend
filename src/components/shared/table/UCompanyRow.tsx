@@ -9,10 +9,10 @@ interface UCompanyRowProps {
     companyName: string;
     city: string;
     businessType: string;
-    onClick?: () => void;
+    onClickAction?: () => void;
 }
 
-export default function UCompanyRow({businessType, city, companyName, imageUrl, onClick}: UCompanyRowProps) {
+export default function UCompanyRow({businessType, city, companyName, imageUrl, onClickAction}: UCompanyRowProps) {
     return (
             <div
                     className={`px-8 py-4 rounded-lg bg-white border-1 hover:bg-gray-100 flex items-center gap-3 shadow-2xs transition-all duration-200`}
@@ -56,7 +56,7 @@ export default function UCompanyRow({businessType, city, companyName, imageUrl, 
                                     label="Ứng Tuyển Ngay"
                                     backgroundColor="bg-custom-blue-1"
                                     textColor="text-custom-blue-2"
-                                    onClick={onClick}
+                                    onClick={onClickAction}
                                     icon={<ArrowRight/>}
                                     iconPosition="right"
                             />
