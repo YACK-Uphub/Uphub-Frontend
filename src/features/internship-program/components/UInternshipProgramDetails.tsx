@@ -67,7 +67,7 @@ const UInternshipProgramDetails = ({ id }: { id: number }) => {
           <div className="rounded-2xl bg-white p-6 shadow-sm">
             <h2 className="mb-4 text-xl font-semibold text-custom-blue-2">Mô tả</h2>
             {formatNewLine(program.description).map((line, index) => (
-              <p className="mb-4 text-gray-700 leading-relaxed" key={index}>
+              <p className="mb-4 leading-relaxed text-gray-700" key={index}>
                 {line}
               </p>
             ))}
@@ -158,7 +158,7 @@ const UInternshipProgramDetails = ({ id }: { id: number }) => {
                 {item.icon}
                 <div>
                   <p className="text-xs text-gray-400">{item.label}</p>
-                  <p className="font-semibold text-gray-800 text-sm">{item.value}</p>
+                  <p className="text-sm font-semibold text-gray-800">{item.value}</p>
                 </div>
               </div>
             ))}

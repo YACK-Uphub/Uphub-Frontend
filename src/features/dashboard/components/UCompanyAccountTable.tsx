@@ -26,7 +26,7 @@ export function UcompanyAccountTable() {
         <TableHeader>
           <TableRow className="bg-custom-yellow-3">
             <TableHead className="w-[50px]">ID</TableHead>
-            <TableHead className="w-[180px] ">Tên công ty</TableHead>
+            <TableHead className="w-[180px]">Tên công ty</TableHead>
             <TableHead>Email</TableHead>
             <TableHead>Số điện thoại</TableHead>
             <TableHead>Loại hình doanh nghiệp</TableHead>
@@ -43,10 +43,10 @@ export function UcompanyAccountTable() {
               <TableCell>{company.phoneNumber}</TableCell>
               <TableCell>{company.businessType}</TableCell>
               <TableCell>
-                <span className="rounded-full px-2 py-1 text-sm bg-green-100 text-green-600">Active</span>
+                <span className="rounded-full bg-green-100 px-2 py-1 text-sm text-green-600">Active</span>
               </TableCell>
               <TableCell>
-                <Button className="bg-custom-blue-1 text-custom-blue-2 hover:bg-custom-blue-1 cursor-pointer">
+                <Button className="cursor-pointer bg-custom-blue-1 text-custom-blue-2 hover:bg-custom-blue-1">
                   Chi tiết
                 </Button>
               </TableCell>

@@ -96,10 +96,10 @@ export const UModalApplyingJob = ({ job, company, onCloseModal }: UModalApplying
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="mx-auto max-w-2xl p-6">
       {/* Job Header */}
-      <div className="border-b border-custom-gray/20 pb-4 mb-6 flex items-center gap-4">
-        <div className="relative flex h-24 w-24 items-center justify-center rounded-full overflow-hidden">
+      <div className="mb-6 flex items-center gap-4 border-b pb-4 border-custom-gray/20">
+        <div className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-full">
           <Image
             src={company.imageUrl}
             alt="company image"
@@ -113,7 +113,7 @@ export const UModalApplyingJob = ({ job, company, onCloseModal }: UModalApplying
 
         <div>
           <h1 className="text-2xl font-bold">{job.title}</h1>
-          <div className="flex items-center gap-2 text-custom-gray/80 mt-2">
+          <div className="mt-2 flex items-center gap-2 text-custom-gray/80">
             <span>{company.city}</span>
             <span>•</span>
             <span>{job.jobType}</span>
@@ -125,11 +125,11 @@ export const UModalApplyingJob = ({ job, company, onCloseModal }: UModalApplying
 
       {/* Application Form */}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="text-xl font-semibold mb-4">Nộp đơn ứng tuyển của bạn</h2>
-        <p className="text-gray-600 mb-6">Các thông tin dưới đây là bắt buộc</p>
+        <h2 className="mb-4 text-xl font-semibold">Nộp đơn ứng tuyển của bạn</h2>
+        <p className="mb-6 text-gray-600">Các thông tin dưới đây là bắt buộc</p>
 
         {/* Required Information */}
-        <div className="space-y-4 mb-8">
+        <div className="mb-8 space-y-4">
           <Controller
             name="fullname"
             control={control}
@@ -161,7 +161,7 @@ export const UModalApplyingJob = ({ job, company, onCloseModal }: UModalApplying
 
         {/* Links Section */}
         <div className="mb-8">
-          <h3 className="font-semibold mb-4">LINKS</h3>
+          <h3 className="mb-4 font-semibold">LINKS</h3>
           <div className="space-y-4">
             <Controller
               name="linkedInUrl"
@@ -180,7 +180,7 @@ export const UModalApplyingJob = ({ job, company, onCloseModal }: UModalApplying
 
         {/* File Upload */}
         <div className="mb-8">
-          <h3 className="font-semibold mb-4">Đính kèm CV (PDF, DOCX, v.v.)</h3>
+          <h3 className="mb-4 font-semibold">Đính kèm CV (PDF, DOCX, v.v.)</h3>
           <div className={"border w-max p-2 rounded-xl shadow-sm"}>
             <Controller
               name="CVDocument"
@@ -199,7 +199,7 @@ export const UModalApplyingJob = ({ job, company, onCloseModal }: UModalApplying
 
         {/* Additional Information */}
         <div className="mb-8">
-          <h3 className="font-semibold mb-4">Thông tin khác</h3>
+          <h3 className="mb-4 font-semibold">Thông tin khác</h3>
           <div className="space-y-4">
             <div>
               <Label htmlFor="coverLetter" className={"mb-4"}>
@@ -212,12 +212,12 @@ export const UModalApplyingJob = ({ job, company, onCloseModal }: UModalApplying
                   <textarea
                     {...field}
                     id="coverLetter"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full rounded border border-gray-300 p-2"
                     rows={4}
                   />
                 )}
               />
-              {errors.coverLetter && <p className="text-red-500 text-sm">{errors.coverLetter.message}</p>}
+              {errors.coverLetter && <p className="text-sm text-red-500">{errors.coverLetter.message}</p>}
             </div>
 
             <div>
@@ -231,20 +231,20 @@ export const UModalApplyingJob = ({ job, company, onCloseModal }: UModalApplying
                   <textarea
                     {...field}
                     id="address"
-                    className="w-full p-2 border border-gray-300 rounded"
+                    className="w-full rounded border border-gray-300 p-2"
                     rows={3}
                     maxLength={500}
                   />
                 )}
               />
-              {errors.introduction && <p className="text-red-500 text-sm">{errors.introduction.message}</p>}
+              {errors.introduction && <p className="text-sm text-red-500">{errors.introduction.message}</p>}
             </div>
           </div>
         </div>
 
         {/* Terms and Submit */}
-        <div className="border-t border-custom-gray/30 pt-4">
-          <p className="text-sm text-custom-gray mb-4">
+        <div className="border-t pt-4 border-custom-gray/30">
+          <p className="mb-4 text-sm text-custom-gray">
             Bằng việc nộp đơn, bạn đã đồng ý với Chính sách bảo mật và Điều khoản sử dụng của chúng tôi.
           </p>
 

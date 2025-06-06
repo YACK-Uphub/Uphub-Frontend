@@ -12,7 +12,7 @@ const InternshipProgramsPage = () => {
     <div>
       <div className="flex flex-row justify-between">
         {/* header */}
-        <h1 className="text-custom-blue-2 text-2xl font-bold mb-2">Internship Programs</h1>
+        <h1 className="mb-2 text-2xl font-bold text-custom-blue-2">Internship Programs</h1>
         {/* Order By */}
         <div className="flex justify-end pb-2">
           <Select onValueChange={(value) => dispatch(setSort(value))}>
@@ -29,7 +29,7 @@ const InternshipProgramsPage = () => {
           </Select>
         </div>
       </div>
-      <hr className="w-1/4 border-t-4 border-custom-yellow-3 mb-8" />
+      <hr className="mb-8 w-1/4 border-t-4 border-custom-yellow-3"/>
 
       <UInternshipProgramList />
     </div>

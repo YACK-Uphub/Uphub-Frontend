@@ -15,12 +15,7 @@ import {UPagination} from "@/components/shared/UPagination";
 import {useSearchInternshipProgramsQuery} from "@/services/internshipProgramsApi";
 import UButton from "@/components/shared/UButton";
 import {useCreateInternshipMutation} from "@/services/internshipsApi";
-import {
-  resetParams,
-  setInternshipProgramId,
-  setJobId,
-  setUserId
-} from "@/features/internship/slices/createInternshipSlice";
+import {setInternshipProgramId, setJobId, setUserId} from "@/features/internship/slices/createInternshipSlice";
 import {toast} from "react-toastify";
 
 const UAssignJobPanel: React.FC = () => {
@@ -79,7 +74,7 @@ const UAssignJobPanel: React.FC = () => {
   // Guard: if student is not found
   if (!student) {
     return (
-        <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+        <div className="mx-auto mt-10 max-w-lg rounded-lg bg-white p-6 shadow-md">
           <p className="text-center text-red-500">
             Sinh viên với ID={studentId} không tồn tại.
           </p>
@@ -89,17 +84,28 @@ const UAssignJobPanel: React.FC = () => {
 
   // Submit assigning job to student
   const handleSubmit = async () => {
+    // 1) Check for missing selections:
+    if (
+        Number(createInternshipParams.jobId) < 1 ||
+        Number(createInternshipParams.internshipProgramId) < 1
+    ) {
+      setErrorMessage("Vui lòng chọn cả Công việc và Chương trình thực tập.");
+      return;
+    }
+
+    // 2) Clear any previous error, then proceed:
+    setErrorMessage("");
+    setIsSubmitting(true);
+
     try {
-      const response = await createInternship(createInternshipParams).unwrap();
-
-      console.log(response);
-
+      await createInternship(createInternshipParams).unwrap();
       toast.success("Chỉ định sinh viên thành công!");
-      dispatch(resetParams());
     } catch (err: any) {
       toast.error(
           err?.data?.message || "Không thể chỉ định sinh viên. Vui lòng thử lại."
       );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -117,12 +123,12 @@ const UAssignJobPanel: React.FC = () => {
                   <img
                       src={student.imageUrl}
                       alt={`${student.firstName} ${student.lastName}`}
-                      className="w-32 h-32 rounded-full object-cover shadow-lg ring-4 ring-blue-300"
+                      className="h-32 w-32 rounded-full object-cover shadow-lg ring-4 ring-blue-300"
                   />
                 </div>
             ) : (
                 <div
-                    className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center shadow-lg ring-4 ring-blue-300">
+                    className="flex h-32 w-32 items-center justify-center rounded-full bg-gray-200 shadow-lg ring-4 ring-blue-300">
                   <UserCircleIcon className="h-12 w-12 text-gray-500"/>
                 </div>
             )}
@@ -142,13 +148,13 @@ const UAssignJobPanel: React.FC = () => {
               {/* Email */}
               <div className="rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-3 shadow-sm">
                 <h3 className="text-xs font-semibold text-blue-700">Email</h3>
-                <p className="mt-1 text-gray-800 truncate">{student.email}</p>
+                <p className="mt-1 truncate text-gray-800">{student.email}</p>
               </div>
 
               {/* Phone */}
               <div className="rounded-lg bg-gradient-to-r from-purple-50 to-purple-100 px-4 py-3 shadow-sm">
                 <h3 className="text-xs font-semibold text-purple-700">Số điện thoại</h3>
-                <p className="mt-1 text-gray-800 truncate">{student.phoneNumber}</p>
+                <p className="mt-1 truncate text-gray-800">{student.phoneNumber}</p>
               </div>
 
               {/* Gender & DOB */}
@@ -164,11 +170,11 @@ const UAssignJobPanel: React.FC = () => {
                 <h3 className="text-xs font-semibold text-yellow-700">
                   Trường (ID {student.schoolId})
                 </h3>
-                <p className="mt-1 text-gray-800 truncate">{student.school}</p>
+                <p className="mt-1 truncate text-gray-800">{student.school}</p>
                 <h3 className="mt-2 text-xs font-semibold text-yellow-700">
                   Ngành (ID {student.industryId})
                 </h3>
-                <p className="mt-1 text-gray-800 truncate">{student.industry}</p>
+                <p className="mt-1 truncate text-gray-800">{student.industry}</p>
               </div>
 
               {/* Internship Info */}
@@ -182,7 +188,7 @@ const UAssignJobPanel: React.FC = () => {
               {/* Job Info */}
               <div className="rounded-lg bg-gradient-to-r from-indigo-50 to-indigo-100 px-4 py-3 shadow-sm">
                 <h3 className="text-xs font-semibold text-indigo-700">Job ID & Title</h3>
-                <p className="mt-1 text-gray-800 truncate">
+                <p className="mt-1 truncate text-gray-800">
                   {student.jobId} – {student.jobTitle}
                 </p>
               </div>
@@ -214,7 +220,7 @@ const UAssignJobPanel: React.FC = () => {
               {student.skills.map((skill) => (
                   <span
                       key={skill.id}
-                      className="px-3 py-1 bg-blue-200 text-blue-800 rounded-full text-xs font-medium"
+                      className="rounded-full bg-blue-200 px-3 py-1 text-xs font-medium text-blue-800"
                   >
                   {skill.name}
                 </span>
@@ -228,14 +234,14 @@ const UAssignJobPanel: React.FC = () => {
           {/* CV Links */}
           <div className="w-full text-left">
             <h3 className="text-sm font-semibold text-gray-700">CV Documents</h3>
-            <ul className="mt-2 list-disc list-inside space-y-1">
+            <ul className="mt-2 list-inside list-disc space-y-1">
               {student.curriculumVitaes.map((cv) => (
                   <li key={cv.id}>
                     <a
                         href={cv.documentUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline text-sm"
+                        className="text-sm text-blue-600 hover:underline"
                     >
                       View CV #{cv.id}
                     </a>
@@ -257,7 +263,7 @@ const UAssignJobPanel: React.FC = () => {
                         href={link.linkUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-1 text-blue-600 hover:underline text-sm"
+                        className="flex items-center gap-1 text-sm text-blue-600 hover:underline"
                     >
                       <span>{link.name}:</span>
                       <span className="break-all">{link.linkUrl}</span>
@@ -273,10 +279,10 @@ const UAssignJobPanel: React.FC = () => {
           <div className="space-y-8">
             {/* Job Selection Panel */}
             <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-3">
+              <h2 className="mb-3 text-xl font-semibold text-gray-800">
                 Chọn Công việc
               </h2>
-              <div className="border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+              <div className="overflow-hidden rounded-lg border border-gray-300 shadow-sm">
                 <ul className="max-h-56 overflow-y-auto">
                   {jobs?.results.map((job) => (
                       <li
@@ -292,7 +298,7 @@ const UAssignJobPanel: React.FC = () => {
                       >
                         <span>{job.title}</span>
                         {createInternshipParams.jobId === job.id && (
-                            <span className="text-blue-600 font-semibold">✓</span>
+                            <span className="font-semibold text-blue-600">✓</span>
                         )}
                       </li>
                   ))}
@@ -312,10 +318,10 @@ const UAssignJobPanel: React.FC = () => {
 
             {/* Internship Program Selection Panel */}
             <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-3">
+              <h2 className="mb-3 text-xl font-semibold text-gray-800">
                 Chọn Chương trình Thực tập
               </h2>
-              <div className="border border-gray-300 rounded-lg overflow-hidden shadow-sm">
+              <div className="overflow-hidden rounded-lg border border-gray-300 shadow-sm">
                 <ul className="max-h-56 overflow-y-auto">
                   {programs?.results.map((prog) => (
                       <li
@@ -331,7 +337,7 @@ const UAssignJobPanel: React.FC = () => {
                       >
                         <span>{prog.name}</span>
                         {createInternshipParams.internshipProgramId === prog.id && (
-                            <span className="text-green-600 font-semibold">✓</span>
+                            <span className="font-semibold text-green-600">✓</span>
                         )}
                       </li>
                   ))}

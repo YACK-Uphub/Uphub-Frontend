@@ -81,7 +81,7 @@ const UCardStudent: React.FC<UStudentCardProps> = ({
         <hr className="border-[var(--color-custom-gray)]"/>
 
         {/* ====== Middle: Gender pill + Biography ====== */}
-        <div className="flex flex-col flex-grow h-48 px-6 py-4">
+        <div className="flex h-48 flex-grow flex-col px-6 py-4">
           {student.gender && (
               <div className="mb-2">
                 {student.gender.toLowerCase() === "male" ? (

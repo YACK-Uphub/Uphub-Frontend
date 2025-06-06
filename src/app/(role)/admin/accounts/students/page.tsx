@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const StudentAccountsPage = () => {
   return (
-    <div className="w-[70vw] mx-auto">
+    <div className="mx-auto w-[70vw]">
       <UStudentAccountTable />
     </div>
   );

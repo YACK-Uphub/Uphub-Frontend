@@ -63,14 +63,14 @@ const donutChartData = {
 
 const USchoolDashboard = () => {
   return (
-    <div className="p-8 space-y-8 bg-gray-50 min-h-screen">
+    <div className="min-h-screen bg-gray-50 p-8 space-y-8">
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {summaryCards.map((card) => (
-          <div key={card.title} className="p-5 bg-white shadow rounded-xl">
-            <div className="text-lg text-custom-blue-2 font-semibold">{card.title}</div>
+          <div key={card.title} className="rounded-xl bg-white p-5 shadow">
+            <div className="text-lg font-semibold text-custom-blue-2">{card.title}</div>
             <div className="text-2xl font-semibold text-custom-yellow-3">{card.value}</div>
-            <div className="flex items-center gap-2 mt-1 text-sm">
+            <div className="mt-1 flex items-center gap-2 text-sm">
               {card.trend === "up" ? (
                 <ArrowTrendingUpIcon className="h-4 w-4 text-green-500" />
               ) : (
@@ -80,16 +80,16 @@ const USchoolDashboard = () => {
                 {card.note}
               </span>
             </div>
-            <div className="text-xs text-gray-400 mt-1">{card.description}</div>
+            <div className="mt-1 text-xs text-gray-400">{card.description}</div>
           </div>
         ))}
       </div>
 
       {/* Charts Row */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {/* Bar Chart Section - chiếm 2/3 */}
-        <div className="md:col-span-2 bg-white rounded-xl shadow p-6">
-          <h2 className="text-xl text-custom-blue-2 font-bold">SUMMER 2025 - OJT</h2>
+        <div className="rounded-xl bg-white p-6 shadow md:col-span-2">
+          <h2 className="text-xl font-bold text-custom-blue-2">SUMMER 2025 - OJT</h2>
           <p className="text-sm text-gray-500">May - August 2025</p>
           <div className="mt-4">
             <Bar
@@ -102,21 +102,21 @@ const USchoolDashboard = () => {
               height={240}
             />
           </div>
-          <div className="text-sm mt-4 text-green-600 font-medium flex items-center justify-center">
+          <div className="mt-4 flex items-center justify-center text-sm font-medium text-green-600">
             Tăng 5.2% trong học kỳ này
-            <ArrowTrendingUpIcon className="h-4 w-4 ml-1" />
+            <ArrowTrendingUpIcon className="ml-1 h-4 w-4" />
           </div>
-          <p className="text-xs text-center text-gray-400">
+          <p className="text-center text-xs text-gray-400">
             Tỷ lệ sinh viên được phân bổ công việc thành công theo chuyên ngành
           </p>
         </div>
 
         {/* Donut Chart Section */}
-        <div className="bg-white rounded-xl shadow p-6">
-          <h2 className="text-xl text-custom-blue-2 font-bold">SUMMER 2025</h2>
+        <div className="rounded-xl bg-white p-6 shadow">
+          <h2 className="text-xl font-bold text-custom-blue-2">SUMMER 2025</h2>
           <p className="text-sm text-gray-500">May - August 2025</p>
 
-          <div className="relative w-full h-60 mt-6">
+          <div className="relative mt-6 h-60 w-full">
             <Doughnut
               data={donutChartData}
               options={{
@@ -126,18 +126,18 @@ const USchoolDashboard = () => {
                 },
               }}
             />
-            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center leading-tight">
+            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center leading-tight">
               <div className="text-2xl font-bold text-gray-900">3,800</div>
               <div className="text-sm text-gray-500">Sinh viên</div>
             </div>
           </div>
 
-          <div className="text-sm mt-4 text-green-600 font-medium flex items-center justify-center">
+          <div className="mt-4 flex items-center justify-center text-sm font-medium text-green-600">
             Tăng 5.2% trong học kỳ này
-            <ArrowTrendingUpIcon className="h-4 w-4 ml-1" />
+            <ArrowTrendingUpIcon className="ml-1 h-4 w-4" />
           </div>
 
-          <p className="text-xs text-center text-gray-400">
+          <p className="text-center text-xs text-gray-400">
             Tỷ lệ sinh viên được phân bổ công việc thành công trong kỳ
           </p>
         </div>

@@ -7,11 +7,10 @@ export const metadata: Metadata = {
 	title: "Students Management",
 	description: "Manage students from your school on UpHub",
 };
-
 const StudentsManagementPage = () => {
 	return (
       <div>
-        <section className={"min-h-100 pt-8 sm:pt-16 mx-auto max-w-7xl"}>
+        <section className={"pt-8 sm:pt-16 max-w-7xl"}>
           <div className={"px-12 xl:px-0"}>
             <UStudentList isAssigningMode={true}></UStudentList>
           </div>

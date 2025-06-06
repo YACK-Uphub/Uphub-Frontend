@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import USchoolDashboard from "@/features/dashboard/components/USchoolDashboard";
 
 export const metadata: Metadata = {
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const SchoolDashboardPage = () => {
   return (
     <div>
-      <h1 className="text-custom-blue-2 text-3xl font-bold mb-5 text-center">Thống kê OJT Summer 2025</h1>
+      <h1 className="mb-5 text-center text-3xl font-bold text-custom-blue-2">Thống kê OJT Summer 2025</h1>
       <USchoolDashboard />
     </div>
   );

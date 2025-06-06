@@ -76,12 +76,12 @@ export default function UProfile() {
 
   return (
     <div className="px-10">
-      <h1 className="text-3xl text-custom-blue-2 pb-3">Profile</h1>
+      <h1 className="pb-3 text-3xl text-custom-blue-2">Profile</h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto space-y-8 w-2xl">
           {/* Image */}
-          <div className="flex items-center flex-col gap-3">
-            <div className="relative h-25 w-25 rounded-full overflow-hidden">
+          <div className="flex flex-col items-center gap-3">
+            <div className="relative h-25 w-25 overflow-hidden rounded-full">
               <Image
                 src={student.imageUrl}
                 alt="Medium Group Image"
@@ -223,7 +223,7 @@ export default function UProfile() {
                       <textarea
                         {...field}
                         id="biography"
-                        className="w-full p-2 border border-gray-300 rounded"
+                        className="w-full rounded border border-gray-300 p-2"
                         rows={4}
                       />
                     </div>
@@ -239,7 +239,7 @@ export default function UProfile() {
             <div className="flex items-center gap-3 align-middle">
               <p className="font-semibold">Liên kết mạng xã hội</p>
             </div>
-            <div className="flex flex-col gap-3 mt-2 w-2/3">
+            <div className="mt-2 flex w-2/3 flex-col gap-3">
               {student?.socialLinks?.length > 0 ? (
                 student.socialLinks.map((link, index) => (
                   <Link
@@ -254,7 +254,7 @@ export default function UProfile() {
                   </Link>
                 ))
               ) : (
-                <p className="text-gray-500 italic">No links added yet</p>
+                <p className="italic text-gray-500">No links added yet</p>
               )}
             </div>
           </div>

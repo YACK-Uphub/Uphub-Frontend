@@ -59,7 +59,7 @@ export const UStudentList: React.FC<UStudentListProps> = ({isAssigningMode = fal
             </h1>
 
             {/* Grid of student cards */}
-            <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3">
               {data.data.map((student: Student) => (
                   <div
                       key={student.id}
@@ -78,7 +78,7 @@ export const UStudentList: React.FC<UStudentListProps> = ({isAssigningMode = fal
                     currentPage={Number(studentParams.pageIndex)}
                     totalPages={totalPages}
                     onPageChanged={handlePageChange}
-                    className="mt-5"
+                    className="mt-8"
                 />
             )}
 

@@ -112,7 +112,7 @@ const UCreateJobForm: React.FC = () => {
   };
 
   return (
-      <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
+      <div className="mx-auto max-w-2xl rounded-lg bg-white p-6 shadow">
         {/* === Title with custom color === */}
         <h1 className="text-2xl font-bold mb-6 text-[var(--color-custom-blue-2)]">
           Tạo việc làm mới
@@ -120,9 +120,9 @@ const UCreateJobForm: React.FC = () => {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* ── SECTION 1: Thông tin cơ bản ── */}
-          <div className="border border-gray-200 rounded-md p-4">
-            <h2 className="text-lg font-semibold mb-4 text-gray-700">Thông tin cơ bản</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="rounded-md border border-gray-200 p-4">
+            <h2 className="mb-4 text-lg font-semibold text-gray-700">Thông tin cơ bản</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Controller
                   name="Title"
                   control={control}
@@ -176,9 +176,9 @@ const UCreateJobForm: React.FC = () => {
           </div>
 
           {/* ── SECTION 2: Mô tả & Yêu cầu ── */}
-          <div className="border border-gray-200 rounded-md p-4">
-            <h2 className="text-lg font-semibold mb-4 text-gray-700">Mô tả & Yêu cầu</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="rounded-md border border-gray-200 p-4">
+            <h2 className="mb-4 text-lg font-semibold text-gray-700">Mô tả & Yêu cầu</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Controller
                   name="Description"
                   control={control}
@@ -189,11 +189,11 @@ const UCreateJobForm: React.FC = () => {
                             {...field}
                             id="Description"
                             rows={4}
-                            className="mt-1 w-full p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            className="mt-1 w-full resize-none rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-200"
                             placeholder="Nhập mô tả..."
                         />
                         {errors.Description && (
-                            <p className="text-red-500 text-sm mt-1">{errors.Description.message}</p>
+                            <p className="mt-1 text-sm text-red-500">{errors.Description.message}</p>
                         )}
                       </div>
                   )}
@@ -208,11 +208,11 @@ const UCreateJobForm: React.FC = () => {
                             {...field}
                             id="Requirements"
                             rows={4}
-                            className="mt-1 w-full p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            className="mt-1 w-full resize-none rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-200"
                             placeholder="Nhập yêu cầu..."
                         />
                         {errors.Requirements && (
-                            <p className="text-red-500 text-sm mt-1">{errors.Requirements.message}</p>
+                            <p className="mt-1 text-sm text-red-500">{errors.Requirements.message}</p>
                         )}
                       </div>
                   )}
@@ -221,9 +221,9 @@ const UCreateJobForm: React.FC = () => {
           </div>
 
           {/* ── SECTION 3: Thông tin liên hệ ── */}
-          <div className="border border-gray-200 rounded-md p-4">
-            <h2 className="text-lg font-semibold mb-4 text-gray-700">Thông tin liên hệ</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="rounded-md border border-gray-200 p-4">
+            <h2 className="mb-4 text-lg font-semibold text-gray-700">Thông tin liên hệ</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Controller
                   name="ContactEmail"
                   control={control}
@@ -254,9 +254,9 @@ const UCreateJobForm: React.FC = () => {
           </div>
 
           {/* ── SECTION 4: Phân loại ── */}
-          <div className="border border-gray-200 rounded-md p-4">
-            <h2 className="text-lg font-semibold mb-4 text-gray-700">Phân loại</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="rounded-md border border-gray-200 p-4">
+            <h2 className="mb-4 text-lg font-semibold text-gray-700">Phân loại</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               <Controller
                   name="CompanyId"
                   control={control}
@@ -267,13 +267,13 @@ const UCreateJobForm: React.FC = () => {
                             id="CompanyId"
                             value={field.value}
                             onChange={(e) => field.onChange(Number(e.target.value))}
-                            className="mt-1 w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-200"
                         >
                           <option value={0}>Chọn Công ty</option>
                           <option value={CURRENT_COMPANY_ID}>11 – Công ty C</option>
                         </select>
                         {errors.CompanyId && (
-                            <p className="text-red-500 text-sm mt-1">{errors.CompanyId.message}</p>
+                            <p className="mt-1 text-sm text-red-500">{errors.CompanyId.message}</p>
                         )}
                       </div>
                   )}
@@ -289,7 +289,7 @@ const UCreateJobForm: React.FC = () => {
                             id="JobTypeId"
                             value={field.value}
                             onChange={(e) => field.onChange(Number(e.target.value))}
-                            className="mt-1 w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-200"
                         >
                           <option value={0}>Chọn loại</option>
                           {jobtypes.data.map((jt) => (
@@ -299,7 +299,7 @@ const UCreateJobForm: React.FC = () => {
                           ))}
                         </select>
                         {errors.JobTypeId && (
-                            <p className="text-red-500 text-sm mt-1">{errors.JobTypeId.message}</p>
+                            <p className="mt-1 text-sm text-red-500">{errors.JobTypeId.message}</p>
                         )}
                       </div>
                   )}
@@ -315,7 +315,7 @@ const UCreateJobForm: React.FC = () => {
                             id="IndustryId"
                             value={field.value}
                             onChange={(e) => field.onChange(Number(e.target.value))}
-                            className="mt-1 w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-200"
+                            className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-200"
                         >
                           <option value={0}>Chọn ngành</option>
                           {industries.data.map((ind) => (
@@ -325,7 +325,7 @@ const UCreateJobForm: React.FC = () => {
                           ))}
                         </select>
                         {errors.IndustryId && (
-                            <p className="text-red-500 text-sm mt-1">{errors.IndustryId.message}</p>
+                            <p className="mt-1 text-sm text-red-500">{errors.IndustryId.message}</p>
                         )}
                       </div>
                   )}
@@ -334,8 +334,8 @@ const UCreateJobForm: React.FC = () => {
           </div>
 
           {/* ── SECTION 5: Kỹ năng ── */}
-          <div className="border border-gray-200 rounded-md p-4">
-            <h2 className="text-lg font-semibold mb-4 text-gray-700">Kỹ năng</h2>
+          <div className="rounded-md border border-gray-200 p-4">
+            <h2 className="mb-4 text-lg font-semibold text-gray-700">Kỹ năng</h2>
             <Controller
                 name="SkillIds"
                 control={control}
@@ -360,7 +360,7 @@ const UCreateJobForm: React.FC = () => {
                                       field.onChange((field.value || []).filter((v) => v !== val));
                                     }
                                   }}
-                                  className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-200"
+                                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-200"
                               />
                               <span className="text-gray-700">{skill.name}</span>
                             </label>
@@ -370,14 +370,14 @@ const UCreateJobForm: React.FC = () => {
                 )}
             />
             {errors.SkillIds && (
-                <p className="text-red-500 text-sm mt-1">{errors.SkillIds.message}</p>
+                <p className="mt-1 text-sm text-red-500">{errors.SkillIds.message}</p>
             )}
           </div>
 
           {/* ── SECTION 6: Tùy chọn “Feature” & “Highlight” ── */}
-          <div className="border border-gray-200 rounded-md p-4">
-            <h2 className="text-lg font-semibold mb-4 text-gray-700">Tùy chọn hiển thị</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="rounded-md border border-gray-200 p-4">
+            <h2 className="mb-4 text-lg font-semibold text-gray-700">Tùy chọn hiển thị</h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {/* ── Featured Card ── */}
               <Controller
                   name="IsFeatured"
@@ -512,7 +512,7 @@ const UCreateJobForm: React.FC = () => {
           </div>
 
           {/* ── ACTIONS ── */}
-          <div className="border-t border-gray-200 pt-4 flex justify-end gap-4">
+          <div className="flex justify-end gap-4 border-t border-gray-200 pt-4">
             <UButton
                 onClick={() => reset()}
                 label="Hủy"
@@ -529,7 +529,7 @@ const UCreateJobForm: React.FC = () => {
           </div>
 
           {isError && (
-              <p className="text-red-500 text-sm mt-2">
+              <p className="mt-2 text-sm text-red-500">
                 Đã xảy ra lỗi khi tạo việc làm. Vui lòng thử lại.
               </p>
           )}

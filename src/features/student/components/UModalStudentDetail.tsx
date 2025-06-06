@@ -101,7 +101,7 @@ export default function UModalStudentDetail({
           </div>
 
           {/* ===== RIGHT PANEL: Details ===== */}
-          <div className="md:w-2/3 p-6 space-y-6">
+          <div className="p-6 md:w-2/3 space-y-6">
             {/* Biography */}
             <div className="rounded-lg border border-[var(--color-custom-gray)]/20 bg-[var(--color-custom-gray)]/5 p-4">
               <h3 className="mb-2 flex items-center gap-2 text-lg font-semibold text-[var(--color-custom-blue-3)]">
@@ -114,7 +114,7 @@ export default function UModalStudentDetail({
             </div>
 
             {/* Basic Info Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {/* Email */}
               <div className="flex items-center gap-2">
                 <EnvelopeIcon className="h-5 w-5 text-[var(--color-custom-blue-3)]"/>
