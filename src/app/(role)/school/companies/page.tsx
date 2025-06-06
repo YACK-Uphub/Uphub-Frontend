@@ -1,9 +1,8 @@
 ﻿"use client";
 import React from "react";
-import type { Metadata } from "next";
 import UCompanyList from "@/features/company/components/UCompanyList";
-import { useAppDispatch } from "@/libs/rtk/hooks";
-import { setPageSize } from "@/features/company/slices/companySlice";
+import {useAppDispatch} from "@/libs/rtk/hooks";
+import {setPageSize} from "@/features/company/slices/companySlice";
 
 const PartnerCompaniesPage = () => {
   const dispatch = useAppDispatch();

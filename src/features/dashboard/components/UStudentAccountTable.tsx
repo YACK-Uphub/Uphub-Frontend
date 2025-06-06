@@ -1,10 +1,10 @@
 "use client";
-import { Button } from "@/components/shadcn/button";
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/shadcn/table";
-import { UPagination } from "@/components/shared/UPagination";
-import { useAppDispatch } from "@/libs/rtk/hooks";
-import { useGetAllStudentsQuery } from "@/services/studentsApi";
-import { SearchPaginatedRequestParams } from "@/types/baseModel";
+import {Button} from "@/components/shadcn/button";
+import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "@/components/shadcn/table";
+import {UPagination} from "@/components/shared/UPagination";
+import {useAppDispatch} from "@/libs/rtk/hooks";
+import {useGetAllStudentsQuery} from "@/services/studentsApi";
+import {SearchPaginatedRequestParams} from "@/types/baseModel";
 
 export function UStudentAccountTable() {
   const params: SearchPaginatedRequestParams = { pageNumber: 1, pageSize: 10 };

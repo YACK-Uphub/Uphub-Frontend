@@ -1,25 +1,32 @@
 // components/UStudentCard.tsx
 import React from "react";
 import Image from "next/image";
-import {
-  AcademicCapIcon,
-  DocumentTextIcon,
-  IdentificationIcon,
-  LinkIcon,
-  UserCircleIcon,
-} from "@heroicons/react/24/outline";
-import {CurriculumVitae, SocialLink, Student} from "@/types/user";
+import {AcademicCapIcon, IdentificationIcon, UserCircleIcon,} from "@heroicons/react/24/outline";
+import {Student} from "@/types/user";
+import UButton from "@/components/shared/UButton";
+import {useRouter} from "next/navigation";
 
 export type UStudentCardProps = {
   student: Student;
+  isStudentAssignMode: boolean;
 };
 
 /**
  * The main Student Card component.
- * Now set to stretch to full height, with the biography area flexing to take most space.
+ * Stretches to full height. If isStudentAssignMode=true, shows “Assign to Job” button at the bottom.
  */
-const UCardStudent: React.FC<UStudentCardProps> = ({student}) => {
+const UCardStudent: React.FC<UStudentCardProps> = ({
+                                                     student,
+                                                     isStudentAssignMode,
+                                                   }) => {
+  const router = useRouter();
+
+  const moveToAssignJobPage = (studentId: number | string) => {
+    router.push(`/school/students/${studentId}/`);
+  }
+
   const fullName = `${student.firstName} ${student.lastName}`;
+
   const bioPreview =
       student.biography && student.biography.length > 100
           ? student.biography.slice(0, 100).trim() + "…"
@@ -43,7 +50,7 @@ const UCardStudent: React.FC<UStudentCardProps> = ({student}) => {
       "
       >
         {/* ====== Top: Avatar + Name + Code ====== */}
-        <div className="flex flex-grow items-center px-6 py-4">
+        <div className="flex items-center px-6 py-4">
           <div className="flex-shrink-0">
             {student.imageUrl ? (
                 <Image
@@ -73,45 +80,37 @@ const UCardStudent: React.FC<UStudentCardProps> = ({student}) => {
 
         <hr className="border-[var(--color-custom-gray)]"/>
 
-        {/* ====== Middle: Gender pill + Biography (flex-grow) ====== */}
-        <div className="flex flex-col flex-shrink-0 h-48 px-6 py-4">
+        {/* ====== Middle: Gender pill + Biography ====== */}
+        <div className="flex flex-col flex-grow h-48 px-6 py-4">
           {student.gender && (
               <div className="mb-2">
-                {student.gender.toLowerCase() === "male" && (
+                {student.gender.toLowerCase() === "male" ? (
                     <span
                         className="
-                  inline-block
-                  text-xs font-semibold
-                  px-2 py-0.5
-                  rounded-full
+                  inline-block text-xs font-semibold
+                  px-2 py-0.5 rounded-full
                   bg-[var(--color-custom-blue-3)]
                   text-[var(--color-custom-white)]
                 "
                     >
                 {student.gender}
               </span>
-                )}
-                {student.gender.toLowerCase() === "female" && (
+                ) : student.gender.toLowerCase() === "female" ? (
                     <span
                         className="
-                  inline-block+
-                  text-xs font-semibold
-                  px-2 py-0.5
-                  rounded-full
+                  inline-block text-xs font-semibold
+                  px-2 py-0.5 rounded-full
                   bg-[var(--color-custom-purple-bg)]
                   text-[var(--color-custom-purple-text)]
                 "
                     >
                 {student.gender}
               </span>
-                )}
-                {["male", "female"].indexOf(student.gender.toLowerCase()) < 0 && (
+                ) : (
                     <span
                         className="
-                  inline-block
-                  text-xs font-semibold
-                  px-2 py-0.5
-                  rounded-full
+                  inline-block text-xs font-semibold
+                  px-2 py-0.5 rounded-full
                   bg-[var(--color-custom-gray)]
                   text-[var(--color-custom-black)]
                 "
@@ -122,7 +121,6 @@ const UCardStudent: React.FC<UStudentCardProps> = ({student}) => {
               </div>
           )}
 
-          {/* Biography snippet takes up remaining vertical space */}
           <p className="flex-grow text-sm leading-relaxed text-[var(--color-custom-gray)] overflow-auto">
             {bioPreview}
           </p>
@@ -130,61 +128,28 @@ const UCardStudent: React.FC<UStudentCardProps> = ({student}) => {
 
         <hr className="border-[var(--color-custom-gray)]"/>
 
-        {/* ====== Bottom: School, Social Links, CVs ====== */}
-        <div className="flex-shrink-0 px-6 py-4 space-y-3">
-          {/* School */}
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center">
+        {/* ====== Bottom: School, Social Links, CVs, and possibly Assign button ====== */}
+        <div className={"flex flex-col items-center justify-stretch p-4 gap-4"}>
+          <div className="flex-shrink-0 space-y-3">
+            {/* School */}
+            <div className="flex items-center space-x-4">
               <AcademicCapIcon className="h-5 w-5 mr-1 text-[var(--color-custom-gray)]"/>
               <p className="text-sm text-[var(--color-custom-gray)]">
-              <span className="font-semibold text-[var(--color-custom-black)]">
-                School:
-              </span>{" "}
-                {student.school}
+                <span className="font-semibold text-[var(--color-custom-black)]">Trường:</span>{" "}{student.school}
               </p>
             </div>
           </div>
 
-          {/* Social Links (if any) */}
-          {student.socialLinks && student.socialLinks.length > 0 && (
-              <div className="flex items-center space-x-4">
-                {student.socialLinks.map((link: SocialLink) => (
-                    <a
-                        key={link.id}
-                        href={link.linkUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:opacity-80 transition-opacity"
-                        title={link.name}
-                    >
-                      <LinkIcon className="h-5 w-5 text-[var(--color-custom-blue-2)]"/>
-                    </a>
-                ))}
-              </div>
-          )}
-
-          {/* CV Documents (if any) */}
-          {student.curriculumVitaes && student.curriculumVitaes.length > 0 && (
-              <div>
-                <p className="mb-1 flex items-center text-sm font-semibold text-[var(--color-custom-gray)]">
-                  <DocumentTextIcon className="h-5 w-5 mr-1 text-[var(--color-custom-gray)]"/>
-                  Curriculum Vitae
-                </p>
-                <ul className="list-disc list-inside space-y-1">
-                  {student.curriculumVitaes.map((cv: CurriculumVitae) => (
-                      <li key={cv.id} className="text-sm">
-                        <a
-                            href={cv.documentUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center text-[var(--color-custom-blue-2)] hover:underline"
-                        >
-                          <DocumentTextIcon className="h-4 w-4 mr-1 text-[var(--color-custom-blue-2)]"/>
-                          View CV #{cv.id}
-                        </a>
-                      </li>
-                  ))}
-                </ul>
+          {/* ASSIGN BUTTON (only in assign mode) */}
+          {isStudentAssignMode && (
+              <div onClick={(e) => e.stopPropagation()}>
+                <UButton
+                    onClick={() => moveToAssignJobPage(student.id)}
+                    label="Chỉ định Công Việc"
+                    backgroundColor="bg-custom-blue-2"
+                    textColor="text-custom-white"
+                    border="border border-transparent"
+                />
               </div>
           )}
         </div>

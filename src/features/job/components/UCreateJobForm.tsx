@@ -83,7 +83,7 @@ const UCreateJobForm: React.FC = () => {
   if (isLoading || isLoadingIndustries || isLoadingSkills || isLoadingJobTypes) {
     return <UPageSpinner/>;
   }
-  
+
   const onSubmit = async (data: CreateJobFormValues) => {
     try {
       const payload: Partial<Job> = {
@@ -111,11 +111,12 @@ const UCreateJobForm: React.FC = () => {
     }
   };
 
-
-
   return (
       <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow">
-        <h1 className="text-2xl font-bold mb-6 text-gray-800">Tạo việc làm mới</h1>
+        {/* === Title with custom color === */}
+        <h1 className="text-2xl font-bold mb-6 text-[var(--color-custom-blue-2)]">
+          Tạo việc làm mới
+        </h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* ── SECTION 1: Thông tin cơ bản ── */}
@@ -341,11 +342,10 @@ const UCreateJobForm: React.FC = () => {
                 render={({field}) => (
                     <div className="flex flex-wrap gap-3">
                       {skills.data.map((skill) => {
-
                         const skillId: number =
                             typeof skill.id === "string" ? parseInt(skill.id, 10) : skill.id;
-
                         const isChecked = field.value.includes(skillId);
+
                         return (
                             <label key={skill.id} className="inline-flex items-center gap-2">
                               <input
@@ -377,7 +377,6 @@ const UCreateJobForm: React.FC = () => {
           {/* ── SECTION 6: Tùy chọn “Feature” & “Highlight” ── */}
           <div className="border border-gray-200 rounded-md p-4">
             <h2 className="text-lg font-semibold mb-4 text-gray-700">Tùy chọn hiển thị</h2>
-
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* ── Featured Card ── */}
               <Controller
@@ -391,9 +390,11 @@ const UCreateJobForm: React.FC = () => {
                             className={`
                       relative flex cursor-pointer items-start gap-4 rounded-lg border p-4
                       transition-shadow duration-200
-                      ${selected
-                                ? "border-transparent bg-gradient-to-br from-blue-500 to-blue-600 shadow-xl"
-                                : "border-gray-300 bg-white hover:shadow-md"}
+                      ${
+                                selected
+                                    ? "border-transparent bg-gradient-to-br from-blue-500 to-blue-600 shadow-xl"
+                                    : "border-gray-300 bg-white hover:shadow-md"
+                            }
                     `}
                         >
                           <div
@@ -404,9 +405,7 @@ const UCreateJobForm: React.FC = () => {
                       `}
                           >
                             <ArrowUpTrayIcon
-                                className={`h-6 w-6 ${
-                                    selected ? "text-blue-600" : "text-gray-500"
-                                }`}
+                                className={`h-6 w-6 ${selected ? "text-blue-600" : "text-gray-500"}`}
                             />
                           </div>
 
@@ -425,9 +424,11 @@ const UCreateJobForm: React.FC = () => {
                                   onChange={() => field.onChange(!selected)}
                                   className={`
                             h-5 w-5 rounded border-2 transition-colors duration-200
-                            ${selected
-                                      ? "border-white bg-white checked:bg-blue-600 focus:ring-blue-200"
-                                      : "border-gray-300 bg-white checked:bg-blue-600 focus:ring-blue-200"}
+                            ${
+                                      selected
+                                          ? "border-white bg-white checked:bg-blue-600 focus:ring-blue-200"
+                                          : "border-gray-300 bg-white checked:bg-blue-600 focus:ring-blue-200"
+                                  }
                           `}
                               />
                             </div>
@@ -457,9 +458,11 @@ const UCreateJobForm: React.FC = () => {
                             className={`
                       relative flex cursor-pointer items-start gap-4 rounded-lg border p-4
                       transition-shadow duration-200
-                      ${selected
-                                ? "border-transparent bg-gradient-to-br from-yellow-500 to-yellow-600 shadow-xl"
-                                : "border-gray-300 bg-white hover:shadow-md"}
+                      ${
+                                selected
+                                    ? "border-transparent bg-gradient-to-br from-yellow-500 to-yellow-600 shadow-xl"
+                                    : "border-gray-300 bg-white hover:shadow-md"
+                            }
                     `}
                         >
                           <div
@@ -470,9 +473,7 @@ const UCreateJobForm: React.FC = () => {
                       `}
                           >
                             <SparklesIcon
-                                className={`h-6 w-6 ${
-                                    selected ? "text-yellow-600" : "text-gray-500"
-                                }`}
+                                className={`h-6 w-6 ${selected ? "text-yellow-600" : "text-gray-500"}`}
                             />
                           </div>
 
@@ -491,7 +492,6 @@ const UCreateJobForm: React.FC = () => {
                                   onChange={() => field.onChange(!selected)}
                                   className={`
                             h-5 w-5 rounded border-2 transition-colors duration-200
-
                           `}
                               />
                             </div>

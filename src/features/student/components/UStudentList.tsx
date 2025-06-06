@@ -12,13 +12,19 @@ import {setPageIndex} from "@/features/student/slices/studentSlice";
 import {UModalWrapper} from "@/components/shared/UModalWrapper";
 import UModalStudentDetail from "@/features/student/components/UModalStudentDetail";
 
-export const UStudentList: React.FC = () => {
+export type UStudentListProps = {
+  isAssigningMode: boolean;
+}
+
+export const UStudentList: React.FC<UStudentListProps> = ({isAssigningMode = false}) => {
+
       // Local state for pagination parameters
       const studentParams = useAppSelector(state => state.studentParams)
 
       // Fetch paginated students; backend returns PaginatedResponse<Student>
       const {data, isLoading, isFetching} = useGetAllStudentsQuery(studentParams);
       const dispatch = useAppDispatch();
+
 
       // Local state for the detail modal
       const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,7 +67,8 @@ export const UStudentList: React.FC = () => {
                       onClick={() => openModal(student.id)}
                       className="cursor-pointer"
                   >
-                    <UCardStudent student={student}/>
+                    <UCardStudent student={student}
+                                  isStudentAssignMode={isAssigningMode}/>
                   </div>
               ))}
             </div>

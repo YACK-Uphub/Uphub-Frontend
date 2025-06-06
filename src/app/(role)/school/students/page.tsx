@@ -1,5 +1,7 @@
 ﻿import React from 'react';
 import type {Metadata} from 'next';
+import UStudentList from "@/features/student/components/UStudentList";
+import UUserExperienceSection from "@/features/home/components/user-experience-section/UUserExperienceSection";
 
 export const metadata: Metadata = {
 	title: "Students Management",
@@ -8,10 +10,19 @@ export const metadata: Metadata = {
 
 const StudentsManagementPage = () => {
 	return (
-		<div>
-			<h1>Students Management</h1>
-			<p>View and manage students from your school, track their internship applications and progress.</p>
-		</div>
+      <div>
+        <section className={"min-h-100 pt-8 sm:pt-16 mx-auto max-w-7xl"}>
+          <div className={"px-12 xl:px-0"}>
+            <UStudentList isAssigningMode={true}></UStudentList>
+          </div>
+        </section>
+
+        <section className={"min-h-100 py-8 sm:py-16 mx-auto max-w-7xl"}>
+          <div className={"px-24 xl:px-0"}>
+            <UUserExperienceSection></UUserExperienceSection>
+          </div>
+        </section>
+      </div>
 	);
 };
 

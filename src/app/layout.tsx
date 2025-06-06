@@ -1,16 +1,15 @@
-import type { Metadata } from "next";
 import "./globals.css";
-import React, { ReactNode } from "react";
-import { Reem_Kufi } from "next/font/google";
+import React, {ReactNode} from "react";
+import {Reem_Kufi} from "next/font/google";
 import UHeader from "@/components/layout/header/UHeader";
 import USubHeader from "@/components/layout/USubHeader";
 import UFooter from "@/components/layout/UFooter";
 import UPageSpinnerWrapper from "@/components/shared/spinner/UPageSpinnerWrapper";
 import StoreProvider from "@/app/StoreProvider";
-import { Slide, ToastContainer } from "react-toastify";
-import { UserRole } from "@/types/user";
+import {Slide, ToastContainer} from "react-toastify";
+import {UserRole} from "@/types/user";
 import AuthSessionSync from "@/providers/AuthSessionSync";
-import { SessionProvider } from "next-auth/react";
+import {SessionProvider} from "next-auth/react";
 
 const fontReemKufi = Reem_Kufi({
   subsets: ["vietnamese"],

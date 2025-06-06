@@ -1,5 +1,4 @@
-﻿import { ReactNode } from "react";
-import type { Metadata } from "next";
+﻿import {ReactNode} from "react";
 import UStudentSearchContainer from "@/features/job/components/UStudentSearchContainer";
 
 // export const metadata: Metadata = {
