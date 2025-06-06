@@ -21,3 +21,5 @@ export type InternshipProgramPaginatedRequestParams = SearchPaginatedRequestPara
 	sort?: InternshipProgramSortType;
 	cityId?: number | string;
 };
+
+

@@ -1,6 +1,5 @@
-import { CompanySearchPaginatedRequestParams } from "@/types/company";
-import { InternshipProgramPaginatedRequestParams } from "@/types/internshipProgram";
-import { createSlice } from "@reduxjs/toolkit";
+import {InternshipProgramPaginatedRequestParams} from "@/types/internshipProgram";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialState: InternshipProgramPaginatedRequestParams = {
 	pageNumber: 1,

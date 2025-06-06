@@ -1,6 +1,6 @@
 import {applicationSlice} from "@/features/application/slices/applicationSlice";
 import {companySlice} from "@/features/company/slices/companySlice";
-import {internshipProgramSlice} from '@/features/internship-program/slices/internshipProgramSlices';
+import {internshipProgramSlice} from '@/features/internship-program/slices/internshipProgramSlice';
 import {jobSlice} from "@/features/job/slices/jobSlice";
 import {applicationsApi} from "@/services/applicationsApi";
 import {citiesApi} from '@/services/citiesApi';
@@ -14,6 +14,9 @@ import {industriesApi} from "@/services/industriesApi";
 import {jobTypesApi} from "@/services/jobTypesApi";
 import {skillsApi} from "@/services/skillsApi";
 import {studentSlice} from "@/features/student/slices/studentSlice";
+import {createInternshipsApi, internshipsApi} from "@/services/internshipsApi";
+import {internshipSlice} from "@/features/internship/slices/internshipSlice";
+import {createInternshipSlice} from "@/features/internship/slices/createInternshipSlice";
 
 // Create store instance per request for strong type safety
 export function makeStore() {
@@ -28,13 +31,17 @@ export function makeStore() {
       [industriesApi.reducerPath]: industriesApi.reducer,
       [jobTypesApi.reducerPath]: jobTypesApi.reducer,
       [skillsApi.reducerPath]: skillsApi.reducer,
+      [internshipsApi.reducerPath]: internshipsApi.reducer,
+      [createInternshipsApi.reducerPath]: createInternshipsApi.reducer,
 
       auth: authSlice.reducer,
       jobParams: jobSlice.reducer,
       companyParams: companySlice.reducer,
       applicationParams: applicationSlice.reducer,
       studentParams: studentSlice.reducer,
-      internshipProgramParams: internshipProgramSlice.reducer
+      internshipProgramParams: internshipProgramSlice.reducer,
+      internshipParams: internshipSlice.reducer,
+      createInternshipParams: createInternshipSlice.reducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
@@ -46,7 +53,9 @@ export function makeStore() {
             .concat(studentsApi.middleware as Middleware)
             .concat(industriesApi.middleware as Middleware)
             .concat(skillsApi.middleware as Middleware)
-            .concat(jobTypesApi.middleware as Middleware),
+            .concat(jobTypesApi.middleware as Middleware)
+            .concat(internshipsApi.middleware as Middleware)
+            .concat(createInternshipsApi.middleware as Middleware)
   });
 }
 

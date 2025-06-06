@@ -4,7 +4,7 @@ import {StudentSearchPaginatedRequestParams,} from "@/types/user";
 
 const initialState: StudentSearchPaginatedRequestParams = {
   pageIndex: 1,
-  pageSize: 6,
+  pageSize: 8,
 };
 
 export const studentSlice = createSlice({

@@ -8,7 +8,7 @@ import UButton from "@/components/shared/UButton";
 import { useRouter } from "next/navigation";
 import { useGetInternshipProgramByIdQuery } from "@/services/internshipProgramsApi";
 import { setInternshipProgramId, setPageSize } from "@/features/company/slices/companySlice";
-import { resetParams } from "../slices/internshipProgramSlices";
+import { resetParams } from "../slices/internshipProgramSlice";
 
 const UInternshipProgramDetails = ({ id }: { id: number }) => {
   const { data: program, isLoading } = useGetInternshipProgramByIdQuery(id);

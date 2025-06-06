@@ -4,7 +4,7 @@ import UInternshipProgramList from "@/features/internship-program/components/UIn
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@/components/shadcn/select";
 import {InternshipProgramSortType} from "@/types/internshipProgram";
 import {useAppDispatch} from "@/libs/rtk/hooks";
-import {setSort} from "@/features/internship-program/slices/internshipProgramSlices";
+import {setSort} from "@/features/internship-program/slices/internshipProgramSlice";
 
 const InternshipProgramsPage = () => {
   const dispatch = useAppDispatch();

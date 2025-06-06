@@ -8,50 +8,71 @@ import {useSearchJobsQuery} from "@/services/jobsApi";
 
 import {useAppDispatch, useAppSelector} from "@/libs/rtk/hooks";
 import {setPageIndex as setJobPageIndex} from "@/features/job/slices/jobSlice";
-import {setPageIndex as setProgramPageIndex} from "@/features/internship-program/slices/internshipProgramSlices";
+import {setPageIndex as setProgramPageIndex} from "@/features/internship-program/slices/internshipProgramSlice";
 import {UPageSpinner} from "@/components/shared/spinner/UPageSpinner";
 import {AcademicCapIcon, UserCircleIcon} from "@heroicons/react/24/solid";
 import {UPagination} from "@/components/shared/UPagination";
 import {useSearchInternshipProgramsQuery} from "@/services/internshipProgramsApi";
 import UButton from "@/components/shared/UButton";
+import {useCreateInternshipMutation} from "@/services/internshipsApi";
+import {
+  resetParams,
+  setInternshipProgramId,
+  setJobId,
+  setUserId
+} from "@/features/internship/slices/createInternshipSlice";
+import {toast} from "react-toastify";
 
 const UAssignJobPanel: React.FC = () => {
   const params = useParams<{ studentId: string }>();
   const studentId = Number(params.studentId);
   const dispatch = useAppDispatch();
 
+  // ============================
   // Fetch student details
+  // ============================
   const {
     data: student,
     isLoading: isStudentLoading,
   } = useGetStudentByIdQuery(studentId);
 
+  React.useEffect(() => {
+    if (student) {
+      dispatch(setUserId(student.id));
+    }
+  }, [student, dispatch]);
+
+  // ============================
   // Jobs pagination & list
+  // ============================
   const jobParams = useAppSelector((state) => state.jobParams);
   const {data: jobs, isLoading: isJobsLoading} = useSearchJobsQuery(jobParams);
   const handleJobsPageChange = (newPage: number) => {
     dispatch(setJobPageIndex(newPage));
   };
 
+  // =======================================
   // Internship programs pagination & list
+  // =======================================
   const programParams = useAppSelector(
       (state) => state.internshipProgramParams
   );
-
-  const {data: programs, isLoading: isProgramsLoading} =
-      useSearchInternshipProgramsQuery(programParams);
+  const {data: programs, isLoading: isProgramsLoading} = useSearchInternshipProgramsQuery(programParams);
   const handleProgramsPageChange = (newPage: number) => {
     dispatch(setProgramPageIndex(newPage));
   };
 
+  // =======================================
   // Selected IDs
-  const [selectedJobId, setSelectedJobId] = useState<number>(0);
-  const [selectedProgramId, setSelectedProgramId] = useState<number>(0);
+  // =======================================
+
+  const createInternshipParams = useAppSelector(state => state.createInternshipParams)
+  const [createInternship, {isLoading: isLoadingCreatingInternship}] = useCreateInternshipMutation();
 
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-  if (isStudentLoading || isJobsLoading || isProgramsLoading) {
+  if (isStudentLoading || isJobsLoading || isProgramsLoading || isLoadingCreatingInternship) {
     return <UPageSpinner/>;
   }
 
@@ -66,33 +87,19 @@ const UAssignJobPanel: React.FC = () => {
     );
   }
 
+  // Submit assigning job to student
   const handleSubmit = async () => {
-    if (selectedJobId === 0 || selectedProgramId === 0) {
-      setErrorMessage("Vui lòng chọn Công việc và Chương trình thực tập.");
-      return;
-    }
-    setErrorMessage("");
-    setIsSubmitting(true);
-
     try {
-      const response = await fetch("http://localhost:6001/internships", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          UserId: student.id,
-          JobId: selectedJobId,
-          InternshipProgramId: selectedProgramId,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error("Không thể chỉ định sinh viên. Thử lại sau.");
-      }
-      // After success, you can redirect or show a message
-      // For example: router.push("/school/students");
+      const response = await createInternship(createInternshipParams).unwrap();
+
+      console.log(response);
+
+      toast.success("Chỉ định sinh viên thành công!");
+      dispatch(resetParams());
     } catch (err: any) {
-      setErrorMessage(err.message || "Có lỗi xảy ra. Vui lòng thử lại.");
-    } finally {
-      setIsSubmitting(false);
+      toast.error(
+          err?.data?.message || "Không thể chỉ định sinh viên. Vui lòng thử lại."
+      );
     }
   };
 
@@ -274,17 +281,17 @@ const UAssignJobPanel: React.FC = () => {
                   {jobs?.results.map((job) => (
                       <li
                           key={job.id}
-                          onClick={() => setSelectedJobId(Number(job.id))}
+                          onClick={() => dispatch(setJobId(job.id))}
                           className={`
                       flex items-center justify-between px-4 py-2 cursor-pointer transition-colors duration-150
-                      ${selectedJobId === job.id
+                      ${createInternshipParams.jobId === job.id
                               ? "bg-blue-100 text-blue-700 font-medium"
                               : "hover:bg-gray-50 text-gray-800"
                           }
                     `}
                       >
                         <span>{job.title}</span>
-                        {selectedJobId === job.id && (
+                        {createInternshipParams.jobId === job.id && (
                             <span className="text-blue-600 font-semibold">✓</span>
                         )}
                       </li>
@@ -313,17 +320,17 @@ const UAssignJobPanel: React.FC = () => {
                   {programs?.results.map((prog) => (
                       <li
                           key={prog.id}
-                          onClick={() => setSelectedProgramId(Number(prog.id))}
+                          onClick={() => dispatch(setInternshipProgramId(prog.id))}
                           className={`
                       flex items-center justify-between px-4 py-2 cursor-pointer transition-colors duration-150
-                      ${selectedProgramId === prog.id
+                      ${createInternshipParams.internshipProgramId === prog.id
                               ? "bg-green-100 text-green-700 font-medium"
                               : "hover:bg-gray-50 text-gray-800"
                           }
                     `}
                       >
                         <span>{prog.name}</span>
-                        {selectedProgramId === prog.id && (
+                        {createInternshipParams.internshipProgramId === prog.id && (
                             <span className="text-green-600 font-semibold">✓</span>
                         )}
                       </li>
