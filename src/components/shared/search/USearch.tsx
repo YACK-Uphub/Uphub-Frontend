@@ -24,7 +24,7 @@ export default function USearch({ onSearchSubmitAction }: USearchProps) {
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           type="text"
-          placeholder="Tiêu đề công việc..."
+          placeholder="Tìm kiếm tại đây..."
           className="min-w-0 flex-1 bg-transparent text-sm focus:outline-none"
         />
       </div>

@@ -16,6 +16,8 @@ import { UModalWrapper } from "@/components/shared/UModalWrapper";
 import { UModalApplyingJob } from "@/features/job/components/UModalApplyingJob";
 import { signIn } from "next-auth/react";
 import { UserRole } from "@/types/user";
+import { UBusinessApplicationList } from "@/features/application/components/UBusinessApplicationList";
+import { setJobId } from "@/features/application/slices/applicationSlice";
 
 const UJobDetails = ({ id }: { id: number }) => {
   const { data: job, isLoading } = useGetJobByIdQuery(id);
@@ -31,8 +33,9 @@ const UJobDetails = ({ id }: { id: number }) => {
   if (auth?.user?.role) console.log(auth?.user.role);
 
   useEffect(() => {
-    if (!isLoading && job?.companyId) {
+    if (!isLoading && job?.id) {
       dispatch(setPageSize(6));
+      dispatch(setJobId(job.id));
     }
   }, [dispatch, job]);
 
@@ -240,14 +243,6 @@ const UJobDetails = ({ id }: { id: number }) => {
             </div>
           </div>
         </div>
-
-        {/* Student: Relative jobs */}
-        <div className="py-10">
-          <h1 className="text-2xl font-semibold">Các công việc liên quan:</h1>
-          <UJobList showPagination={false} />
-        </div>
-
-        {/* Company: Show application list*/}
       </div>
     </>
   );
