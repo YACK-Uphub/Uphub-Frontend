@@ -1,9 +1,9 @@
-﻿import {GetAllPaginatedRequestParams} from "@/types/baseModel";
+﻿import { GetAllPaginatedRequestParams } from "@/types/baseModel";
 
 export enum UserRole {
 	Student = "student",
 	Admin = "admin",
-	Company = "company",
+	Company = "Company",
 	UniversityManager = "UniversityManager",
 	Guest = "guest",
 }
@@ -25,14 +25,14 @@ export type Student = User & {
 	gender?: string;
 	school: string;
 	schoolId?: number;
-	internshipId?: number,
-	internshipStatus?: string,
-	"jobId"?: number
-	"jobTitle"?: string,
+	internshipId?: number;
+	internshipStatus?: string;
+	jobId?: number;
+	jobTitle?: string;
 	industry?: string;
 	industryId?: number;
 	curriculumVitaes?: CurriculumVitae[];
-	skills?: Skill[]
+	skills?: Skill[];
 };
 
 export type CurriculumVitae = {
@@ -49,6 +49,6 @@ export type SocialLink = {
 export type Skill = {
 	id: number;
 	name: string;
-}
+};
 
 export type StudentSearchPaginatedRequestParams = {} & GetAllPaginatedRequestParams;

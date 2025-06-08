@@ -25,8 +25,9 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 	[UserRole.Company]: [
 		{ name: "Tìm thực tập sinh", path: "/enterprise/candidates" },
 		{ name: "Đăng tuyển việc làm", path: "/enterprise/job-posting" },
+		{ name: "Quản lý công việc", path: "/enterprise/jobs" },
 		{ name: "Đơn ứng tuyển", path: "/enterprise/applications" },
-		{ name: "Lịch hẹn ứng viên", path: "/enterprise/schedule" },
+		// { name: "Lịch hẹn ứng viên", path: "/enterprise/schedule" },
 	],
 	[UserRole.Guest]: [
 		{ name: "Trang chủ", path: "/" },

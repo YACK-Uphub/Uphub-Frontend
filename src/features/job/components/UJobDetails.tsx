@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { UModalWrapper } from "@/components/shared/UModalWrapper";
 import { UModalApplyingJob } from "@/features/job/components/UModalApplyingJob";
 import { signIn } from "next-auth/react";
+import { UserRole } from "@/types/user";
 
 const UJobDetails = ({ id }: { id: number }) => {
   const { data: job, isLoading } = useGetJobByIdQuery(id);
@@ -27,6 +28,7 @@ const UJobDetails = ({ id }: { id: number }) => {
   const dispatch = useAppDispatch();
 
   const auth = useAppSelector((state) => state.auth);
+  if (auth?.user?.role) console.log(auth?.user.role);
 
   useEffect(() => {
     if (!isLoading && job?.companyId) {
@@ -49,6 +51,8 @@ const UJobDetails = ({ id }: { id: number }) => {
     if (auth?.user != null) setIsModalOpen(true);
     else signIn("id-server", { callbackUrl: `/student/jobs/${id}` }, { prompt: "login" });
   };
+
+  const handleUpdateJobButton = () => {};
 
   if (isLoading) return;
 
@@ -101,12 +105,22 @@ const UJobDetails = ({ id }: { id: number }) => {
               </div>
             </div>
             <div className="text-right">
-              <UButton
-                label="Ứng tuyển ngay"
-                backgroundColor="bg-custom-yellow-3"
-                textColor="text-custom-blue-2"
-                onClick={handleApplyButton}
-              ></UButton>
+              {auth?.user?.role === UserRole.Company ? (
+                <UButton
+                  label="Cập nhật"
+                  backgroundColor="bg-custom-yellow-3"
+                  textColor="text-custom-blue-2"
+                  onClick={handleUpdateJobButton}
+                ></UButton>
+              ) : (
+                <UButton
+                  label="Ứng tuyển ngay"
+                  backgroundColor="bg-custom-yellow-3"
+                  textColor="text-custom-blue-2"
+                  onClick={handleApplyButton}
+                ></UButton>
+              )}
+
               <div className="mt-2 text-sm text-custom-red-bg">Hết hạn vào {formatDate(job.closingDate)}</div>
             </div>
           </div>
@@ -226,10 +240,14 @@ const UJobDetails = ({ id }: { id: number }) => {
             </div>
           </div>
         </div>
+
+        {/* Student: Relative jobs */}
         <div className="py-10">
           <h1 className="text-2xl font-semibold">Các công việc liên quan:</h1>
           <UJobList showPagination={false} />
         </div>
+
+        {/* Company: Show application list*/}
       </div>
     </>
   );
