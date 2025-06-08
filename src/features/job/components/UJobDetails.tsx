@@ -1,19 +1,20 @@
 "use client";
-import React, {useEffect, useState} from "react";
-import {ArrowLeft, Briefcase, Calendar, Clock, Facebook, Mail, Phone, Twitter, Users} from "lucide-react";
-import {formatDate, formatNewLine} from "@/utils/helpers";
+import React, { useEffect, useState } from "react";
+import { ArrowLeft, Briefcase, Calendar, Clock, Facebook, Mail, Phone, Twitter, Users } from "lucide-react";
+import { formatDate, formatNewLine } from "@/utils/helpers";
 import Image from "next/image";
 import UCompanyInfoCard from "./UCompanyInfoCard";
 import UJobList from "./UJobList";
-import {resetParams, setPageSize} from "../slices/jobSlice";
-import {useAppDispatch} from "@/libs/rtk/hooks";
-import {useGetJobByIdQuery} from "@/services/jobsApi";
-import {useGetCompanyByIdQuery} from "@/services/companiesApi";
-import {skipToken} from "@reduxjs/toolkit/query";
+import { resetParams, setPageSize } from "../slices/jobSlice";
+import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
+import { useGetJobByIdQuery } from "@/services/jobsApi";
+import { useGetCompanyByIdQuery } from "@/services/companiesApi";
+import { skipToken } from "@reduxjs/toolkit/query";
 import UButton from "@/components/shared/UButton";
-import {useRouter} from "next/navigation";
-import {UModalWrapper} from "@/components/shared/UModalWrapper";
-import {UModalApplyingJob} from "@/features/job/components/UModalApplyingJob";
+import { useRouter } from "next/navigation";
+import { UModalWrapper } from "@/components/shared/UModalWrapper";
+import { UModalApplyingJob } from "@/features/job/components/UModalApplyingJob";
+import { signIn } from "next-auth/react";
 
 const UJobDetails = ({ id }: { id: number }) => {
   const { data: job, isLoading } = useGetJobByIdQuery(id);
@@ -24,6 +25,8 @@ const UJobDetails = ({ id }: { id: number }) => {
 
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  const auth = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     if (!isLoading && job?.companyId) {
@@ -40,6 +43,11 @@ const UJobDetails = ({ id }: { id: number }) => {
   const handleOnBack = () => {
     dispatch(resetParams());
     router.back();
+  };
+
+  const handleApplyButton = () => {
+    if (auth?.user != null) setIsModalOpen(true);
+    else signIn("id-server", { callbackUrl: `/student/jobs/${id}` }, { prompt: "login" });
   };
 
   if (isLoading) return;
@@ -97,7 +105,7 @@ const UJobDetails = ({ id }: { id: number }) => {
                 label="Ứng tuyển ngay"
                 backgroundColor="bg-custom-yellow-3"
                 textColor="text-custom-blue-2"
-                onClick={() => setIsModalOpen(true)}
+                onClick={handleApplyButton}
               ></UButton>
               <div className="mt-2 text-sm text-custom-red-bg">Hết hạn vào {formatDate(job.closingDate)}</div>
             </div>
