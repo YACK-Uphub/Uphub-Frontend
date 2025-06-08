@@ -21,6 +21,7 @@ export default function UJobList({ viewType = "card", userJobStatus, showPaginat
   const jobParams = useAppSelector((state) => state.jobParams);
   const { data, isLoading } = useSearchJobsQuery(jobParams);
   const dispatch = useAppDispatch();
+  const auth = useAppSelector((state) => state.auth);
 
   const handlePageChange = (newPage: number) => {
     dispatch(setPageIndex(newPage));
@@ -54,7 +55,10 @@ export default function UJobList({ viewType = "card", userJobStatus, showPaginat
           {viewType === "card" ? (
             <div className="grid grid-cols-3 gap-6">
               {data.results.map((job: Job) => (
-                <Link href={`/student/jobs/${job.id}`} key={job.id}>
+                <Link
+                  href={`/${auth?.user?.role === "Company" ? "enterprise" : "student"}/jobs/${job.id}`}
+                  key={job.id}
+                >
                   <UCardJob
                     companyLogoUrl={job.companyImageUrl}
                     companyName={job.companyName}

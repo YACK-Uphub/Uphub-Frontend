@@ -2,10 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {UserRole} from "@/types/user";
-import {navRoutes} from "@/utils/navConfig";
-import {useAppSelector} from "@/libs/rtk/hooks";
+import { usePathname } from "next/navigation";
+import { UserRole } from "@/types/user";
+import { navRoutes } from "@/utils/navConfig";
+import { useAppSelector } from "@/libs/rtk/hooks";
 
 export interface USubHeaderProps {
   role: UserRole;
@@ -14,7 +14,7 @@ export interface USubHeaderProps {
 const USubHeader = ({ role }: USubHeaderProps) => {
   const auth = useAppSelector((state) => state.auth);
   const roleStr = auth?.user?.role;
-  role = roleStr && roleStr in UserRole ? UserRole[roleStr as keyof typeof UserRole] : UserRole.Student;
+  role = roleStr && roleStr in UserRole ? UserRole[roleStr as keyof typeof UserRole] : UserRole.Guest;
 
   const pathname = usePathname();
   const routes = navRoutes[role];

@@ -1,19 +1,23 @@
 "use client";
-import React, {useEffect, useState} from "react";
-import {ArrowLeft, Briefcase, Calendar, Clock, Facebook, Mail, Phone, Twitter, Users} from "lucide-react";
-import {formatDate, formatNewLine} from "@/utils/helpers";
+import React, { useEffect, useState } from "react";
+import { ArrowLeft, Briefcase, Calendar, Clock, Facebook, Mail, Phone, Twitter, Users } from "lucide-react";
+import { formatDate, formatNewLine } from "@/utils/helpers";
 import Image from "next/image";
 import UCompanyInfoCard from "./UCompanyInfoCard";
 import UJobList from "./UJobList";
-import {resetParams, setPageSize} from "../slices/jobSlice";
-import {useAppDispatch} from "@/libs/rtk/hooks";
-import {useGetJobByIdQuery} from "@/services/jobsApi";
-import {useGetCompanyByIdQuery} from "@/services/companiesApi";
-import {skipToken} from "@reduxjs/toolkit/query";
+import { resetParams, setPageSize } from "../slices/jobSlice";
+import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
+import { useGetJobByIdQuery } from "@/services/jobsApi";
+import { useGetCompanyByIdQuery } from "@/services/companiesApi";
+import { skipToken } from "@reduxjs/toolkit/query";
 import UButton from "@/components/shared/UButton";
-import {useRouter} from "next/navigation";
-import {UModalWrapper} from "@/components/shared/UModalWrapper";
-import {UModalApplyingJob} from "@/features/job/components/UModalApplyingJob";
+import { useRouter } from "next/navigation";
+import { UModalWrapper } from "@/components/shared/UModalWrapper";
+import { UModalApplyingJob } from "@/features/job/components/UModalApplyingJob";
+import { signIn } from "next-auth/react";
+import { UserRole } from "@/types/user";
+import { UBusinessApplicationList } from "@/features/application/components/UBusinessApplicationList";
+import { setJobId } from "@/features/application/slices/applicationSlice";
 
 const UJobDetails = ({ id }: { id: number }) => {
   const { data: job, isLoading } = useGetJobByIdQuery(id);
@@ -25,9 +29,13 @@ const UJobDetails = ({ id }: { id: number }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
+  const auth = useAppSelector((state) => state.auth);
+  if (auth?.user?.role) console.log(auth?.user.role);
+
   useEffect(() => {
-    if (!isLoading && job?.companyId) {
+    if (!isLoading && job?.id) {
       dispatch(setPageSize(6));
+      dispatch(setJobId(job.id));
     }
   }, [dispatch, job]);
 
@@ -41,6 +49,13 @@ const UJobDetails = ({ id }: { id: number }) => {
     dispatch(resetParams());
     router.back();
   };
+
+  const handleApplyButton = () => {
+    if (auth?.user != null) setIsModalOpen(true);
+    else signIn("id-server", { callbackUrl: `/student/jobs/${id}` }, { prompt: "login" });
+  };
+
+  const handleUpdateJobButton = () => {};
 
   if (isLoading) return;
 
@@ -93,12 +108,22 @@ const UJobDetails = ({ id }: { id: number }) => {
               </div>
             </div>
             <div className="text-right">
-              <UButton
-                label="Ứng tuyển ngay"
-                backgroundColor="bg-custom-yellow-3"
-                textColor="text-custom-blue-2"
-                onClick={() => setIsModalOpen(true)}
-              ></UButton>
+              {auth?.user?.role === UserRole.Company ? (
+                <UButton
+                  label="Cập nhật"
+                  backgroundColor="bg-custom-yellow-3"
+                  textColor="text-custom-blue-2"
+                  onClick={handleUpdateJobButton}
+                ></UButton>
+              ) : (
+                <UButton
+                  label="Ứng tuyển ngay"
+                  backgroundColor="bg-custom-yellow-3"
+                  textColor="text-custom-blue-2"
+                  onClick={handleApplyButton}
+                ></UButton>
+              )}
+
               <div className="mt-2 text-sm text-custom-red-bg">Hết hạn vào {formatDate(job.closingDate)}</div>
             </div>
           </div>
@@ -217,10 +242,6 @@ const UJobDetails = ({ id }: { id: number }) => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="py-10">
-          <h1 className="text-2xl font-semibold">Các công việc liên quan:</h1>
-          <UJobList showPagination={false} />
         </div>
       </div>
     </>

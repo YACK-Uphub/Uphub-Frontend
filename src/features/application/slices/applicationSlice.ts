@@ -1,5 +1,5 @@
-import {ApplicationNameType, ApplicationSearchPaginatedRequestParams} from "@/types/application";
-import {createSlice} from "@reduxjs/toolkit";
+import { ApplicationNameType, ApplicationSearchPaginatedRequestParams } from "@/types/application";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: ApplicationSearchPaginatedRequestParams = {
 	pageNumber: 1,
@@ -36,5 +36,5 @@ export const applicationSlice = createSlice({
 	},
 });
 
-export const {resetParams, setPageIndex, setPageSize, setSearchTerm, setUserId, setJobId} = applicationSlice.actions;
+export const { resetParams, setPageIndex, setPageSize, setSearchTerm, setUserId, setJobId } = applicationSlice.actions;
 export default applicationSlice.reducer;

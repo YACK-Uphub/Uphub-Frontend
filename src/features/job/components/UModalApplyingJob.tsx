@@ -1,17 +1,17 @@
 ﻿import * as React from "react";
-import {Controller, useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {z} from "zod";
-import {Job} from "@/types/job";
+import { Controller, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Job } from "@/types/job";
 import UButton from "@/components/shared/UButton";
-import {Label} from "@/components/shadcn/label";
+import { Label } from "@/components/shadcn/label";
 import UInput from "@/components/shared/UInput";
 import Image from "next/image";
-import {Company} from "@/types/company";
-import UFileInput, {UFileInputType} from "@/components/shared/UFileInput";
-import {useCreateApplicationWithFormDataMutation} from "@/services/applicationsApi";
-import {toast} from "react-toastify";
-import {UPageSpinner} from "@/components/shared/spinner/UPageSpinner";
+import { Company } from "@/types/company";
+import UFileInput, { UFileInputType } from "@/components/shared/UFileInput";
+import { useCreateApplicationWithFormDataMutation } from "@/services/applicationsApi";
+import { toast } from "react-toastify";
+import { UPageSpinner } from "@/components/shared/spinner/UPageSpinner";
 
 // FILE UPLOAD RESTRICTION
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -23,8 +23,8 @@ const ApplicationFormSchema = z.object({
   email: z.string().email("Email không hợp lệ"),
   phone: z.string().min(10, "Số điện thoại phải có ít nhất 10 số"),
   linkedInUrl: z.string().url("URL không hợp lệ").optional().or(z.literal("")),
-  coverLetter: z.string().max(500, "Cover letter tối đa 1000 ký tự").optional(),
-  introduction: z.string().max(500, "Giới thiệu tối đa 1000 ký tự").optional(),
+  coverLetter: z.string().max(1500, "Cover letter tối đa 1500 ký tự").optional(),
+  introduction: z.string().max(1500, "Giới thiệu tối đa 1500 ký tự").optional(),
   CVDocument: z
     .any()
     .refine((file) => file instanceof File, "Vui lòng tải lên CV")
