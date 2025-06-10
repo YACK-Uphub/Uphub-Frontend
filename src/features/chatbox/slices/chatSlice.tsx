@@ -3,29 +3,32 @@ import {storage} from "@/utils/localStorageHelpers";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {v4 as uuidv4} from 'uuid';
 
+
 /**
  * Save the list of messages temporarily under the local storage
  */
 const saveMessages = (msgs: ChatMessage[], quantity: number) => {
   const trimmed = msgs.slice(-quantity);
-  storage.set<ChatMessage[]>(process.env.LOCAL_STORAGE_CHAT_MESSAGE_KEY, trimmed);
+  storage.set<ChatMessage[]>(process.env.CHAT_MESSAGE_KEY, trimmed);
 }
+
+console.log(process.env.CHAT_MESSAGE_KEY)
 
 /**
  * Load the messages from the local storage
  * @param quantity
  */
 const loadMessages = (quantity: number): ChatMessage[] => {
-  const stored = storage.get<ChatMessage[]>(process.env.LOCAL_STORAGE_CHAT_MESSAGE);
-  return stored.slice(-quantity) ?? [];
+  const stored = storage.get<ChatMessage[]>(process.env.CHAT_MESSAGE_KEY);
+  return stored ? stored.slice(-quantity) : [];
 }
 
 const initialState: ChatState = {
   open: false,
-  messages: loadMessages(20)
+  messages: loadMessages(10)
 }
 
-const chatSlice = createSlice({
+export const chatSlice = createSlice({
   name: "chatSlice",
   initialState,
   reducers: {
@@ -38,7 +41,7 @@ const chatSlice = createSlice({
     // clear all messages
     clearChat(state) {
       state.messages = [];
-      storage.remove(process.env.LOCAL_STORAGE_CHAT_MESSAGE);
+      storage.remove(process.env.CHAT_MESSAGE_KEY);
     },
 
     /** Append a user message */
@@ -53,9 +56,9 @@ const chatSlice = createSlice({
         date: action.payload.date
       }
 
-      // push to the list and get only top 20
+      // push to the list and get only top 10
       state.messages.push(msg)
-      saveMessages(state.messages, 20)
+      saveMessages(state.messages, 10)
     },
 
     /** Append a bot message */

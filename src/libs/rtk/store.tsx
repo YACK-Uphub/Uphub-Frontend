@@ -18,6 +18,7 @@ import {createInternshipsApi, internshipsApi} from "@/services/internshipsApi";
 import {internshipSlice} from "@/features/internship/slices/internshipSlice";
 import {createInternshipSlice} from "@/features/internship/slices/createInternshipSlice";
 import {chatsApi} from "@/services/chatApi";
+import {chatSlice} from "@/features/chatbox/slices/chatSlice";
 
 // Create store instance per request for strong type safety
 export function makeStore() {
@@ -43,7 +44,8 @@ export function makeStore() {
       studentParams: studentSlice.reducer,
       internshipProgramParams: internshipProgramSlice.reducer,
       internshipParams: internshipSlice.reducer,
-      createInternshipParams: createInternshipSlice.reducer
+      createInternshipParams: createInternshipSlice.reducer,
+      chat: chatSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware()
