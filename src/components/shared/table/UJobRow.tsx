@@ -1,7 +1,7 @@
 "use client";
 
 import {Bookmark, MapPin, Users} from "lucide-react";
-import {formatDate} from "@/utils/helpers";
+import {formatDate} from "@/utils/functionHelpers";
 import UButton from "../UButton";
 import Image from "next/image";
 import {

@@ -1,15 +1,15 @@
 "use client";
-import React, { useEffect } from "react";
-import { ArrowLeft, Calendar, Clock, Facebook, Globe, Mail, Phone, Twitter, Users } from "lucide-react";
-import { formatDate, formatNewLine } from "@/utils/helpers";
+import React, {useEffect} from "react";
+import {ArrowLeft, Calendar, Clock, Facebook, Globe, Mail, Phone, Twitter, Users} from "lucide-react";
+import {formatDate, formatNewLine} from "@/utils/functionHelpers";
 import Image from "next/image";
-import { useAppDispatch } from "@/libs/rtk/hooks";
-import { useGetCompanyByIdQuery } from "@/services/companiesApi";
-import { setCompanyId, setPageSize } from "@/features/job/slices/jobSlice";
+import {useAppDispatch} from "@/libs/rtk/hooks";
+import {useGetCompanyByIdQuery} from "@/services/companiesApi";
+import {setCompanyId, setPageSize} from "@/features/job/slices/jobSlice";
 import UJobList from "@/features/job/components/UJobList";
 import UButton from "@/components/shared/UButton";
-import { resetParams } from "../slices/companySlice";
-import { useRouter } from "next/navigation";
+import {resetParams} from "../slices/companySlice";
+import {useRouter} from "next/navigation";
 
 const UCompanyDetails = ({ id }: { id: number }) => {
   const { data: company, isLoading } = useGetCompanyByIdQuery(id);

@@ -1,18 +1,18 @@
 "use client";
 
 import * as React from "react";
-import { useState } from "react";
-import { useSearchApplicationsQuery } from "@/services/applicationsApi";
-import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
+import {useState} from "react";
+import {useSearchApplicationsQuery} from "@/services/applicationsApi";
+import {useAppDispatch, useAppSelector} from "@/libs/rtk/hooks";
 import UCardApplication from "@/components/shared/card/UCardApplication";
-import { formatDate } from "@/utils/helpers";
-import { UCardVariant } from "@/components/shared/card/UCardVariant";
+import {formatDate} from "@/utils/functionHelpers";
+import {UCardVariant} from "@/components/shared/card/UCardVariant";
 
-import { UPageSpinner } from "@/components/shared/spinner/UPageSpinner";
-import { setPageIndex } from "@/features/application/slices/applicationSlice";
-import { UPagination } from "@/components/shared/UPagination";
-import { Application } from "@/types/application";
-import { UModalWrapper } from "@/components/shared/UModalWrapper";
+import {UPageSpinner} from "@/components/shared/spinner/UPageSpinner";
+import {setPageIndex} from "@/features/application/slices/applicationSlice";
+import {UPagination} from "@/components/shared/UPagination";
+import {Application} from "@/types/application";
+import {UModalWrapper} from "@/components/shared/UModalWrapper";
 import UModalApplication from "@/features/application/components/UModalApplication";
 
 export const UBusinessApplicationList = () => {

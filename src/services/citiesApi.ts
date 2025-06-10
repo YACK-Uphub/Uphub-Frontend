@@ -1,8 +1,6 @@
-import React from "react";
-import { createCrudApi, customFetchBaseQueryWithErrorHandling } from "./baseApi";
-import { City } from "@/types/city";
-import { SearchPaginatedRequestParams } from "@/types/baseModel";
-import { createApi } from "@reduxjs/toolkit/query/react";
+import {City} from "@/types/city";
+import {createApi} from "@reduxjs/toolkit/query/react";
+import {customFetchBaseQueryWithErrorHandling} from "@/services/baseApi";
 
 export const citiesApi = createApi({
 	reducerPath: "cityApi",

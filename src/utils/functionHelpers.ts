@@ -10,6 +10,18 @@ export const formatCurrnency = (value: number) => {
 };
 
 /**
+ * Format date into 02:34 AM
+ * @param date
+ */
+export const formatDateToTime = (date: Date | string): string => {
+	const time = new Date(date).toLocaleTimeString([], {
+		hour: '2-digit', minute: '2-digit'
+	})
+
+	return time;
+}
+
+/**
  * Format into 15 thang 5, 2015
  * @param date
  * @param locale

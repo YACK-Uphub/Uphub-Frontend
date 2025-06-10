@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { useDispatch } from "react-redux";
-import { setToken, setUser } from "@/features/auth/authSlice";
+import {useEffect} from "react";
+import {useSession} from "next-auth/react";
+import {setToken, setUser} from "@/features/auth/authSlice";
+import {useAppDispatch} from "@/libs/rtk/hooks";
 
 export default function AuthSessionSync() {
   const { data: session } = useSession();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (session?.accessToken) {

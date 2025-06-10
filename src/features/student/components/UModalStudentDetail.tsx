@@ -15,7 +15,7 @@ import {
   UserIcon,
 } from "@heroicons/react/24/outline";
 import {ExternalLinkIcon} from "lucide-react";
-import {formatDate} from "@/utils/helpers";
+import {formatDate} from "@/utils/functionHelpers";
 import {useGetStudentByIdQuery} from "@/services/studentsApi";
 import {UPageSpinner} from "@/components/shared/spinner/UPageSpinner";
 

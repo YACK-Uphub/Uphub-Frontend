@@ -6,7 +6,6 @@ import UCardTopCompany from "@/components/shared/card/UCardTopCompany";
 import {UCardVariant} from "@/components/shared/card/UCardVariant";
 import UCardApplication from "@/components/shared/card/UCardApplication";
 import {UCardJob} from "@/components/shared/card/UCardJob";
-import UCardJobForU from "@/components/shared/card/UCardJobForU";
 import React from "react";
 import {toast} from "react-toastify";
 import {useSearchCompaniesQuery} from "@/services/companiesApi";
@@ -83,16 +82,13 @@ const TestPage = () => {
 
         <USearchWithFilter dropdownData={locations} onSearchSubmitAction={null}></USearchWithFilter>
 
-        <UCardTopCompany logoUrl="https://placehold.co/600x400/png"
-                         name="NAVA Company"
-                         rating={4.7}
-                         employeeRange="10.000 - 100.000"
-                         followers={6968877}
-                         recommendationRate="74%"
-                         isHiring={true}
-                         hasHighBenefits={true}
-                         variant={UCardVariant.Border}
-        />
+        <UCardTopCompany
+            rating={4.7}
+            followers={6968877}
+            recommendationRate="74%"
+            isHiring={true}
+            hasHighBenefits={true}
+            variant={UCardVariant.Border} companyName={""} companySize={""}/>
 
         <UCardApplication
             name="Lê Quang Khánh"
@@ -115,15 +111,7 @@ const TestPage = () => {
             salaryRange="$10K-$15K"
             variant={UCardVariant.LightBlue}/>
 
-        <UCardJobForU
-            companyLogo="https://placehold.co/600x400/png"
-            companyName="ASMA Company"
-            jobTitle="TTS Content Creator"
-            location="Quận 2, TP Hồ Chí Minh"
-            type="Full Time"
-            tag="Ứng Tuyển Dễ Dàng"
-            postedTime="1d"
-        />
+        
       </>
   )
 }

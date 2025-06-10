@@ -10,6 +10,7 @@ import {Slide, ToastContainer} from "react-toastify";
 import {UserRole} from "@/types/user";
 import AuthSessionSync from "@/providers/AuthSessionSync";
 import {SessionProvider} from "next-auth/react";
+import UChatWidget from "@/features/chatbox/components/UChatboxWidget";
 
 const fontReemKufi = Reem_Kufi({
   subsets: ["vietnamese"],
@@ -67,6 +68,7 @@ export default function RootLayout({
             {/* Main */}
             <main className={"flex-1 bg-custom-white"}>
               <UPageSpinnerWrapper>{children}</UPageSpinnerWrapper>
+              <UChatWidget></UChatWidget>
             </main>
 
             {/* Footer*/}

@@ -110,7 +110,7 @@ export function createCrudApi<
 				  })
 				: undefined,
 
-			// CREATE: application/2
+			// POST: application/2
 			create: builder.mutation<T, Partial<T>>({
 				query: (body) => ({
 					url: baseUrl,
