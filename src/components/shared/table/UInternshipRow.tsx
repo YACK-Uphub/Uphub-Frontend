@@ -1,6 +1,6 @@
 "use client";
 
-import {formatDate} from "@/utils/helpers";
+import {formatDate} from "@/utils/functionHelpers";
 import UButton from "../UButton";
 import Image from "next/image";
 

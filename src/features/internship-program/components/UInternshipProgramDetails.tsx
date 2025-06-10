@@ -1,14 +1,14 @@
 "use client";
-import React, { useEffect } from "react";
-import { ArrowLeft, Calendar, Clock, Facebook, Globe, Mail, Phone, Twitter, Users } from "lucide-react";
-import { formatDate, formatNewLine } from "@/utils/helpers";
+import React, {useEffect} from "react";
+import {ArrowLeft, Calendar, Clock, Facebook, Globe, Mail, Phone, Twitter, Users} from "lucide-react";
+import {formatDate, formatNewLine} from "@/utils/functionHelpers";
 import Image from "next/image";
-import { useAppDispatch } from "@/libs/rtk/hooks";
+import {useAppDispatch} from "@/libs/rtk/hooks";
 import UButton from "@/components/shared/UButton";
-import { useRouter } from "next/navigation";
-import { useGetInternshipProgramByIdQuery } from "@/services/internshipProgramsApi";
-import { setInternshipProgramId, setPageSize } from "@/features/company/slices/companySlice";
-import { resetParams } from "../slices/internshipProgramSlice";
+import {useRouter} from "next/navigation";
+import {useGetInternshipProgramByIdQuery} from "@/services/internshipProgramsApi";
+import {setInternshipProgramId, setPageSize} from "@/features/company/slices/companySlice";
+import {resetParams} from "../slices/internshipProgramSlice";
 
 const UInternshipProgramDetails = ({ id }: { id: number }) => {
   const { data: program, isLoading } = useGetInternshipProgramByIdQuery(id);

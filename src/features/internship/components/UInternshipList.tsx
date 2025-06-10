@@ -27,7 +27,7 @@ export const UInternshipList = () => {
   };
 
   return (
-      <div className="max-w-4xl mx-auto mt-8 space-y-8">
+      <div className="mx-auto mt-8 max-w-4xl space-y-8">
         {/* Header: Total count */}
         <h1 className="text-2xl font-semibold text-gray-800">
           Tổng số Internship Records: {internships.totalCount}
@@ -38,11 +38,11 @@ export const UInternshipList = () => {
           {internships.results.map((intern) => (
               <div
                   key={intern.id}
-                  className="flex flex-col md:flex-row bg-white rounded-lg shadow-md overflow-hidden"
+                  className="flex flex-col overflow-hidden rounded-lg bg-white shadow-md md:flex-row"
               >
                 {/* Left: Company image & student avatar */}
-                <div className="flex-shrink-0 bg-custom-white p-4 flex items-center justify-center">
-                  <div className="relative h-16 w-16 md:h-20 md:w-20 rounded-full overflow-hidden bg-custom-white">
+                <div className="flex flex-shrink-0 items-center justify-center p-4 bg-custom-white">
+                  <div className="relative h-16 w-16 overflow-hidden rounded-full md:h-20 md:w-20 bg-custom-white">
                     <Image
                         src={intern.companyImageUrl}
                         alt={`${intern.companyName} Logo`}
@@ -60,7 +60,7 @@ export const UInternshipList = () => {
                 <div className="flex-1 p-4 space-y-2">
                   {/* Student row */}
                   <div className="flex items-center space-x-3">
-                    <div className="relative h-12 w-12 rounded-full overflow-hidden ring-2 ring-gray-300">
+                    <div className="relative h-12 w-12 overflow-hidden rounded-full ring-2 ring-gray-300">
                       <Image
                           src={intern.studentImageUrl}
                           alt={intern.studentFullName}
@@ -91,11 +91,11 @@ export const UInternshipList = () => {
 
                   {/* Internship Status & Score */}
                   <div className="flex flex-wrap items-center gap-6 text-sm">
-                <span className="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-md">
+                <span className="rounded-md bg-yellow-100 px-2 py-1 text-yellow-800">
                   Trạng thái: {intern.internshipStatus}
                 </span>
                     {intern.score !== null && (
-                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-md">
+                        <span className="rounded-md bg-blue-100 px-2 py-1 text-blue-800">
                     Điểm: {intern.score.toFixed(1)}
                   </span>
                     )}
@@ -103,7 +103,7 @@ export const UInternshipList = () => {
 
                   {/* Comment */}
                   {intern.comment && (
-                      <div className="mt-2 text-sm text-gray-600 italic">
+                      <div className="mt-2 text-sm italic text-gray-600">
                         “{intern.comment}”
                       </div>
                   )}

@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import {ReactNode} from "react";
-import {debounce} from "@/utils/helpers";
+import {debounce} from "@/utils/functionHelpers";
 
 export interface UButtonProps {
   onClick?: () => void;

@@ -1,23 +1,21 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { ArrowLeft, Briefcase, Calendar, Clock, Facebook, Mail, Phone, Twitter, Users } from "lucide-react";
-import { formatDate, formatNewLine } from "@/utils/helpers";
+import React, {useEffect, useState} from "react";
+import {ArrowLeft, Briefcase, Calendar, Clock, Facebook, Mail, Phone, Twitter, Users} from "lucide-react";
+import {formatDate, formatNewLine} from "@/utils/functionHelpers";
 import Image from "next/image";
 import UCompanyInfoCard from "./UCompanyInfoCard";
-import UJobList from "./UJobList";
-import { resetParams, setPageSize } from "../slices/jobSlice";
-import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
-import { useGetJobByIdQuery } from "@/services/jobsApi";
-import { useGetCompanyByIdQuery } from "@/services/companiesApi";
-import { skipToken } from "@reduxjs/toolkit/query";
+import {resetParams, setPageSize} from "../slices/jobSlice";
+import {useAppDispatch, useAppSelector} from "@/libs/rtk/hooks";
+import {useGetJobByIdQuery} from "@/services/jobsApi";
+import {useGetCompanyByIdQuery} from "@/services/companiesApi";
+import {skipToken} from "@reduxjs/toolkit/query";
 import UButton from "@/components/shared/UButton";
-import { useRouter } from "next/navigation";
-import { UModalWrapper } from "@/components/shared/UModalWrapper";
-import { UModalApplyingJob } from "@/features/job/components/UModalApplyingJob";
-import { signIn } from "next-auth/react";
-import { UserRole } from "@/types/user";
-import { UBusinessApplicationList } from "@/features/application/components/UBusinessApplicationList";
-import { setJobId } from "@/features/application/slices/applicationSlice";
+import {useRouter} from "next/navigation";
+import {UModalWrapper} from "@/components/shared/UModalWrapper";
+import {UModalApplyingJob} from "@/features/job/components/UModalApplyingJob";
+import {signIn} from "next-auth/react";
+import {UserRole} from "@/types/user";
+import {setJobId} from "@/features/application/slices/applicationSlice";
 
 const UJobDetails = ({ id }: { id: number }) => {
   const { data: job, isLoading } = useGetJobByIdQuery(id);

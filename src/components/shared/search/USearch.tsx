@@ -16,7 +16,7 @@ export default function USearch({ onSearchSubmitAction }: USearchProps) {
   };
 
   return (
-    <div className="flex border max-w-5xl flex-wrap items-center gap-4 rounded-full px-2 py-1 shadow-xl bg-custom-white md:flex-nowrap md:px-4 md:py-2">
+    <div className="flex max-w-5xl flex-wrap items-center gap-4 rounded-full border px-2 py-1 shadow-xl bg-custom-white md:flex-nowrap md:px-4 md:py-2">
       {/* Job Search Input - Shrinks */}
       <div className="flex min-w-0 items-center gap-2 flex-2">
         <MagnifyingGlassIcon className="h-5 w-5 text-custom-blue-3" />

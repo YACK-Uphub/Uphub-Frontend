@@ -1,7 +1,7 @@
 ﻿import React from "react";
 import Image from "next/image";
-import { BookmarkIcon } from "@heroicons/react/24/outline";
-import { formatDate } from "@/utils/helpers";
+import {BookmarkIcon} from "@heroicons/react/24/outline";
+import {formatDate} from "@/utils/functionHelpers";
 
 interface UCardJobForUProps {
   companyImageUrl?: string;
