@@ -32,7 +32,7 @@ export default function UChatWidget() {
       question: text
     }
 
-    const dateNow = new Date().toISOString()
+    const dateNow = new Date().toISOString();
 
     // add new message here to the store
     dispatch(addUserMessage({text, date: dateNow}))
@@ -68,7 +68,7 @@ export default function UChatWidget() {
         {/* Panel */}
         <div
             className={`
-              fixed top-1/2 right-[2vh] h-[96vh] bg-custom-white/96 shadow-2xl
+              fixed top-1/2 right-[2vh] h-[96vh] bg-custom-white/98 shadow-2xl
               flex flex-col z-50
               border-1 border-custom-blue-3/10 rounded-2xl
               -translate-y-1/2
@@ -99,30 +99,20 @@ export default function UChatWidget() {
                   return (
                       <div
                           key={msg.id}
-                          className={`flex items-end
-                      ${isUser
+                          className={`flex items-end ${isUser
                               ? 'justify-end space-x-reverse space-x-2'
-                              : 'justify-start space-x-2'
-                          }`}
+                              : 'justify-start space-x-2'}`}
                       >
                         {/* Bubble */}
-                        <div className={`
-                        inline-block
-                        px-4 py-2
-                        rounded-xl
-                        max-w-[75%]
-                        shadow-xl
-                        break-words whitespace-pre-line
-                    ${isUser
+                        <div className={`inline-block px-4 py-2 rounded-xl max-w-[75%] shadow-xl break-words whitespace-pre-line
+                          ${isUser
                             ? 'bg-custom-blue-3 text-custom-white'
-                            : 'bg-custom-white text-custom-black'
-                        }`}>
+                            : 'bg-custom-gray/20 text-custom-black'}`}>
 
                           <div>{msg.text}</div>
 
                           <div className={`mt-1 text-right text-x
-                        ${isUser ? 'text-custom-white/50' : 'text-custom-black/60'}
-                      `}>{time}</div>
+                          ${isUser ? 'text-custom-white/50' : 'text-custom-black/60'}`}>{time}</div>
                         </div>
                       </div>)
                 })}
@@ -153,14 +143,15 @@ export default function UChatWidget() {
             />
 
             {/* Submit Button */}
-            <button
-                type="submit"
-                disabled={isLoading}
-                className="flex items-center bg-custom-yellow-3 text-white px-6 py-3 rounded-r
-                         hover:bg-custom-yellow-3/80 focus:outline-none"
-            >
-              <PaperAirplaneIcon className="h-6 w-6 rotate-90 transform"/>
-            </button>
+            {!isLoading &&
+                <button
+                    type="submit"
+                    className="flex items-center bg-custom-yellow-3 text-custom-white px-6 py-3 rounded-r
+                           hover:bg-custom-yellow-3/80 focus:outline-none"
+                >
+                  <PaperAirplaneIcon className="h-6 w-6 rotate-90 transform"/>
+                </button>
+            }
           </form>
         </div>
       </>

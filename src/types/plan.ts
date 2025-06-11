@@ -18,5 +18,6 @@ export enum PlanRoleEnum {
 }
 
 export type PlanSearchPaginatedRequestParams = SearchPaginatedRequestParams & {
-	role: PlanRoleEnum
+	role?: PlanRoleEnum
 };
+

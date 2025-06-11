@@ -1,12 +1,9 @@
-import type {Metadata} from 'next';
-import UUserExperienceSection
-  from "@/features/home/components/user-experience-section/UUserExperienceSection";
+import UUserExperienceSection from "@/features/home/components/user-experience-section/UUserExperienceSection";
 import UTopCompaniesSection from "@/features/home/components/UTopCompaniesSection";
 import UHeroSection from "@/features/home/components/hero-section/UHeroSection";
 import UJobForUSection from "@/features/home/components/UJobForUSection";
 import UJobPilotSection from "@/features/home/components/UJobPilotSection";
-import UBecomeMemberSection
-  from "@/features/home/components/become-member-section/UBecomeMemberSection";
+import UBecomeMemberSection from "@/features/home/components/become-member-section/UBecomeMemberSection";
 
 // export const metadata: Metadata = {
 // 	title: "HomePage",

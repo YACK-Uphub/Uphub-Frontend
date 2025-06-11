@@ -1,17 +1,14 @@
 ﻿"use client"
 
-import USearchWithFilter, {UDropdownItem} from "@/components/shared/search/USearchWithFilter";
+import {UDropdownItem} from "@/components/shared/search/USearchWithFilter";
 import {Job, JobStatus} from "@/types/job";
-import UCardTopCompany from "@/components/shared/card/UCardTopCompany";
-import {UCardVariant} from "@/components/shared/card/UCardVariant";
-import UCardApplication from "@/components/shared/card/UCardApplication";
-import {UCardJob} from "@/components/shared/card/UCardJob";
 import React from "react";
-import {toast} from "react-toastify";
 import {useSearchCompaniesQuery} from "@/services/companiesApi";
 import {useSearchJobsQuery} from "@/services/jobsApi";
 import {useSearchApplicationsQuery} from "@/services/applicationsApi";
 import {Student} from "@/types/user";
+import UCardPlan from "@/features/plans/components/UCardPlan";
+import {Plan} from "@/types/plan";
 
 const locations: UDropdownItem[] = [
   {id: 1, name: 'Hà Nội'},
@@ -38,6 +35,19 @@ const job: Job = {
   industry: "Technology",
   skills: ["React", "TypeScript", "CSS", "Git"],
   applicationCount: 42,
+}
+
+const testPlan: Plan = {
+  name: "Cơ Bản",
+  description: "Phù hợp với nhà tuyển dụng có nhu cầu đăng tin tuyển dụng ít nhưng vẫn muốn tiếp cận ứng viên tiềm năng.",
+  price: 0,
+  jobPostLimit: 10,
+  featuredJob: false,
+  highlightJob: false,
+  cvReview: false,
+  status: "Available",
+  role: "CompanyBasic",
+  id: 3
 }
 
 const student: Student = {
@@ -78,39 +88,42 @@ const TestPage = () => {
 
   return (
       <>
-        <button onClick={() => toast("This is a test page")}>Click me</button>
+        {/*<button onClick={() => toast("This is a test page")}>Click me</button>*/}
 
-        <USearchWithFilter dropdownData={locations} onSearchSubmitAction={null}></USearchWithFilter>
+        {/*<USearchWithFilter dropdownData={locations} onSearchSubmitAction={null}></USearchWithFilter>*/}
 
-        <UCardTopCompany
-            rating={4.7}
-            followers={6968877}
-            recommendationRate="74%"
-            isHiring={true}
-            hasHighBenefits={true}
-            variant={UCardVariant.Border} companyName={""} companySize={""}/>
+        {/*<UCardTopCompany*/}
+        {/*    rating={4.7}*/}
+        {/*    followers={6968877}*/}
+        {/*    recommendationRate="74%"*/}
+        {/*    isHiring={true}*/}
+        {/*    hasHighBenefits={true}*/}
+        {/*    variant={UCardVariant.Border} companyName={""} companySize={""}/>*/}
 
-        <UCardApplication
-            name="Lê Quang Khánh"
-            role="Fullstack Developer"
-            experience="7 năm"
-            education="Đại học"
-            submittedDate="01-03-2025"
-            avatarUrl={"https://placehold.co/600x400/png"}
-            cvUrl={"https://placehold.co/600x400/png"}
-            variant={UCardVariant.Normal}
-        />
+        {/*<UCardApplication*/}
+        {/*    name="Lê Quang Khánh"*/}
+        {/*    role="Fullstack Developer"*/}
+        {/*    experience="7 năm"*/}
+        {/*    education="Đại học"*/}
+        {/*    submittedDate="01-03-2025"*/}
+        {/*    avatarUrl={"https://placehold.co/600x400/png"}*/}
+        {/*    cvUrl={"https://placehold.co/600x400/png"}*/}
+        {/*    variant={UCardVariant.Normal}*/}
+        {/*/>*/}
 
-        <UCardJob
-            companyLogoUrl="https://placehold.co/600x400/png"
-            companyName="Freepik"
-            isFeatured={true}
-            location="China"
-            jobTitle="TTS Visual Designer"
-            jobType="Full Time"
-            salaryRange="$10K-$15K"
-            variant={UCardVariant.LightBlue}/>
+        {/*<UCardJob*/}
+        {/*    companyLogoUrl="https://placehold.co/600x400/png"*/}
+        {/*    companyName="Freepik"*/}
+        {/*    isFeatured={true}*/}
+        {/*    location="China"*/}
+        {/*    jobTitle="TTS Visual Designer"*/}
+        {/*    jobType="Full Time"*/}
+        {/*    salaryRange="$10K-$15K"*/}
+        {/*    variant={UCardVariant.LightBlue}/>*/}
 
+        <UCardPlan plan={testPlan}></UCardPlan>
+        <UCardPlan plan={testPlan}></UCardPlan>
+        <UCardPlan plan={testPlan}></UCardPlan>
 
       </>
   )

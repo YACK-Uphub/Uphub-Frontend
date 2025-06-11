@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   //! FOR TESTING PURPOSE on Auth
   // const session = .....
-  const role: UserRole = UserRole.StudentPro;
+  const role: UserRole = UserRole.Guest;
 
   return (
     <html lang="en" className={`${fontReemKufi.className} h-full`}>
@@ -75,6 +75,8 @@ export default function RootLayout({
             <footer className={"border-custom-white"}>
               <UFooter />
             </footer>
+
+
           </StoreProvider>
         </SessionProvider>
       </body>

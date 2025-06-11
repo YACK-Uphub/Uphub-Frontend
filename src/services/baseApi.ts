@@ -77,7 +77,7 @@ export function createCrudApi<
 					url: `${baseUrl}/${id}`,
 					method: "GET",
 				}),
-				providesTags: (result, error, id) => [{ type: tagType, id }],
+				providesTags: (result, error, id) => [{type: tagType, id}],
 			}),
 
 			// GET: companies
@@ -97,17 +97,17 @@ export function createCrudApi<
 			// GET: search/companies?sort=nameAsc&pageNumber=1&pageSize=3&searchTerm=Công ty TNHH
 			search: searchUrl
 				? builder.query<SearchPaginatedResponse<T>, P>({
-						query: (params) => ({
-							url: searchUrl,
-							method: "GET",
-							params: {
-								pageNumber: params.pageNumber ?? 1,
-								pageSize: params.pageSize ?? 10,
-								...params,
-							},
-						}),
-						providesTags: [tagType],
-				  })
+					query: (params) => ({
+						url: searchUrl,
+						method: "GET",
+						params: {
+							pageNumber: params.pageNumber ?? 1,
+							pageSize: params.pageSize ?? 10,
+							...params,
+						},
+					}),
+					providesTags: [tagType],
+				})
 				: undefined,
 
 			// POST: application/2
@@ -122,12 +122,12 @@ export function createCrudApi<
 
 			// PUT: application/2
 			update: builder.mutation<T, { id: string | number; body: Partial<T> }>({
-				query: ({ id, body }) => ({
+				query: ({id, body}) => ({
 					url: `${baseUrl}/${id}`,
 					method: "PUT",
 					body,
 				}),
-				invalidatesTags: (result, error, { id }) => [{ type: tagType, id }, tagType],
+				invalidatesTags: (result, error, {id}) => [{type: tagType, id}, tagType],
 			}),
 
 			// DELETE: application/2
@@ -136,7 +136,7 @@ export function createCrudApi<
 					url: `${baseUrl}/${id}`,
 					method: "DELETE",
 				}),
-				invalidatesTags: (result, error, id) => [{ type: tagType, id }, tagType],
+				invalidatesTags: (result, error, id) => [{type: tagType, id}, tagType],
 			}),
 		}),
 	});

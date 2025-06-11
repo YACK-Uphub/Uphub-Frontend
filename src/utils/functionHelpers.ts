@@ -13,7 +13,7 @@ export const formatCurrnency = (value: number) => {
  * Format date into 02:34 AM
  * @param date
  */
-export const formatDateToTime = (date: Date | string): string => {
+export const formatDateToTime = (date: Date | string | number): string => {
 	const time = new Date(date).toLocaleTimeString([], {
 		hour: '2-digit', minute: '2-digit'
 	})
