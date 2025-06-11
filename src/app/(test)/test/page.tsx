@@ -40,7 +40,7 @@ const job: Job = {
 const testPlan: Plan = {
   name: "Cơ Bản",
   description: "Phù hợp với nhà tuyển dụng có nhu cầu đăng tin tuyển dụng ít nhưng vẫn muốn tiếp cận ứng viên tiềm năng.",
-  price: 0,
+  price: 1000000,
   jobPostLimit: 10,
   featuredJob: false,
   highlightJob: false,

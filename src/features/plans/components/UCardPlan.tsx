@@ -3,6 +3,7 @@ import {ArrowRightIcon, CheckCircleIcon, MinusCircleIcon} from "@heroicons/react
 import {useAppSelector} from "@/libs/rtk/hooks";
 import UButton from "@/components/shared/UButton";
 import {useCreatePaymentMutation} from "@/services/paymentsApi";
+import {UserRole} from "@/types/user";
 
 interface UCardPlanProps {
   plan: Plan;
@@ -11,6 +12,11 @@ interface UCardPlanProps {
 export default function UCardPlan({plan}: UCardPlanProps) {
   const {user} = useAppSelector((state) => state.auth);
   const [createPayment, {isLoading}] = useCreatePaymentMutation();
+
+  // Replace this with real user role if dynamic
+  const userPlan = UserRole.CompanyBasic;
+  const rolePlan = plan.role;
+  const isCurrentPlan = userPlan === rolePlan;
 
   const handlePayment = async () => {
     try {
@@ -38,10 +44,17 @@ export default function UCardPlan({plan}: UCardPlanProps) {
 
   return (
       <div
-          className="rounded-xl border border-[color:var(--color-custom-blue-1)] p-6 bg-[color:var(--color-custom-white)] shadow-md hover:shadow-lg transition-all duration-300 w-full max-w-sm">
+          className={`rounded-xl p-6 shadow-md transition-all duration-300 w-full max-w-sm
+        ${isCurrentPlan
+              ? "border-2 border-custom-blue-3"
+              : "border border-custom-blue-1 hover:shadow-lg"
+          }
+        bg-custom-white/80
+      `}
+      >
         {/* Plan Name & Description */}
         <div className="mb-4">
-          <h3 className="text-base font-semibold text-[color:var(--color-custom-black)] uppercase mb-1">
+          <h3 className="text-base font-bold text-[color:var(--color-custom-black)] uppercase mb-1">
             {plan.name}
           </h3>
           <p className="text-sm text-[color:var(--color-custom-gray)] leading-relaxed">
@@ -50,14 +63,13 @@ export default function UCardPlan({plan}: UCardPlanProps) {
         </div>
 
         {/* Price */}
-        <div className="text-3xl font-bold text-[color:var(--color-custom-blue-3)] mb-1">
-          {plan.price.toLocaleString()}
-          <span className="text-base font-medium text-[color:var(--color-custom-black)]">vnd</span>
+        <div className="mb-4 text-2xl font-bold text-custom-blue-2">
+          {plan.price.toLocaleString("vn-VI")} vnd
+          <span className="text-base font-medium text-custom-gray/70"> /tháng</span>
         </div>
-        <p className="text-xs text-[color:var(--color-custom-gray)] mb-5">/tháng</p>
 
         {/* Features */}
-        <ul className="space-y-3 mb-6">
+        <ul className="mb-6 space-y-3">
           {renderFeatureItem(true, `${plan.jobPostLimit} tin tuyển dụng`)}
           {renderFeatureItem(plan.cvReview, "Hỗ trợ đánh giá CV")}
           {renderFeatureItem(plan.featuredJob, "Việc khẩn cấp & nổi bật")}
@@ -67,18 +79,24 @@ export default function UCardPlan({plan}: UCardPlanProps) {
           {renderFeatureItem(true, "Hỗ trợ khẩn cấp 24/7")}
         </ul>
 
-        {/* CTA Button */}
-        <UButton
-            onClick={handlePayment}
-            label={isLoading ? "Đang xử lý..." : "Chọn Gói"}
-            icon={<ArrowRightIcon className="w-4 h-4"/>}
-            iconPosition="right"
-            width="w-full"
-            backgroundColor="bg-[color:var(--color-custom-blue-2)]"
-            textColor="text-[color:var(--color-custom-blue-1)]"
-            border="border border-[color:var(--color-custom-blue-2)]"
-            borderRadius="rounded-md"
-        />
+        {/* CTA */}
+        {isCurrentPlan ? (
+            <div className="text-center text-sm font-bold text-custom-blue-3">
+              GÓI HIỆN TẠI
+            </div>
+        ) : (
+            <UButton
+                onClick={handlePayment}
+                label={isLoading ? "Đang xử lý..." : "Chọn Gói"}
+                icon={<ArrowRightIcon className="h-4 w-4"/>}
+                iconPosition="right"
+                width="w-full"
+                backgroundColor="bg-[color:var(--color-custom-blue-2)]"
+                textColor="text-[color:var(--color-custom-blue-1)]"
+                border="border border-[color:var(--color-custom-blue-2)]"
+                borderRadius="rounded-md"
+            />
+        )}
       </div>
   );
 }
