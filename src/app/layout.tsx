@@ -32,7 +32,7 @@ export default function RootLayout({
 }>) {
   //! FOR TESTING PURPOSE on Auth
   // const session = .....
-  const role: UserRole = UserRole.Student;
+  const role: UserRole = UserRole.StudentPro;
 
   return (
     <html lang="en" className={`${fontReemKufi.className} h-full`}>

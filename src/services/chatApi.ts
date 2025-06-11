@@ -16,7 +16,7 @@ export const chatsApi = createApi({
 		 */
 		sendMessage: builder.mutation<SendMessageResponse, SendMessageRequestBody>({
 			query: (bodyObject) => ({
-				url: `chatbox`,
+				url: `/chatbox`,
 				method: "POST",
 				body: {...bodyObject}
 			}),

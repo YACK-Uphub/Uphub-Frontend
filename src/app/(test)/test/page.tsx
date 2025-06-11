@@ -111,7 +111,7 @@ const TestPage = () => {
             salaryRange="$10K-$15K"
             variant={UCardVariant.LightBlue}/>
 
-        
+
       </>
   )
 }

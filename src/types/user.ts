@@ -1,12 +1,16 @@
-﻿import { GetAllPaginatedRequestParams } from "@/types/baseModel";
+﻿import {GetAllPaginatedRequestParams} from "@/types/baseModel";
 
 export enum UserRole {
-	Student = "student",
-	Admin = "admin",
-	Company = "Company",
-	UniversityManager = "UniversityManager",
-	Guest = "guest",
+	Admin = "Admin",
+	StudentBasic = "StudentBasic",
+	StudentPro = "StudentPro",
+	CompanyBasic = "CompanyBasic",
+	CompanyPro = "CompanyPro",
+	CompanyEnterprise = "CompanyEnterprise",
+	UniversityManager = "UniversityManage",
+	Guest = "Guest"
 }
+
 export type User = {
 	id: number;
 	userName: string;

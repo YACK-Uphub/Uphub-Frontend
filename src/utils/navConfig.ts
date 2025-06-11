@@ -1,5 +1,5 @@
 ﻿// utils/navConfig.ts
-import { UserRole } from "@/types/user";
+import {UserRole} from "@/types/user";
 
 export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 	[UserRole.UniversityManager]: [
@@ -9,11 +9,19 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 		{ name: "Quản lý chương trình", path: "/school/internship-programs" },
 		{ name: "Thống kê", path: "/school/dashboard" },
 	],
-	[UserRole.Student]: [
-		{ name: "Trang chủ", path: "/" },
-		{ name: "Công việc", path: "/student/jobs" },
-		{ name: "Nhà tuyển dụng", path: "/student/companies" },
-		{ name: "Thống kê", path: "/student/dashboard/applications" },
+	[UserRole.StudentBasic]: [
+		{name: "Trang chủ", path: "/"},
+		{name: "Công việc", path: "/student/jobs"},
+		{name: "Công việc", path: "/student/payments"},
+		{name: "Nhà tuyển dụng", path: "/student/companies"},
+		{name: "Thống kê", path: "/student/dashboard/applications"},
+	],
+	[UserRole.StudentPro]: [
+		{name: "Trang chủ", path: "/"},
+		{name: "Công việc", path: "/student/jobs"},
+		{name: "Công việc", path: "/student/payments"},
+		{name: "Nhà tuyển dụng", path: "/student/companies"},
+		{name: "Thống kê", path: "/student/dashboard/applications"},
 	],
 	[UserRole.Admin]: [
 		{ name: "Danh sách tài khoản", path: "/admin/accounts/students" },
@@ -22,11 +30,28 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 		{ name: "Thống kê", path: "/admin/statistics" },
 		{ name: "Cài đặt", path: "/admin/settings" },
 	],
-	[UserRole.Company]: [
+	[UserRole.CompanyBasic]: [
 		{ name: "Tìm thực tập sinh", path: "/enterprise/candidates" },
-		{ name: "Đăng tuyển việc làm", path: "/enterprise/job-posting" },
-		{ name: "Quản lý công việc", path: "/enterprise/jobs" },
-		{ name: "Đơn ứng tuyển", path: "/enterprise/applications" },
+		{name: "Công việc", path: "/enterprise/payments"},
+		{name: "Đăng tuyển việc làm", path: "/enterprise/job-posting"},
+		{name: "Quản lý công việc", path: "/enterprise/jobs"},
+		{name: "Đơn ứng tuyển", path: "/enterprise/applications"},
+		// { name: "Lịch hẹn ứng viên", path: "/enterprise/schedule" },
+	],
+	[UserRole.CompanyPro]: [
+		{name: "Tìm thực tập sinh", path: "/enterprise/candidates"},
+		{name: "Công việc", path: "/enterprise/payments"},
+		{name: "Đăng tuyển việc làm", path: "/enterprise/job-posting"},
+		{name: "Quản lý công việc", path: "/enterprise/jobs"},
+		{name: "Đơn ứng tuyển", path: "/enterprise/applications"},
+		// { name: "Lịch hẹn ứng viên", path: "/enterprise/schedule" },
+	],
+	[UserRole.CompanyEnterprise]: [
+		{name: "Tìm thực tập sinh", path: "/enterprise/candidates"},
+		{name: "Công việc", path: "/enterprise/payments"},
+		{name: "Đăng tuyển việc làm", path: "/enterprise/job-posting"},
+		{name: "Quản lý công việc", path: "/enterprise/jobs"},
+		{name: "Đơn ứng tuyển", path: "/enterprise/applications"},
 		// { name: "Lịch hẹn ứng viên", path: "/enterprise/schedule" },
 	],
 	[UserRole.Guest]: [

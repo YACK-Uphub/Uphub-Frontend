@@ -27,7 +27,6 @@ const initialState: ChatState = {
   open: false,
   messages: loadMessages(10)
 }
-
 export const chatSlice = createSlice({
   name: "chatSlice",
   initialState,
