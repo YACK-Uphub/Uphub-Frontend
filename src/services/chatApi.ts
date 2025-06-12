@@ -11,12 +11,12 @@ export const chatsApi = createApi({
 	endpoints: (builder) => ({
 
 		/**
-		 * POST /chatbox {question: string}
+		 * POST /agent/generate {question: string}
 		 * return SendMessageResponse
 		 */
 		sendMessage: builder.mutation<SendMessageResponse, SendMessageRequestBody>({
 			query: (bodyObject) => ({
-				url: `/chatbox`,
+				url: `/agent/generate`,
 				method: "POST",
 				body: {...bodyObject}
 			}),

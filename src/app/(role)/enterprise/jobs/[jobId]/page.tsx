@@ -1,8 +1,8 @@
 "use client";
 import UButton from "@/components/shared/UButton";
-import { UBusinessApplicationList } from "@/features/application/components/UBusinessApplicationList";
+import {UBusinessApplicationList} from "@/features/application/components/UBusinessApplicationList";
 import UJobDetails from "@/features/job/components/UJobDetails";
-import { useParams } from "next/navigation";
+import {useParams} from "next/navigation";
 
 export default function JobDetailsPage() {
   const { jobId } = useParams();

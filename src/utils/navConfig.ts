@@ -36,6 +36,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 		{name: "Đăng tuyển việc làm", path: "/enterprise/job-posting"},
 		{name: "Quản lý công việc", path: "/enterprise/jobs"},
 		{name: "Đơn ứng tuyển", path: "/enterprise/applications"},
+		{name: "Nâng cấp tài khoản", path: "/enterprise/payments"},
 		// { name: "Lịch hẹn ứng viên", path: "/enterprise/schedule" },
 	],
 	[UserRole.CompanyPro]: [

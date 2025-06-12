@@ -3,11 +3,12 @@
 import {useSearchPlansQuery} from "@/services/plansApi";
 import UCardPlan from "@/features/plans/components/UCardPlan";
 import {PlanRoleEnum} from "@/types/plan";
+import {UPageSpinner} from "@/components/shared/spinner/UPageSpinner";
 
 export default function UCardPlansForCompany() {
   const {data, isLoading} = useSearchPlansQuery({role: PlanRoleEnum.Company});
 
-  if (isLoading) return <p className="text-center py-8">Đang tải gói...</p>;
+  if (isLoading) return <UPageSpinner></UPageSpinner>
   if (!data?.results?.length) return <p className="text-center py-8">Không có gói phù hợp.</p>;
 
   return (

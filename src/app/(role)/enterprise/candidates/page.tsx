@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 import UUserExperienceSection from "@/features/home/components/user-experience-section/UUserExperienceSection";
 import UStudentList from "@/features/student/components/UStudentList";
 

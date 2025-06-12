@@ -1,4 +1,4 @@
-﻿import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/shadcn/carousel";
+﻿import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/components/shadcn/carousel";
 import React from "react";
 import UUserFeedbackCard from "@/features/home/components/user-experience-section/UUserFeecbackCard";
 

@@ -15,7 +15,6 @@ const USubHeader = ({ role }: USubHeaderProps) => {
   const auth = useAppSelector((state) => state.auth);
   const roleStr = auth?.user?.role;
   role = roleStr && roleStr in UserRole ? UserRole[roleStr as keyof typeof UserRole] : UserRole.Guest;
-  role = UserRole.Guest;
 
   const pathname = usePathname();
   const routes = navRoutes[role];

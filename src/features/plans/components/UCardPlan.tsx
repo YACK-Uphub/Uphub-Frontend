@@ -46,7 +46,7 @@ export default function UCardPlan({plan}: UCardPlanProps) {
   return (
       <div
           className={`
-          flex flex-col gap-6 rounded-xl p-6 shadow-md
+          flex flex-col rounded-xl p-6 shadow-md gap-6
           hover:scale-105 hover:shadow-2xl transition-all duration-300 w-full max-w-sm
         ${isCurrentPlan
               ? "border-2 border-custom-yellow-3"
@@ -84,7 +84,12 @@ export default function UCardPlan({plan}: UCardPlanProps) {
 
         {/* CTA */}
         {isCurrentPlan ? (
-            <div className="text-center text-sm font-bold text-custom-yellow-3">
+            <div className="
+              text-center text-md
+              font-bold text-custom-yellow-3 py-2
+              border-2 border-custom-yellow-3
+              rounded-md
+            ">
               GÓI HIỆN TẠI
             </div>
         ) : (
