@@ -7,8 +7,9 @@ import {useSearchCompaniesQuery} from "@/services/companiesApi";
 import {useSearchJobsQuery} from "@/services/jobsApi";
 import {useSearchApplicationsQuery} from "@/services/applicationsApi";
 import {Student} from "@/types/user";
-import UCardPlan from "@/features/plans/components/UCardPlan";
 import {Plan} from "@/types/plan";
+import UCardPlansForCompany from "@/features/plans/components/UCardPlansForCompany";
+import UCardPlansForStudent from "@/features/plans/components/UCardPlansForStudent";
 
 const locations: UDropdownItem[] = [
   {id: 1, name: 'Hà Nội'},
@@ -121,9 +122,15 @@ const TestPage = () => {
         {/*    salaryRange="$10K-$15K"*/}
         {/*    variant={UCardVariant.LightBlue}/>*/}
 
-        <UCardPlan plan={testPlan}></UCardPlan>
-        <UCardPlan plan={testPlan}></UCardPlan>
-        <UCardPlan plan={testPlan}></UCardPlan>
+
+        <section className={"pt-12 pb-12 px-12"}>
+          <div className={"max-w-7xl mx-auto"}>
+            <UCardPlansForCompany></UCardPlansForCompany>
+          </div>
+        </section>
+
+        <UCardPlansForCompany></UCardPlansForCompany>
+        <UCardPlansForStudent></UCardPlansForStudent>
 
       </>
   )

@@ -20,6 +20,7 @@ import {createInternshipSlice} from "@/features/internship/slices/createInternsh
 import {chatsApi} from "@/services/chatApi";
 import {chatSlice} from "@/features/chatbox/slices/chatSlice";
 import {paymentsApi} from "@/services/paymentsApi";
+import {plansApi} from "@/services/plansApi";
 
 // Create store instance per request for strong type safety
 export function makeStore() {
@@ -38,6 +39,7 @@ export function makeStore() {
       [createInternshipsApi.reducerPath]: createInternshipsApi.reducer,
       [chatsApi.reducerPath]: chatsApi.reducer,
       [paymentsApi.reducerPath]: paymentsApi.reducer,
+      [plansApi.reducerPath]: plansApi.reducer,
 
       auth: authSlice.reducer,
       jobParams: jobSlice.reducer,
@@ -64,6 +66,7 @@ export function makeStore() {
             .concat(createInternshipsApi.middleware as Middleware)
             .concat(chatsApi.middleware as Middleware)
             .concat(paymentsApi.middleware as Middleware)
+            .concat(plansApi.middleware as Middleware)
   });
 }
 

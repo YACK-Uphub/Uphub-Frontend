@@ -13,8 +13,9 @@ export default function UCardPlan({plan}: UCardPlanProps) {
   const {user} = useAppSelector((state) => state.auth);
   const [createPayment, {isLoading}] = useCreatePaymentMutation();
 
-  // Replace this with real user role if dynamic
-  const userPlan = UserRole.CompanyBasic;
+  // testing purpose
+  // const userPlan = UserRole.CompanyEnterprise;
+  const userPlan = user?.role as UserRole;
   const rolePlan = plan.role;
   const isCurrentPlan = userPlan === rolePlan;
 
@@ -44,17 +45,19 @@ export default function UCardPlan({plan}: UCardPlanProps) {
 
   return (
       <div
-          className={`rounded-xl p-6 shadow-md transition-all duration-300 w-full max-w-sm
+          className={`
+          flex flex-col gap-6 rounded-xl p-6 shadow-md
+          hover:scale-105 hover:shadow-2xl transition-all duration-300 w-full max-w-sm
         ${isCurrentPlan
-              ? "border-2 border-custom-blue-3"
-              : "border border-custom-blue-1 hover:shadow-lg"
+              ? "border-2 border-custom-yellow-3"
+              : "border border-custom-blue-1"
           }
         bg-custom-white/80
       `}
       >
         {/* Plan Name & Description */}
-        <div className="mb-4">
-          <h3 className="text-base font-bold text-[color:var(--color-custom-black)] uppercase mb-1">
+        <div className="flex-1">
+          <h3 className="text-xl font-bold text-[color:var(--color-custom-black)] uppercase mb-2">
             {plan.name}
           </h3>
           <p className="text-sm text-[color:var(--color-custom-gray)] leading-relaxed">
@@ -63,13 +66,13 @@ export default function UCardPlan({plan}: UCardPlanProps) {
         </div>
 
         {/* Price */}
-        <div className="mb-4 text-2xl font-bold text-custom-blue-2">
+        <div className="text-2xl font-bold text-custom-blue-2">
           {plan.price.toLocaleString("vn-VI")} vnd
           <span className="text-base font-medium text-custom-gray/70"> /tháng</span>
         </div>
 
         {/* Features */}
-        <ul className="mb-6 space-y-3">
+        <ul className="space-y-3">
           {renderFeatureItem(true, `${plan.jobPostLimit} tin tuyển dụng`)}
           {renderFeatureItem(plan.cvReview, "Hỗ trợ đánh giá CV")}
           {renderFeatureItem(plan.featuredJob, "Việc khẩn cấp & nổi bật")}
@@ -81,7 +84,7 @@ export default function UCardPlan({plan}: UCardPlanProps) {
 
         {/* CTA */}
         {isCurrentPlan ? (
-            <div className="text-center text-sm font-bold text-custom-blue-3">
+            <div className="text-center text-sm font-bold text-custom-yellow-3">
               GÓI HIỆN TẠI
             </div>
         ) : (
