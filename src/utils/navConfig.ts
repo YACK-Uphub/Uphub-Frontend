@@ -12,16 +12,16 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 	[UserRole.StudentBasic]: [
 		{name: "Trang chủ", path: "/"},
 		{name: "Công việc", path: "/student/jobs"},
-		{name: "Công việc", path: "/student/payments"},
 		{name: "Nhà tuyển dụng", path: "/student/companies"},
 		{name: "Thống kê", path: "/student/dashboard/applications"},
+		{name: "Gói tìm việc", path: "/student/payments"},
 	],
 	[UserRole.StudentPro]: [
 		{name: "Trang chủ", path: "/"},
 		{name: "Công việc", path: "/student/jobs"},
-		{name: "Công việc", path: "/student/payments"},
 		{name: "Nhà tuyển dụng", path: "/student/companies"},
 		{name: "Thống kê", path: "/student/dashboard/applications"},
+		{name: "Gói tìm việc", path: "/student/payments"},
 	],
 	[UserRole.Admin]: [
 		{name: "Danh sách tài khoản", path: "/admin/accounts/students"},
@@ -45,6 +45,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 		{name: "Đăng tuyển việc làm", path: "/enterprise/job-posting"},
 		{name: "Quản lý công việc", path: "/enterprise/jobs"},
 		{name: "Đơn ứng tuyển", path: "/enterprise/applications"},
+		{name: "Nâng cấp tài khoản", path: "/enterprise/payments"},
 		// { name: "Lịch hẹn ứng viên", path: "/enterprise/schedule" },
 	],
 	[UserRole.CompanyEnterprise]: [
@@ -53,6 +54,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 		{name: "Đăng tuyển việc làm", path: "/enterprise/job-posting"},
 		{name: "Quản lý công việc", path: "/enterprise/jobs"},
 		{name: "Đơn ứng tuyển", path: "/enterprise/applications"},
+		{name: "Nâng cấp tài khoản", path: "/enterprise/payments"},
 		// { name: "Lịch hẹn ứng viên", path: "/enterprise/schedule" },
 	],
 	[UserRole.Guest]: [
