@@ -10,7 +10,7 @@ export default function PaymentSucceededPage() {
 
   return (
       <div
-          className="min-h-screen flex flex-col items-center justify-center bg-[color:var(--color-custom-green-bg)] px-4 text-center">
+          className="h-full flex flex-col items-center justify-center bg-[color:var(--color-custom-green-bg)] px-4 text-center">
         <CheckCircleIcon className="h-20 w-20 text-[color:var(--color-custom-green-text)] mb-6"/>
         <h1 className="text-3xl font-bold text-[color:var(--color-custom-black)] mb-2">
           Thanh toán thành công!
@@ -19,7 +19,7 @@ export default function PaymentSucceededPage() {
           Mã đơn hàng: <span className="font-semibold">{orderCode}</span>
         </p>
         <Link
-            href="/payments"
+            href="/"
             className="mt-4 bg-[color:var(--color-custom-blue-2)] text-[color:var(--color-custom-white)] px-6 py-3 rounded-md hover:bg-[color:var(--color-custom-blue-3)] transition"
         >
           Quay lại trang chủ

@@ -11,10 +11,13 @@ import {
 import {UserCircleIcon} from "@heroicons/react/24/solid";
 import UButton from "@/components/shared/UButton";
 import {signIn, signOut, useSession} from "next-auth/react";
+import {useAppSelector} from "@/libs/rtk/hooks";
 
 const UHeaderNavigation = () => {
   const { data: session, status } = useSession();
   const isLoggedIn = status === "authenticated";
+  const role = useAppSelector(state => state.auth.user?.role);
+
   // ==================
   // === Events
   // ==================
@@ -27,7 +30,7 @@ const UHeaderNavigation = () => {
     signIn("id-server", { callbackUrl: "/" }, { prompt: "login" });
     //alert("Login clicked!");
   };
-  
+
   const handleLogoutClick = () => {
     signOut({ callbackUrl: "/" }); // Optional: về trang chính sau logout
   };
@@ -57,9 +60,17 @@ const UHeaderNavigation = () => {
       {/*	Divider */}
       <div className="inline-block h-6 opacity-50 w-[1px] bg-custom-gray"></div>
 
+      {/* Role */}
+      {isLoggedIn && <span
+          className="px-4 py-2 bg-custom-black/90 text-sm font-medium text-custom-yellow-3/90 rounded-2xl shadow-lg">{role}</span>}
+
+      {/*	Divider */}
+      {isLoggedIn && <div className="inline-block h-6 opacity-50 w-[1px] bg-custom-gray"></div>}
+
       {/* Login Button */}
       {isLoggedIn ? (
         <div className="flex items-center gap-2">
+
           <span className="text-sm font-medium text-custom-blue-2">
             Xin chào, {session.user?.name || session.user?.username}
           </span>
