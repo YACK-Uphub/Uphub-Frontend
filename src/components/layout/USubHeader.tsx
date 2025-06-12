@@ -2,10 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { UserRole } from "@/types/user";
-import { navRoutes } from "@/utils/navConfig";
-import { useAppSelector } from "@/libs/rtk/hooks";
+import {usePathname} from "next/navigation";
+import {UserRole} from "@/types/user";
+import {navRoutes} from "@/utils/navConfig";
+import {useAppSelector} from "@/libs/rtk/hooks";
 
 export interface USubHeaderProps {
   role: UserRole;

@@ -106,7 +106,9 @@ const UJobDetails = ({ id }: { id: number }) => {
               </div>
             </div>
             <div className="text-right">
-              {auth?.user?.role === UserRole.Company ? (
+              {auth?.user?.role === UserRole.CompanyEnterprise ||
+              auth?.user?.role === UserRole.CompanyPro ||
+              auth?.user?.role === UserRole.CompanyBasic ? (
                 <UButton
                   label="Cập nhật"
                   backgroundColor="bg-custom-yellow-3"

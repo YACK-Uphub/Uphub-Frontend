@@ -12,8 +12,6 @@ const saveMessages = (msgs: ChatMessage[], quantity: number) => {
   storage.set<ChatMessage[]>(process.env.CHAT_MESSAGE_KEY, trimmed);
 }
 
-console.log(process.env.CHAT_MESSAGE_KEY)
-
 /**
  * Load the messages from the local storage
  * @param quantity
@@ -27,7 +25,6 @@ const initialState: ChatState = {
   open: false,
   messages: loadMessages(10)
 }
-
 export const chatSlice = createSlice({
   name: "chatSlice",
   initialState,

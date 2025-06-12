@@ -1,5 +1,5 @@
-import NextAuth, { Profile } from "next-auth";
-import { OIDCConfig } from "next-auth/providers";
+import NextAuth, {Profile} from "next-auth";
+import {OIDCConfig} from "next-auth/providers";
 import DuendeIDS6Provider from "next-auth/providers/duende-identity-server6";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -17,9 +17,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 		} as OIDCConfig<Omit<Profile, "username">>),
 	],
 	callbacks: {
+
 		async authorized({ auth }) {
 			return !!auth;
 		},
+
+		// JWT
 		async jwt({ token, profile, account }) {
 			if (account && account.access_token) {
 				token.accessToken = account.access_token;
@@ -31,6 +34,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 			}
 			return token;
 		},
+
+		// Session
 		async session({ session, token }) {
 			if (token) {
 				session.user.username = token.username;
@@ -38,6 +43,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 				session.user.userId = token.userId;
 				session.user.role = token.role;
 			}
+
 			return session;
 		},
 	},
