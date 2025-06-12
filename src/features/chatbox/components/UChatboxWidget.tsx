@@ -3,10 +3,17 @@
 import {useEffect, useRef, useState} from 'react'
 import {addBotMessage, addUserMessage, toggleOpen} from '@/features/chatbox/slices/chatSlice'
 import {useSendMessageMutation} from '@/services/chatApi'
-import {ChatBubbleLeftIcon, ChatBubbleLeftRightIcon, PaperAirplaneIcon, XMarkIcon} from '@heroicons/react/24/solid'
+import {
+  ChatBubbleLeftIcon,
+  ChatBubbleLeftRightIcon,
+  PaperAirplaneIcon,
+  SparklesIcon,
+  XMarkIcon
+} from '@heroicons/react/24/solid'
 import {useAppDispatch, useAppSelector} from "@/libs/rtk/hooks";
 import {ChatMessageSender, SendMessageRequestBody} from "@/types/chat";
-import {formatDateToTime} from "@/utils/functionHelpers";
+import {formatAIMessageToHTML, formatDateToTime} from "@/utils/functionHelpers";
+import {UserRole} from "@/types/user";
 
 export default function UChatWidget() {
   const dispatch = useAppDispatch()
@@ -14,6 +21,26 @@ export default function UChatWidget() {
   const [input, setInput] = useState('')
   const [sendMessage, {isLoading}] = useSendMessageMutation()
   const bottomRef = useRef<HTMLDivElement>(null)
+
+  const auth = useAppSelector((state) => state.auth);
+  const userRole = auth?.user?.role;
+
+  const routesOnRole = () => {
+    if (userRole == UserRole.CompanyEnterprise ||
+        userRole == UserRole.CompanyBasic ||
+        userRole == UserRole.CompanyPro
+    ) {
+      return "enterprise"
+    } else if (userRole == UserRole.StudentPro ||
+        userRole == UserRole.StudentBasic) {
+      return "student"
+    } else if (userRole == UserRole.UniversityManager) {
+      return "school"
+    } else {
+      return ""
+    }
+  }
+
 
   // auto-scroll on new messages
   useEffect(() => {
@@ -109,7 +136,7 @@ export default function UChatWidget() {
                             ? 'bg-custom-blue-3 text-custom-white'
                             : 'bg-custom-gray/20 text-custom-black'}`}>
 
-                          <div>{msg.text}</div>
+                          <div dangerouslySetInnerHTML={{__html: formatAIMessageToHTML(msg.text, routesOnRole())}}/>
 
                           <div className={`mt-1 text-right text-x
                           ${isUser ? 'text-custom-white/50' : 'text-custom-black/60'}`}>{time}</div>
@@ -125,7 +152,6 @@ export default function UChatWidget() {
               onSubmit={handleSubmit}
               className={`flex items-center border-t p-4
                           transform transition-transform duration-700 ease-in-out
-                          ${isLoading ? 'translate-y-20' : 'translate-y-0'}
                         `}
           >
             <textarea
@@ -143,15 +169,18 @@ export default function UChatWidget() {
             />
 
             {/* Submit Button */}
-            {!isLoading &&
+
                 <button
+                    disabled={isLoading}
                     type="submit"
                     className="flex items-center bg-custom-yellow-3 text-custom-white px-6 py-3 rounded-r
                            hover:bg-custom-yellow-3/80 focus:outline-none"
-                >
-                  <PaperAirplaneIcon className="h-6 w-6 rotate-90 transform"/>
+                >{!isLoading
+                    ? <PaperAirplaneIcon className="h-6 w-6 rotate-90 transform"/>
+                    : <SparklesIcon className="h-6 w-6 transition"/>
+                }
                 </button>
-            }
+
           </form>
         </div>
       </>

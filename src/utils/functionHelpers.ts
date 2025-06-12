@@ -64,3 +64,48 @@ export const debounce = <T extends (...args: never[]) => void>(
 export function formatNewLine(text: string): string[] {
 	return text.split("\n");
 }
+
+
+export function formatAIMessageToHTML(message: string, role: string): string {
+	if (!message) return "";
+
+	let parsed = message.trim();
+
+	// Step 0: Fix malformed duplicated URLs like: url(url
+	parsed = parsed.replace(/(https?:\/\/[^\s(]+)\(\1\)/g, "$1");
+
+	// Step 1: Remove markdown bold
+	parsed = parsed.replace(/\*\*(.*?)\*\*/g, "$1");
+
+	// Step 2: Replace job links with styled "Tại Đây"
+	parsed = parsed.replace(
+		/https?:\/\/[^\s\]]*\/jobs\/(\d+)/g,
+		(_, jobId) => `<a href="/${role}/jobs/${jobId}" target="_blank" rel="noopener noreferrer" style="color: #2454b6; text-decoration: none; font-weight: 500; padding: 2px 6px; background-color: #ffd147; border-radius: 20%; border: 1px solid #2454b6">Tại Đây</a>`
+	);
+
+	// Step 3: Replace company links with styled "Tại Đây"
+	parsed = parsed.replace(
+		/https?:\/\/[^\s\]]*\/companies\/(\d+)/g,
+		(_, companyId) => `<a href="/${role}/companies/${companyId}" target="_blank" rel="noopener noreferrer" style="color: #2454b6; text-decoration: none; font-weight: 500; padding: 2px 6px; background-color: #ffd147; border-radius: 20%; border: 1px solid #2454b6">Tại Đây</a>`
+	);
+
+	// Step 4: Remove leftover markdown-style links [text](url)
+	parsed = parsed.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+
+	// Step 5: Cleanup artifacts
+	parsed = parsed
+	.replace(/[\[\]]/g, "")
+	.replace(/\*/g, "");
+
+	// Step 6: Format line breaks
+	parsed = parsed.replace(/\n+/g, "<br><br>");
+
+	return parsed;
+}
+
+
+
+
+
+
+

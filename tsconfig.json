@@ -7,7 +7,7 @@
       "esnext"
     ],
     "typeRoots": [
-      "./types"
+      "./types", "./node_modules/@types"
     ],
     "allowJs": true,
     "skipLibCheck": true,

@@ -8,9 +8,9 @@ import {
   EnvelopeIcon,
   QuestionMarkCircleIcon,
 } from "@heroicons/react/24/outline";
-import { UserCircleIcon } from "@heroicons/react/24/solid";
+import {UserCircleIcon} from "@heroicons/react/24/solid";
 import UButton from "@/components/shared/UButton";
-import { signIn, signOut, useSession } from "next-auth/react";
+import {signIn, signOut, useSession} from "next-auth/react";
 
 const UHeaderNavigation = () => {
   const { data: session, status } = useSession();
@@ -27,6 +27,7 @@ const UHeaderNavigation = () => {
     signIn("id-server", { callbackUrl: "/" }, { prompt: "login" });
     //alert("Login clicked!");
   };
+  
   const handleLogoutClick = () => {
     signOut({ callbackUrl: "/" }); // Optional: về trang chính sau logout
   };

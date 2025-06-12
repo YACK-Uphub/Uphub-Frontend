@@ -8,6 +8,7 @@ import {
 	SearchPaginatedResponse,
 } from "@/types/baseModel";
 import {createApi} from "@reduxjs/toolkit/query/react";
+import {RootState} from "@/libs/rtk/store";
 
 // =============================
 // === Custom Base Query
@@ -16,6 +17,17 @@ import {createApi} from "@reduxjs/toolkit/query/react";
 const customFetchBaseQuery = fetchBaseQuery({
 	baseUrl: process.env.NEXT_PUBLIC_BASE_API_URL,
 	credentials: "include",
+	prepareHeaders: (headers, api) => {
+
+		// Append token from the auth state tree Redux store
+		const token = (api.getState() as RootState).auth.token;
+
+		if (token) {
+			headers.set("Authorization", "Bearer " + token);
+		}
+
+		return headers;
+	}
 });
 
 export const customFetchBaseQueryWithErrorHandling = async (
