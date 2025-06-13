@@ -62,7 +62,7 @@ const UHeaderNavigation = () => {
 
         {/* Role */}
         {isLoggedIn && <span
-            className="px-4 py-2 bg-custom-black/90 text-sm font-medium text-custom-yellow-3/90 rounded-2xl shadow-lg">{role}</span>}
+            className="rounded-2xl px-4 py-2 text-sm font-medium shadow-lg bg-custom-black/90 text-custom-yellow-3/90">{role}</span>}
 
         {/*	Divider */}
         {isLoggedIn && <div className="inline-block h-6 opacity-50 w-[1px] bg-custom-gray"></div>}
