@@ -36,11 +36,23 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
 		},
 
 		// Session
+
 		async session({session, token}) {
 			if (token) {
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-expect-error
 				session.user.username = token.username;
+
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-expect-error
 				session.accessToken = token.accessToken;
+
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-expect-error
 				session.user.userId = token.userId;
+
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-expect-error
 				session.user.role = token.role;
 			}
 

@@ -67,7 +67,7 @@
 // // };
 //
 //
-// const TestPage = () => {
+const TestPage = () => {
 //
 //   // ==== Test query =============
 //   // const {data, isLoading, isError} = useGetApplicationsQuery({});
@@ -128,6 +128,6 @@
 //
 //       </>
 //   )
-// }
-//
-// export default TestPage;
+}
+
+export default TestPage;
