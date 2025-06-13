@@ -4,11 +4,11 @@ import {useParams} from "next/navigation";
 import React from "react";
 
 export default function StudentPage() {
-    const {companyId} = useParams();
+  const {companyId} = useParams();
 
-    return (
-            <>
-                <UCompanyDetails id={Number(companyId)}/>
-            </>
-    );
+  return (
+      <>
+        <UCompanyDetails id={Number(companyId)}/>
+      </>
+  );
 }

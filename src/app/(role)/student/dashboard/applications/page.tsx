@@ -8,12 +8,12 @@ export const metadata: Metadata = {
 };
 
 const MyApplicationsPage = () => {
-    return (
-            <div>
-                <h1 className="px-5 text-xl text-custom-blue-2">Công việc đã ứng tuyển</h1>
-                <UStudentApplicationList/>
-            </div>
-    );
+  return (
+      <div>
+        <h1 className="px-5 text-xl text-custom-blue-2">Công việc đã ứng tuyển</h1>
+        <UStudentApplicationList/>
+      </div>
+  );
 };
 
 export default MyApplicationsPage;

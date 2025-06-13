@@ -5,16 +5,16 @@ import USearchWithFilter, {UDropdownItem, USearchWithFilterParams,} from './USea
 
 export default function USearchWithFilterWrapper({dropdownData}: { dropdownData: UDropdownItem[] }) {
 
-	const onSearchSubmit = useCallback((params: USearchWithFilterParams) => {
-		console.log('Search params:', params)
+  const onSearchSubmit = useCallback((params: USearchWithFilterParams) => {
+    console.log('Search params:', params)
 
-		//! [TODO] Trigger RTK Query here
-	}, [])
+    //! [TODO] Trigger RTK Query here
+  }, [])
 
-	return (
-		<USearchWithFilter
-			onSearchSubmitAction={onSearchSubmit}
-			dropdownData={dropdownData}
-		/>
-	)
+  return (
+      <USearchWithFilter
+          onSearchSubmitAction={onSearchSubmit}
+          dropdownData={dropdownData}
+      />
+  )
 }

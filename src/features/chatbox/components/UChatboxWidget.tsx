@@ -170,16 +170,16 @@ export default function UChatWidget() {
 
             {/* Submit Button */}
 
-                <button
-                    disabled={isLoading}
-                    type="submit"
-                    className="flex items-center bg-custom-yellow-3 text-custom-white px-6 py-3 rounded-r
+            <button
+                disabled={isLoading}
+                type="submit"
+                className="flex items-center bg-custom-yellow-3 text-custom-white px-6 py-3 rounded-r
                            hover:bg-custom-yellow-3/80 focus:outline-none"
-                >{!isLoading
-                    ? <PaperAirplaneIcon className="h-6 w-6 rotate-90 transform"/>
-                    : <SparklesIcon className="h-6 w-6 transition"/>
-                }
-                </button>
+            >{!isLoading
+                ? <PaperAirplaneIcon className="h-6 w-6 rotate-90 transform"/>
+                : <SparklesIcon className="h-6 w-6 transition"/>
+            }
+            </button>
 
           </form>
         </div>

@@ -26,8 +26,8 @@ const fontReemKufi = Reem_Kufi({
 // };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: ReactNode;
 }>) {
   //! FOR TESTING PURPOSE on Auth
@@ -35,14 +35,14 @@ export default function RootLayout({
   const role: UserRole = UserRole.Guest;
 
   return (
-    <html lang="en" className={`${fontReemKufi.className} h-full`}>
+      <html lang="en" className={`${fontReemKufi.className} h-full`}>
       <body className={"h-full text-custom-black leading-relaxed flex flex-col"}>
-        <SessionProvider>
-          <StoreProvider>
-            <AuthSessionSync />
+      <SessionProvider>
+        <StoreProvider>
+          <AuthSessionSync/>
 
-            {/* Toaster */}
-            <ToastContainer
+          {/* Toaster */}
+          <ToastContainer
               position="top-right"
               autoClose={2000}
               hideProgressBar={false}
@@ -54,32 +54,32 @@ export default function RootLayout({
               pauseOnHover
               theme="light"
               transition={Slide}
-            />
+          />
 
-            {/* Header */}
-            <header className={"sticky top-0 z-50"}>
-              <div className={"py-3 px-12 bg-custom-white"}>
-                <UHeader />
-              </div>
+          {/* Header */}
+          <header className={"sticky top-0 z-50"}>
+            <div className={"py-3 px-12 bg-custom-white"}>
+              <UHeader/>
+            </div>
 
-              <USubHeader role={role} />
-            </header>
+            <USubHeader role={role}/>
+          </header>
 
-            {/* Main */}
-            <main className={"flex-1 bg-custom-white"}>
-              <UPageSpinnerWrapper>{children}</UPageSpinnerWrapper>
-              <UChatWidget></UChatWidget>
-            </main>
+          {/* Main */}
+          <main className={"flex-1 bg-custom-white"}>
+            <UPageSpinnerWrapper>{children}</UPageSpinnerWrapper>
+            <UChatWidget></UChatWidget>
+          </main>
 
-            {/* Footer*/}
-            <footer className={"border-custom-white"}>
-              <UFooter />
-            </footer>
+          {/* Footer*/}
+          <footer className={"border-custom-white"}>
+            <UFooter/>
+          </footer>
 
 
-          </StoreProvider>
-        </SessionProvider>
+        </StoreProvider>
+      </SessionProvider>
       </body>
-    </html>
+      </html>
   );
 }

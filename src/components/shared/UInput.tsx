@@ -4,22 +4,22 @@ import {Label} from "../shadcn/label";
 import {ControllerRenderProps} from "react-hook-form";
 
 type Props = {
-    id: string;
-    label: string;
-    type?: string;
-    showLabel?: boolean;
-    field: ControllerRenderProps<any, any>;
-    error?: string;
+  id: string;
+  label: string;
+  type?: string;
+  showLabel?: boolean;
+  field: ControllerRenderProps<any, any>;
+  error?: string;
 };
 
 export default function UInput({label, showLabel = true, type, field, id, error}: Props) {
-    return (
-            <div>
-                <div className="grid w-full max-w-sm items-center gap-1.5">
-                    {showLabel && <Label htmlFor={label}>{label}</Label>}
-                    <Input {...field} id={id} type={type || "text"} className="w-full"/>
-                    {error && <span className="text-sm text-red-500">{error}</span>}
-                </div>
-            </div>
-    );
+  return (
+      <div>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          {showLabel && <Label htmlFor={label}>{label}</Label>}
+          <Input {...field} id={id} type={type || "text"} className="w-full"/>
+          {error && <span className="text-sm text-red-500">{error}</span>}
+        </div>
+      </div>
+  );
 }

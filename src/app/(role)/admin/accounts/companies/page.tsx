@@ -1,6 +1,6 @@
 ﻿import React from "react";
-import type { Metadata } from "next";
-import { UcompanyAccountTable } from "@/features/dashboard/components/UCompanyAccountTable";
+import type {Metadata} from "next";
+import {UcompanyAccountTable} from "@/features/dashboard/components/UCompanyAccountTable";
 
 export const metadata: Metadata = {
   title: "Company Accounts",
@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 const CompanyAccountsPage = () => {
   return (
-    <div>
-      <UcompanyAccountTable />
-    </div>
+      <div>
+        <UcompanyAccountTable/>
+      </div>
   );
 };
 

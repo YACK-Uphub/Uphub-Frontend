@@ -21,7 +21,7 @@ export type SearchPaginatedResponse<T extends BaseEntity> = {
 	totalCount: number | null,
 }
 
-export type SearchPaginatedRequestParams ={
+export type SearchPaginatedRequestParams = {
 	pageNumber?: number,
 	pageSize?: number,
 	searchTerm?: string;
