@@ -35,7 +35,7 @@ const UJobDetails = ({id}: { id: number }) => {
       dispatch(setPageSize(6));
       dispatch(setJobId(job.id));
     }
-  }, [dispatch, job]);
+  }, [dispatch, job, isLoading]);
 
   useEffect(() => {
     if (company?.imageUrl) {

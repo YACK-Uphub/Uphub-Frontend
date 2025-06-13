@@ -2,15 +2,14 @@
 import {Button} from "@/components/shadcn/button";
 import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow} from "@/components/shadcn/table";
 import {UPagination} from "@/components/shared/UPagination";
-import {useAppDispatch} from "@/libs/rtk/hooks";
 import {useSearchCompaniesQuery} from "@/services/companiesApi";
 import {SearchPaginatedRequestParams} from "@/types/baseModel";
 
 export function UcompanyAccountTable() {
   const params: SearchPaginatedRequestParams = {pageNumber: 1, pageSize: 10};
   const {data: companies, isLoading} = useSearchCompaniesQuery(params);
-  const dispatch = useAppDispatch();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handlePageChange = (newPage: number) => {
     //dispatch(setPageIndex(newPage));
   };

@@ -13,7 +13,7 @@ export default function InternshipProgramDetailsPage() {
   useEffect(() => {
     dispatch(setPageSize(6));
     dispatch(setInternshipProgramId(programId));
-  }, [dispatch]);
+  }, [dispatch, programId]);
 
   return (
       <div>

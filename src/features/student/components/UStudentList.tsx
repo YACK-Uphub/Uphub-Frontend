@@ -44,16 +44,18 @@ export const UStudentList: React.FC<UStudentListProps> = ({isAssigningMode = fal
     return <UPageSpinner/>;
   }
 
-  let totalPages = Math.ceil(data.count / data.pageSize);
+  const totalPages = Math.ceil(data.count / data.pageSize);
 
   // Handle page change from UPagination (1-based)
   const handlePageChange = (newPage: number) => {
     dispatch(setPageIndex(newPage));
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSearchButton = (searchTerm: string) => {
     //dispatch(setSearchTerm(searchTerm));
   };
+
   return (
       <>
         <div className="mx-auto w-full max-w-xl pb-6">

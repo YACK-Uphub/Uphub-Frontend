@@ -17,7 +17,7 @@ type UJobListProps = {
   showPagination?: boolean;
 };
 
-export default function UJobList({viewType = "card", userJobStatus, showPagination = true}: UJobListProps) {
+export default function UJobList({viewType = "card", showPagination = true}: UJobListProps) {
   const jobParams = useAppSelector((state) => state.jobParams);
   const {data, isLoading} = useSearchJobsQuery(jobParams);
   const dispatch = useAppDispatch();
