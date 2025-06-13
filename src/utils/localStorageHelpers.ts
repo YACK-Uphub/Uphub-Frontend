@@ -5,12 +5,18 @@
 	 * @param key
 	 */
 	get<T>(key: string): T | null {
+		if (!key) {
+			console.error("storage.get called with empty key");
+			return null;
+		}
 		try {
 			const json = localStorage.getItem(key);
-			return json ? (JSON.parse(json) as T) as T : null
-
+			if (!json) return null;
+			return JSON.parse(json) as T;
 		} catch {
-			console.error(`storage.et: could not parse JSON for key "${key}"`)
+			console.warn(`storage.get: invalid JSON for key "${key}", clearing it.`);
+			localStorage.removeItem(key);           // purge the junk
+			return null;
 		}
 	},
 

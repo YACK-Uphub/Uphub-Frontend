@@ -1,7 +1,13 @@
 ﻿"use client"
 
 import {useEffect, useRef, useState} from 'react'
-import {addBotMessage, addUserMessage, toggleOpen} from '@/features/chatbox/slices/chatSlice'
+import {
+  addBotMessage,
+  addUserMessage,
+  hydrateMessages,
+  loadMessages,
+  toggleOpen
+} from '@/features/chatbox/slices/chatSlice'
 import {useSendMessageMutation} from '@/services/chatApi'
 import {
   ChatBubbleLeftIcon,
@@ -41,6 +47,11 @@ export default function UChatWidget() {
     }
   }
 
+  // Loading message from users
+  useEffect(() => {
+    const saved = loadMessages(20);
+    dispatch(hydrateMessages(saved))
+  }, [dispatch]);
 
   // auto-scroll on new messages
   useEffect(() => {
