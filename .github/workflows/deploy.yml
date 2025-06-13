@@ -2,9 +2,9 @@
 
 on:
   pull_request:
-    branches: [ deploy ]
+    branches: [ main ]
   push:
-    branches: [ deploy ]
+    branches: [ main ]
 
 jobs:
   lint:
