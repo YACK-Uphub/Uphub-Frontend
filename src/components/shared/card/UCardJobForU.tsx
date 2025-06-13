@@ -40,7 +40,7 @@ const UCardJobForU = ({city, companyImageUrl, companyName, createdAt, jobType, t
         {/* Footer */}
         <div className="flex items-center justify-between">
           <div className="rounded-full border px-3 py-1 text-xs transition border-custom-blue-3 text-custom-blue-2">
-            "Ứng tuyển dễ dàng"
+            &#34;Ứng tuyển dễ dàng&#34;
           </div>
           <span className="text-shadow-xs text-custom-black/60">{formatDate(createdAt)}</span>
         </div>

@@ -13,6 +13,7 @@ export default function UStudentSearchContainer() {
 
   const {data: cities} = useGetAllCitiesQuery(null);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleSearchButton = ({searchKeyword, dropdownItemId, extraSelectionIds}: USearchWithFilterParams) => {
     if (pathname !== "/student/jobs/") router.push("/student/jobs/");
     dispatch(setSearchTerm(searchKeyword));

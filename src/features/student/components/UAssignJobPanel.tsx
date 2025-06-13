@@ -17,6 +17,7 @@ import UButton from "@/components/shared/UButton";
 import {useCreateInternshipMutation} from "@/services/internshipsApi";
 import {setInternshipProgramId, setJobId, setUserId} from "@/features/internship/slices/createInternshipSlice";
 import {toast} from "react-toastify";
+import Image from "next/image";
 
 const UAssignJobPanel: React.FC = () => {
   const params = useParams<{ studentId: string }>();
@@ -100,7 +101,7 @@ const UAssignJobPanel: React.FC = () => {
     try {
       await createInternship(createInternshipParams).unwrap();
       toast.success("Chỉ định sinh viên thành công!");
-    } catch (err: any) {
+    } catch (err) {
       toast.error(
           err?.data?.message || "Không thể chỉ định sinh viên. Vui lòng thử lại."
       );
@@ -120,10 +121,12 @@ const UAssignJobPanel: React.FC = () => {
             {/* Avatar with colored ring */}
             {student.imageUrl ? (
                 <div className="relative">
-                  <img
+                  <Image
                       src={student.imageUrl}
                       alt={`${student.firstName} ${student.lastName}`}
-                      className="h-32 w-32 rounded-full object-cover shadow-lg ring-4 ring-blue-300"
+                      width={128}
+                      height={128}
+                      className="rounded-full object-cover shadow-lg ring-4 ring-blue-300"
                   />
                 </div>
             ) : (
