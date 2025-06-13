@@ -1,4 +1,4 @@
-﻿name: CI/CD Workflow
+name: CI/CD Workflow
 
 on:
   pull_request:
@@ -38,6 +38,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: type-check
     if: success()
+    env:
+      NEXT_PUBLIC_BASE_API_URL: ${{ secrets.NEXT_PUBLIC_BASE_API_URL }}
+      AUTH_SECRET:              ${{ secrets.AUTH_SECRET }}
+      CLIENT_ID:                ${{ secrets.CLIENT_ID }}
+      CLIENT_SECRET:            ${{ secrets.CLIENT_SECRET }}
+      ID_URL:                   ${{ secrets.ID_URL }}
+      SCOPE:                    ${{ secrets.SCOPE }}
+      NEXT_PUBLIC_CHAT_MESSAGE_KEY: ${{ secrets.NEXT_PUBLIC_CHAT_MESSAGE_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -46,6 +54,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
+
       - run: npm ci
 
       - name: Build app
@@ -54,7 +63,7 @@ jobs:
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-token:    ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id:   ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: --prod
+          vercel-args:     --prod
