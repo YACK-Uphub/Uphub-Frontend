@@ -55,7 +55,7 @@ export default function UModalApplication({data}: UModalApplicationProps) {
         </div>
 
         {/* RIGHT: Info Cards */}
-        <div className="w-full md:w-80 space-y-4">
+        <div className="w-full space-y-4 md:w-80">
           {/* Job Info Card */}
           <div className="rounded-lg border p-4 border-custom-gray/20 bg-custom-gray/5">
             <h4 className="mb-3 flex items-center gap-2 font-semibold text-custom-blue-3">

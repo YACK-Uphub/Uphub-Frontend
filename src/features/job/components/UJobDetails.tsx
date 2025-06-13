@@ -133,7 +133,7 @@ const UJobDetails = ({id}: { id: number }) => {
 
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="space-y-6 lg:col-span-2">
               {/* Job description */}
               <div className="rounded-lg bg-white p-6 shadow-sm">
                 <h2 className="mb-4 text-xl font-semibold text-custom-black">Mô tả công việc</h2>

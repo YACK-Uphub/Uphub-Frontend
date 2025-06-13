@@ -42,7 +42,7 @@ export const UInternshipList = () => {
               >
                 {/* Left: Company image & student avatar */}
                 <div className="flex flex-shrink-0 items-center justify-center p-4 bg-custom-white">
-                  <div className="relative h-16 w-16 overflow-hidden rounded-full md:h-20 md:w-20 bg-custom-white">
+                  <div className="relative h-16 w-16 overflow-hidden rounded-full bg-custom-white md:h-20 md:w-20">
                     <Image
                         src={intern.companyImageUrl}
                         alt={`${intern.companyName} Logo`}
