@@ -1,5 +1,5 @@
-import { createCrudApi } from "@/services/baseApi";
-import { Application, ApplicationSearchPaginatedRequestParams } from "@/types/application";
+import {createCrudApi} from "@/services/baseApi";
+import {Application, ApplicationSearchPaginatedRequestParams} from "@/types/application";
 
 export const applicationsApi = createCrudApi<Application, ApplicationSearchPaginatedRequestParams>({
 	reducerPath: "applicationsApi",
@@ -34,4 +34,4 @@ export const {
 	useLazySearchQuery: useLazySearchApplicationsQuery,
 } = applicationsApi;
 
-export const { useCreateApplicationWithFormDataMutation } = applicationsApiExtended;
+export const {useCreateApplicationWithFormDataMutation} = applicationsApiExtended;

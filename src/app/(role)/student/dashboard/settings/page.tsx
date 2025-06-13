@@ -8,9 +8,9 @@ import UProfile from "@/features/profile/components/UProfile";
 
 const DashboardSettingsPage = () => {
   return (
-    <div>
-      <UProfile />
-    </div>
+      <div>
+        <UProfile/>
+      </div>
   );
 };
 

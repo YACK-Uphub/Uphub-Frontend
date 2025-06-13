@@ -12,45 +12,45 @@ import UBecomeMemberSection from "@/features/home/components/become-member-secti
 
 const HomePage = () => {
 
-	return (
-		<div>
-			<section className={"bg-custom-yellow-3 min-h-100 pt-12 pb-12 px-12"}>
-				<div className={"max-w-7xl mx-auto"}>
-					<UHeroSection></UHeroSection>
-				</div>
-			</section>
+  return (
+      <div>
+        <section className={"bg-custom-yellow-3 min-h-100 pt-12 pb-12 px-12"}>
+          <div className={"max-w-7xl mx-auto"}>
+            <UHeroSection></UHeroSection>
+          </div>
+        </section>
 
-			<section className={"min-h-100 pt-8 sm:pt-16 mx-auto max-w-7xl"}>
-				<div className={"px-12 xl:px-0"}>
-					<UJobForUSection></UJobForUSection>
-				</div>
-			</section>
+        <section className={"min-h-100 pt-8 sm:pt-16 mx-auto max-w-7xl"}>
+          <div className={"px-12 xl:px-0"}>
+            <UJobForUSection></UJobForUSection>
+          </div>
+        </section>
 
-			<section className={"min-h-100 pt-8 sm:pt-16 mx-auto max-w-7xl"}>
-				<div className={"px-12 xl:px-0"}>
-					<UTopCompaniesSection></UTopCompaniesSection>
-				</div>
-			</section>
+        <section className={"min-h-100 pt-8 sm:pt-16 mx-auto max-w-7xl"}>
+          <div className={"px-12 xl:px-0"}>
+            <UTopCompaniesSection></UTopCompaniesSection>
+          </div>
+        </section>
 
-			<section className={"h-full mt-8 py-8 sm:py-16 sm:mt-16 bg-custom-gray/10"}>
-				<div className={"px-12 xl:px-0 mx-auto max-w-7xl"}>
-					<UJobPilotSection></UJobPilotSection>
-				</div>
-			</section>
+        <section className={"h-full mt-8 py-8 sm:py-16 sm:mt-16 bg-custom-gray/10"}>
+          <div className={"px-12 xl:px-0 mx-auto max-w-7xl"}>
+            <UJobPilotSection></UJobPilotSection>
+          </div>
+        </section>
 
-			<section className={"min-h-100 py-8 sm:py-16 mx-auto max-w-7xl"}>
-				<div className={"px-24 xl:px-0"}>
-					<UUserExperienceSection></UUserExperienceSection>
-				</div>
-			</section>
+        <section className={"min-h-100 py-8 sm:py-16 mx-auto max-w-7xl"}>
+          <div className={"px-24 xl:px-0"}>
+            <UUserExperienceSection></UUserExperienceSection>
+          </div>
+        </section>
 
-			<section className={"mt-8 py-8 sm:py-16 sm:mt-16 bg-custom-gray/10"}>
-				<div className={"px-12 xl:px-0 mx-auto max-w-7xl"}>
-					<UBecomeMemberSection></UBecomeMemberSection>
-				</div>
-			</section>
-		</div>
-	)
+        <section className={"mt-8 py-8 sm:py-16 sm:mt-16 bg-custom-gray/10"}>
+          <div className={"px-12 xl:px-0 mx-auto max-w-7xl"}>
+            <UBecomeMemberSection></UBecomeMemberSection>
+          </div>
+        </section>
+      </div>
+  )
 };
 
 export default HomePage;

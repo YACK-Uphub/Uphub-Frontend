@@ -6,7 +6,7 @@ import {setToken, setUser} from "@/features/auth/authSlice";
 import {useAppDispatch} from "@/libs/rtk/hooks";
 
 export default function AuthSessionSync() {
-  const { data: session } = useSession();
+  const {data: session} = useSession();
   const dispatch = useAppDispatch();
 
   useEffect(() => {

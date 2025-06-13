@@ -4,11 +4,11 @@ import UStudentList from "@/features/student/components/UStudentList";
 import UUserExperienceSection from "@/features/home/components/user-experience-section/UUserExperienceSection";
 
 export const metadata: Metadata = {
-	title: "Students Management",
-	description: "Manage students from your school on UpHub",
+  title: "Students Management",
+  description: "Manage students from your school on UpHub",
 };
 const StudentsManagementPage = () => {
-	return (
+  return (
       <div>
         <section className={"pt-8 sm:pt-16 max-w-7xl"}>
           <div className={"px-12 xl:px-0"}>
@@ -22,7 +22,7 @@ const StudentsManagementPage = () => {
           </div>
         </section>
       </div>
-	);
+  );
 };
 
 export default StudentsManagementPage;

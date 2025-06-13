@@ -10,19 +10,19 @@ export const metadata: Metadata = {
 
 const CandidatesPage = () => {
   return (
-    <div>
-      <section className={"min-h-100 mx-auto max-w-5xl"}>
-        <div className={"px-12 xl:px-0"}>
-          <UStudentList isAssigningMode={false}></UStudentList>
-        </div>
-      </section>
+      <div>
+        <section className={"min-h-100 mx-auto max-w-5xl"}>
+          <div className={"px-12 xl:px-0"}>
+            <UStudentList isAssigningMode={false}></UStudentList>
+          </div>
+        </section>
 
-      <section className={"min-h-100 py-8 sm:py-16 mx-auto max-w-5xl"}>
-        <div className={"px-24 xl:px-0"}>
-          <UUserExperienceSection></UUserExperienceSection>
-        </div>
-      </section>
-    </div>
+        <section className={"min-h-100 py-8 sm:py-16 mx-auto max-w-5xl"}>
+          <div className={"px-24 xl:px-0"}>
+            <UUserExperienceSection></UUserExperienceSection>
+          </div>
+        </section>
+      </div>
   );
 };
 

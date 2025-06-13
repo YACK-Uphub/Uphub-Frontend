@@ -32,5 +32,5 @@ export const internshipProgramSlice = createSlice({
 	},
 });
 
-export const { resetParams, setPageIndex, setPageSize, setSearchTerm, setSort } = internshipProgramSlice.actions;
+export const {resetParams, setPageIndex, setPageSize, setSearchTerm, setSort} = internshipProgramSlice.actions;
 export default internshipProgramSlice.reducer;

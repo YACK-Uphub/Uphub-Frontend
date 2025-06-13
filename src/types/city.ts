@@ -1,4 +1,4 @@
-import { Entity } from "./baseModel";
+import {Entity} from "./baseModel";
 
 export type City = Entity<{
 	id: number;

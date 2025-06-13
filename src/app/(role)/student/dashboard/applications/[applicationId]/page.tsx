@@ -2,5 +2,5 @@
 import React from "react";
 
 export default function ApplicationDetailPage() {
-    return <div>page</div>;
+  return <div>page</div>;
 }

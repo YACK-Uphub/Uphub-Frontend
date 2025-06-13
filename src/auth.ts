@@ -2,7 +2,7 @@ import NextAuth, {Profile} from "next-auth";
 import {OIDCConfig} from "next-auth/providers";
 import DuendeIDS6Provider from "next-auth/providers/duende-identity-server6";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const {handlers, signIn, signOut, auth} = NextAuth({
 	session: {
 		strategy: "jwt",
 	},
@@ -12,18 +12,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 			clientId: process.env.CLIENT_ID,
 			clientSecret: process.env.CLIENT_SECRET,
 			issuer: process.env.ID_URL,
-			authorization: { params: { scope: process.env.SCOPE } },
+			authorization: {params: {scope: process.env.SCOPE}},
 			idToken: true,
 		} as OIDCConfig<Omit<Profile, "username">>),
 	],
 	callbacks: {
 
-		async authorized({ auth }) {
+		async authorized({auth}) {
 			return !!auth;
 		},
 
 		// JWT
-		async jwt({ token, profile, account }) {
+		async jwt({token, profile, account}) {
 			if (account && account.access_token) {
 				token.accessToken = account.access_token;
 			}
@@ -36,7 +36,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 		},
 
 		// Session
-		async session({ session, token }) {
+		async session({session, token}) {
 			if (token) {
 				session.user.username = token.username;
 				session.accessToken = token.accessToken;
