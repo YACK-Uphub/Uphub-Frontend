@@ -18,7 +18,6 @@ import {ArrowUpTrayIcon, SparklesIcon} from "@heroicons/react/24/solid";
 import {useGetAllIndustriesQuery} from "@/services/industriesApi";
 import {useGetAllSkillsQuery} from "@/services/skillsApi";
 import {useGetAllJobTypesQuery} from "@/services/jobTypesApi";
-import {useAppSelector} from "@/libs/rtk/hooks";
 
 // 1) Zod schema (unchanged)
 const CreateJobSchema = z.object({
@@ -48,7 +47,7 @@ const CreateJobSchema = z.object({
 
 type CreateJobFormValues = z.infer<typeof CreateJobSchema>;
 
-export const UCreateJobForm: React.FC = () => {
+const UCreateJobForm: React.FC = () => {
   const {
     control,
     handleSubmit,
@@ -76,7 +75,9 @@ export const UCreateJobForm: React.FC = () => {
 
 
   // current companyId
-  const currentLoggedInCompanyId = useAppSelector(state => state?.auth?.user.userId);
+  // const currentLoggedInCompanyId = useAppSelector(state => state?.auth?.user.userId);
+
+  const currentLoggedInCompanyId = 1;
 
   const [createJob, {isLoading, isError}] = useCreateJobMutation();
   const {data: industries, isLoading: isLoadingIndustries} = useGetAllIndustriesQuery(null);
@@ -540,3 +541,5 @@ export const UCreateJobForm: React.FC = () => {
       </div>
   );
 };
+
+export default UCreateJobForm;

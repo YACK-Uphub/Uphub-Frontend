@@ -9,7 +9,7 @@ import {v4 as uuidv4} from 'uuid';
  */
 const saveMessages = (msgs: ChatMessage[], quantity: number) => {
   const trimmed = msgs.slice(-quantity);
-  storage.set<ChatMessage[]>(process.env.CHAT_MESSAGE_KEY, trimmed);
+  storage.set<ChatMessage[]>(process.env.NEXT_PUBLIC_CHAT_MESSAGE_KEY, trimmed);
 }
 
 /**
@@ -17,7 +17,7 @@ const saveMessages = (msgs: ChatMessage[], quantity: number) => {
  * @param quantity
  */
 const loadMessages = (quantity: number): ChatMessage[] => {
-  const stored = storage.get<ChatMessage[]>(process.env.CHAT_MESSAGE_KEY);
+  const stored = storage.get<ChatMessage[]>(process.env.NEXT_PUBLIC_CHAT_MESSAGE_KEY);
   return stored ? stored.slice(-quantity) : [];
 }
 
@@ -38,7 +38,7 @@ export const chatSlice = createSlice({
     // clear all messages
     clearChat(state) {
       state.messages = [];
-      storage.remove(process.env.CHAT_MESSAGE_KEY);
+      storage.remove(process.env.NEXT_PUBLIC_CHAT_MESSAGE_KEY);
     },
 
     /** Append a user message */

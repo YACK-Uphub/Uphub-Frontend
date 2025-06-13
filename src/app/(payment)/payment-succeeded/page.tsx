@@ -1,12 +1,8 @@
-﻿"use client";
-
-import {useSearchParams} from "next/navigation";
-import {CheckCircleIcon} from "@heroicons/react/24/solid";
+﻿import {CheckCircleIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
 
-export default function PaymentSucceededPage() {
-  const params = useSearchParams();
-  const orderCode = params.get("orderCode");
+export default function PaymentSucceededPage({searchParams}) {
+  const orderCode = searchParams.orderCode;
 
   return (
       <div
