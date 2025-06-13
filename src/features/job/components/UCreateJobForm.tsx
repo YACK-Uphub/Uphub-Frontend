@@ -18,6 +18,7 @@ import {ArrowUpTrayIcon, SparklesIcon} from "@heroicons/react/24/solid";
 import {useGetAllIndustriesQuery} from "@/services/industriesApi";
 import {useGetAllSkillsQuery} from "@/services/skillsApi";
 import {useGetAllJobTypesQuery} from "@/services/jobTypesApi";
+import {useAppSelector} from "@/libs/rtk/hooks";
 
 // 1) Zod schema (unchanged)
 const CreateJobSchema = z.object({
@@ -47,7 +48,7 @@ const CreateJobSchema = z.object({
 
 type CreateJobFormValues = z.infer<typeof CreateJobSchema>;
 
-const UCreateJobForm: React.FC = () => {
+export const UCreateJobForm: React.FC = () => {
   const {
     control,
     handleSubmit,
@@ -73,8 +74,10 @@ const UCreateJobForm: React.FC = () => {
     },
   });
 
-  // Will change later when auth
-  let CURRENT_COMPANY_ID: number = 11;
+
+  // current companyId
+  const currentLoggedInCompanyId = useAppSelector(state => state?.auth?.user.userId);
+
   const [createJob, {isLoading, isError}] = useCreateJobMutation();
   const {data: industries, isLoading: isLoadingIndustries} = useGetAllIndustriesQuery(null);
   const {data: skills, isLoading: isLoadingSkills} = useGetAllSkillsQuery(null);
@@ -106,8 +109,8 @@ const UCreateJobForm: React.FC = () => {
       await createJob(payload).unwrap();
       toast.success("Tạo việc làm thành công!");
       reset();
-    } catch (err: any) {
-      toast.error(err.data?.message || "Đã xảy ra lỗi khi tạo việc làm");
+    } catch (err: unknown) {
+      console.error(err)
     }
   };
 
@@ -270,7 +273,7 @@ const UCreateJobForm: React.FC = () => {
                             className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-200"
                         >
                           <option value={0}>Chọn Công ty</option>
-                          <option value={CURRENT_COMPANY_ID}>11 – Công ty C</option>
+                          <option value={currentLoggedInCompanyId}>Công ty C</option>
                         </select>
                         {errors.CompanyId && (
                             <p className="mt-1 text-sm text-red-500">{errors.CompanyId.message}</p>
@@ -537,5 +540,3 @@ const UCreateJobForm: React.FC = () => {
       </div>
   );
 };
-
-export default UCreateJobForm;

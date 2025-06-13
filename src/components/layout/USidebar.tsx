@@ -26,7 +26,8 @@ type USidebarProps = {
   groups: SidebarGroupData[];
   footer?: ReactNode;
 };
-export default function USidebar({groups, footer}: USidebarProps) {
+
+export default function USidebar({groups}: USidebarProps) {
   return (
       <Sidebar collapsible="icon">
         {/* <SidebarHeader /> */}

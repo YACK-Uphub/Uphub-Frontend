@@ -10,7 +10,7 @@ export const applicationsApi = createCrudApi<Application, ApplicationSearchPagin
 
 export const applicationsApiExtended = applicationsApi.injectEndpoints({
 	endpoints: (builder) => ({
-		createApplicationWithFormData: builder.mutation<any, FormData>({
+		createApplicationWithFormData: builder.mutation<never, FormData>({
 			query: (formData) => ({
 				url: "applications",
 				method: "POST",

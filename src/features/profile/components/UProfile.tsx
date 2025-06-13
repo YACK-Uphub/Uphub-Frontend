@@ -63,6 +63,7 @@ export default function UProfile() {
 
   if (isLoading || !student) return <div>Đang tải...</div>;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function onSubmit(data: z.infer<typeof FormSchema>) {
     // toast({
     //     content: "You submitted the following values:",
@@ -73,6 +74,7 @@ export default function UProfile() {
     //     ),
     // });
   }
+
 
   return (
       <div className="px-10">

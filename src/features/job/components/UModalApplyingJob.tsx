@@ -85,7 +85,7 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
       console.log(response);
       toast.success("Bạn đã nộp đơn thành công");
       onCloseModal();
-    } catch (error: any) {
+    } catch (error) {
       toast.error(error.status + " " + error.message);
     }
   };
@@ -186,7 +186,7 @@ export const UModalApplyingJob = ({job, company, onCloseModal}: UModalApplyingJo
               <Controller
                   name="CVDocument"
                   control={control}
-                  render={({field}) => (
+                  render={({}) => (
                       <UFileInput
                           label="Tải lên CV"
                           fileTypes={[UFileInputType.PDF]}
