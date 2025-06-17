@@ -37,13 +37,13 @@ jobs:
     needs: type-check
     if: success()
     env:
-      NEXT_PUBLIC_BASE_API_URL: ${{ secrets.NEXT_PUBLIC_BASE_API_URL }}
       AUTH_SECRET:              ${{ secrets.AUTH_SECRET }}
-      CLIENT_ID:                ${{ secrets.CLIENT_ID }}
       CLIENT_SECRET:            ${{ secrets.CLIENT_SECRET }}
-      ID_URL:                   ${{ secrets.ID_URL }}
-      SCOPE:                    ${{ secrets.SCOPE }}
-      NEXT_PUBLIC_CHAT_MESSAGE_KEY: ${{ secrets.NEXT_PUBLIC_CHAT_MESSAGE_KEY }}
+      CLIENT_ID:                ${{ vars.CLIENT_ID }}
+      ID_URL:                   ${{ vars.ID_URL }}
+      SCOPE:                    ${{ vars.SCOPE }}
+      NEXT_PUBLIC_BASE_API_URL: ${{ vars.NEXT_PUBLIC_BASE_API_URL }}
+      NEXT_PUBLIC_CHAT_MESSAGE_KEY: ${{ vars.NEXT_PUBLIC_CHAT_MESSAGE_KEY }}
     steps:
       - uses: actions/checkout@v4
 
