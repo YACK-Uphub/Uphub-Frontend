@@ -12,7 +12,19 @@ export const {handlers, signIn, signOut, auth} = NextAuth({
 			clientId: process.env.CLIENT_ID,
 			clientSecret: process.env.CLIENT_SECRET,
 			issuer: process.env.ID_URL,
-			authorization: {params: {scope: process.env.SCOPE}},
+
+			authorization: {
+				params: {scope: process.env.SCOPE},
+				url: process.env.ID_URL + '/connect/authorize'
+			},
+			token: {
+				url: `${process.env.ID_URL}/connect/token}`
+			},
+
+			userinfo: {
+				url: `${process.env.ID_URL}/connect/token}`
+			},
+
 			idToken: true,
 		} as OIDCConfig<Omit<Profile, "username">>),
 	],
