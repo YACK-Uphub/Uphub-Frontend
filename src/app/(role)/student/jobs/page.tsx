@@ -1,6 +1,5 @@
 ﻿"use client";
 import React from "react";
-import type { Metadata } from "next";
 import UJobList from "@/features/job/components/UJobList";
 import { useAppDispatch } from "@/libs/rtk/hooks";
 import { resetParams } from "@/features/job/slices/jobSlice";
