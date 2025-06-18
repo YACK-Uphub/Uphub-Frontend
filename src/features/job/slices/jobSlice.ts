@@ -1,5 +1,5 @@
-import {JobDateType, JobSearchPaginatedRequestParams} from "@/types/job";
-import {createSlice} from "@reduxjs/toolkit";
+import { JobDateType, JobSearchPaginatedRequestParams } from "@/types/job";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: JobSearchPaginatedRequestParams = {
 	pageNumber: 1,
@@ -24,6 +24,7 @@ export const jobSlice = createSlice({
 		setSearchTerm(state, action) {
 			state.searchTerm = action.payload;
 			state.pageNumber = 1;
+			state.pageSize = 9;
 		},
 		setCompanyId(state, action) {
 			state.companyId = action.payload;
