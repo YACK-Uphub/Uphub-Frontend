@@ -15,4 +15,4 @@ export const citiesApi = createApi({
 	}),
 });
 
-export const { useGetAllCitiesQuery } = citiesApi;
+export const {useGetAllCitiesQuery} = citiesApi;

@@ -51,11 +51,11 @@ const summaryCards = [
 ];
 
 const lineChartData = {
-  labels: Array.from({ length: 30 }, (_, i) => `May ${i + 1}`),
+  labels: Array.from({length: 30}, (_, i) => `May ${i + 1}`),
   datasets: [
     {
       label: "Sinh viên",
-      data: Array.from({ length: 30 }, () => Math.floor(Math.random() * 200 + 100)),
+      data: Array.from({length: 30}, () => Math.floor(Math.random() * 200 + 100)),
       fill: true,
       backgroundColor: "#FFF7E5",
       borderColor: "#FACC15",
@@ -63,7 +63,7 @@ const lineChartData = {
     },
     {
       label: "Doanh nghiệp",
-      data: Array.from({ length: 30 }, () => Math.floor(Math.random() * 300 + 150)),
+      data: Array.from({length: 30}, () => Math.floor(Math.random() * 300 + 150)),
       fill: true,
       backgroundColor: "#E8EDF3",
       borderColor: "#3B82F6",
@@ -74,64 +74,64 @@ const lineChartData = {
 
 const UAdminDashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-50 p-8 space-y-10">
-      {/* Summary Cards */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {summaryCards.map((card) => (
-          <div key={card.title} className="rounded-xl bg-white p-5 shadow-md">
-            <div className="text-lg font-bold text-custom-blue-2">{card.title}</div>
-            <div className="text-2xl font-bold text-custom-yellow-3">{card.value}</div>
-            <div className="mt-1 flex items-center gap-2 text-sm">
-              {card.trend === "up" ? (
-                <ArrowTrendingUpIcon className="h-4 w-4 text-green-500" />
-              ) : (
-                <ArrowTrendingDownIcon className="h-4 w-4 text-red-500" />
-              )}
-              <span className={`font-medium ${card.trend === "up" ? "text-green-600" : "text-red-600"}`}>
+      <div className="min-h-screen bg-gray-50 p-8 space-y-10">
+        {/* Summary Cards */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {summaryCards.map((card) => (
+              <div key={card.title} className="rounded-xl bg-white p-5 shadow-md">
+                <div className="text-lg font-bold text-custom-blue-2">{card.title}</div>
+                <div className="text-2xl font-bold text-custom-yellow-3">{card.value}</div>
+                <div className="mt-1 flex items-center gap-2 text-sm">
+                  {card.trend === "up" ? (
+                      <ArrowTrendingUpIcon className="h-4 w-4 text-green-500"/>
+                  ) : (
+                      <ArrowTrendingDownIcon className="h-4 w-4 text-red-500"/>
+                  )}
+                  <span className={`font-medium ${card.trend === "up" ? "text-green-600" : "text-red-600"}`}>
                 {card.note}
               </span>
-            </div>
-            <div className="mt-1 text-xs text-gray-400">{card.description}</div>
-          </div>
-        ))}
-      </div>
+                </div>
+                <div className="mt-1 text-xs text-gray-400">{card.description}</div>
+              </div>
+          ))}
+        </div>
 
-      {/* Line Chart Section */}
-      <div className="rounded-xl bg-white p-6 shadow-md">
-        <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <h2 className="text-lg font-bold text-custom-blue-2">Tỷ lệ đăng ký tài khoản</h2>
-          <div className="flex gap-2">
-            {["Last 3 months", "Last 30 days", "Last 7 days"].map((label, idx) => (
-              <button
-                key={idx}
-                className={`text-sm px-4 py-1.5 rounded-lg border ${
-                  idx === 1
-                    ? "bg-blue-100 border-blue-300 text-blue-700 font-medium"
-                    : "bg-gray-100 border-gray-300 text-gray-700"
-                } hover:bg-blue-200 transition`}
-              >
-                {label}
-              </button>
-            ))}
+        {/* Line Chart Section */}
+        <div className="rounded-xl bg-white p-6 shadow-md">
+          <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <h2 className="text-lg font-bold text-custom-blue-2">Tỷ lệ đăng ký tài khoản</h2>
+            <div className="flex gap-2">
+              {["Last 3 months", "Last 30 days", "Last 7 days"].map((label, idx) => (
+                  <button
+                      key={idx}
+                      className={`text-sm px-4 py-1.5 rounded-lg border ${
+                          idx === 1
+                              ? "bg-blue-100 border-blue-300 text-blue-700 font-medium"
+                              : "bg-gray-100 border-gray-300 text-gray-700"
+                      } hover:bg-blue-200 transition`}
+                  >
+                    {label}
+                  </button>
+              ))}
+            </div>
+          </div>
+          <div className="h-[450px]">
+            <Line
+                data={lineChartData}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: {
+                    legend: {
+                      position: "bottom",
+                      labels: {boxWidth: 16, color: "#6B7280"},
+                    },
+                  },
+                }}
+            />
           </div>
         </div>
-        <div className="h-[450px]">
-          <Line
-            data={lineChartData}
-            options={{
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  position: "bottom",
-                  labels: { boxWidth: 16, color: "#6B7280" },
-                },
-              },
-            }}
-          />
-        </div>
       </div>
-    </div>
   );
 };
 

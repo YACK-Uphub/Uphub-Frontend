@@ -7,12 +7,12 @@ export const metadata: Metadata = {
 };
 
 const GeneralDashboardPage = () => {
-	return (
-		<div>
-			<h1>General Dashboard</h1>
-			<p>View an overview of your internship journey, recent activities, and key metrics.</p>
-		</div>
-	);
+  return (
+      <div>
+        <h1>General Dashboard</h1>
+        <p>View an overview of your internship journey, recent activities, and key metrics.</p>
+      </div>
+  );
 };
 
 export default GeneralDashboardPage;

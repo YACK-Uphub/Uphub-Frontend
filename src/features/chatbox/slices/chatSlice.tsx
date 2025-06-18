@@ -3,35 +3,36 @@ import {storage} from "@/utils/localStorageHelpers";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {v4 as uuidv4} from 'uuid';
 
-
 /**
  * Save the list of messages temporarily under the local storage
  */
 const saveMessages = (msgs: ChatMessage[], quantity: number) => {
   const trimmed = msgs.slice(-quantity);
-  storage.set<ChatMessage[]>(process.env.CHAT_MESSAGE_KEY, trimmed);
+  storage.set<ChatMessage[]>(process.env.NEXT_PUBLIC_CHAT_MESSAGE_KEY, trimmed);
 }
-
-console.log(process.env.CHAT_MESSAGE_KEY)
 
 /**
  * Load the messages from the local storage
  * @param quantity
  */
-const loadMessages = (quantity: number): ChatMessage[] => {
-  const stored = storage.get<ChatMessage[]>(process.env.CHAT_MESSAGE_KEY);
+export const loadMessages = (quantity: number): ChatMessage[] => {
+  const stored = storage.get<ChatMessage[]>(process.env.NEXT_PUBLIC_CHAT_MESSAGE_KEY);
   return stored ? stored.slice(-quantity) : [];
 }
 
 const initialState: ChatState = {
   open: false,
-  messages: loadMessages(10)
+  messages: [],
 }
-
 export const chatSlice = createSlice({
   name: "chatSlice",
   initialState,
   reducers: {
+
+    // Hydration
+    hydrateMessages(state, action: PayloadAction<ChatMessage[]>) {
+      state.messages = action.payload;
+    },
 
     // toggle open widget
     toggleOpen(state) {
@@ -41,7 +42,7 @@ export const chatSlice = createSlice({
     // clear all messages
     clearChat(state) {
       state.messages = [];
-      storage.remove(process.env.CHAT_MESSAGE_KEY);
+      storage.remove(process.env.NEXT_PUBLIC_CHAT_MESSAGE_KEY);
     },
 
     /** Append a user message */
@@ -83,6 +84,7 @@ export const chatSlice = createSlice({
 export const {
   toggleOpen,
   clearChat,
+  hydrateMessages,
   addUserMessage,
   addBotMessage,
 } = chatSlice.actions;

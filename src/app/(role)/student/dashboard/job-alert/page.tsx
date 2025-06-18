@@ -8,12 +8,12 @@ export const metadata: Metadata = {
 };
 
 const JobAlertsPage = () => {
-    return (
-            <div>
-                <h1 className="px-5 text-xl">Thông báo việc làm</h1>
-                <UJobList viewType="row"/>
-            </div>
-    );
+  return (
+      <div>
+        <h1 className="px-5 text-xl">Thông báo việc làm</h1>
+        <UJobList viewType="row"/>
+      </div>
+  );
 };
 
 export default JobAlertsPage;

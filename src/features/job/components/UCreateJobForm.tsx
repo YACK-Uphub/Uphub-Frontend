@@ -73,8 +73,12 @@ const UCreateJobForm: React.FC = () => {
     },
   });
 
-  // Will change later when auth
-  let CURRENT_COMPANY_ID: number = 11;
+
+  // current companyId
+  // const currentLoggedInCompanyId = useAppSelector(state => state?.auth?.user.userId);
+
+  const currentLoggedInCompanyId = 1;
+
   const [createJob, {isLoading, isError}] = useCreateJobMutation();
   const {data: industries, isLoading: isLoadingIndustries} = useGetAllIndustriesQuery(null);
   const {data: skills, isLoading: isLoadingSkills} = useGetAllSkillsQuery(null);
@@ -106,8 +110,8 @@ const UCreateJobForm: React.FC = () => {
       await createJob(payload).unwrap();
       toast.success("Tạo việc làm thành công!");
       reset();
-    } catch (err: any) {
-      toast.error(err.data?.message || "Đã xảy ra lỗi khi tạo việc làm");
+    } catch (err: unknown) {
+      console.error(err)
     }
   };
 
@@ -270,7 +274,7 @@ const UCreateJobForm: React.FC = () => {
                             className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-200"
                         >
                           <option value={0}>Chọn Công ty</option>
-                          <option value={CURRENT_COMPANY_ID}>11 – Công ty C</option>
+                          <option value={currentLoggedInCompanyId}>Công ty C</option>
                         </select>
                         {errors.CompanyId && (
                             <p className="mt-1 text-sm text-red-500">{errors.CompanyId.message}</p>

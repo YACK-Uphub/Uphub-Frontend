@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import type { Metadata } from "next";
+import type {Metadata} from "next";
 
 export const metadata: Metadata = {
   title: "School Accounts",
@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 
 const SchoolAccountsPage = () => {
   return (
-    <div>
-      <h1>School Accounts</h1>
-    </div>
+      <div>
+        <h1>School Accounts</h1>
+      </div>
   );
 };
 
