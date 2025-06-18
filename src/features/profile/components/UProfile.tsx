@@ -30,10 +30,8 @@ const FormSchema = z.object({
 
 export default function UProfile() {
   const auth = useAppSelector((state) => state.auth);
-  const maleAvatar =
-    "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/uphub%2Fimages%2Fplaceholders%2Fmale-user.jpg?alt=media&token=7aa18471-6381-44ef-a010-099eaa17add5";
-  const femaleAvatar =
-    "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/uphub%2Fimages%2Fplaceholders%2Ffemale-user.jpg?alt=media&token=b6ea541f-af45-4cce-8c20-aaf0239bfc68";
+  const defaultImageUrl =
+    "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/uphub%2Fimages%2Fplaceholders%2F225-default-avatar.png?alt=media&token=8e0e5cb2-70e8-48b8-b592-0d1555850297";
 
   const { data: student, isLoading } = useGetStudentByIdQuery(auth.user?.userId, {
     skip: !auth.user?.userId,
@@ -41,7 +39,6 @@ export default function UProfile() {
   const requestParams: GetAllPaginatedRequestParams = {};
   const { data: industries } = useGetAllIndustriesQuery(requestParams);
   //console.log(auth.user.userId);
-  const [defaultImageUrl, setDefaultImageUrl] = useState("");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -67,9 +64,6 @@ export default function UProfile() {
         email: student.email,
         phone: student.phoneNumber,
       });
-
-      const genderBasedImage = student.gender === "male" ? maleAvatar : femaleAvatar;
-      setDefaultImageUrl(genderBasedImage);
     }
   }, [student, form]);
 

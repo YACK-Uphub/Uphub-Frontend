@@ -10,6 +10,7 @@ import React from "react";
 import {setPageIndex, setSort} from "../slices/jobSlice";
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@/components/shadcn/select";
 import {UPagination} from "@/components/shared/UPagination";
+import { UserRole } from '@/types/user';
 
 type UJobListProps = {
   viewType?: "card" | "row";
@@ -56,7 +57,7 @@ export default function UJobList({viewType = "card", showPagination = true}: UJo
                   <div className="grid grid-cols-3 gap-6">
                     {data.results.map((job: Job) => (
                         <Link
-                            href={`/${auth?.user?.role === "Company" ? "enterprise" : "student"}/jobs/${job.id}`}
+                            href={`/${auth?.user?.role?.startsWith("Company") ? "enterprise" : "student"}/jobs/${job.id}`}
                             key={job.id}
                         >
                           <UCardJob
