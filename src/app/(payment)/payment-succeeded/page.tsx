@@ -5,13 +5,16 @@ import Link from 'next/link';
 import {useEffect, useState} from 'react';
 import {signOut} from 'next-auth/react';
 
-export default function PaymentSucceededPage({
-                                               searchParams,
-                                             }: {
-  searchParams: { orderCode: string };
-}) {
-  const orderCode = searchParams.orderCode;
+export default function PaymentSucceededPage() {
+
+  const [orderCode, setOrderCode] = useState('')
   const [countDown, setCountDown] = useState<number>(3);
+
+  // grab it once on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    setOrderCode(params.get('orderCode') || '')
+  }, [])
 
   // start ticking
   useEffect(() => {
