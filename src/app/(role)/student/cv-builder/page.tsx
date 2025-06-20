@@ -178,8 +178,11 @@ export default function CreateCvPage() {
             <div className="flex items-center space-x-6 justify-center">
               <div className="relative w-48 h-48">
                 {/* current avatar on top */}
-                <img
+                <Image
                     src={cv.imageUrl}
+                    width={48}
+                    height={48}
+                    quality={100}
                     alt="Avatar"
                     className="w-full h-full rounded-full object-cover border-2 border-[color:var(--color-custom-blue-2)]"
                 />
@@ -187,7 +190,7 @@ export default function CreateCvPage() {
                 {/* overlay button */}
                 <label className="absolute inset-0
                                 bg-black bg-opacity-40
-                                opacity-0 hover:opacity-100
+                                opacity-50 hover:opacity-100
                                 flex items-center justify-center
                                 rounded-full
                                 cursor-pointer
