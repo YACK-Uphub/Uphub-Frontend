@@ -1,11 +1,11 @@
 ﻿// pages/create-cv.tsx
 'use client';
 
-import React, { useState } from 'react';
-import { useGetAllSkillsQuery } from '@/services/skillsApi';
-import { useGetAllIndustriesQuery } from '@/services/industriesApi';
-import { useGetAllJobTypesQuery } from '@/services/jobTypesApi';
-import { Skill } from '@/types/skill';
+import React, {useState} from 'react';
+import {useGetAllSkillsQuery} from '@/services/skillsApi';
+import {useGetAllIndustriesQuery} from '@/services/industriesApi';
+import {useGetAllJobTypesQuery} from '@/services/jobTypesApi';
+import {Skill} from '@/types/skill';
 import Image from "next/image";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas-pro";
@@ -105,7 +105,7 @@ export default function CreateCvPage() {
 
     // 3) snapshot with html2canvas-pro at high resolution
     const canvas = await html2canvas(el, {
-      scale: 3,                  // 2× device pixel ratio
+      scale: 2,                  // 2× device pixel ratio
       useCORS: true,             // allow external images
       allowTaint: false,         // no tainted canvases
       backgroundColor: '#ffffff',// ensure white background
@@ -155,7 +155,6 @@ export default function CreateCvPage() {
   const handleExperienceChange = (i: number, field: keyof Omit<Experience, 'id'>, v: string) => {
     setCv(c => {
       const exps = [...c.experiences];
-      // @ts-ignore
       exps[i] = { ...exps[i], [field]: v };
       return { ...c, experiences: exps };
     });
@@ -179,8 +178,11 @@ export default function CreateCvPage() {
             <div className="flex items-center space-x-6 justify-center">
               <div className="relative w-48 h-48">
                 {/* current avatar on top */}
-                <img
+                <Image
                     src={cv.imageUrl}
+                    width={48}
+                    height={48}
+                    quality={100}
                     alt="Avatar"
                     className="w-full h-full rounded-full object-cover border-2 border-[color:var(--color-custom-blue-2)]"
                 />
@@ -188,7 +190,7 @@ export default function CreateCvPage() {
                 {/* overlay button */}
                 <label className="absolute inset-0
                                 bg-black bg-opacity-40
-                                opacity-0 hover:opacity-100
+                                opacity-50 hover:opacity-100
                                 flex items-center justify-center
                                 rounded-full
                                 cursor-pointer

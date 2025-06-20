@@ -16,6 +16,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 		{name: "Nhà tuyển dụng", path: "/student/companies"},
 		{name: "Thống kê", path: "/student/dashboard/applications"},
 		{name: "Gói tìm việc", path: "/student/payments"},
+		{name: "Tạo CV", path: "/student/cv-builder"},
 	],
 	[UserRole.StudentPro]: [
 		{name: "Trang chủ", path: "/"},
@@ -23,7 +24,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 		{name: "Nhà tuyển dụng", path: "/student/companies"},
 		{name: "Thống kê", path: "/student/dashboard/applications"},
 		{name: "Gói tìm việc", path: "/student/payments"},
-		{name: "Tạo CV AI", path: "/student/cv-builder"},
+		{name: "Tạo CV", path: "/student/cv-builder"},
 	],
 	[UserRole.Admin]: [
 		{name: "Danh sách tài khoản", path: "/admin/accounts/students"},
