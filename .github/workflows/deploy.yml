@@ -37,11 +37,11 @@ jobs:
     needs: type-check
     if: success()
     env:
-      AUTH_SECRET:              ${{ secrets.AUTH_SECRET }}
-      CLIENT_SECRET:            ${{ secrets.CLIENT_SECRET }}
-      CLIENT_ID:                ${{ vars.CLIENT_ID }}
-      ID_URL:                   ${{ vars.ID_URL }}
-      SCOPE:                    ${{ vars.SCOPE }}
+      AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      CLIENT_ID: ${{ vars.CLIENT_ID }}
+      ID_URL: ${{ vars.ID_URL }}
+      SCOPE: ${{ vars.SCOPE }}
       NEXT_PUBLIC_BASE_API_URL: ${{ vars.NEXT_PUBLIC_BASE_API_URL }}
       NEXT_PUBLIC_CHAT_MESSAGE_KEY: ${{ vars.NEXT_PUBLIC_CHAT_MESSAGE_KEY }}
     steps:
@@ -61,7 +61,7 @@ jobs:
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v25
         with:
-          vercel-token:    ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id:   ${{ secrets.VERCEL_ORG_ID }}
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args:     --prod
+          vercel-args: --prod

@@ -3,6 +3,7 @@ import {UserRole} from "@/types/user";
 
 export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 	[UserRole.UniversityManager]: [
+		{name: "Trang chủ", path: "/"},
 		{name: "Quản lý học sinh", path: "/school/students"},
 		{name: "Quản lý thực tập sinh", path: "/school/internships"},
 		{name: "Quản lý công ty", path: "/school/companies"},
@@ -22,6 +23,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 		{name: "Nhà tuyển dụng", path: "/student/companies"},
 		{name: "Thống kê", path: "/student/dashboard/applications"},
 		{name: "Gói tìm việc", path: "/student/payments"},
+		{name: "Tạo CV AI", path: "/student/cv-builder"},
 	],
 	[UserRole.Admin]: [
 		{name: "Danh sách tài khoản", path: "/admin/accounts/students"},
@@ -31,6 +33,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 		{name: "Cài đặt", path: "/admin/settings"},
 	],
 	[UserRole.CompanyBasic]: [
+		{name: "Trang chủ", path: "/"},
 		{name: "Tìm thực tập sinh", path: "/enterprise/candidates"},
 		{name: "Đăng tuyển việc làm", path: "/enterprise/job-posting"},
 		{name: "Quản lý công việc", path: "/enterprise/jobs"},
@@ -40,6 +43,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 	],
 
 	[UserRole.CompanyPro]: [
+		{name: "Trang chủ", path: "/"},
 		{name: "Tìm thực tập sinh", path: "/enterprise/candidates"},
 		{name: "Đăng tuyển việc làm", path: "/enterprise/job-posting"},
 		{name: "Quản lý công việc", path: "/enterprise/jobs"},
@@ -49,6 +53,7 @@ export const navRoutes: Record<UserRole, { name: string; path: string }[]> = {
 	],
 
 	[UserRole.CompanyEnterprise]: [
+		{name: "Trang chủ", path: "/"},
 		{name: "Tìm thực tập sinh", path: "/enterprise/candidates"},
 		{name: "Đăng tuyển việc làm", path: "/enterprise/job-posting"},
 		{name: "Quản lý công việc", path: "/enterprise/jobs"},
