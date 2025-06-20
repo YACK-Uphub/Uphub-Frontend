@@ -1,4 +1,4 @@
-﻿import {GetAllPaginatedRequestParams} from "@/types/baseModel";
+﻿import { GetAllPaginatedRequestParams } from "@/types/baseModel";
 
 export enum UserRole {
 	Admin = "Admin",
@@ -8,7 +8,7 @@ export enum UserRole {
 	CompanyPro = "CompanyPro",
 	CompanyEnterprise = "CompanyEnterprise",
 	UniversityManager = "UniversityManage",
-	Guest = "Guest"
+	Guest = "Guest",
 }
 
 export type User = {
@@ -46,6 +46,10 @@ export type CurriculumVitae = {
 
 export type SocialLink = {
 	id: number;
+	name: string;
+	linkUrl: string;
+};
+export type LinkToAdd = {
 	name: string;
 	linkUrl: string;
 };
