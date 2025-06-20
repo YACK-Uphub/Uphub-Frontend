@@ -1,5 +1,5 @@
 ﻿// src/signalr/notificationHub.ts
-import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
+import {HubConnection, HubConnectionBuilder, LogLevel} from '@microsoft/signalr';
 
 const HUB_URL = `${process.env.NEXT_PUBLIC_BASE_API_URL}/notifications`;
 

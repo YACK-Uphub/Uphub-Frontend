@@ -1,8 +1,8 @@
 ﻿'use client';
 
-import { XCircleIcon } from '@heroicons/react/24/solid';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import {XCircleIcon} from '@heroicons/react/24/solid';
+import {useRouter} from 'next/navigation';
+import {useEffect, useState} from 'react';
 
 export default function PaymentCancelledPage({
                                                searchParams,

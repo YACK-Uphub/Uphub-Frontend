@@ -1,9 +1,9 @@
 ﻿'use client';
 
-import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import {CheckCircleIcon} from '@heroicons/react/24/solid';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { signOut } from 'next-auth/react';
+import {useEffect, useState} from 'react';
+import {signOut} from 'next-auth/react';
 
 export default function PaymentSucceededPage({
                                                searchParams,
@@ -24,13 +24,13 @@ export default function PaymentSucceededPage({
   // when it reaches below 0, fire logout + redirect to /login
   useEffect(() => {
     if (countDown < 0) {
-      signOut({ callbackUrl: '/' });
+      signOut({callbackUrl: '/'});
     }
   }, [countDown]);
 
   return (
       <div className="h-full flex flex-col items-center justify-center bg-custom-white px-4 text-center">
-        <CheckCircleIcon className="h-20 w-20 text-[color:var(--color-custom-green-text)] mb-6" />
+        <CheckCircleIcon className="h-20 w-20 text-[color:var(--color-custom-green-text)] mb-6"/>
 
         <h1 className="text-3xl font-bold text-[color:var(--color-custom-black)] mb-2">
           Thanh toán thành công!
