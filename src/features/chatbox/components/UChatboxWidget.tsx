@@ -9,17 +9,12 @@ import {
   toggleOpen
 } from '@/features/chatbox/slices/chatSlice'
 import {useSendMessageMutation} from '@/services/chatApi'
-import {
-  ChatBubbleLeftIcon,
-  ChatBubbleLeftRightIcon,
-  PaperAirplaneIcon,
-  SparklesIcon,
-  XMarkIcon
-} from '@heroicons/react/24/solid'
+import {ChatBubbleLeftIcon, ChatBubbleLeftRightIcon, PaperAirplaneIcon, XMarkIcon} from '@heroicons/react/24/solid'
 import {useAppDispatch, useAppSelector} from "@/libs/rtk/hooks";
 import {ChatMessageSender, SendMessageRequestBody} from "@/types/chat";
 import {formatAIMessageToHTML, formatDateToTime} from "@/utils/functionHelpers";
 import {UserRole} from "@/types/user";
+import {UPageSpinner} from "@/components/shared/spinner/UPageSpinner";
 
 export default function UChatWidget() {
   const dispatch = useAppDispatch()
@@ -46,6 +41,7 @@ export default function UChatWidget() {
       return ""
     }
   }
+
 
   // Loading message from users
   useEffect(() => {
@@ -158,6 +154,7 @@ export default function UChatWidget() {
             <div ref={bottomRef}/>
           </div>
 
+
           {/* Input bar: slides down when loading */}
           <form
               onSubmit={handleSubmit}
@@ -165,33 +162,41 @@ export default function UChatWidget() {
                           transform transition-transform duration-700 ease-in-out
                         `}
           >
-            <textarea
-                value={input}
-                maxLength={600}
-                onChange={e => setInput(e.target.value)}
-                className="flex-1 border rounded-l px-4 py-4
-                            focus:outline-none
-                            focus:ring-3 focus:ring-custom-yellow-3
-                            overflow-y-auto
-                            max-h-32
-                            resize-none
-                           "
-                placeholder="Hỏi Uphub nhé ..."
-            />
+            {isLoading
+                ? (
+                    <div className={`w-full p-4 rounded-lg bg-gradient-to-r
+                                   from-custom-yellow-3/20 via-custom-yellow-2/80 to-custom-yellow-3/20 animate-pulse`}
+                    >
+                      <UPageSpinner></UPageSpinner>
+                    </div>
+                )
+                : (
+                    <>
+                      <textarea
+                          value={input}
+                          maxLength={600}
+                          onChange={e => setInput(e.target.value)}
+                          className="flex-1 border rounded-l px-4 py-4
+                                      focus:outline-none
+                                      focus:ring-3 focus:ring-custom-yellow-3
+                                      overflow-y-auto
+                                      max-h-32
+                                      resize-none
+                                     "
+                          placeholder="Hỏi Uphub nhé ..."
+                      />
 
-            {/* Submit Button */}
-
-            <button
-                disabled={isLoading}
-                type="submit"
-                className="flex items-center bg-custom-yellow-3 text-custom-white px-6 py-3 rounded-r
+                      {/* Submit Button */}
+                      <button
+                          disabled={isLoading}
+                          type="submit"
+                          className="flex items-center bg-custom-yellow-3 text-custom-white px-6 py-3 rounded-r
                            hover:bg-custom-yellow-3/80 focus:outline-none"
-            >{!isLoading
-                ? <PaperAirplaneIcon className="h-6 w-6 rotate-90 transform"/>
-                : <SparklesIcon className="h-6 w-6 transition"/>
+                      ><PaperAirplaneIcon className="h-6 w-6 rotate-90 transform"/>
+                      </button>
+                    </>
+                )
             }
-            </button>
-
           </form>
         </div>
       </>
