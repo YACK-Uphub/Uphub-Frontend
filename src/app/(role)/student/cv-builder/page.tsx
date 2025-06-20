@@ -471,7 +471,7 @@ export default function CreateCvPage() {
             <div className="relative mb-2 h-32 w-32 overflow-hidden rounded-full bg-custom-gray inline-block">
               <Image
                   src={cv.imageUrl}
-                  alt={`${name} Logo`}
+                  alt={`${cv.firstName} Logo`}
                   fill={true}
                   objectFit={"cover"}
                   quality={100}

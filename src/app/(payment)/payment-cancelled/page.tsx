@@ -1,17 +1,20 @@
 ﻿'use client';
 
 import {XCircleIcon} from '@heroicons/react/24/solid';
-import {useRouter} from 'next/navigation';
 import {useEffect, useState} from 'react';
+import {useRouter} from "next/navigation";
 
-export default function PaymentCancelledPage({
-                                               searchParams,
-                                             }: {
-  searchParams: { orderCode: string };
-}) {
+export default function PaymentCancelledPage() {
+
   const router = useRouter();
-  const orderCode = searchParams.orderCode;
+  const [orderCode, setOrderCode] = useState('')
   const [countDown, setCountDown] = useState(3);
+
+  // get the order code from the url
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    setOrderCode(params.get('orderCode') || '')
+  }, [])
 
   useEffect(() => {
     // tick every second
