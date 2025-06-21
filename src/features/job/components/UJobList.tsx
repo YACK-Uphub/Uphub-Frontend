@@ -1,15 +1,15 @@
 "use client";
-import {UCardJob} from "@/components/shared/card/UCardJob";
-import {UCardVariant} from "@/components/shared/card/UCardVariant";
+import { UCardJob } from "@/components/shared/card/UCardJob";
+import { UCardVariant } from "@/components/shared/card/UCardVariant";
 import UJobRow from "@/components/shared/table/UJobRow";
-import {useAppDispatch, useAppSelector} from "@/libs/rtk/hooks";
-import {useSearchJobsQuery} from "@/services/jobsApi";
-import {Job, JobDateType} from "@/types/job";
+import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
+import { useSearchJobsQuery } from "@/services/jobsApi";
+import { Job, JobDateType } from "@/types/job";
 import Link from "next/link";
 import React from "react";
-import {setPageIndex, setSort} from "../slices/jobSlice";
-import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@/components/shadcn/select";
-import {UPagination} from "@/components/shared/UPagination";
+import { setPageIndex, setSort } from "../slices/jobSlice";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
+import { UPagination } from "@/components/shared/UPagination";
 
 type UJobListProps = {
   viewType?: "card" | "row";
@@ -17,9 +17,9 @@ type UJobListProps = {
   showPagination?: boolean;
 };
 
-export default function UJobList({viewType = "card", showPagination = true}: UJobListProps) {
+export default function UJobList({ viewType = "card", showPagination = true }: UJobListProps) {
   const jobParams = useAppSelector((state) => state.jobParams);
-  const {data, isLoading} = useSearchJobsQuery(jobParams);
+  const { data, isLoading } = useSearchJobsQuery(jobParams);
   const dispatch = useAppDispatch();
   const auth = useAppSelector((state) => state.auth);
 
@@ -27,82 +27,84 @@ export default function UJobList({viewType = "card", showPagination = true}: UJo
     dispatch(setPageIndex(newPage));
   };
 
-  if (isLoading) return;
+  if (isLoading || !data) return;
 
   return (
-      <>
-        {!data ? (
-            <div>empty list</div>
-        ) : (
-            <>
-              {/* Order By */}
-              <div className="flex justify-end pb-2">
-                <Select onValueChange={(value) => dispatch(setSort(value))}>
-                  <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Sắp xếp theo"/>
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectGroup>
-                      <SelectItem value={JobDateType.DateAsc}>Mới nhất</SelectItem>
-                      <SelectItem value={JobDateType.DateDesc}>Cũ nhất</SelectItem>
-                      <SelectItem value={JobDateType.ClosingSoon}>Gần đóng</SelectItem>
-                    </SelectGroup>
-                  </SelectContent>
-                </Select>
-              </div>
+    <>
+      {data.results?.length <= 0 ? (
+        <div className="w-5xl py-10 flex flex-col items-center justify-center text-gray-500">
+          <p className="text-lg font-medium">Chưa có công việc nào</p>
+        </div>
+      ) : (
+        <>
+          {/* Order By */}
+          <div className="flex justify-end pb-2">
+            <Select onValueChange={(value) => dispatch(setSort(value))}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Sắp xếp theo" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value={JobDateType.DateAsc}>Mới nhất</SelectItem>
+                  <SelectItem value={JobDateType.DateDesc}>Cũ nhất</SelectItem>
+                  <SelectItem value={JobDateType.ClosingSoon}>Gần đóng</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
 
-              {/* Data */}
-              {viewType === "card" ? (
-                  <div className="grid grid-cols-3 gap-6">
-                    {data.results.map((job: Job) => (
-                        <Link
-                            href={`/${auth?.user?.role?.startsWith("Company") ? "enterprise" : "student"}/jobs/${job.id}`}
-                            key={job.id}
-                        >
-                          <UCardJob
-                              companyLogoUrl={job.companyImageUrl}
-                              companyName={job.companyName}
-                              jobTitle={job.title}
-                              jobType={job.jobType}
-                              location={job.city}
-                              salaryRange={job.salaryRange}
-                              isFeatured={job.isFeatured}
-                              variant={job.isHighlighted ? UCardVariant.Yellow : UCardVariant.Normal}
-                          />
-                        </Link>
-                    ))}
-                  </div>
-              ) : (
-                  <>
-                    <div className="flex flex-col w-[70vw]">
-                      {data.results.map((job: Job) => (
-                          <Link href={`/student/jobs/${job.id}`} key={job.id}>
-                            <UJobRow
-                                jobTitle={job.title}
-                                jobStatus={job.jobStatus}
-                                imageUrl={job.companyImageUrl}
-                                city={job.city}
-                                jobType={job.jobType}
-                                salaryRange={job.salaryRange}
-                                closingDate={new Date(job.closingDate)}
-                            />
-                          </Link>
-                      ))}
-                    </div>
-                  </>
-              )}
-
-              {/* Pagination */}
-              {showPagination && (
-                  <UPagination
-                      currentPage={Number(jobParams.pageNumber)}
-                      totalPages={data.pageCount}
-                      onPageChanged={handlePageChange}
-                      className="mt-5"
+          {/* Data */}
+          {viewType === "card" ? (
+            <div className="grid grid-cols-3 gap-6">
+              {data.results.map((job: Job) => (
+                <Link
+                  href={`/${auth?.user?.role?.startsWith("Company") ? "enterprise" : "student"}/jobs/${job.id}`}
+                  key={job.id}
+                >
+                  <UCardJob
+                    companyLogoUrl={job.companyImageUrl}
+                    companyName={job.companyName}
+                    jobTitle={job.title}
+                    jobType={job.jobType}
+                    location={job.city}
+                    salaryRange={job.salaryRange}
+                    isFeatured={job.isFeatured}
+                    variant={job.isHighlighted ? UCardVariant.Yellow : UCardVariant.Normal}
                   />
-              )}
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <>
+              <div className="flex flex-col w-[70vw]">
+                {data.results.map((job: Job) => (
+                  <Link href={`/student/jobs/${job.id}`} key={job.id}>
+                    <UJobRow
+                      jobTitle={job.title}
+                      jobStatus={job.jobStatus}
+                      imageUrl={job.companyImageUrl}
+                      city={job.city}
+                      jobType={job.jobType}
+                      salaryRange={job.salaryRange}
+                      closingDate={new Date(job.closingDate)}
+                    />
+                  </Link>
+                ))}
+              </div>
             </>
-        )}
-      </>
+          )}
+
+          {/* Pagination */}
+          {showPagination && (
+            <UPagination
+              currentPage={Number(jobParams.pageNumber)}
+              totalPages={data.pageCount}
+              onPageChanged={handlePageChange}
+              className="mt-5"
+            />
+          )}
+        </>
+      )}
+    </>
   );
 }
