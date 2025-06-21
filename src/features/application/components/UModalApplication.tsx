@@ -16,8 +16,9 @@ import {
 } from "@heroicons/react/24/solid";
 import UButton from "@/components/shared/UButton";
 import { getStyleApplicationStatus } from "@/components/shared/table/URowVariant";
-import { useUpdateApplicationMutation } from "@/services/applicationsApi";
+import { useGetApplicationByIdQuery, useUpdateApplicationMutation } from "@/services/applicationsApi";
 import { toast } from "react-toastify";
+import { UPageSpinner } from "@/components/shared/spinner/UPageSpinner";
 
 export type UModalApplicationProps = {
   data: Application;
@@ -25,10 +26,19 @@ export type UModalApplicationProps = {
 
 export default function UModalApplication({ data }: UModalApplicationProps) {
   const [updateApplication] = useUpdateApplicationMutation();
+  const { data: application, isLoading } = useGetApplicationByIdQuery(data.id);
+
   const handleSubmit = async (status: ApplicationStatus) => {
-    const result = await updateApplication({ id: data.id, body: { status: status } });
-    toast.success("Duyệt đơn thành công");
+    try {
+      await updateApplication({ id: data.id, body: { status: status } }).unwrap();
+      toast.success("Xử lý đơn thành công");
+    } catch (error) {
+      console.log("error: ", error);
+      toast.error("Đã xảy ra lỗi. Vui lòng thử lại.");
+    }
   };
+
+  if (isLoading || !application) return <UPageSpinner />;
 
   return (
     <div className="mx-auto flex flex-col gap-8 md:flex-row">
@@ -165,11 +175,11 @@ export default function UModalApplication({ data }: UModalApplicationProps) {
           <div className={`flex items-center gap-3`}>
             <span>Trạng thái:</span>
             <span
-              className={`p-2 rounded-md shadow-sm ${getStyleApplicationStatus(data.status).text} ${
-                getStyleApplicationStatus(data.status).bg
+              className={`p-2 rounded-md shadow-sm ${getStyleApplicationStatus(application.status).text} ${
+                getStyleApplicationStatus(application.status).bg
               }`}
             >
-              {data.status || "Đang xử lý"}
+              {application.status || "Đang xử lý"}
             </span>
           </div>
         </div>
@@ -180,7 +190,7 @@ export default function UModalApplication({ data }: UModalApplicationProps) {
           </div>
         </div>
 
-        {data.status === ApplicationStatus.Applied && (
+        {application.status === ApplicationStatus.Applied && (
           <div className="flex gap-2">
             <UButton
               label="Duyệt đơn"
