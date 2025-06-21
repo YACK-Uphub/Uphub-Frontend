@@ -136,7 +136,7 @@ export function createCrudApi<
 			update: builder.mutation<T, { id: string | number; body: Partial<T> }>({
 				query: ({id, body}) => ({
 					url: `${baseUrl}/${id}`,
-					method: "PUT",
+					method: "PATCH",
 					body,
 				}),
 				invalidatesTags: (result, error, {id}) => [{type: tagType, id}, tagType],

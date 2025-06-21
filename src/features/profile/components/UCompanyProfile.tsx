@@ -1,40 +1,111 @@
 "use client";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input } from "@/components/shadcn/input";
 import { Textarea } from "@/components/shadcn/textarea";
 import UButton from "@/components/shared/UButton";
+import { useAppSelector } from "@/libs/rtk/hooks";
+import {
+  useGetCompanyByIdQuery,
+  useUpdateCompanyMutation,
+  useUploadCompanyImageMutation,
+} from "@/services/companiesApi";
+import { useGetAllCitiesQuery } from "@/services/citiesApi";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
+import { toast } from "react-toastify";
+import UImageUploadModal from "./UImageUploadModal";
+import { useGetAllBusinessTypesQuery } from "@/services/businessTypesApi";
 
 const CompanySchema = z.object({
-  logo: z.any().optional(),
   companyName: z.string().nonempty("Vui lòng nhập tên công ty"),
-  aboutUs: z.string().optional(),
-  organizationType: z.string().optional(),
-  industry: z.string().optional(),
-  teamSize: z.string().optional(),
-  foundedYear: z.string().optional(),
-  website: z.string().optional(),
-  vision: z.string().optional(),
-  address: z.string().optional(),
-  phone: z.string().optional(),
-  email: z.string().optional(),
+  description: z.string().nonempty("Vui lòng nhập mô tả"),
+  organizationType: z.string().nonempty("Vui lòng nhập loại hình tổ chức"),
+  benefit: z.string().nonempty("Vui lòng nhập quyền lợi"),
+  companySize: z.string().nonempty("Vui lòng nhập quy mô công ty"),
+  establishedDate: z.string().nonempty("Vui lòng nhập năm thành lập"),
+  websiteUrl: z.string().nonempty("Vui lòng nhập website"),
+  vision: z.string().nonempty("Vui lòng nhập tầm nhìn"),
+  address: z.string().nonempty("Vui lòng nhập địa chỉ"),
+  phoneNumber: z.string().nonempty("Vui lòng nhập số điện thoại"),
+  email: z.string().nonempty("Vui lòng nhập email"),
+  cityId: z.number().min(1, "Vui lòng chọn thành phố"),
+  businessTypeId: z.number().min(1, "Vui lòng chọn loại hình kinh doanh"),
 });
 
 export default function UCompanyProfile() {
+  const auth = useAppSelector((state) => state.auth);
+  const { data: company, isLoading } = useGetCompanyByIdQuery(auth.user?.userId, {
+    skip: !auth.user?.userId,
+  });
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+
+  const { data: cities } = useGetAllCitiesQuery();
+  const { data: businessTypes } = useGetAllBusinessTypesQuery({});
+
+  const [updateCompany] = useUpdateCompanyMutation();
+  const [uploadCompanyImage] = useUploadCompanyImageMutation();
+
+  const form = useForm<z.infer<typeof CompanySchema>>({
+    resolver: zodResolver(CompanySchema),
+  });
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: zodResolver(CompanySchema),
-  });
+  } = form;
 
-  const [logoPreview, setLogoPreview] = useState<string | null>(null);
+  useEffect(() => {
+    if (company && cities && businessTypes) {
+      const matchedCity = cities.find((city) => city.name === company.city);
+      const matchedBusinessType = businessTypes.data.find((bt) => bt.name === company.businessType);
 
-  const onSubmit = (data) => {
-    console.log("Submitted company profile:", data);
+      form.reset({
+        description: company.description,
+        address: company.address,
+        companyName: company.companyName,
+        email: company.email,
+        establishedDate: company.establishedDate,
+        organizationType: company.organizationType,
+        phoneNumber: company.phoneNumber,
+        companySize: company.companySize,
+        vision: company.vision,
+        websiteUrl: company.websiteUrl,
+        benefit: company.benefit,
+        cityId: matchedCity?.id || 0,
+        businessTypeId: (matchedBusinessType?.id as number) || 0,
+      });
+    }
+  }, [company, form, cities, businessTypes]);
+
+  const onSubmit = async (data: z.infer<typeof CompanySchema>) => {
+    console.log("submitted data:", data);
+    console.log("user id:", auth.user?.userId);
+    try {
+      const response = await updateCompany({ id: auth.user?.userId, body: { ...data } }).unwrap();
+      console.log("Company profile updated successfully:", response);
+      toast.success("Company profile updated successfully!");
+    } catch (error) {
+      toast.error("Fail to update company profile", error);
+      console.log("error: ", error);
+    }
+  };
+
+  const onSaveImage = async () => {
+    const formData = new FormData();
+    formData.append("CompanyImage", selectedFile);
+
+    try {
+      const response = await uploadCompanyImage({ id: company.id, body: formData }).unwrap();
+      toast.success("Upload ảnh thành công!");
+      setShowImageModal(false);
+    } catch (err) {
+      toast.error("Upload ảnh thất bại");
+      console.error(err);
+    }
   };
 
   return (
@@ -48,10 +119,10 @@ export default function UCompanyProfile() {
         <div className="flex gap-6">
           <img
             src={
-              logoPreview ||
+              company?.imageUrl ||
               "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/uphub%2Fimages%2Fplaceholders%2F360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg?alt=media&token=7c06435e-c6be-4d6d-a65e-9df8111b7527"
             }
-            alt="Logo Preview"
+            alt="Logo"
             className="h-45 w-45 object-contain rounded border"
           />
           <div>
@@ -59,16 +130,25 @@ export default function UCompanyProfile() {
             <Input
               type="file"
               accept="image/*"
-              {...register("logo")}
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 if (file) {
+                  setShowImageModal(true);
                   setLogoPreview(URL.createObjectURL(file));
+                  setSelectedFile(file);
                 }
               }}
             />
             <p className="text-sm text-gray-500 mt-1">Nên sử dụng ảnh lớn hơn 400px. Tối đa 5MB.</p>
           </div>
+
+          {showImageModal && logoPreview && (
+            <UImageUploadModal
+              imagePreviewUrl={logoPreview}
+              onClose={() => setShowImageModal(false)}
+              onSave={async () => onSaveImage()}
+            />
+          )}
         </div>
 
         {/* Tên công ty và mô tả */}
@@ -81,7 +161,7 @@ export default function UCompanyProfile() {
         <div>
           <label className="block font-medium">Về chúng tôi</label>
           <Textarea
-            {...register("aboutUs")}
+            {...register("description")}
             className="w-full"
             rows={4}
             placeholder="Hãy viết vài dòng về công ty..."
@@ -95,23 +175,40 @@ export default function UCompanyProfile() {
             <Input {...register("organizationType")} className="w-full" />
           </div>
           <div>
-            <label className="block font-medium">Ngành nghề</label>
-            <Input {...register("industry")} className="w-full" />
+            <label className="block font-medium">Loại hình kinh doanh</label>
+            <Controller
+              name="businessTypeId"
+              control={form.control}
+              render={({ field }) => (
+                <Select onValueChange={(val) => field.onChange(Number(val))} value={field.value?.toString()}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="--Chọn loại hình kinh doanh--" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {businessTypes?.data?.map((businesType) => (
+                      <SelectItem key={businesType.id} value={businesType.id.toString()}>
+                        {businesType.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
           </div>
           <div>
             <label className="block font-medium">Quy mô đội ngũ</label>
-            <Input {...register("teamSize")} className="w-full" />
+            <Input {...register("companySize")} className="w-full" />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block font-medium">Năm thành lập</label>
-            <Input type="date" {...register("foundedYear")} className="w-full" />
+            <Input type="date" {...register("establishedDate")} className="w-full" />
           </div>
           <div>
             <label className="block font-medium">Website công ty</label>
-            <Input type="url" {...register("website")} className="w-full" placeholder="https://..." />
+            <Input type="url" {...register("websiteUrl")} className="w-full" placeholder="https://..." />
           </div>
         </div>
 
@@ -120,16 +217,46 @@ export default function UCompanyProfile() {
           <Textarea {...register("vision")} className="w-full" rows={4} />
         </div>
 
-        {/* Địa chỉ, SĐT, Email */}
         <div>
-          <label className="block font-medium">Địa chỉ</label>
-          <Input {...register("address")} className="w-full" />
+          <label className="block font-medium">Quyền lợi công ty</label>
+          <Textarea {...register("benefit")} className="w-full" rows={4} />
+          {errors.benefit && <p className="text-red-500 text-sm">{errors.benefit.message}</p>}
+        </div>
+
+        {/* Địa chỉ, SĐT, Email */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block font-medium">Địa chỉ</label>
+            <Input {...register("address")} className="w-full" />
+          </div>
+          <div>
+            <label className="block font-medium">Thành phố</label>
+            <Controller
+              name="cityId"
+              control={form.control}
+              render={({ field }) => (
+                <Select onValueChange={(val) => field.onChange(Number(val))} value={field.value?.toString()}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="--Chọn thành phố--" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {cities?.map((city) => (
+                      <SelectItem key={city.id} value={city.id.toString()}>
+                        {city.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
+            {errors.cityId && <p className="text-red-500 text-sm">{errors.cityId.message}</p>}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label className="block font-medium">Số điện thoại</label>
-            <Input {...register("phone")} className="w-full" placeholder="Số điện thoại" />
+            <Input {...register("phoneNumber")} className="w-full" placeholder="Số điện thoại" />
           </div>
           <div>
             <label className="block font-medium">Email</label>

@@ -24,10 +24,10 @@ export type UModalApplicationProps = {
 };
 
 export default function UModalApplication({ data }: UModalApplicationProps) {
-  const [updateApplication, { isLoading }] = useUpdateApplicationMutation();
+  const [updateApplication] = useUpdateApplicationMutation();
   const handleSubmit = async (status: ApplicationStatus) => {
     const result = await updateApplication({ id: data.id, body: { status: status } });
-    if (result) toast.success("Duyệt đơn thành công");
+    toast.success("Duyệt đơn thành công");
   };
 
   return (
