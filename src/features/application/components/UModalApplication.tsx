@@ -20,9 +20,7 @@ import { getStyleApplicationStatus } from "@/components/shared/table/URowVariant
 import { useGetApplicationByIdQuery, useUpdateApplicationMutation } from "@/services/applicationsApi";
 import { toast } from "react-toastify";
 import { UPageSpinner } from "@/components/shared/spinner/UPageSpinner";
-import { auth } from "@/auth";
 import { useAppSelector } from "@/libs/rtk/hooks";
-import { UserRole } from "@/types/user";
 
 export type UModalApplicationProps = {
   data: Application;

@@ -140,7 +140,7 @@ export default function UProfile() {
     formData.append("CVDocument", file);
 
     try {
-      const res = await uploadCv({ id: student.id, body: formData }).unwrap();
+      await uploadCv({ id: student.id, body: formData }).unwrap();
       toast.success("Tải CV thành công!");
     } catch (err) {
       toast.error("Tải CV thất bại!");
