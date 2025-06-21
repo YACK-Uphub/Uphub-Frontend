@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -55,7 +55,7 @@ export default function UProfile() {
   const [showImageModal, setShowImageModal] = useState(false);
 
   const [updateStudent] = useUpdateStudentMutation();
-   const [uploadImage] = useUploadImageMutation();
+  const [uploadImage] = useUploadImageMutation();
 
   //const requestParams: GetAllPaginatedRequestParams = {};
   const { data: industries } = useGetAllIndustriesQuery({});
@@ -126,6 +126,7 @@ export default function UProfile() {
   return (
     <div className="px-30 w-full">
       <h1 className="pb-3 text-3xl text-custom-blue-2">Profile</h1>
+      <hr className="pb-5" />
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-20">
           {/* LEFT COLUMN */}
@@ -243,13 +244,19 @@ export default function UProfile() {
               </div>
             </div>
 
-            <p className="font-semibold">Danh sách CV của bạn</p>
+            <div className="flex items-center gap-3 align-middle">
+              <p className="font-semibold">Danh sách CV của bạn</p>
+              <div className="inline-block bg-custom-blue-1 rounded-full p-1 cursor-pointer hover:bg-custom-blue-2">
+                <PlusCircle size={15} color="white" />
+              </div>
+            </div>
+
             <div className="flex flex-wrap gap-2">
               {student.curriculumVitaes?.map((cv, index) => (
                 <UButton
                   key={index}
                   onClick={() => window.open(cv.documentUrl, "_blank")}
-                  label={`Tải CV ${index + 1}`}
+                  label={`CV ${index + 1}`}
                   backgroundColor="bg-blue-100"
                   textColor="text-custom-blue-2"
                   border="border border-transparent"
@@ -259,7 +266,6 @@ export default function UProfile() {
                 />
               ))}
             </div>
-            <UButton label="Upload" backgroundColor="bg-custom-yellow-3" />
           </div>
 
           {/* RIGHT COLUMN */}
