@@ -1,6 +1,7 @@
 "use client";
 import UButton from "@/components/shared/UButton";
 import { UModalWrapper } from "@/components/shared/UModalWrapper";
+import Image from "next/image";
 import React from "react";
 
 type UImageUploadModalProps = {
@@ -15,8 +16,17 @@ export default function UImageUploadModal({ imagePreviewUrl, onClose, onSave }: 
       <div className="flex flex-col items-center justify-center space-y-6">
         <h2 className="text-xl font-semibold text-custom-blue-2">Xem trước Logo</h2>
 
-        <div className="w-[300px] h-[300px] rounded-lg border shadow overflow-hidden">
-          <img src={imagePreviewUrl} alt="Preview" className="w-full h-full object-cover" />
+        <div className="relative w-[300px] h-[300px] rounded-lg border shadow overflow-hidden">
+          <Image
+            src={imagePreviewUrl}
+            alt="Preview"
+            fill
+            quality={50}
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="/images/placeholderImage.png"
+            className="object-cover"
+          />
         </div>
 
         <div className="flex gap-4 pt-4">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,7 +15,6 @@ import { DocumentTextIcon } from "@heroicons/react/24/outline";
 import { useGetStudentByIdQuery, useUpdateStudentMutation, useUploadImageMutation } from "@/services/studentsApi";
 import { useAppSelector } from "@/libs/rtk/hooks";
 import { useGetAllIndustriesQuery } from "@/services/industriesApi";
-import { GetAllPaginatedRequestParams } from "@/types/baseModel";
 import { Input } from "@/components/shadcn/input";
 import { toast } from "react-toastify";
 import { Textarea } from "@/components/shadcn/textarea";
@@ -74,7 +73,7 @@ export default function UProfile() {
     },
   });
 
-  const { control, register, watch, handleSubmit, reset } = form;
+  const { control, handleSubmit, reset } = form;
   const { fields, append, remove } = useFieldArray({
     control,
     name: "socialLinks",
@@ -112,7 +111,7 @@ export default function UProfile() {
     formData.append("ProfileImage", selectedFile);
 
     try {
-      const response = await uploadImage({ id: student.id, body: formData }).unwrap();
+      await uploadImage({ id: student.id, body: formData }).unwrap();
       toast.success("Upload ảnh thành công!");
       setShowImageModal(false);
     } catch (err) {

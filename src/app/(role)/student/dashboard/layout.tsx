@@ -1,7 +1,7 @@
 import {ReactNode} from "react";
 import {SidebarProvider, SidebarTrigger} from "@/components/shadcn/sidebar";
 import USidebar from "@/components/layout/USidebar";
-import {Bell, Briefcase, Settings, Star} from "lucide-react";
+import {Bell, Briefcase, Star} from "lucide-react";
 
 const menuGroups = [
   {

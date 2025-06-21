@@ -13,7 +13,6 @@ import UButton from "@/components/shared/UButton";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useAppSelector } from "@/libs/rtk/hooks";
 import { useRouter } from "next/navigation";
-import { UserRole } from "@/types/user";
 
 const UHeaderNavigation = () => {
   const { data: session, status } = useSession();

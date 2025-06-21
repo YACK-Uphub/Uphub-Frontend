@@ -4,7 +4,7 @@ import UButton from "@/components/shared/UButton";
 import { UBusinessApplicationList } from "@/features/application/components/UBusinessApplicationList";
 import { setSearchTerm } from "@/features/application/slices/applicationSlice";
 import UJobDetails from "@/features/job/components/UJobDetails";
-import { useAppDispatch, useAppSelector } from "@/libs/rtk/hooks";
+import { useAppDispatch } from "@/libs/rtk/hooks";
 import { ApplicationStatus } from "@/types/application";
 import { useParams } from "next/navigation";
 

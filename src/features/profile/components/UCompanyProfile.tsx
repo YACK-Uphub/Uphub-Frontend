@@ -17,6 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "react-toastify";
 import UImageUploadModal from "./UImageUploadModal";
 import { useGetAllBusinessTypesQuery } from "@/services/businessTypesApi";
+import Image from "next/image";
 
 const CompanySchema = z.object({
   companyName: z.string().nonempty("Vui lòng nhập tên công ty"),
@@ -36,7 +37,7 @@ const CompanySchema = z.object({
 
 export default function UCompanyProfile() {
   const auth = useAppSelector((state) => state.auth);
-  const { data: company, isLoading } = useGetCompanyByIdQuery(auth.user?.userId, {
+  const { data: company } = useGetCompanyByIdQuery(auth.user?.userId, {
     skip: !auth.user?.userId,
   });
   const [showImageModal, setShowImageModal] = useState(false);
@@ -99,7 +100,7 @@ export default function UCompanyProfile() {
     formData.append("CompanyImage", selectedFile);
 
     try {
-      const response = await uploadCompanyImage({ id: company.id, body: formData }).unwrap();
+      await uploadCompanyImage({ id: company.id, body: formData }).unwrap();
       toast.success("Upload ảnh thành công!");
       setShowImageModal(false);
     } catch (err) {
@@ -117,14 +118,21 @@ export default function UCompanyProfile() {
       >
         {/* Logo */}
         <div className="flex gap-6">
-          <img
-            src={
-              company?.imageUrl ||
-              "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/uphub%2Fimages%2Fplaceholders%2F360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg?alt=media&token=7c06435e-c6be-4d6d-a65e-9df8111b7527"
-            }
-            alt="Logo"
-            className="h-45 w-45 object-contain rounded border"
-          />
+          <div className="relative h-[180px] w-[180px]">
+            <Image
+              src={
+                company?.imageUrl ||
+                "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/uphub%2Fimages%2Fplaceholders%2F360_F_671923740_x0zOL3OIuUAnSF6sr7PuznCI5bQFKhI0.jpg?alt=media&token=7c06435e-c6be-4d6d-a65e-9df8111b7527"
+              }
+              alt="Logo"
+              fill
+              quality={50}
+              loading="lazy"
+              placeholder="blur"
+              blurDataURL="/images/placeholderImage.png"
+              className="object-cover rounded border"
+            />
+          </div>
           <div>
             <label className="block font-medium mb-2">Tải lên Logo</label>
             <Input
@@ -133,6 +141,7 @@ export default function UCompanyProfile() {
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 if (file) {
+                  e.target.value = "";
                   setShowImageModal(true);
                   setLogoPreview(URL.createObjectURL(file));
                   setSelectedFile(file);
