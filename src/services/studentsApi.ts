@@ -18,6 +18,14 @@ export const extendedStudentsApi = studentsApi.injectEndpoints({
 			}),
 			invalidatesTags: (result, error, { id }) => [{ type: "students" as const, id }, "students"],
 		}),
+		uploadCV: builder.mutation<object, { id: string | number; body: FormData }>({
+			query: ({ id, body }) => ({
+				url: `students/${id}/document`,
+				method: "PATCH",
+				body,
+			}),
+			invalidatesTags: (result, error, { id }) => [{ type: "students" as const, id }, "students"],
+		}),
 	}),
 });
 
@@ -34,4 +42,4 @@ export const {
 	useLazySearchQuery: useLazySearchStudentsQuery,
 } = studentsApi;
 
-export const { useUploadImageMutation } = extendedStudentsApi;
+export const { useUploadImageMutation, useUploadCVMutation } = extendedStudentsApi;

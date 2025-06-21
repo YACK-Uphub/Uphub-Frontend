@@ -1,18 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/shadcn/form";
 import UInput from "@/components/shared/UInput";
-import {Label} from "@/components/shadcn/label";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/shadcn/select";
+import { Label } from "@/components/shadcn/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
 import Image from "next/image";
 import { Edit2, Link2, PlusCircle, Trash2 } from "lucide-react";
 import UButton from "@/components/shared/UButton";
 import { DocumentTextIcon } from "@heroicons/react/24/outline";
-import { useGetStudentByIdQuery, useUpdateStudentMutation, useUploadImageMutation } from "@/services/studentsApi";
+import {
+  useGetStudentByIdQuery,
+  useUpdateStudentMutation,
+  useUploadCVMutation,
+  useUploadImageMutation,
+} from "@/services/studentsApi";
 import { useAppSelector } from "@/libs/rtk/hooks";
 import { useGetAllIndustriesQuery } from "@/services/industriesApi";
 import { Input } from "@/components/shadcn/input";
@@ -43,18 +48,20 @@ const FormSchema = z.object({
 export default function UProfile() {
   const auth = useAppSelector((state) => state.auth);
   const defaultImageUrl =
-      "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/uphub%2Fimages%2Fplaceholders%2F225-default-avatar.png?alt=media&token=8e0e5cb2-70e8-48b8-b592-0d1555850297";
+    "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/uphub%2Fimages%2Fplaceholders%2F225-default-avatar.png?alt=media&token=8e0e5cb2-70e8-48b8-b592-0d1555850297";
 
-  const {data: student, isLoading} = useGetStudentByIdQuery(auth.user?.userId, {
+  const { data: student, isLoading } = useGetStudentByIdQuery(auth.user?.userId, {
     skip: !auth.user?.userId,
   });
 
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [showImageModal, setShowImageModal] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [updateStudent] = useUpdateStudentMutation();
   const [uploadImage] = useUploadImageMutation();
+  const [uploadCv] = useUploadCVMutation();
 
   //const requestParams: GetAllPaginatedRequestParams = {};
   const { data: industries } = useGetAllIndustriesQuery({});
@@ -95,6 +102,7 @@ export default function UProfile() {
     }
   }, [student, reset]);
 
+  // Save data
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
       const response = await updateStudent({ id: auth.user?.userId, body: { ...data } }).unwrap();
@@ -105,7 +113,7 @@ export default function UProfile() {
       toast.error("Đã xảy ra lỗi khi lưu thay đổi.");
     }
   }
-
+  // Upload image
   const onSaveImage = async () => {
     const formData = new FormData();
     formData.append("ProfileImage", selectedFile);
@@ -118,6 +126,27 @@ export default function UProfile() {
       toast.error("Upload ảnh thất bại");
       console.error(err);
     }
+  };
+
+  // Upload CV
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("CVDocument", file);
+
+    try {
+      const res = await uploadCv({ id: student.id, body: formData }).unwrap();
+      toast.success("Tải CV thành công!");
+    } catch (err) {
+      toast.error("Tải CV thất bại!");
+      console.error(err);
+    }
+    event.target.value = "";
   };
 
   if (isLoading || !student) return <UPageSpinner />;
@@ -245,9 +274,19 @@ export default function UProfile() {
 
             <div className="flex items-center gap-3 align-middle">
               <p className="font-semibold">Danh sách CV của bạn</p>
-              <div className="inline-block bg-custom-blue-1 rounded-full p-1 cursor-pointer hover:bg-custom-blue-2">
+              <div
+                className="inline-block bg-custom-blue-1 rounded-full p-1 cursor-pointer hover:bg-custom-blue-2"
+                onClick={handleUploadClick}
+              >
                 <PlusCircle size={15} color="white" />
               </div>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
+                className="hidden"
+              />
             </div>
 
             <div className="flex flex-wrap gap-2">

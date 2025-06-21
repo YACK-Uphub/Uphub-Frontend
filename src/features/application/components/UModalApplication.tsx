@@ -1,4 +1,5 @@
-﻿// @flow
+﻿"use client";
+// @flow
 import * as React from "react";
 import { Application, ApplicationStatus } from "@/types/application";
 import {
@@ -19,6 +20,9 @@ import { getStyleApplicationStatus } from "@/components/shared/table/URowVariant
 import { useGetApplicationByIdQuery, useUpdateApplicationMutation } from "@/services/applicationsApi";
 import { toast } from "react-toastify";
 import { UPageSpinner } from "@/components/shared/spinner/UPageSpinner";
+import { auth } from "@/auth";
+import { useAppSelector } from "@/libs/rtk/hooks";
+import { UserRole } from "@/types/user";
 
 export type UModalApplicationProps = {
   data: Application;
@@ -27,6 +31,7 @@ export type UModalApplicationProps = {
 export default function UModalApplication({ data }: UModalApplicationProps) {
   const [updateApplication] = useUpdateApplicationMutation();
   const { data: application, isLoading } = useGetApplicationByIdQuery(data.id);
+  const auth = useAppSelector((state) => state.auth);
 
   const handleSubmit = async (status: ApplicationStatus) => {
     try {
@@ -190,7 +195,7 @@ export default function UModalApplication({ data }: UModalApplicationProps) {
           </div>
         </div>
 
-        {application.status === ApplicationStatus.Applied && (
+        {auth?.user?.role?.startsWith("Company") && application.status === ApplicationStatus.Applied && (
           <div className="flex gap-2">
             <UButton
               label="Duyệt đơn"
