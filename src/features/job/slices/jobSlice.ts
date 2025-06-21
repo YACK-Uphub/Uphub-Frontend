@@ -1,5 +1,5 @@
-import { JobDateType, JobSearchPaginatedRequestParams } from "@/types/job";
-import { createSlice } from "@reduxjs/toolkit";
+import {JobDateType, JobSearchPaginatedRequestParams} from "@/types/job";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialState: JobSearchPaginatedRequestParams = {
 	pageNumber: 1,

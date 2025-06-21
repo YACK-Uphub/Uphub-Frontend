@@ -6,8 +6,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/shadcn/form";
 import UInput from "@/components/shared/UInput";
-import { Label } from "@/components/shadcn/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
+import {Label} from "@/components/shadcn/label";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/shadcn/select";
 import Image from "next/image";
 import { Edit2, Link2, PlusCircle, Trash2 } from "lucide-react";
 import UButton from "@/components/shared/UButton";
@@ -43,9 +43,9 @@ const FormSchema = z.object({
 export default function UProfile() {
   const auth = useAppSelector((state) => state.auth);
   const defaultImageUrl =
-    "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/uphub%2Fimages%2Fplaceholders%2F225-default-avatar.png?alt=media&token=8e0e5cb2-70e8-48b8-b592-0d1555850297";
+      "https://firebasestorage.googleapis.com/v0/b/mechat-926e4.appspot.com/o/uphub%2Fimages%2Fplaceholders%2F225-default-avatar.png?alt=media&token=8e0e5cb2-70e8-48b8-b592-0d1555850297";
 
-  const { data: student, isLoading } = useGetStudentByIdQuery(auth.user?.userId, {
+  const {data: student, isLoading} = useGetStudentByIdQuery(auth.user?.userId, {
     skip: !auth.user?.userId,
   });
 
