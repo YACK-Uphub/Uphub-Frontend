@@ -45,9 +45,9 @@ export type CurriculumVitae = {
 };
 
 export type SocialLink = {
-	id: number;
-	name: string;
-	linkUrl: string;
+	id?: number;
+	name?: string;
+	linkUrl?: string;
 };
 export type LinkToAdd = {
 	name: string;

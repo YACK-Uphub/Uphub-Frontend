@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/shadcn/form";
@@ -9,27 +9,31 @@ import UInput from "@/components/shared/UInput";
 import { Label } from "@/components/shadcn/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/shadcn/select";
 import Image from "next/image";
-import Link from "next/link";
-import { Edit2Icon, Link2 } from "lucide-react";
+import { Edit2, Link2, PlusCircle, Trash2 } from "lucide-react";
 import UButton from "@/components/shared/UButton";
 import { DocumentTextIcon } from "@heroicons/react/24/outline";
-import { useGetStudentByIdQuery } from "@/services/studentsApi";
+import { useGetStudentByIdQuery, useUpdateStudentMutation, useUploadImageMutation } from "@/services/studentsApi";
 import { useAppSelector } from "@/libs/rtk/hooks";
 import { useGetAllIndustriesQuery } from "@/services/industriesApi";
 import { GetAllPaginatedRequestParams } from "@/types/baseModel";
-import { SocialLink } from "@/types/user";
+import { Input } from "@/components/shadcn/input";
+import { toast } from "react-toastify";
+import { Textarea } from "@/components/shadcn/textarea";
+import { UPageSpinner } from "@/components/shared/spinner/UPageSpinner";
+import UImageUploadModal from "./UImageUploadModal";
 
 const FormSchema = z.object({
-  firstname: z.string().nonempty("Vui lòng nhập tên của bạn"),
-  lastname: z.string().nonempty("Vui lòng nhập họ của bạn"),
+  firstName: z.string().nonempty("Vui lòng nhập tên của bạn"),
+  lastName: z.string().nonempty("Vui lòng nhập họ của bạn"),
   biography: z.string().optional(),
   school: z.string().optional(),
-  industry: z.string().optional(),
+  industryId: z.number().min(1, "Vui lòng chọn lĩnh vực"),
   email: z.string().nonempty("Vui lòng nhập email của bạn"),
-  phone: z.string().optional(),
+  phoneNumber: z.string().optional(),
   socialLinks: z
     .array(
       z.object({
+        id: z.number(),
         name: z.string().optional(),
         linkUrl: z.string().url("Đường dẫn không hợp lệ"),
       })
@@ -45,74 +49,129 @@ export default function UProfile() {
   const { data: student, isLoading } = useGetStudentByIdQuery(auth.user?.userId, {
     skip: !auth.user?.userId,
   });
-  const requestParams: GetAllPaginatedRequestParams = {};
-  const { data: industries } = useGetAllIndustriesQuery(requestParams);
-  //console.log(auth.user.userId);
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [showImageModal, setShowImageModal] = useState(false);
+
+  const [updateStudent] = useUpdateStudentMutation();
+   const [uploadImage] = useUploadImageMutation();
+
+  //const requestParams: GetAllPaginatedRequestParams = {};
+  const { data: industries } = useGetAllIndustriesQuery({});
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      firstname: "",
-      lastname: "",
+      firstName: "",
+      lastName: "",
       biography: "",
       school: "FPT University",
-      industry: "",
+      industryId: 1,
       email: "",
-      phone: "",
+      phoneNumber: "",
       socialLinks: [],
     },
   });
 
+  const { control, register, watch, handleSubmit, reset } = form;
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "socialLinks",
+  });
+
   useEffect(() => {
     if (student) {
-      form.reset({
-        firstname: student.firstName,
-        lastname: student.lastName,
+      console.log(student);
+      reset({
+        firstName: student.firstName,
+        lastName: student.lastName,
         biography: student.biography,
         school: student.school,
-        industry: student.industry,
+        industryId: student.industryId || 1,
         email: student.email,
-        phone: student.phoneNumber,
+        phoneNumber: student.phoneNumber,
         socialLinks: student.socialLinks || [],
       });
     }
-  }, [student, form]);
+  }, [student, reset]);
 
-  if (isLoading || !student) return <div>Đang tải...</div>;
-
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log("Form values:", data);
-    // toast({
-    //     content: "You submitted the following values:",
-    //     description: (
-    //         <pre className="mt-2 rounded-md p-4 w-[340px] bg-slate-950">
-    //             <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-    //         </pre>
-    //     ),
-    // });
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    try {
+      const response = await updateStudent({ id: auth.user?.userId, body: { ...data } }).unwrap();
+      console.log("student profile updated successfully:", response);
+      toast.success("Cập nhật thông tin thành công!");
+    } catch (error) {
+      console.error("Lỗi khi cập nhật:", error);
+      toast.error("Đã xảy ra lỗi khi lưu thay đổi.");
+    }
   }
 
+  const onSaveImage = async () => {
+    const formData = new FormData();
+    formData.append("ProfileImage", selectedFile);
+
+    try {
+      const response = await uploadImage({ id: student.id, body: formData }).unwrap();
+      toast.success("Upload ảnh thành công!");
+      setShowImageModal(false);
+    } catch (err) {
+      toast.error("Upload ảnh thất bại");
+      console.error(err);
+    }
+  };
+
+  if (isLoading || !student) return <UPageSpinner />;
+
   return (
-    <div className="px-10 w-full">
+    <div className="px-30 w-full">
       <h1 className="pb-3 text-3xl text-custom-blue-2">Profile</h1>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-20">
+        <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-20">
           {/* LEFT COLUMN */}
           <div className="space-y-6">
-            {/* Image and Basic Info */}
             <div className="flex flex-col items-center gap-3">
-              <div className="relative h-25 w-25 overflow-hidden rounded-full">
+              <div className="relative h-40 w-40 rounded-full group">
                 <Image
                   src={student.imageUrl?.trim() !== "" ? student.imageUrl : defaultImageUrl}
                   alt="Avatar"
-                  fill={true}
+                  fill
                   quality={50}
                   loading="lazy"
                   objectFit="cover"
                   priority={false}
                   placeholder="blur"
                   blurDataURL="/images/placeholderImage.png"
+                  className="object-cover rounded-full"
                 />
+                {/* Upload Button */}
+                <label className="absolute bottom-0 mb-1 cursor-pointer transition-opacity duration-200">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        setShowImageModal(true);
+                        setImagePreview(URL.createObjectURL(file));
+                        setSelectedFile(file);
+                      }
+                    }}
+                    className="hidden"
+                  />
+                  <div className="bg-white rounded-md p-1 text-sm shadow hover:bg-gray-100 border border-gray-300 flex items-center gap-1">
+                    <Edit2 size={5} />
+                    <span>Edit</span>
+                  </div>
+                </label>
+
+                {showImageModal && imagePreview && (
+                  <UImageUploadModal
+                    imagePreviewUrl={imagePreview}
+                    onClose={() => setShowImageModal(false)}
+                    onSave={async () => onSaveImage()}
+                  />
+                )}
               </div>
               <div className="flex flex-col items-center">
                 <h2 className="text-2xl font-semibold">
@@ -122,9 +181,8 @@ export default function UProfile() {
               </div>
             </div>
 
-            {/* Email */}
             <FormField
-              control={form.control}
+              control={control}
               name="email"
               disabled
               render={({ field }) => (
@@ -137,49 +195,54 @@ export default function UProfile() {
               )}
             />
 
-            {/* Phone */}
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <UInput id="phone" field={field} label="Số điện thoại" showLabel />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             {/* Social Links */}
             <div className="mt-3 w-full">
               <div className="flex items-center gap-3 align-middle">
                 <p className="font-semibold">Liên kết mạng xã hội</p>
-                <div className="inline-block bg-custom-blue-1 rounded-full p-1 cursor-pointer hover:bg-custom-blue-2">
-                  <Edit2Icon size={15} color="white" />
+                <div
+                  className="inline-block bg-custom-blue-1 rounded-full p-1 cursor-pointer hover:bg-custom-blue-2"
+                  onClick={() => append({ linkUrl: "" })}
+                >
+                  <PlusCircle size={15} color="white" />
                 </div>
               </div>
               <div className="mt-2 flex flex-col gap-3">
-                {(form.watch("socialLinks") || []).length > 0 ? (
-                  form.watch("socialLinks").map((link, index) => (
-                    <Link
-                      key={index}
-                      href={link.linkUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-custom-blue-2 hover:underline"
-                    >
-                      <Link2 className="text-custom-blue-2" />
-                      {link.name || link.linkUrl}
-                    </Link>
+                {fields.length > 0 ? (
+                  fields.map((field, index) => (
+                    <FormField
+                      key={field.id}
+                      control={control}
+                      name={`socialLinks.${index}.linkUrl`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <div className="flex gap-2 items-center">
+                            <Link2 className="text-custom-blue-2" />
+                            <FormControl>
+                              <Input
+                                {...field}
+                                placeholder={`Link to social profile ${index + 1}`}
+                                className="w-full"
+                              />
+                            </FormControl>
+                            <button
+                              type="button"
+                              onClick={() => remove(index)}
+                              className="text-red-500 hover:text-red-700"
+                            >
+                              <Trash2 size={18} />
+                            </button>
+                          </div>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
                   ))
                 ) : (
-                  <p className="italic text-gray-500">No links added yet</p>
+                  <p className="italic text-gray-500">Chưa có liên kết nào</p>
                 )}
               </div>
             </div>
 
-            {/* CV Buttons */}
             <p className="font-semibold">Danh sách CV của bạn</p>
             <div className="flex flex-wrap gap-2">
               {student.curriculumVitaes?.map((cv, index) => (
@@ -201,10 +264,9 @@ export default function UProfile() {
 
           {/* RIGHT COLUMN */}
           <div className="space-y-6">
-            {/* First Name */}
             <FormField
-              control={form.control}
-              name="firstname"
+              control={control}
+              name="firstName"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -215,10 +277,9 @@ export default function UProfile() {
               )}
             />
 
-            {/* Last Name */}
             <FormField
-              control={form.control}
-              name="lastname"
+              control={control}
+              name="lastName"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -228,10 +289,21 @@ export default function UProfile() {
                 </FormItem>
               )}
             />
-
-            {/* School */}
             <FormField
-              control={form.control}
+              control={control}
+              name="phoneNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <UInput id="phone" field={field} label="Số điện thoại" showLabel />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={control}
               name="school"
               render={({ field }) => (
                 <FormItem>
@@ -254,37 +326,43 @@ export default function UProfile() {
               )}
             />
 
-            {/* Industry */}
             <FormField
-              control={form.control}
-              name="industry"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <div className="grid w-full items-center gap-1.5">
-                      <Label htmlFor="industry">Lĩnh vực</Label>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Chọn..." />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {industries.data.map((industry) => (
-                            <SelectItem key={industry.id} value={industry.name}>
-                              {industry.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              control={control}
+              name="industryId"
+              render={({ field }) => {
+                {
+                  console.log(field.value);
+                }
+                return (
+                  <FormItem>
+                    <FormControl>
+                      <div className="grid w-full items-center gap-1.5">
+                        <Label htmlFor="industryId">Lĩnh vực</Label>
+                        <Select
+                          onValueChange={(value) => field.onChange(Number(value))}
+                          value={field.value ? field.value.toString() : ""}
+                        >
+                          <SelectTrigger className="w-full">
+                            <SelectValue placeholder="Chọn..." />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {industries?.data?.map((industry) => (
+                              <SelectItem key={industry.id} value={industry.id.toString()}>
+                                {industry.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                );
+              }}
             />
 
-            {/* Biography */}
             <FormField
-              control={form.control}
+              control={control}
               name="biography"
               render={({ field }) => (
                 <FormItem>
@@ -293,12 +371,7 @@ export default function UProfile() {
                       <Label htmlFor="biography" className="mb-4">
                         Tiểu sử
                       </Label>
-                      <textarea
-                        {...field}
-                        id="biography"
-                        className="w-full rounded border border-gray-300 p-2"
-                        rows={6}
-                      />
+                      <Textarea {...field} id="biography" className="w-full" rows={4} />
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -306,8 +379,7 @@ export default function UProfile() {
               )}
             />
 
-            {/* Save Button */}
-            <UButton label="Lưu thay đổi" backgroundColor="bg-custom-blue-2" />
+            <UButton isSubmitFormButton label="Lưu thay đổi" backgroundColor="bg-custom-blue-2" />
           </div>
         </form>
       </Form>

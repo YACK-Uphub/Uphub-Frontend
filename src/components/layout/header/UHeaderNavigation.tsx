@@ -59,7 +59,7 @@ const UHeaderNavigation = () => {
           <BellIcon onClick={handleBellClick} className="h-6 w-6 cursor-pointer" />
         </li>
         <li>
-          <UserCircleIcon className={"w-6 h-6 text-custom-blue-0 cursor-pointer3"} onClick={handleUserClick} />
+          <UserCircleIcon className={"w-6 h-6 text-custom-blue-0 cursor-pointer"} onClick={handleUserClick} />
         </li>
       </ul>
 

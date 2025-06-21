@@ -15,7 +15,9 @@ export default function UImageUploadModal({ imagePreviewUrl, onClose, onSave }: 
       <div className="flex flex-col items-center justify-center space-y-6">
         <h2 className="text-xl font-semibold text-custom-blue-2">Xem trước Logo</h2>
 
-        <img src={imagePreviewUrl} alt="Preview" className="max-w-[300px] max-h-[300px] rounded-lg border shadow" />
+        <div className="w-[300px] h-[300px] rounded-lg border shadow overflow-hidden">
+          <img src={imagePreviewUrl} alt="Preview" className="w-full h-full object-cover" />
+        </div>
 
         <div className="flex gap-4 pt-4">
           <UButton label="Lưu" onClick={onSave} backgroundColor="bg-custom-yellow-3" textColor="text-custom-blue-2" />

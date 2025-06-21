@@ -16,7 +16,7 @@ export const extendedCompaniesApi = companiesApi.injectEndpoints({
 				method: "PATCH",
 				body,
 			}),
-			invalidatesTags: ["companies"],
+			invalidatesTags: (result, error, { id }) => [{ type: "companies" as const, id }, "companies"],
 		}),
 	}),
 });

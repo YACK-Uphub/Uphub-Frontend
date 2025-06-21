@@ -87,9 +87,9 @@ export default function UCompanyProfile() {
     try {
       const response = await updateCompany({ id: auth.user?.userId, body: { ...data } }).unwrap();
       console.log("Company profile updated successfully:", response);
-      toast.success("Company profile updated successfully!");
+      toast.success("Cập nhật thông tin thành công!");
     } catch (error) {
-      toast.error("Fail to update company profile", error);
+      toast.error("Đã xảy ra lỗi khi lưu thay đổi.", error);
       console.log("error: ", error);
     }
   };
