@@ -1,7 +1,7 @@
 import {ReactNode} from "react";
 import {SidebarProvider, SidebarTrigger} from "@/components/shadcn/sidebar";
 import USidebar from "@/components/layout/USidebar";
-import {Bell, Briefcase, Settings, Star} from "lucide-react";
+import {Bell, Briefcase, Star} from "lucide-react";
 
 const menuGroups = [
   {
@@ -10,7 +10,6 @@ const menuGroups = [
       {title: "Công việc đã ứng tuyển", url: "/student/dashboard/applications", icon: Briefcase},
       {title: "Công việc yêu thích", url: "/student/dashboard/favorite-jobs", icon: Star},
       {title: "Thông báo việc làm", url: "/student/dashboard/job-alert", icon: Bell},
-      {title: "Cài đặt", url: "/student/dashboard/settings", icon: Settings},
     ],
   },
 ];

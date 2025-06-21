@@ -1,11 +1,24 @@
-import {createCrudApi} from "@/services/baseApi";
-import {Company, CompanySearchPaginatedRequestParams} from "@/types/company";
+import { createCrudApi } from "@/services/baseApi";
+import { Company, CompanySearchPaginatedRequestParams } from "@/types/company";
 
 export const companiesApi = createCrudApi<Company, CompanySearchPaginatedRequestParams>({
 	reducerPath: "companiesApi",
 	tagType: "companies",
 	baseUrl: "companies",
 	searchUrl: "search/companies",
+});
+
+export const extendedCompaniesApi = companiesApi.injectEndpoints({
+	endpoints: (builder) => ({
+		uploadCompanyImage: builder.mutation<object, { id: string | number; body: FormData }>({
+			query: ({ id, body }) => ({
+				url: `companies/${id}/image`,
+				method: "PATCH",
+				body,
+			}),
+			invalidatesTags: (result, error, { id }) => [{ type: "companies" as const, id }, "companies"],
+		}),
+	}),
 });
 
 export const {
@@ -20,3 +33,5 @@ export const {
 	useLazyGetByIdQuery: useLazyGetCompanyByIdQuery,
 	useLazySearchQuery: useLazySearchCompaniesQuery,
 } = companiesApi;
+
+export const { useUploadCompanyImageMutation } = extendedCompaniesApi;
