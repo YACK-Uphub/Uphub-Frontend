@@ -73,7 +73,7 @@ const UCreateJobForm: React.FC = () => {
   });
 
   // current companyId
-  const currnentCompany = useAppSelector(state => state?.auth?.user);
+  const currentCompany = useAppSelector(state => state?.auth?.user);
 
   const [createJob, {isLoading, isError}] = useCreateJobMutation();
   const {data: industries, isLoading: isLoadingIndustries} = useGetAllIndustriesQuery(null);
@@ -97,13 +97,11 @@ const UCreateJobForm: React.FC = () => {
         isHighlighted: data.IsHighlighted,
         contactEmail: data.ContactEmail || "",
         contactPhone: data.ContactPhone || "",
-        companyId: parseInt(currnentCompany.userId),
+        companyId: parseInt(currentCompany.userId),
         jobTypeId: data.JobTypeId,
         industryId: data.IndustryId,
         skillIds: data.SkillIds,
       };
-
-      console.log(payload)
 
       await createJob(payload).unwrap();
       toast.success("Tạo việc làm thành công!");
