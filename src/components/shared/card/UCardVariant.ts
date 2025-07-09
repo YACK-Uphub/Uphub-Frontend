@@ -17,7 +17,7 @@ export const getStyleCardVariant = (variant: UCardVariant): string => {
 		case UCardVariant.Normal:
 			return "bg-custom-white";
 		case UCardVariant.Yellow:
-			return "bg-gradient-to-r from-yellow-100 via-yellow-130 to-yellow-200";
+			return "bg-gradient-to-r from-custom-yellow-2 via-yellow-0 to-custom-yellow-2";
 	}
 }
 
