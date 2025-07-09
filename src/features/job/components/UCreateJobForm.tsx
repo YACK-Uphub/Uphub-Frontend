@@ -18,6 +18,7 @@ import {ArrowUpTrayIcon, SparklesIcon} from "@heroicons/react/24/solid";
 import {useGetAllIndustriesQuery} from "@/services/industriesApi";
 import {useGetAllSkillsQuery} from "@/services/skillsApi";
 import {useGetAllJobTypesQuery} from "@/services/jobTypesApi";
+import {useAppSelector} from "@/libs/rtk/hooks";
 
 // 1) Zod schema (unchanged)
 const CreateJobSchema = z.object({
@@ -39,7 +40,6 @@ const CreateJobSchema = z.object({
       .refine((val) => val === "" || /^[0-9()+\- ]+$/.test(val), {
         message: "Số điện thoại không hợp lệ",
       }),
-  CompanyId: z.number().min(1, "ID Công ty là bắt buộc"),
   JobTypeId: z.number().min(1, "Loại công việc là bắt buộc"),
   IndustryId: z.number().min(1, "Ngành nghề là bắt buộc"),
   SkillIds: z.array(z.number()).optional().default([]),
@@ -66,18 +66,14 @@ const UCreateJobForm: React.FC = () => {
       IsHighlighted: false,
       ContactEmail: "",
       ContactPhone: "",
-      CompanyId: 0,
       JobTypeId: 0,
       IndustryId: 0,
       SkillIds: [],
     },
   });
 
-
   // current companyId
-  // const currentLoggedInCompanyId = useAppSelector(state => state?.auth?.user.userId);
-
-  const currentLoggedInCompanyId = 1;
+  const currnentCompany = useAppSelector(state => state?.auth?.user);
 
   const [createJob, {isLoading, isError}] = useCreateJobMutation();
   const {data: industries, isLoading: isLoadingIndustries} = useGetAllIndustriesQuery(null);
@@ -101,11 +97,13 @@ const UCreateJobForm: React.FC = () => {
         isHighlighted: data.IsHighlighted,
         contactEmail: data.ContactEmail || "",
         contactPhone: data.ContactPhone || "",
-        companyId: data.CompanyId,
+        companyId: parseInt(currnentCompany.userId),
         jobTypeId: data.JobTypeId,
         industryId: data.IndustryId,
         skillIds: data.SkillIds,
       };
+
+      console.log(payload)
 
       await createJob(payload).unwrap();
       toast.success("Tạo việc làm thành công!");
@@ -260,29 +258,7 @@ const UCreateJobForm: React.FC = () => {
           {/* ── SECTION 4: Phân loại ── */}
           <div className="rounded-md border border-gray-200 p-4">
             <h2 className="mb-4 text-lg font-semibold text-gray-700">Phân loại</h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-              <Controller
-                  name="CompanyId"
-                  control={control}
-                  render={({field}) => (
-                      <div>
-                        <Label htmlFor="CompanyId">ID Công ty *</Label>
-                        <select
-                            id="CompanyId"
-                            value={field.value}
-                            onChange={(e) => field.onChange(Number(e.target.value))}
-                            className="mt-1 w-full rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-200"
-                        >
-                          <option value={0}>Chọn Công ty</option>
-                          <option value={currentLoggedInCompanyId}>Công ty C</option>
-                        </select>
-                        {errors.CompanyId && (
-                            <p className="mt-1 text-sm text-red-500">{errors.CompanyId.message}</p>
-                        )}
-                      </div>
-                  )}
-              />
-
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Controller
                   name="JobTypeId"
                   control={control}
