@@ -150,7 +150,6 @@ const UJobDetails = ({id}: { id: number }) => {
                 <ul className="text-gray-700 space-y-2">
                   {formatNewLine(job.requirements).map((line, index) => (
                       <li className="flex items-start" key={index}>
-                        <span className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-custom-yellow-3"></span>
                         {line}
                       </li>
                   ))}
