@@ -88,7 +88,7 @@ export default function UModalApplication({ data }: UModalApplicationProps) {
             <div className="flex items-start gap-3">
               <BuildingOfficeIcon className="h-4 w-4 flex-shrink-0 mt-0.5" />
               <div className={"flex items-center gap-3"}>
-                <strong className="text-gray-700">Công ty: </strong> {data.salaryRange || "Không xác định"}
+                <strong className="text-gray-700">Công ty: </strong> {data.companyName || "Không xác định"}
               </div>
             </div>
             <div className="flex items-start gap-3">

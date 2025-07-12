@@ -58,7 +58,7 @@ export default function UCardTopCompany({
 
         {/* Employee Numbers */}
         <div className="mt-4 w-full text-xs text-custom-gray space-y-3 md:text-sm">
-          <p>{companySize} Nhân Viên</p>
+          <p>{companySize}</p>
           <p>{followers.toLocaleString()} Followers</p>
           <p className={"text-custom-gray opacity-60"}>{recommendationRate} Tỉ Lệ Đề Xuất Trong 2 Năm Trở Lại</p>
         </div>
