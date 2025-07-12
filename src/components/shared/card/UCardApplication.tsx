@@ -19,7 +19,6 @@ export interface UCardApplicationProps {
 export default function UCardApplication({
   name,
   role,
-  experience,
   education,
   submittedDate,
   avatarUrl,
