@@ -42,7 +42,7 @@ const summaryCards = [
   },
   {
     title: "Tổng doanh thu",
-    value: "4,590,000 VNĐ",
+    value: "6,463,000 VNĐ",
     change: "15.6%",
     note: "Tăng 15.6% so với tháng trước",
     description: "Tỷ lệ tăng trưởng đạt đúng với kỳ vọng đề ra",
@@ -52,11 +52,6 @@ const summaryCards = [
 
 const lineChartData = {
   labels: [
-    "19/06",
-    "20/06",
-    "21/06",
-    "22/06",
-    "23/06",
     "24/06",
     "25/06",
     "26/06",
@@ -79,11 +74,20 @@ const lineChartData = {
     "13/07",
     "14/07",
     "15/07",
+    "16/07",
+    "17/07",
+    "18/07",
+    "19/07",
+    "20/07",
+    "21/07",
+    "22/07",
+    "23/07",
+    "24/07",
   ],
   datasets: [
     {
       label: "Sinh viên",
-      data: [0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 3, 1, 2, 1, 0, 1, 5, 3, 6, 4, 8, 2, 5, 3, 4, 2, 3],
+      data: [0, 0, 0, 0, 1, 0, 0, 0, 2, 0, 3, 1, 2, 1, 0, 1, 5, 3, 5, 4, 8, 2, 5, 3, 4, 2, 3, 2, 2, 1, 1, 1, 1],
       fill: true,
       backgroundColor: "rgba(250, 204, 21, 0.2)",
       borderColor: "#FACC15",
@@ -91,7 +95,7 @@ const lineChartData = {
     },
     {
       label: "Doanh nghiệp",
-      data: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 2, 1, 3, 1, 2, 1, 1, 1, 2],
+      data: [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 2, 1, 3, 1, 2, 1, 1, 1, 2, 1, 1, 0, 0, 0, 0],
       fill: true,
       backgroundColor: "rgba(59, 130, 246, 0.2)",
       borderColor: "#3B82F6",
