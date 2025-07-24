@@ -120,7 +120,7 @@ const pieChartRevenueData = {
   labels: ["Doanh nghiệp", "Sinh viên"],
   datasets: [
     {
-      data: [4600000, 1893000],
+      data: [4600000, 1961000],
       backgroundColor: ["#FACC15", "#2454b6"],
     },
   ],
@@ -130,7 +130,7 @@ const pieChartOrderData = {
   labels: ["Doanh nghiệp", "Sinh viên"],
   datasets: [
     {
-      data: [5, 16],
+      data: [6, 16],
       backgroundColor: ["#FACC15", "#2454b6"],
     },
   ],
@@ -203,7 +203,7 @@ const UAdminDashboard = () => {
           {/* Tổng doanh thu */}
           <div className="rounded-2xl bg-blue-50 p-6 shadow-md hover:shadow-lg transition">
             <h3 className="text-xl font-medium mb-1">Tổng doanh thu</h3>
-            <p className="text-2xl font-bold text-custom-blue-2 mb-2">6,493,000 VNĐ</p>
+            <p className="text-2xl font-bold text-custom-blue-2 mb-2">6,561,000 VNĐ</p>
             <div className="flex items-center gap-2 text-md">
               <ArrowTrendingUpIcon className="w-4 h-4 text-green-500" />
               <span className="text-green-600 font-medium">+9449% so với tháng trước</span>
@@ -213,7 +213,7 @@ const UAdminDashboard = () => {
           {/* Tổng đơn hàng */}
           <div className="rounded-2xl bg-yellow-50 p-6 shadow-md hover:shadow-lg transition">
             <h3 className="text-xl font-medium text-gray-700 mb-1">Tổng đơn hàng</h3>
-            <p className="text-2xl font-bold text-custom-blue-2 mb-2">21 đơn hàng</p>
+            <p className="text-2xl font-bold text-custom-blue-2 mb-2">22 đơn hàng</p>
             <div className="flex items-center gap-2 text-md">
               <ArrowTrendingUpIcon className="w-4 h-4 text-green-500" />
               <span className="text-green-600 font-medium">+20% so với tháng trước</span>
@@ -272,7 +272,7 @@ const UAdminDashboard = () => {
                   <span className="w-3 h-3 mt-1 rounded-full bg-custom-blue-2"></span>
                   <div>
                     <div className="font-medium">Từ sinh viên</div>
-                    <div className="text-sm text-gray-500">1,893,000 VNĐ</div>
+                    <div className="text-sm text-gray-500">1,961,000 VNĐ</div>
                   </div>
                 </div>
               </div>
@@ -320,7 +320,7 @@ const UAdminDashboard = () => {
                   <span className="w-3 h-3 mt-1 rounded-full bg-custom-yellow-3"></span>
                   <div>
                     <div className="font-medium">Doanh nghiệp</div>
-                    <div className="text-sm text-gray-500">5 đơn</div>
+                    <div className="text-sm text-gray-500">6 đơn</div>
                   </div>
                 </div>
 
