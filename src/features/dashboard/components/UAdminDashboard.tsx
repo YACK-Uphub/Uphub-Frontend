@@ -10,10 +10,22 @@ import {
   LineElement,
   PointElement,
   Tooltip,
+  ArcElement,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { Line, Pie } from "react-chartjs-2";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Filler,
+  Tooltip,
+  Legend,
+  ArcElement,
+  ChartDataLabels
+);
 
 const summaryCards = [
   {
@@ -104,12 +116,32 @@ const lineChartData = {
   ],
 };
 
+const pieChartRevenueData = {
+  labels: ["Doanh nghiệp", "Sinh viên"],
+  datasets: [
+    {
+      data: [4600000, 1893000],
+      backgroundColor: ["#FACC15", "#2454b6"],
+    },
+  ],
+};
+
+const pieChartOrderData = {
+  labels: ["Doanh nghiệp", "Sinh viên"],
+  datasets: [
+    {
+      data: [5, 16],
+      backgroundColor: ["#FACC15", "#2454b6"],
+    },
+  ],
+};
+
 const UAdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-8 space-y-10">
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {summaryCards.map((card) => (
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {summaryCards.slice(0, 3).map((card) => (
           <div key={card.title} className="rounded-xl bg-white p-5 shadow-md">
             <div className="text-lg font-bold text-custom-blue-2">{card.title}</div>
             <div className="text-2xl font-bold text-custom-yellow-3">{card.value}</div>
@@ -161,6 +193,147 @@ const UAdminDashboard = () => {
               },
             }}
           />
+        </div>
+      </div>
+      <h2 className="text-3xl font-semibold text-custom-blue-2 m-4">Thống kê doanh thu</h2>
+
+      <div className="space-y-6">
+        {/* --- Summary Cards --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Tổng doanh thu */}
+          <div className="rounded-2xl bg-blue-50 p-6 shadow-md hover:shadow-lg transition">
+            <h3 className="text-xl font-medium mb-1">Tổng doanh thu</h3>
+            <p className="text-2xl font-bold text-custom-blue-2 mb-2">6,493,000 VNĐ</p>
+            <div className="flex items-center gap-2 text-md">
+              <ArrowTrendingUpIcon className="w-4 h-4 text-green-500" />
+              <span className="text-green-600 font-medium">+9449% so với tháng trước</span>
+            </div>
+          </div>
+
+          {/* Tổng đơn hàng */}
+          <div className="rounded-2xl bg-yellow-50 p-6 shadow-md hover:shadow-lg transition">
+            <h3 className="text-xl font-medium text-gray-700 mb-1">Tổng đơn hàng</h3>
+            <p className="text-2xl font-bold text-custom-blue-2 mb-2">21 đơn hàng</p>
+            <div className="flex items-center gap-2 text-md">
+              <ArrowTrendingUpIcon className="w-4 h-4 text-green-500" />
+              <span className="text-green-600 font-medium">+20% so với tháng trước</span>
+            </div>
+          </div>
+        </div>
+
+        {/* --- Pie Charts --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
+          {/* Pie Chart: Doanh thu */}
+          <div className="rounded-2xl bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+            <h2 className="text-xl font-semibold text-custom-blue-2 mb-4">Tỷ lệ doanh thu</h2>
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="h-[350px] w-full max-w-xs mx-auto">
+                <div className="p-3 bg-gray-50 rounded-xl shadow-inner">
+                  <Pie
+                    data={pieChartRevenueData}
+                    options={{
+                      responsive: true,
+                      animation: false,
+                      plugins: {
+                        legend: {
+                          position: "bottom",
+                          labels: { boxWidth: 16, color: "#6B7280" },
+                        },
+                        datalabels: {
+                          color: "#fff",
+                          font: { weight: "bold" as const },
+                          formatter: (value, context) => {
+                            const total = (context.chart.data.datasets[0].data as number[]).reduce(
+                              (acc, val) => acc + val,
+                              0
+                            );
+                            const percent = ((value / total) * 100).toFixed(1);
+                            return `${percent}%`;
+                          },
+                        },
+                      },
+                    }}
+                    plugins={[ChartDataLabels]}
+                  />
+                </div>
+              </div>
+
+              {/* Mô tả doanh thu */}
+              <div className="flex-1 text-sm text-gray-700 space-y-3">
+                <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg shadow-sm">
+                  <span className="w-3 h-3 mt-1 rounded-full bg-custom-yellow-3"></span>
+                  <div>
+                    <div className="font-medium">Từ doanh nghiệp</div>
+                    <div className="text-sm text-gray-500">4,600,000 VNĐ</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg shadow-sm">
+                  <span className="w-3 h-3 mt-1 rounded-full bg-custom-blue-2"></span>
+                  <div>
+                    <div className="font-medium">Từ sinh viên</div>
+                    <div className="text-sm text-gray-500">1,893,000 VNĐ</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Pie Chart: Đơn hàng */}
+          <div className="rounded-2xl bg-white p-6 shadow-lg hover:shadow-xl transition-all duration-300">
+            <h2 className="text-xl font-semibold text-custom-blue-2 mb-4">Tỷ lệ đơn hàng</h2>
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="h-[250px] w-full max-w-xs mx-auto">
+                <div className="p-3 bg-gray-50 rounded-xl shadow-inner">
+                  <Pie
+                    data={pieChartOrderData}
+                    options={{
+                      responsive: true,
+                      animation: false,
+                      plugins: {
+                        legend: {
+                          position: "bottom",
+                          labels: { boxWidth: 16, color: "#6B7280" },
+                        },
+                        datalabels: {
+                          color: "#fff",
+                          font: { weight: "bold" as const },
+                          formatter: (value, context) => {
+                            const total = (context.chart.data.datasets[0].data as number[]).reduce(
+                              (acc, val) => acc + val,
+                              0
+                            );
+                            const percent = ((value / total) * 100).toFixed(1);
+                            return `${percent}%`;
+                          },
+                        },
+                      },
+                    }}
+                    plugins={[ChartDataLabels]}
+                  />
+                </div>
+              </div>
+
+              {/* Mô tả đơn hàng */}
+              <div className="flex-1 text-sm text-gray-700 space-y-3">
+                <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg shadow-sm">
+                  <span className="w-3 h-3 mt-1 rounded-full bg-custom-yellow-3"></span>
+                  <div>
+                    <div className="font-medium">Doanh nghiệp</div>
+                    <div className="text-sm text-gray-500">5 đơn</div>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg shadow-sm">
+                  <span className="w-3 h-3 mt-1 rounded-full bg-custom-blue-2"></span>
+                  <div>
+                    <div className="font-medium">Sinh viên</div>
+                    <div className="text-sm text-gray-500">16 đơn</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
